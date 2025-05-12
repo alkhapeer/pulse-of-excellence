@@ -1,317 +1,270 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <script src="scripts/auth.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مقياس نبض التميّز – المحور 
 
-<meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مقياس نبض التميّز – المحور العاطفي</title>
-  <style>
-    /* ===== أنماط عامة ===== */
-    body {
-      direction: rtl;
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: auto;
-      padding: 20px;
-      background: #f9f9fc;
-    }
-    h1, h2 {
-      text-align: center;
-      margin: 10px 0;
-    }
+العاطفي</title>
+ <div id="lock-screen" style="position:fixed;top:0;right:0;bottom:0;left:0;background:#f9f9fc;z-index:2000;display:flex;flex-direction:column;justify-content:center;align-
 
-    /* ===== زر الإرشادات ===== */
-    #openInstr {
-      display: block;
-      margin: 0 auto 20px;
-      padding: 10px 16px;
-      background: #4F46E5;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+items:center;text-align:center;">
+  <p style="font-size:1.2rem;">للبدء، راسلنا عبر <a href="https://wa.me/201012787445" target="_blank">واتساب</a> للحصول على رمز المرور:</p>
+  <input 
 
-    /* ===== أنماط الـModal (محدثة لاستخدام ID وليس class عامة) ===== */
-    #instrModal {
-      display: none;          /* مخفي افتراضيًا */
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    #instrModal .modal-content {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      max-width: 90%;
-      max-height: 80%;
-      overflow-y: auto;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      position: relative;
-    }
-    #instrModal .modal-content h3 {
-      margin-top: 0;
-    }
-    #instrModal .modal-close {
-      position: absolute;
-      top: 10px; left: 10px;
-      background: #ccc;
-      border: none;
-      padding: 4px 8px;
-      cursor: pointer;
-      border-radius: 3px;
-    }
+id="codeInput" type="text" placeholder="أدخل رمز المرور هنا" style="padding:10px;font-size:1rem;margin-top:10px;border:1px solid #ccc;border-radius:5px;width:250px;text-align:center;">
+ 
 
-    /* ===== صورة السؤال ===== */
-    #question-img {
-      width: 300px;
-      height: auto;
-      display: block;
-      margin: 0 auto 20px;
-      border-radius: 8px;
-    }
+ <button onclick="checkCode()" style="margin-top:10px;padding:10px 16px;background:#4F46E5;color:#fff;border:none;border-radius:5px;cursor:pointer;">دخول</button>
+  <p 
 
-    /* ===== كارد السؤال والنتيجة ===== */
-    .card, .result-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
+id="codeError" style="color:red;margin-top:10px;display:none;">رمز المرور غير صحيح. حاول مرة أخرى.</p>
+</div>
+ <style>
+    body { direction: rtl; font-family: Arial; max-width:700px; 
 
-    /* ===== خيارات الوجوه التعبيرية ===== */
-    .emoji-options {
-      display: flex;
-      justify-content: center;
-      margin-top: 15px;
-    }
-    .emoji-btn {
-      font-size: 2rem;
-      border: 2px solid transparent;
-      border-radius: 50%;
-      padding: 8px;
-      margin: 0 10px;
-      cursor: pointer;
-      background: none;
-      transition: border-color 0.2s;
-    }
-    .emoji-btn.selected {
-      border-color: #4F46E5;
-    }
+margin:auto; padding:20px; background:#f9f9fc; }
+    h1,h2 { text-align:center; margin:10px 0; }
+    .intro, .card, .result-card { background:#fff; border:1px solid #ddd; padding:20px; 
 
-    /* ===== الأسطورة ===== */
-    .legend {
-      display: block;        /* تأكد أنها تظهر في سطر منفصل */
-      text-align: center;
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #555;
-    }
+border-radius:8px; margin-bottom:20px; }
+    #startBtn, #verifyBtn { display:block; margin:10px auto; padding:10px 20px; background:#4F46E5; color:#fff; border:none; border-
 
-    /* ===== أزرار التنقل ===== */
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    .prev {
-      background: #ccc;
-      color: #000;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .next {
-      background: #4F46E5;
-      color: #fff;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+radius:5px; cursor:pointer; }
+    #codeInput { width:100%; padding:8px; margin:10px 0; border:1px solid #ccc; border-radius:5px; }
+    #quiz-container { display:none; }
+    .emoji-options { 
 
-    /* ===== النصائح ===== */
-    .solutions {
-      margin-top: 10px;
-      padding-left: 20px;
-    }
-    .solutions li {
-      margin-bottom: 5px;
-    }
+display:flex; justify-content:center; margin-top:15px; }
+    .emoji-btn { font-size:2rem; border:2px solid transparent; border-radius:50%; padding:8px; margin:0 10px; cursor:pointer; 
+
+background:none; transition:border-color .2s; }
+    .emoji-btn.selected { border-color:#4F46E5; }
+    .legend { text-align:center; margin-top:10px; color:#555; }
+    .nav { display:flex; 
+
+justify-content:space-between; margin-top:20px; }
+    .prev, .next { padding:10px 16px; border:none; border-radius:5px; cursor:pointer; }
+    .prev { background:#ccc; color:#000; }
+    
+
+.next { background:#4F46E5; color:#fff; }
+    .solutions { margin-top:10px; padding-left:20px; }
+    .solutions li { margin-bottom:5px; }
   </style>
 </head>
 <body>
   <h1>مقياس نبض التميّز</h1>
-  <h2>المحور العاطفي</h2>
+  
 
-  <!-- زر الإرشادات العامة -->
-  <button id="openInstr">الإرشادات العامة</button>
+<h2>المحور العاطفي</h2>
 
-  <!-- نافذة الإرشادات (Modal) -->
-  <div id="instrModal">
-    <div class="modal-content">
-      <button id="closeInstr" class="modal-close">× إغلاق</button>
-      <h3>الإرشادات العامة لاستخدام المقياس</h3>
-      <ul>
-        <li>اضغط على الوجه التعبيري الأقرب لوصف شعور وسلوك طفلك.</li>
-        <li>تنقل بين الأسئلة باستخدام الأزرار "السابق" و"التالي".</li>
-        <li>أجب عن جميع الأسئلة للحصول على نتيجة دقيقة.</li>
-        <li>بعد الانتهاء، سيظهر "نقاط القوة" و"التقييم" و"النصائح".</li>
-        <li>يُفضل إعادة الاختبار كل 3–6 أشهر لمتابعة التطور.</li>
-      </ul>
-    </div>
+  <!-- 1) قسم البداية وطلب الرمز -->
+  <div class="intro" id="intro">
+    <p>للبدء، راسلنا عبر WhatsApp للحصول على رمز المرور:</p>
+    <a 
+
+href="https://api.whatsapp.com/send?phone=201012787445&text=START" target="_blank" id="startBtn">راسلنا الآن</a>
+    <p>ثمّ أدخل رمز الدخول في الحقل أدناه:</p>
+    <input type="text" 
+
+id="codeInput" placeholder="ضع الكود هنا" />
+    <button id="verifyBtn">تحقق من الرمز</button>
   </div>
 
-  <!-- صورة السؤال -->
-  <img id="question-img" src="assets/images/emotional/q1.jpg" alt="صورة السؤال 1">
-
+  <!-- 2) حاوية الاختبار -->
   <div id="quiz-container"></div>
-  <div class="nav">
+  <div class="nav" 
+
+id="navButtons" style="display:none;">
     <button id="prevBtn" class="prev">السابق</button>
     <button id="nextBtn" class="next">التالي</button>
   </div>
 
   <script>
-    // ===== عناصر الـModal =====
-    const instrModal = document.getElementById('instrModal');
-    const openInstr  = document.getElementById('openInstr');
-    const closeInstr = document.getElementById('closeInstr');
-    openInstr.onclick  = () => instrModal.style.display = 'flex';
-    closeInstr.onclick = () => instrModal.style.display = 'none';
-    instrModal.onclick = e => { if (e.target === instrModal) instrModal.style.display = 'none'; };
+    // ======== مصادقة 
 
-    // ===== الأسئلة والاختبار =====
-    const questions = [
-      'أستطيع تهدئة نفسي عندما أشعر بالتوتر.',
-      'أشعر بالحزن بسهولة عند سماع أخبار سيئة.',
-      'أستمتع بلحظات السعادة وأعبر عنها.',
-      'أشعر بالقلق قبل الامتحانات أو العرض أمام الآخرين.',
-      'أتمكن من التحكم بغضبي عند الشعور بالإحباط.',
-      'أبكي أحياناً عندما أشعر بالنعاس أو الوحدة.',
-      'أشعر بالخوف عند ظلام الليل أو الأصوات العالية.',
-      'أعبّر عن امتناني للأشياء الصغيرة التي تحدث لي.',
-      'أستطيع مشاركة مشاعري مع أصدقائي أو أسرتي.',
-      'أحس بتحسن عندما أرسم أو أستمع للأغاني.',
-      'أجد صعوبة في النوم بسبب التفكير بما يسبب لي القلق.',
-      'أشعر بالسعادة عند إنجاز مهمة جديدة.',
-      'أحس بالتوتر عندما لا أستطيع قول رأيي.',
-      'أقبل التحديات الجديدة دون خوف كبير.',
-      'أشعر بالفخر عندما يثني الناس على ما أفعله.'
-    ];
-    const emojiOptions = [
-      { emoji: '😊', value: 3 },
-      { emoji: '😐', value: 2 },
-      { emoji: '☹️', value: 1 }
-    ];
-    const suggestions = ['تمارين التنفس','نشاطات الرسم والتلوين','جلسات حوار بناء'];
+الرمز =========
+    var validCodes = ['EMO-A1B2','EMO-C3D4','EMO-E5F6']; // أضف رموزاً جديدة هنا
+    document.getElementById('verifyBtn').onclick = function(){
+      var code = 
 
-    let currentIndex = 0;
-    const answers = new Array(questions.length);
+document.getElementById('codeInput').value.trim();
+      if ( validCodes.indexOf(code) !== -1 ) {
+        // إخفاء البدايـة وإظهار الاختبار
+        document.getElementById('intro').style.display = 
 
-    const quizDiv = document.getElementById('quiz-container');
-    const imgElem = document.getElementById('question-img');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    function renderQuestion() {
-      imgElem.src = `assets/images/emotional/q${currentIndex+1}.jpg`;
-      imgElem.alt = `صورة السؤال ${currentIndex+1}`;
-
-      quizDiv.innerHTML = '';
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const q = document.createElement('p');
-      q.textContent = `السؤال ${currentIndex+1} من ${questions.length}: ${questions[currentIndex]}`;
-      card.appendChild(q);
-
-      const optsDiv = document.createElement('div');
-      optsDiv.className = 'emoji-options';
-      emojiOptions.forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'emoji-btn';
-        btn.textContent = opt.emoji;
-        if (answers[currentIndex] === opt.value) btn.classList.add('selected');
-        btn.onclick = () => {
-          answers[currentIndex] = opt.value;
-          renderQuestion();
-        };
-        optsDiv.appendChild(btn);
-      });
-      card.appendChild(optsDiv);
-
-      const legend = document.createElement('div');
-      legend.className = 'legend';
-      legend.textContent = '😊 = صحيح تماماً | 😐 = صحيح إلى حد ما | ☹️ = غير صحيح أبداً';
-      card.appendChild(legend);
-
-      quizDiv.appendChild(card);
-
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.textContent = currentIndex < questions.length - 1 ? 'التالي' : 'عرض النتيجة';
-      nextBtn.disabled = answers[currentIndex] == null;
-    }
-
-    prevBtn.onclick = () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        renderQuestion();
-      }
-    };
-
-    nextBtn.onclick = () => {
-      if (currentIndex < questions.length - 1) {
-        currentIndex++;
+'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('navButtons').style.display = 'flex';
         renderQuestion();
       } else {
-        showResult();
+        
+
+alert('رمز المرور غير صحيح، حاول مجدداً');
       }
     };
 
-    function showResult() {
-      const sum = answers.reduce((a, b) => a + b, 0);
+    // ======== بيانات الاختبار =========
+    var questions = [
+      'أستطيع تهدئة نفسي عندما أشعر بالتوتر.',
+      // … أكمل حتى السؤال 15 …
+      'أشعر بالفخر 
+
+عندما يثني الناس على ما أفعله.'
+    ];
+    var emojiOptions = [{emoji:'😊',value:3},{emoji:'😐',value:2},{emoji:'☹️',value:1}];
+    var suggestions = ['تمارين التنفس','نشاطات الرسم والتلوين','جلسات حوار بناء'];
+
+    var 
+
+currentIndex = 0, answers = [];
+
+    // ======== عناصر DOM =========
+    var quizDiv = document.getElementById('quiz-container'),
+        prevBtn = document.getElementById
+
+('prevBtn'),
+        nextBtn = document.getElementById('nextBtn');
+
+    // ======== عرض السؤال =========
+    function renderQuestion(){
       quizDiv.innerHTML = '';
-      document.querySelector('.nav').style.display = 'none';
+      var card = 
 
-      const res = document.createElement('div');
-      res.className = 'result-card';
+document.createElement('div'); card.className='card';
+      // السؤال
+      var p = document.createElement('p');
+      p.textContent = 'السؤال '+(currentIndex+1)+' من '+questions.length+': 
 
-      const title = document.createElement('h2');
-      title.textContent = `نقاط القوة: ${sum} من ${questions.length * 3}`;
-      res.appendChild(title);
+'+questions[currentIndex];
+      card.appendChild(p);
+      // الوجوه
+      var opts = document.createElement('div'); opts.className='emoji-options';
+      emojiOptions.forEach(function(opt){
+     
 
-      const status = sum <= 15 ? 'بحاجة إلى دعم' : sum <= 30 ? 'متوسط' : 'قوة عالية';
-      const interp = document.createElement('p');
-      interp.textContent = `التقييم: ${status}`;
-      res.appendChild(interp);
+   var btn = document.createElement('button'); btn.className='emoji-btn'; btn.textContent=opt.emoji;
+        if(answers[currentIndex]===opt.value) btn.classList.add('selected');
+        
 
-      if (sum <= 30) {
-        const tipsHeader = document.createElement('h3');
-        tipsHeader.textContent = 'نصائح:';
-        res.appendChild(tipsHeader);
+btn.onclick=function(){ answers[currentIndex]=opt.value; renderQuestion(); };
+        opts.appendChild(btn);
+      });
+      card.appendChild(opts);
+      // الأسطورة
+      var 
 
-        const ul = document.createElement('ul');
-        ul.className = 'solutions';
-        suggestions.forEach(s => {
-          const li = document.createElement('li');
-          li.textContent = s;
-          ul.appendChild(li);
-        });
-        res.appendChild(ul);
-      }
+legend=document.createElement('div'); legend.className='legend';
+      legend.textContent='😊 = صحيح تماماً | 😐 = صحيح إلى حد ما | ☹️ = غير صحيح أبداً';
+      card.appendChild(legend);
 
-      quizDiv.appendChild(res);
+      
+
+quizDiv.appendChild(card);
+      prevBtn.disabled = currentIndex===0;
+      nextBtn.textContent = (currentIndex<questions.length-1)?'التالي':'عرض النتيجة';
+      nextBtn.disabled = answers
+
+[currentIndex]==null;
     }
 
-    // بداية فور التحميل
-    renderQuestion();
+    prevBtn.onclick = function(){
+      if(currentIndex>0){ currentIndex--; renderQuestion(); }
+    };
+    nextBtn.onclick = function(){
+      if
+
+(currentIndex<questions.length-1){
+        currentIndex++; renderQuestion();
+      } else showResult();
+    };
+
+    // ======== عرض النتيجة + زر المحور التالي =========
+    function showResult
+
+(){
+      var sum = answers.reduce(function(a,b){return a+b;},0);
+      quizDiv.innerHTML=''; document.getElementById('navButtons').style.display='none';
+
+      var res = 
+
+document.createElement('div'); res.className='result-card';
+      // نقاط القوة
+      var title=document.createElement('h2');
+      title.textContent='نقاط القوة: '+sum+' من '+(questions.length*3);
+      
+
+res.appendChild(title);
+      // التقييم
+      var status = sum<=15?'بحاجة إلى دعم':sum<=30?'متوسط':'قوة عالية';
+      var interp=document.createElement('p'); interp.textContent='التقييم: '+status;
+      
+
+res.appendChild(interp);
+      // النصائح
+      if(sum<=30){
+        var h3=document.createElement('h3'); h3.textContent='نصائح:'; res.appendChild(h3);
+        var ul=document.createElement
+
+('ul'); ul.className='solutions';
+        suggestions.forEach(function(s){
+          var li=document.createElement('li'); li.textContent=s; ul.appendChild(li);
+        });
+        res.appendChild(ul);
+      
+
+}
+      quizDiv.appendChild(res);
+
+      // زر الانتقال للمحور السلوكي
+      var nextSectionBtn = document.createElement('button');
+      nextSectionBtn.textContent = 'انتقال إلى المحور السلوكي';
+      
+
+nextSectionBtn.onclick = function(){
+        window.location.href = '../project-behavioral/behavioral.html';
+      };
+      // أنماط الزر
+      nextSectionBtn.style.display='block';
+      
+
+nextSectionBtn.style.margin='20px auto';
+      nextSectionBtn.style.padding='10px 20px';
+      nextSectionBtn.style.background='#4F46E5';
+      nextSectionBtn.style.color='#fff';
+      
+
+nextSectionBtn.style.border='none';
+      nextSectionBtn.style.borderRadius='5px';
+      nextSectionBtn.style.cursor='pointer';
+
+      quizDiv.appendChild(nextSectionBtn);
+    }
+
+    // لا يبدأ إلا بعد 
+
+التحقق من الرمز
   </script>
+<script>
+  const validCodes = ['A123', 'B456', 'C789']; // ضع رموز المرور هنا
+
+  function checkCode() {
+    const input = document.getElementById('codeInput').value.trim();
+    const errorMsg 
+
+= document.getElementById('codeError');
+    if (validCodes.includes(input)) {
+      document.getElementById('lock-screen').style.display = 'none';
+    } else {
+      errorMsg.style.display = 
+
+'block';
+    }
+  }
+</script>
+
+
 
 </body>
 </html>
