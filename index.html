@@ -8,7 +8,26 @@
   <title>مقياس نبض التميّز – المحور العاطفي</title>
   <style>
     /* ===== أنماط عامة ===== */
+    <script>
+  const validCodes = ['A123', 'B456', 'C789']; // ضع رموز المرور هنا
+
+  function checkCode() {
+    const input = document.getElementById('codeInput').value.trim();
+    const errorMsg = document.getElementById('codeError');
+    if (validCodes.includes(input)) {
+      document.getElementById('lock-screen').style.display = 'none';
+    } else {
+      errorMsg.style.display = 'block';
+    }
+  }
+</script>
     body {
+      <div id="lock-screen" style="position:fixed;top:0;right:0;bottom:0;left:0;background:#f9f9fc;z-index:2000;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+  <p style="font-size:1.2rem;">للبدء، راسلنا عبر <a href="https://wa.me/9665XXXXXXX" target="_blank">واتساب</a> للحصول على رمز المرور:</p>
+  <input id="codeInput" type="text" placeholder="أدخل رمز المرور هنا" style="padding:10px;font-size:1rem;margin-top:10px;border:1px solid #ccc;border-radius:5px;width:250px;text-align:center;">
+  <button onclick="checkCode()" style="margin-top:10px;padding:10px 16px;background:#4F46E5;color:#fff;border:none;border-radius:5px;cursor:pointer;">دخول</button>
+  <p id="codeError" style="color:red;margin-top:10px;display:none;">رمز المرور غير صحيح. حاول مرة أخرى.</p>
+</div>
       direction: rtl;
       font-family: Arial, sans-serif;
       max-width: 700px;
