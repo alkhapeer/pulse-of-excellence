@@ -1,1 +1,1363 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6C5CE7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="نبض التميز">
+<title>نبض التميز — رحلة نمو طفلك</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#6C5CE7; --primary-d:#5546c9; --primary-l:#a29bfe;
+  --accent:#00CEC9; --accent-2:#FD79A8;
+  --emo:#E74C3C; --cog:#3498DB; --beh:#27AE60; --skl:#9B59B6;
+  --bg:#F7F9FC; --bg-2:#EEF2F9; --card:#FFFFFF;
+  --txt:#1E2340; --txt-2:#5A6382; --txt-3:#8B93AB;
+  --line:#E3E8F2; --success:#00B894; --warn:#FDCB6E; --soft:#DFE6F3;
+  --shadow:0 8px 32px rgba(30,35,64,.08);
+  --shadow-2:0 2px 12px rgba(30,35,64,.06);
+  --radius:20px; --radius-s:14px;
+  --safe-t:env(safe-area-inset-top); --safe-b:env(safe-area-inset-bottom);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Tajawal',system-ui,-apple-system,sans-serif;
+  background:var(--bg); color:var(--txt);
+  line-height:1.7; font-size:16px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select{font-family:inherit;font-size:inherit}
+#app{min-height:100vh;display:flex;flex-direction:column;max-width:520px;margin:0 auto;background:var(--bg);position:relative}
+
+/* ===== Top Bar ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,249,252,.92);backdrop-filter:blur(16px);
+  padding:calc(var(--safe-t) + 12px) 18px 12px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid transparent;transition:border-color .2s;
+}
+.topbar.scrolled{border-bottom-color:var(--line)}
+.topbar .back{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--card);box-shadow:var(--shadow-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:var(--txt);transition:transform .15s;
+}
+.topbar .back:active{transform:scale(.92)}
+.topbar .back.hidden{visibility:hidden}
+.topbar h1{font-size:17px;font-weight:700;flex:1;text-align:center;padding-inline-end:40px}
+.topbar .install-mini{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--primary-l));
+  color:#fff;display:none;align-items:center;justify-content:center;
+  font-size:18px;box-shadow:var(--shadow-2);
+}
+.topbar .install-mini.show{display:flex}
+
+/* ===== Screens ===== */
+.screen{display:none;flex:1;flex-direction:column;padding:8px 18px calc(var(--safe-b) + 24px);animation:fade .3s ease}
+.screen.active{display:flex}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== Buttons ===== */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:16px 20px;border-radius:16px;
+  font-size:16px;font-weight:700;transition:all .2s;
+  background:var(--soft);color:var(--txt);
+}
+.btn.primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary-l));
+  color:#fff;box-shadow:0 8px 24px rgba(108,92,231,.32);
+}
+.btn.primary:active{transform:translateY(1px);box-shadow:0 4px 16px rgba(108,92,231,.32)}
+.btn.ghost{background:transparent;color:var(--primary);font-weight:600}
+.btn:disabled{opacity:.5;pointer-events:none}
+.btn-sm{padding:10px 16px;font-size:14px;border-radius:12px;width:auto}
+
+/* ===== Welcome ===== */
+.welcome{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:24px 4px}
+.logo{
+  width:110px;height:110px;border-radius:30px;margin:0 auto 28px;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 16px 40px rgba(108,92,231,.32);
+  animation:pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.logo svg{width:64px;height:64px}
+.welcome h2{font-size:30px;font-weight:800;margin-bottom:12px;line-height:1.3;color:var(--txt)}
+.welcome .subtitle{font-size:16px;color:var(--txt-2);margin-bottom:32px;line-height:1.7}
+.features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;text-align:right}
+.feature{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--card);padding:16px;border-radius:16px;box-shadow:var(--shadow-2);
+}
+.feature .ic{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  background:var(--bg-2);
+}
+.feature h4{font-size:15px;font-weight:700;margin-bottom:3px}
+.feature p{font-size:13px;color:var(--txt-2);line-height:1.5}
+
+/* ===== Cards ===== */
+.card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-2);margin-bottom:14px}
+.card h3{font-size:18px;font-weight:700;margin-bottom:10px}
+.card p{color:var(--txt-2);font-size:14.5px;line-height:1.75}
+.section-title{font-size:14px;font-weight:700;color:var(--txt-3);margin:20px 4px 12px;letter-spacing:.3px;text-transform:uppercase}
+
+/* ===== Form ===== */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:8px;color:var(--txt)}
+.field input,.field select{
+  width:100%;padding:15px 16px;border-radius:14px;
+  border:1.5px solid var(--line);background:var(--card);
+  font-size:16px;color:var(--txt);transition:border-color .2s;
+  -webkit-appearance:none;appearance:none;
+}
+.field select{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235A6382' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 14px center;background-size:18px;
+  padding-left:44px;
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--primary)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  padding:11px 18px;border-radius:12px;background:var(--card);
+  border:1.5px solid var(--line);font-size:14.5px;font-weight:600;
+  color:var(--txt-2);transition:all .15s;
+}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ===== Progress ===== */
+.progress-wrap{padding:4px 0 16px}
+.progress-info{display:flex;justify-content:space-between;font-size:13px;color:var(--txt-3);margin-bottom:8px;font-weight:600}
+.progress-bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden}
+.progress-fill{
+  height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));
+  border-radius:99px;transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== Question ===== */
+.q-domain{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:99px;font-size:12.5px;font-weight:700;
+  background:var(--bg-2);color:var(--txt-2);margin-bottom:20px;
+}
+.q-text{font-size:22px;font-weight:700;line-height:1.55;margin-bottom:28px;color:var(--txt)}
+.q-options{display:flex;flex-direction:column;gap:12px}
+.q-option{
+  display:flex;align-items:center;gap:14px;padding:18px;border-radius:16px;
+  background:var(--card);border:2px solid var(--line);
+  text-align:right;font-size:15.5px;font-weight:600;
+  transition:all .15s;
+}
+.q-option .radio{
+  width:26px;height:26px;border-radius:50%;border:2.5px solid var(--line);
+  flex-shrink:0;position:relative;transition:all .15s;
+}
+.q-option.selected{border-color:var(--primary);background:linear-gradient(135deg,#f4f1ff,#eef7ff)}
+.q-option.selected .radio{border-color:var(--primary);background:var(--primary)}
+.q-option.selected .radio::after{
+  content:'';position:absolute;inset:6px;border-radius:50%;background:#fff;
+}
+.q-option:active{transform:scale(.98)}
+
+/* ===== Review ===== */
+.review-item{
+  display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;
+  background:var(--card);margin-bottom:8px;box-shadow:var(--shadow-2);
+}
+.review-item .idx{
+  width:30px;height:30px;border-radius:10px;background:var(--bg-2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;color:var(--txt-2);flex-shrink:0;
+}
+.review-item .txt{flex:1;font-size:13.5px;line-height:1.5;color:var(--txt)}
+.review-item .val{
+  padding:5px 11px;border-radius:9px;font-size:12px;font-weight:700;
+  background:var(--bg-2);color:var(--txt-2);white-space:nowrap;
+}
+
+/* ===== Results ===== */
+.hero-result{
+  text-align:center;padding:26px 20px;border-radius:24px;margin-bottom:18px;
+  background:linear-gradient(135deg,#6C5CE7,#00CEC9);color:#fff;
+  box-shadow:0 16px 40px rgba(108,92,231,.28);
+}
+.hero-result .pct{font-size:52px;font-weight:800;line-height:1;margin-bottom:6px}
+.hero-result .lbl{font-size:14.5px;opacity:.92;font-weight:500}
+.hero-result .badge{
+  display:inline-block;margin-top:12px;padding:7px 16px;border-radius:99px;
+  background:rgba(255,255,255,.22);font-size:13.5px;font-weight:700;
+  backdrop-filter:blur(8px);
+}
+.domain-row{
+  display:flex;align-items:center;gap:14px;padding:16px;border-radius:16px;
+  background:var(--card);margin-bottom:10px;box-shadow:var(--shadow-2);
+}
+.domain-row .ic{
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;
+}
+.domain-row .info{flex:1;min-width:0}
+.domain-row .info h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.domain-row .bar{height:7px;background:var(--soft);border-radius:99px;overflow:hidden;margin-bottom:4px}
+.domain-row .bar-fill{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.domain-row .val{font-size:12.5px;color:var(--txt-3);font-weight:700}
+
+/* ===== Strength/Support ===== */
+.pill-list{display:flex;flex-direction:column;gap:10px}
+.pill{
+  display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;
+  background:var(--card);box-shadow:var(--shadow-2);
+  border-right:4px solid var(--success);
+}
+.pill.support{border-right-color:var(--warn)}
+.pill .ic{font-size:20px;flex-shrink:0;margin-top:2px}
+.pill .body{flex:1}
+.pill h5{font-size:14.5px;font-weight:700;margin-bottom:3px}
+.pill p{font-size:13px;color:var(--txt-2);line-height:1.55}
+
+/* ===== Activities ===== */
+.activity{
+  background:var(--card);border-radius:16px;padding:16px;margin-bottom:10px;
+  box-shadow:var(--shadow-2);border-right:4px solid var(--primary);
+}
+.activity h5{font-size:15px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.activity .meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.activity .tag{
+  padding:4px 10px;border-radius:8px;font-size:11.5px;font-weight:700;
+  background:var(--bg-2);color:var(--txt-2);
+}
+.activity p{font-size:13.5px;color:var(--txt-2);line-height:1.65}
+
+/* ===== 30-day Plan ===== */
+.week{
+  background:var(--card);border-radius:18px;padding:18px;margin-bottom:14px;
+  box-shadow:var(--shadow-2);
+}
+.week-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.week-num{
+  width:40px;height:40px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--primary),var(--primary-l));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;
+}
+.week-head h4{font-size:16px;font-weight:700}
+.week-head p{font-size:12.5px;color:var(--txt-3)}
+.week-task{
+  display:flex;gap:12px;padding:12px;border-radius:12px;
+  background:var(--bg-2);margin-bottom:8px;align-items:flex-start;
+}
+.week-task .check{
+  width:22px;height:22px;border-radius:7px;border:2px solid var(--line);
+  flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;
+  background:var(--card);transition:all .15s;cursor:pointer;
+}
+.week-task .check.done{background:var(--success);border-color:var(--success);color:#fff}
+.week-task .check.done::after{content:'✓';font-size:14px;font-weight:800}
+.week-task .body{flex:1}
+.week-task h6{font-size:13.5px;font-weight:700;margin-bottom:2px}
+.week-task p{font-size:12.5px;color:var(--txt-2);line-height:1.55}
+
+/* ===== Report ===== */
+.report-section{margin-bottom:22px}
+.report-section h3{
+  font-size:16px;font-weight:800;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.report-section h3 .num{
+  width:26px;height:26px;border-radius:8px;background:var(--primary);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;
+}
+.notice{
+  background:#FFF8E5;border:1.5px solid #F8E1A0;border-radius:14px;
+  padding:14px 16px;font-size:13.5px;color:#7A5C10;line-height:1.7;margin-bottom:16px;
+}
+.notice strong{display:block;margin-bottom:4px;color:#5C4408}
+
+/* ===== Install Banner ===== */
+.install-banner{
+  display:none;align-items:center;gap:12px;padding:14px 16px;
+  background:linear-gradient(135deg,#6C5CE7,#00CEC9);color:#fff;
+  border-radius:16px;margin:12px 0;box-shadow:0 8px 24px rgba(108,92,231,.24);
+}
+.install-banner.show{display:flex}
+.install-banner .ic{font-size:26px}
+.install-banner .body{flex:1}
+.install-banner h5{font-size:14px;font-weight:700;margin-bottom:2px}
+.install-banner p{font-size:12px;opacity:.9;line-height:1.4}
+.install-banner button{
+  background:rgba(255,255,255,.22);color:#fff;padding:9px 14px;
+  border-radius:10px;font-size:13px;font-weight:700;backdrop-filter:blur(8px);
+}
+
+/* ===== Bottom nav ===== */
+.bottom-nav{
+  position:sticky;bottom:0;display:none;
+  background:rgba(255,255,255,.96);backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  padding:8px 8px calc(var(--safe-b) + 8px);
+  justify-content:space-around;
+}
+.bottom-nav.show{display:flex}
+.bottom-nav button{
+  flex:1;padding:10px 4px;border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:11px;font-weight:600;color:var(--txt-3);transition:all .15s;
+}
+.bottom-nav button.active{color:var(--primary);background:#F4F1FF}
+.bottom-nav .ic{font-size:20px}
+
+/* ===== Utility ===== */
+.spacer{flex:1}
+.mb-16{margin-bottom:16px}.mt-12{margin-top:12px}.mt-20{margin-top:20px}
+.center{text-align:center}
+.muted{color:var(--txt-3);font-size:13px}
+.hr{height:1px;background:var(--line);margin:20px 0;border:0}
+.toast{
+  position:fixed;bottom:calc(var(--safe-b) + 80px);left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--txt);color:#fff;padding:12px 20px;border-radius:14px;
+  font-size:14px;font-weight:600;opacity:0;pointer-events:none;
+  transition:all .3s;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.2);max-width:88%;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.spinner{
+  width:24px;height:24px;border:3px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar" id="topbar">
+    <button class="back hidden" id="backBtn" aria-label="رجوع">←</button>
+    <h1 id="topTitle">نبض التميز</h1>
+    <button class="install-mini" id="installMini" aria-label="تثبيت">⬇</button>
+  </header>
+
+  <main id="main">
+    <!-- ================= SCREEN: WELCOME ================= -->
+    <section class="screen active" id="s-welcome">
+      <div class="welcome">
+        <div class="logo">
+          <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+          </svg>
+        </div>
+        <h2>نبض التميز</h2>
+        <p class="subtitle">رحلة تفاعلية لاكتشاف نقاط قوة طفلك، ومجالات نموّه، وتقديم خطة دعم منزلية مخصصة.</p>
+        <div class="features">
+          <div class="feature"><div class="ic">🎯</div><div><h4>تقييم شامل</h4><p>أربعة محاور نمائية تغطي الجوانب العاطفية والعقلية والسلوكية والمهارية.</p></div></div>
+          <div class="feature"><div class="ic">🗺️</div><div><h4>خريطة نبض التميز</h4><p>تصور بصري واضح لنقاط القوة ومجالات النمو.</p></div></div>
+          <div class="feature"><div class="ic">🎁</div><div><h4>خطة 30 يومًا</h4><p>أنشطة منزلية عملية مقسمة على أسابيع مع متابعة الإنجاز.</p></div></div>
+        </div>
+        <button class="btn primary" id="startBtn">ابدأ الرحلة ✨</button>
+        <div class="install-banner" id="installBanner">
+          <span class="ic">📲</span>
+          <div class="body"><h5>ثبّت التطبيق</h5><p>استخدمه دون اتصال في أي وقت</p></div>
+          <button id="installBtn">تثبيت</button>
+        </div>
+        <p class="muted mt-20">⏱️ مدة التقييم: 10–15 دقيقة</p>
+      </div>
+    </section>
+
+    <!-- ================= SCREEN: ABOUT ================= -->
+    <section class="screen" id="s-about">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">قبل أن نبدأ</h2>
+      <p class="muted mb-16">دقيقة واحدة للتعرف على طبيعة المقياس</p>
+      <div class="card">
+        <h3>🌟 أداة استكشافية تربوية</h3>
+        <p>هذا المقياس ليس اختبارًا للذكاء، ولا أداة تشخيصية لأي اضطراب. هو رحلة استكشافية تساعدك على فهم أين يتألق طفلك، وأين يمكن تقديم دعم أكبر.</p>
+      </div>
+      <div class="card">
+        <h3>📋 كيف تجيب؟</h3>
+        <p>فكّر في سلوك طفلك خلال <strong>الأسبوعين الماضيين</strong> فقط. اختر الإجابة التي تعكس ما يفعله طفلك فعليًا، لا ما تتمنى أن يفعله.</p>
+      </div>
+      <div class="card">
+        <h3>🕐 الإطار الزمني</h3>
+        <p>تجنّب التقييم أثناء فترات المرض أو التعب أو السفر. اختر وقتًا هادئًا تكون فيه مع طفلك بشكل طبيعي.</p>
+      </div>
+      <div class="card">
+        <h3>🔒 خصوصيتك</h3>
+        <p>جميع البيانات تُحفظ على جهازك فقط، ولا تُرسل لأي جهة خارجية.</p>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toChildInfo">فهمت، لنبدأ 🚀</button>
+    </section>
+
+    <!-- ================= SCREEN: CHILD INFO ================= -->
+    <section class="screen" id="s-child">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">بيانات الطفل</h2>
+      <p class="muted mb-16">ستساعدنا هذه المعلومات على تخصيص التقييم</p>
+      <div class="field">
+        <label>اسم الطفل (اختياري)</label>
+        <input type="text" id="childName" placeholder="مثال: يوسف" maxlength="30">
+      </div>
+      <div class="field">
+        <label>العمر بالسنة *</label>
+        <select id="childAge">
+          <option value="">اختر عمر الطفل</option>
+          <option value="3">3 سنوات</option>
+          <option value="4">4 سنوات</option>
+          <option value="5">5 سنوات</option>
+          <option value="6">6 سنوات</option>
+          <option value="7">7 سنوات</option>
+          <option value="8">8 سنوات</option>
+          <option value="9">9 سنوات</option>
+          <option value="10">10 سنوات</option>
+          <option value="11">11 سنة</option>
+          <option value="12">12 سنة</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>الجنس (اختياري)</label>
+        <div class="chips" id="genderChips">
+          <button class="chip" data-val="male">👦 ولد</button>
+          <button class="chip" data-val="female">👧 بنت</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>المرحلة (اختياري)</label>
+        <div class="chips" id="stageChips">
+          <button class="chip" data-val="home">🏠 في المنزل</button>
+          <button class="chip" data-val="kg">🎨 روضة</button>
+          <button class="chip" data-val="primary">📚 ابتدائي</button>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toQuestions" disabled>ابدأ التقييم ←</button>
+    </section>
+
+    <!-- ================= SCREEN: QUESTIONS ================= -->
+    <section class="screen" id="s-questions">
+      <div class="progress-wrap">
+        <div class="progress-info">
+          <span id="qProgressText">سؤال 1 من 20</span>
+          <span id="qPercent">5%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="qProgressFill" style="width:5%"></div></div>
+      </div>
+      <div id="qContainer"></div>
+      <div class="spacer"></div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn ghost" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding-inline:20px">← السابق</button>
+        <button class="btn primary" id="qNextBtn" disabled style="flex:1">التالي</button>
+      </div>
+    </section>
+
+    <!-- ================= SCREEN: REVIEW ================= -->
+    <section class="screen" id="s-review">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">مراجعة الإجابات</h2>
+      <p class="muted mb-16">راجع إجاباتك — يمكنك تعديل أي سؤال</p>
+      <div id="reviewList"></div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="calcBtn">اعتماد الإجابات وعرض النتيجة ✨</button>
+    </section>
+
+    <!-- ================= SCREEN: RESULTS ================= -->
+    <section class="screen" id="s-results">
+      <div class="hero-result">
+        <div class="pct" id="overallPct">—</div>
+        <div class="lbl">مؤشر نبض التميز العام</div>
+        <div class="badge" id="overallBadge">—</div>
+      </div>
+      <div class="notice">
+        <strong>📌 تنويه منهجي:</strong>
+        هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية مقارنة ببنود هذا المقياس فقط. وهي ليست تشخيصًا طبيًا، ولا مقارنة بأقران (لعدم توفر معيار سكاني)، بل دليل تربوي لتعزيز النمو.
+      </div>
+      <h3 class="section-title">خريطة نبض التميز — المحاور</h3>
+      <div id="domainResults"></div>
+      <h3 class="section-title">المجالات الفرعية</h3>
+      <div id="subdomainResults"></div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toMapBtn">عرض نقاط القوة ومجالات الدعم ←</button>
+    </section>
+
+    <!-- ================= SCREEN: MAP ================= -->
+    <section class="screen" id="s-map">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">خريطة النمو الشخصية</h2>
+      <p class="muted mb-16">نظرة سريعة على أين يتألق طفلك وأين يمكن دعمه</p>
+      <h3 class="section-title">✨ نقاط القوة النسبية</h3>
+      <div class="pill-list" id="strengthsList"></div>
+      <h3 class="section-title" style="margin-top:24px">🌱 مجالات تستحق مزيدًا من الدعم</h3>
+      <div class="pill-list" id="supportsList"></div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toRecsBtn">التوصيات والأنشطة ←</button>
+    </section>
+
+    <!-- ================= SCREEN: RECOMMENDATIONS ================= -->
+    <section class="screen" id="s-recs">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">توصيات مخصصة</h2>
+      <p class="muted mb-16">مبنية على نتائج طفلك تحديدًا</p>
+      <div id="recsContainer"></div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toPlanBtn">خطة الـ 30 يومًا ←</button>
+    </section>
+
+    <!-- ================= SCREEN: PLAN ================= -->
+    <section class="screen" id="s-plan">
+      <h2 style="font-size:24px;font-weight:800;margin-bottom:8px">خطة 30 يومًا</h2>
+      <p class="muted mb-16">برنامج منزلي بسيط مقسّم على 4 أسابيع</p>
+      <div id="planContainer"></div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toReportBtn">عرض التقرير الكامل ←</button>
+    </section>
+
+    <!-- ================= SCREEN: REPORT ================= -->
+    <section class="screen" id="s-report">
+      <div id="reportContainer"></div>
+      <div class="spacer"></div>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn" id="printReport" style="flex:1">🖨️ طباعة / PDF</button>
+        <button class="btn primary" id="restartApp" style="flex:1">🔄 تقييم جديد</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" id="bottomNav">
+    <button data-target="s-results"><span class="ic">📊</span>النتائج</button>
+    <button data-target="s-map"><span class="ic">🗺️</span>الخريطة</button>
+    <button data-target="s-recs"><span class="ic">💡</span>التوصيات</button>
+    <button data-target="s-plan"><span class="ic">📅</span>الخطة</button>
+    <button data-target="s-report"><span class="ic">📄</span>التقرير</button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+/* =========================================================================
+   نبض التميز — منطق التطبيق الكامل
+   ========================================================================= */
+
+/* -------- بيانات المحاور -------- */
+const DOMAINS = {
+  emotional:  { name:'العاطفي',  icon:'💗', color:'#E74C3C', desc:'الوعي بالذات والمشاعر، تنظيمها، والتعاطف مع الآخرين' },
+  cognitive:  { name:'العقلي',   icon:'🧠', color:'#3498DB', desc:'الذاكرة العاملة، المرونة الذهنية، والتفكير المنطقي' },
+  behavioral: { name:'السلوكي',  icon:'🎯', color:'#27AE60', desc:'الضبط التثبيطي، الالتزام بالروتين، والتنظيم الذاتي' },
+  skills:     { name:'المهاري',  icon:'🤝', color:'#9B59B6', desc:'التواصل الفعّال، المهارات الاجتماعية، والتفاوض' }
+};
+
+const SUBDOMAINS = {
+  'emo-awareness':  { name:'الوعي الانفعالي الذاتي',      domain:'emotional', icon:'💭' },
+  'emo-regulation': { name:'التنظيم والضبط العاطفي',       domain:'emotional', icon:'🧘' },
+  'emo-empathy':    { name:'التعاطف والوعي الاجتماعي',     domain:'emotional', icon:'🤍' },
+  'cog-memory':     { name:'الذاكرة العاملة ومعالجة المعلومات', domain:'cognitive', icon:'🧩' },
+  'cog-flex':       { name:'المرونة المعرفية والتفكير التكيفي', domain:'cognitive', icon:'🔄' },
+  'cog-reason':     { name:'التفكير المنطقي وأخذ المنظور',   domain:'cognitive', icon:'🔍' },
+  'beh-inhibit':    { name:'الضبط التثبيطي وكبح الاندفاع',   domain:'behavioral', icon:'✋' },
+  'beh-routine':    { name:'الالتزام بالروتين والتنظيم الذاتي', domain:'behavioral', icon:'📋' },
+  'skl-comm':       { name:'المهارات التواصلية التفاعلية',   domain:'skills', icon:'💬' },
+  'skl-social':     { name:'المهارات الاجتماعية والتفاوض',    domain:'skills', icon:'🤝' }
+};
+
+/* -------- بنك البنود الـ 34 -------- */
+const QUESTIONS = [
+  // ====== العاطفي: الوعي الانفعالي الذاتي ======
+  { id:'BND-EMO-01', text:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.', domain:'emotional', sub:'emo-awareness', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-02', text:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب والمواقف المفاجئة.', domain:'emotional', sub:'emo-awareness', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-03', text:'يوضح السبب المباشر لشعوره بالضيق عندما يسأله أحد الأبوين.', domain:'emotional', sub:'emo-awareness', ageMin:5, ageMax:7 },
+  { id:'BND-EMO-05', text:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة محددة.', domain:'emotional', sub:'emo-awareness', ageMin:7, ageMax:12 },
+
+  // ====== العاطفي: التنظيم والضبط العاطفي ======
+  { id:'BND-EMO-07', text:'يلجأ لأحد الأبوين لطلب التهدئة عند تعثر لعبته دون استمرار النوبة.', domain:'emotional', sub:'emo-regulation', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-08', text:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه خلال دقائق معدودة.', domain:'emotional', sub:'emo-regulation', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-09', text:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.', domain:'emotional', sub:'emo-regulation', ageMin:5, ageMax:7 },
+  { id:'BND-EMO-11', text:'يستعيد توازنه العاطفي ويتجاوز شعور الخسارة في الألعاب التنافسية.', domain:'emotional', sub:'emo-regulation', ageMin:7, ageMax:12 },
+
+  // ====== العاطفي: التعاطف ======
+  { id:'BND-EMO-12', text:'يقدم لعبة أو لمسة حنونة لمواساة طفل آخر يبكي أمامه.', domain:'emotional', sub:'emo-empathy', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-13', text:'يسأل صديقه أو أخاه عما يضايقه فور رؤيته متألماً أو حزيناً.', domain:'emotional', sub:'emo-empathy', ageMin:3, ageMax:6 },
+  { id:'BND-EMO-15', text:'يخفض صوته ويحد من حركته تلقائياً عند علمه بمرض أو تعب أحد أفراد الأسرة.', domain:'emotional', sub:'emo-empathy', ageMin:7, ageMax:12 },
+
+  // ====== العقلي: الذاكرة العاملة ======
+  { id:'BND-COG-01', text:'ينفذ تعليمات شفاهية متتابعة من خطوتين بترتيبها الصحيح دون نسيان.', domain:'cognitive', sub:'cog-memory', ageMin:3, ageMax:5 },
+  { id:'BND-COG-02', text:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات دون حاجة لتكرار التوجيه.', domain:'cognitive', sub:'cog-memory', ageMin:5, ageMax:7 },
+  { id:'BND-COG-03', text:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها قبل أداء النشاط.', domain:'cognitive', sub:'cog-memory', ageMin:5, ageMax:7 },
+  { id:'BND-COG-05', text:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات أو تركيب الألعاب المركبة.', domain:'cognitive', sub:'cog-memory', ageMin:7, ageMax:12 },
+
+  // ====== العقلي: المرونة المعرفية ======
+  { id:'BND-COG-07', text:'ينقل تصنيف الأشياء من معيار اللون إلى معيار الشكل فور توجيهه لتغيير القاعدة.', domain:'cognitive', sub:'cog-flex', ageMin:3, ageMax:5 },
+  { id:'BND-COG-09', text:'يتقبل تعديل موعد أو جدول الخروج دون تذمر يستمر لأكثر من بضع دقائق.', domain:'cognitive', sub:'cog-flex', ageMin:5, ageMax:8 },
+  { id:'BND-COG-11', text:'يجرب طريقة تفكير جديدة لبناء أو تركيب لعبة فور فشل المحاولة الأولى.', domain:'cognitive', sub:'cog-flex', ageMin:7, ageMax:12 },
+
+  // ====== العقلي: التفكير المنطقي ======
+  { id:'BND-COG-12', text:'يقدم تفسيراً واقعياً لسبب انسكاب الماء أو انكسار الغرض.', domain:'cognitive', sub:'cog-reason', ageMin:3, ageMax:6 },
+  { id:'BND-COG-13', text:'يميز بوضوح بين الأحداث الحقيقية والأحداث الخيالية في القصص.', domain:'cognitive', sub:'cog-reason', ageMin:5, ageMax:8 },
+  { id:'BND-COG-14', text:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم فور نقلها دون علمه.', domain:'cognitive', sub:'cog-reason', ageMin:6, ageMax:9 },
+  { id:'BND-COG-16', text:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار بين خيارين يوميين.', domain:'cognitive', sub:'cog-reason', ageMin:7, ageMax:12 },
+
+  // ====== السلوكي: الضبط التثبيطي ======
+  { id:'BND-BEH-01', text:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع حركي.', domain:'behavioral', sub:'beh-inhibit', ageMin:3, ageMax:6 },
+  { id:'BND-BEH-02', text:'ينتظر دوره في توزيع الوجبات بالبيت أو في الطابور دون تذمر.', domain:'behavioral', sub:'beh-inhibit', ageMin:5, ageMax:9 },
+  { id:'BND-BEH-03', text:'يتوقف عن الحركة والجري تماماً فور سماع إشارة التنبيه أو النهي.', domain:'behavioral', sub:'beh-inhibit', ageMin:5, ageMax:12 },
+
+  // ====== السلوكي: الالتزام بالروتين ======
+  { id:'BND-BEH-06', text:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.', domain:'behavioral', sub:'beh-routine', ageMin:3, ageMax:6 },
+  { id:'BND-BEH-07', text:'يبدأ بتنفيذ الخطوة الأولى من روتين العودة للبيت فور دخوله.', domain:'behavioral', sub:'beh-routine', ageMin:5, ageMax:9 },
+  { id:'BND-BEH-08', text:'يعيد ألعابه وأدواته المدرسية إلى مواضعها المخصصة فور الانتهاء منها.', domain:'behavioral', sub:'beh-routine', ageMin:7, ageMax:12 },
+
+  // ====== المهاري: التواصل ======
+  { id:'BND-SKL-01', text:'يستخدم جملة صريحة وواضحة لطلب طعامه أو ألعابه.', domain:'skills', sub:'skl-comm', ageMin:3, ageMax:6 },
+  { id:'BND-SKL-02', text:'ينظر باتجاه المتحدث أثناء الحوار المباشر معه.', domain:'skills', sub:'skl-comm', ageMin:5, ageMax:9 },
+  { id:'BND-SKL-03', text:'عندما يتلقى توجيهاً غير واضح، يستفسر بكلماته بدلاً من التنفيذ العشوائي أو التوقف.', domain:'skills', sub:'skl-comm', ageMin:7, ageMax:12 },
+
+  // ====== المهاري: الاجتماعي ======
+  { id:'BND-SKL-06', text:'يشارك أدواته وألعابه مع زملائه بالتناوب أثناء اللعب.', domain:'skills', sub:'skl-social', ageMin:3, ageMax:6 },
+  { id:'BND-SKL-07', text:'يقترح حلاً وسطاً مرضياً عند الخلاف مع صديقه حول نوع اللعبة.', domain:'skills', sub:'skl-social', ageMin:5, ageMax:9 },
+  { id:'BND-SKL-08', text:'يتعاون مع فريق من الأقران لإتمام مهمة أو مشروع مشترك بنجاح.', domain:'skills', sub:'skl-social', ageMin:7, ageMax:12 }
+];
+
+/* -------- سلم الإجابة -------- */
+const LIKERT = [
+  { val:0, label:'لم يظهر بعد / نادراً',    hint:'يحتاج دائمًا للمساعدة' },
+  { val:1, label:'يظهر بمساعدة / أحيانًا',  hint:'يحتاج تذكيرًا أو مساعدة جزئية' },
+  { val:2, label:'يظهر بمفرده غالبًا',       hint:'بمبادرة ذاتية وحد أدنى من التذكير' },
+  { val:3, label:'بثبات واستقلالية',          hint:'بانتظام ودون تذكير' }
+];
+
+/* -------- مكتبة الأنشطة (30 نشاطًا) -------- */
+const ACTIVITIES = {
+  'emo-awareness': [
+    { title:'قاموس المشاعر اليومي', age:'3-5', duration:'5 د', freq:'يوميًا', desc:'رسم وجوه للمشاعر الأساسية، ويختار الطفل وجهه الحالي ويسميه.', watch:'هل يستبدل الصراخ بالتسمية اللفظية؟' },
+    { title:'قصة بطلي والموقف المفاجئ', age:'5-7', duration:'10 د', freq:'3×أسبوعيًا', desc:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.', watch:'هل يربط السبب بالنتيجة الانفعالية؟' },
+    { title:'لوحة الطقس الداخلي', age:'7-12', duration:'5 د', freq:'عند الحاجة', desc:'تشبيه الحالة الداخلية بالطقس (مشمس/غائم/عاصف) بعد الأنشطة.', watch:'هل يستخدم مفردات دقيقة كـ"محبط" بدل "غاضب"؟' }
+  ],
+  'emo-regulation': [
+    { title:'ركن التنفس والتهدئة', age:'5-7', duration:'5-10 د', freq:'عند التوتر', desc:'مساحة هادئة بوسادة، يتنفس فيها الطفل 3 أنفاس بطيئة كأنه ينفخ شمعة.', watch:'هل يقبل الابتعاد للتهدئة قبل معاودة النشاط؟' },
+    { title:'عناق التهدئة المشتركة', age:'3-5', duration:'3-5 د', freq:'عند الضيق', desc:'احتضان هادئ مع صوت منخفض "أنا بجانبك، نتنفس معًا".', watch:'هل تنخفض حدة البكاء وتسترخي عضلاته؟' },
+    { title:'إعادة بناء الجسر', age:'7-12', duration:'15 د', freq:'2×أسبوعيًا', desc:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم "نحن هادئون، لنجرب فكرة جديدة".', watch:'هل يعود للمهمة بعد الإحباط؟' }
+  ],
+  'emo-empathy': [
+    { title:'صندوق المواساة', age:'3-5', duration:'2 د', freq:'عند البكاء', desc:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.', watch:'هل يبادر بتقديم غرض التهدئة؟' },
+    { title:'محقق الاطمئنان اللفظي', age:'3-6', duration:'10 د', freq:'2×أسبوعيًا', desc:'تمثيل أدوار بالعرائس لصياغة جمل الدعم ("هل أنت بخير؟").', watch:'هل يسأل تلقائيًا عن حال الآخرين؟' },
+    { title:'ساعة الهدوء الأسرية', age:'7-12', duration:'30-60 د', freq:'عند المرض', desc:'شرح ظرف مرض أحد الأفراد والاتفاق على نشاط همس.', watch:'هل يخفض صوته تلقائيًا مراعاةً للآخر؟' }
+  ],
+  'cog-memory': [
+    { title:'حقيبة السفر الذهنية', age:'5-7', duration:'10 د', freq:'3×أسبوعيًا', desc:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.', watch:'هل يتذكر التسلسل دون إغفال؟' },
+    { title:'الطاهي الصغير', age:'3-5', duration:'15 د', freq:'2×أسبوعيًا', desc:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.', watch:'هل ينفذ الخطوة التالية تلقائيًا؟' },
+    { title:'البحث عن المطابقات', age:'5-7', duration:'10 د', freq:'3×أسبوعيًا', desc:'لعبة الذاكرة (Memory) ببطاقات مقلوبة لبناء خريطة ذهنية.', watch:'هل تقل الأخطاء العشوائية؟' }
+  ],
+  'cog-flex': [
+    { title:'التصنيف المقلوب', age:'3-5', duration:'10 د', freq:'3×أسبوعيًا', desc:'تصنيف المكعبات حسب اللون، ثم يغير المربي القاعدة فجأة للحجم.', watch:'هل ينتقل بسلاسة للقاعدة الجديدة؟' },
+    { title:'خطة (ب) الممتعة', age:'5-8', duration:'10 د', freq:'أسبوعيًا', desc:'رسم خطة أساسية وخطة بديلة للأنشطة (حديقة/خيمة بالبيت).', watch:'هل يتقبل البديل دون مقاومة حادة؟' },
+    { title:'لغز الطرق البديلة', age:'7-12', duration:'15 د', freq:'2×أسبوعيًا', desc:'موازنة أغراض فوق قاعدة غير مستوية مع منع تكرار نفس الطريقة.', watch:'هل يجرب طرقًا جديدة عند الفشل؟' }
+  ],
+  'cog-reason': [
+    { title:'المكتشف الصغير', age:'3-6', duration:'15 د', freq:'أسبوعيًا', desc:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟"', watch:'هل يقدم تبريرات منطقية؟' },
+    { title:'ماذا يعلم صديقي؟', age:'5-8', duration:'10 د', freq:'2×أسبوعيًا', desc:'لعبة نقل لعبة دون علم الأخ، ثم السؤال: أين سيبحث؟', watch:'هل يدرك أن الأخ لا يعلم النقل؟' },
+    { title:'ميزان القرار اليومي', age:'7-12', duration:'5 د', freq:'عند الاختيار', desc:'طلب دليلين منطقيين لترجيح خيار على آخر.', watch:'هل يقدم حججًا متماسكة؟' }
+  ],
+  'beh-inhibit': [
+    { title:'التمثال المجمد', age:'3-6', duration:'10 د', freq:'3×أسبوعيًا', desc:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.', watch:'هل يكبح جسده فور التوقف؟' },
+    { title:'إشارة المرور المنزلية', age:'5-9', duration:'10 د', freq:'3×أسبوعيًا', desc:'بطاقات ملونة للجري والمشي والتوقف.', watch:'هل يتوقف فورًا عند الأحمر؟' },
+    { title:'الكلمة السحرية (سيمون يقول)', age:'5-9', duration:'10 د', freq:'3×أسبوعيًا', desc:'لا ينفذ الطفل إلا إذا سبقت التعليمات بالكلمة السحرية.', watch:'هل يتريث قبل الحركة؟' }
+  ],
+  'beh-routine': [
+    { title:'لوحة محطات اليوم المصورة', age:'5-9', duration:'مستمر', freq:'يوميًا', desc:'لوحة بصور متتابعة لروتين العودة، ينقل الطفل شريط "صح" بعد كل محطة.', watch:'هل ينتقل بين المحطات باعتياد؟' },
+    { title:'تحدي الـ 5 دقائق', age:'7-12', duration:'5 د', freq:'يوميًا', desc:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها قبل الرنين.', watch:'هل يستجيب بسرعة ومنهجية؟' },
+    { title:'محطة الاستعداد للغد', age:'7-12', duration:'10 د', freq:'يوميًا', desc:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.', watch:'هل يخرج الصباح بسلاسة دون مساعدة؟' }
+  ],
+  'skl-comm': [
+    { title:'القراءة الحوارية', age:'3-6', duration:'10-15 د', freq:'يوميًا', desc:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.', watch:'هل تزداد طول جملة الطفل؟' },
+    { title:'مقابلة المذيع', age:'5-9', duration:'10 د', freq:'3×أسبوعيًا', desc:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للطرف الآخر.', watch:'هل ينتظر دوره وينظر للمتحدث؟' },
+    { title:'مراسل الاستفسار', age:'7-12', duration:'10 د', freq:'2×أسبوعيًا', desc:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.', watch:'هل يطرح أسئلة استفسارية صريحة؟' }
+  ],
+  'skl-social': [
+    { title:'عداد التناوب', age:'3-6', duration:'15 د', freq:'عند اللعب', desc:'مؤقت رملي دقيقتان للتبادل بين الأطفال.', watch:'هل يسلّم اللعبة بهدوء عند انتهاء الوقت؟' },
+    { title:'جسور الحلول الوسطى', age:'5-9', duration:'5 د', freq:'عند النزاع', desc:'بطاقة "حلول" لسؤال الطرفين عن حل يرضيهما معًا.', watch:'هل يقترح حلولًا وسيطة؟' },
+    { title:'مشروع البناء الجماعي', age:'7-12', duration:'30 د', freq:'أسبوعيًا', desc:'بناء مدينة من الوسائد مع توزيع أدوار قبل البدء.', watch:'هل يلتزم بدوره ويتعاون؟' }
+  ]
+};
+
+/* -------- توليد نصوص نقاط القوة / الدعم -------- */
+const STRENGTH_TEXT = {
+  'emo-awareness':'يعبّر عن مشاعره بكلمات واضحة، ويربط بين ما يشعر به وما حدث.',
+  'emo-regulation':'يستطيع تهدئة نفسه والعودة للتوازن بعد الإحباط.',
+  'emo-empathy':'يبدي اهتمامًا حقيقيًا بمشاعر الآخرين ويسارع لمواساتهم.',
+  'cog-memory':'يتذكر التعليمات المتسلسلة والخطوات الذهنية بثبات.',
+  'cog-flex':'يبدّل بمرونة بين القواعد والأفكار ويتقبل التغيير.',
+  'cog-reason':'يفكر منطقيًا ويتوقع أفكار الآخرين ورؤاهم.',
+  'beh-inhibit':'يتحكم في اندفاعه وينتظر دوره بهدوء.',
+  'beh-routine':'يلتزم بالروتين اليومي ويعتني بترتيب أشيائه.',
+  'skl-comm':'يتواصل بوضوح ويستمع للآخرين باهتمام.',
+  'skl-social':'يتشارك ويلعب مع الآخرين ويقترح حلولًا وسطى عند الخلاف.'
+};
+const SUPPORT_TEXT = {
+  'emo-awareness':'يمكن دعم قدرته على تسمية مشاعره بدقة. جرّب نشاط «قاموس المشاعر» يوميًا.',
+  'emo-regulation':'يمكن تدريبه على استراتيجيات تهدئة ذاتية. جرّب «ركن التنفس» أو «إعادة بناء الجسر».',
+  'emo-empathy':'يمكن تنمية تعاطفه مع الآخرين. جرّب «صندوق المواساة» أو «محقق الاطمئنان».',
+  'cog-memory':'يحتاج تدريبًا على الاحتفاظ بالمعلومات المتسلسلة. جرّب «حقيبة السفر» أو «الطاهي الصغير».',
+  'cog-flex':'يحتاج تدريبًا على المرونة الذهنية. جرّب «التصنيف المقلوب» أو «خطة ب».',
+  'cog-reason':'يحتاج تدريبًا على التفكير المنطقي. جرّب «المكتشف الصغير» أو «ماذا يعلم صديقي؟».',
+  'beh-inhibit':'يحتاج تدريبًا على التمهل وكبح الاندفاع. جرّب «التمثال المجمد» أو «إشارة المرور».',
+  'beh-routine':'يمكن دعم التزامه بالروتين. جرّب «لوحة المحطات» أو «تحدي 5 دقائق».',
+  'skl-comm':'يمكن دعم مهاراته التواصلية. جرّب «القراءة الحوارية» أو «مقابلة المذيع».',
+  'skl-social':'يمكن دعم مهاراته الاجتماعية. جرّب «عداد التناوب» أو «جسور الحلول».'
+};
+
+/* ================= حالة التطبيق ================= */
+const State = {
+  screen: 'welcome',
+  history: [],
+  child: { name:'', age:null, gender:null, stage:null },
+  applicableQuestions: [],
+  answers: {},
+  results: null,
+  completedTasks: {}
+};
+
+/* ================= أدوات مساعدة ================= */
+const $  = (s, p=document) => p.querySelector(s);
+const $$ = (s, p=document) => Array.from(p.querySelectorAll(s));
+
+function showToast(msg, ms=2600){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), ms);
+}
+
+function saveState(){
+  try{ localStorage.setItem('nabd_state', JSON.stringify(State)); }catch(e){}
+}
+function loadState(){
+  try{
+    const s = localStorage.getItem('nabd_state');
+    if(s){ Object.assign(State, JSON.parse(s)); }
+  }catch(e){}
+}
+
+/* ================= التنقل بين الشاشات ================= */
+const SCREENS = ['welcome','about','child','questions','review','results','map','recs','plan','report'];
+const TITLES = {
+  welcome:'نبض التميز', about:'عن المقياس', child:'بيانات الطفل',
+  questions:'التقييم', review:'مراجعة الإجابات', results:'نتائج طفلك',
+  map:'خريطة النمو', recs:'توصيات مخصصة', plan:'خطة 30 يومًا', report:'التقرير الكامل'
+};
+
+function go(screen, push=true){
+  if(push && State.screen !== screen) State.history.push(State.screen);
+  State.screen = screen;
+  $$('.screen').forEach(s => s.classList.remove('active'));
+  const el = $('#s-' + screen);
+  if(el) el.classList.add('active');
+  $('#topTitle').textContent = TITLES[screen] || 'نبض التميز';
+  const back = $('#backBtn');
+  const hideBack = (screen === 'welcome' || screen === 'report');
+  back.classList.toggle('hidden', hideBack);
+  // Bottom nav only for post-result screens
+  const showNav = ['results','map','recs','plan','report'].includes(screen);
+  $('#bottomNav').classList.toggle('show', showNav);
+  $$('#bottomNav button').forEach(b => b.classList.toggle('active', b.dataset.target === 's-' + screen));
+  window.scrollTo({top:0, behavior:'instant'});
+  saveState();
+}
+
+$('#backBtn').addEventListener('click', () => {
+  const prev = State.history.pop();
+  if(prev) go(prev, false);
+  else go('welcome', false);
+});
+
+$$('#bottomNav button').forEach(b => {
+  b.addEventListener('click', () => go(b.dataset.target.replace('s-','')));
+});
+
+$('#topbar').addEventListener('scroll', ()=>{}, {passive:true});
+window.addEventListener('scroll', () => {
+  $('#topbar').classList.toggle('scrolled', window.scrollY > 4);
+}, {passive:true});
+
+/* ================= Screen 1: Welcome ================= */
+$('#startBtn').addEventListener('click', () => go('about'));
+
+/* ================= Screen 2: About ================= */
+$('#toChildInfo').addEventListener('click', () => go('child'));
+
+/* ================= Screen 3: Child Info ================= */
+$$('#genderChips .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    $$('#genderChips .chip').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    State.child.gender = c.dataset.val;
+    saveState();
+  });
+});
+$$('#stageChips .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    $$('#stageChips .chip').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    State.child.stage = c.dataset.val;
+    saveState();
+  });
+});
+
+$('#childName').addEventListener('input', e => {
+  State.child.name = e.target.value.trim();
+  saveState();
+});
+$('#childAge').addEventListener('change', e => {
+  State.child.age = parseInt(e.target.value, 10) || null;
+  $('#toQuestions').disabled = !State.child.age;
+  saveState();
+});
+
+$('#toQuestions').addEventListener('click', () => {
+  if(!State.child.age){
+    showToast('الرجاء اختيار عمر الطفل');
+    return;
+  }
+  State.applicableQuestions = QUESTIONS.filter(q =>
+    State.child.age >= q.ageMin && State.child.age <= q.ageMax
+  );
+  State.answers = {};
+  State.currentIdx = 0;
+  go('questions');
+  renderQuestion();
+});
+
+/* ================= Screen 4: Questions ================= */
+function renderQuestion(){
+  const qs = State.applicableQuestions;
+  const idx = State.currentIdx;
+  const q = qs[idx];
+  if(!q) return;
+  const total = qs.length;
+  const pct = Math.round(((idx) / total) * 100);
+  $('#qProgressText').textContent = `سؤال ${idx + 1} من ${total}`;
+  $('#qPercent').textContent = pct + '%';
+  $('#qProgressFill').style.width = Math.max(pct, 4) + '%';
+
+  const dom = DOMAINS[q.domain];
+  const container = $('#qContainer');
+  container.innerHTML = `
+    <div class="q-domain" style="background:${dom.color}1a;color:${dom.color}">
+      ${dom.icon} ${dom.name}
+    </div>
+    <div class="q-text">${q.text}</div>
+    <div class="q-options" id="qOptions">
+      ${LIKERT.map(opt => `
+        <button class="q-option ${State.answers[q.id] === opt.val ? 'selected' : ''}" data-val="${opt.val}">
+          <div class="radio"></div>
+          <div>
+            <div>${opt.label}</div>
+            <div style="font-size:12px;color:var(--txt-3);font-weight:500;margin-top:2px">${opt.hint}</div>
+          </div>
+        </button>
+      `).join('')}
+    </div>
+  `;
+
+  $$('#qOptions .q-option').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = parseInt(btn.dataset.val, 10);
+      State.answers[q.id] = val;
+      $$('#qOptions .q-option').forEach(b => b.classList.toggle('selected', b === btn));
+      $('#qNextBtn').disabled = false;
+      saveState();
+    });
+  });
+
+  $('#qPrevBtn').style.visibility = idx === 0 ? 'hidden' : 'visible';
+  $('#qNextBtn').disabled = State.answers[q.id] === undefined;
+  $('#qNextBtn').textContent = idx === total - 1 ? 'مراجعة الإجابات' : 'التالي';
+}
+
+$('#qPrevBtn').addEventListener('click', () => {
+  if(State.currentIdx > 0){ State.currentIdx--; renderQuestion(); }
+});
+$('#qNextBtn').addEventListener('click', () => {
+  const q = State.applicableQuestions[State.currentIdx];
+  if(State.answers[q.id] === undefined){ showToast('الرجاء اختيار إجابة'); return; }
+  if(State.currentIdx < State.applicableQuestions.length - 1){
+    State.currentIdx++;
+    renderQuestion();
+  } else {
+    renderReview();
+    go('review');
+  }
+});
+
+/* ================= Screen 5: Review ================= */
+function renderReview(){
+  const list = $('#reviewList');
+  list.innerHTML = State.applicableQuestions.map((q, i) => {
+    const ans = State.answers[q.id];
+    const lik = LIKERT.find(l => l.val === ans);
+    return `
+      <div class="review-item" data-idx="${i}">
+        <div class="idx">${i + 1}</div>
+        <div class="txt">${q.text}</div>
+        <div class="val">${lik ? lik.label.split(' / ')[0] : '—'}</div>
+      </div>
+    `;
+  }).join('');
+  $$('#reviewList .review-item').forEach(el => {
+    el.addEventListener('click', () => {
+      State.currentIdx = parseInt(el.dataset.idx, 10);
+      renderQuestion();
+      go('questions');
+    });
+  });
+}
+
+/* ================= Scoring Engine ================= */
+function computeResults(){
+  const subAgg = {};
+  const domAgg = {};
+
+  State.applicableQuestions.forEach(q => {
+    const score = State.answers[q.id];
+    if(score === undefined) return;
+    if(!subAgg[q.sub]) subAgg[q.sub] = { sum:0, count:0 };
+    subAgg[q.sub].sum += score;
+    subAgg[q.sub].count += 1;
+
+    if(!domAgg[q.domain]) domAgg[q.domain] = { sum:0, count:0 };
+    domAgg[q.domain].sum += score;
+    domAgg[q.domain].count += 1;
+  });
+
+  const subScores = {};
+  Object.keys(subAgg).forEach(k => {
+    subScores[k] = (subAgg[k].sum / (subAgg[k].count * 3)) * 100;
+  });
+
+  const domScores = {};
+  Object.keys(domAgg).forEach(k => {
+    domScores[k] = (domAgg[k].sum / (domAgg[k].count * 3)) * 100;
+  });
+
+  const totalSum = Object.values(domAgg).reduce((a,b)=>a+b.sum,0);
+  const totalMax = Object.values(domAgg).reduce((a,b)=>a+b.count*3,0);
+  const overall = totalMax > 0 ? (totalSum / totalMax) * 100 : 0;
+
+  return { subScores, domScores, overall, subCounts: subAgg };
+}
+
+function classify(pct){
+  if(pct >= 75) return { label:'أداء مرتفع نسبيًا', tone:'strong' };
+  if(pct >= 50) return { label:'مجال متوازن', tone:'balanced' };
+  return { label:'فرصة واعدة للتعزيز', tone:'support' };
+}
+
+function patternOf(results){
+  const subVals = Object.values(results.subScores);
+  const lowCount = subVals.filter(v => v < 50).length;
+  if(results.overall >= 75 && lowCount === 0) return 'A';
+  if(results.overall < 50) return 'C';
+  return 'B';
+}
+
+/* ================= Screen 6: Results ================= */
+$('#calcBtn').addEventListener('click', () => {
+  const missing = State.applicableQuestions.some(q => State.answers[q.id] === undefined);
+  if(missing){ showToast('الرجاء الإجابة على جميع الأسئلة'); return; }
+
+  const allZero = Object.values(State.answers).every(v => v === 0);
+  if(allZero){
+    showToast('يُظهر التقييم غياب جميع المهارات، يُرجى التأكد من استيعاب الخيارات', 4200);
+    return;
+  }
+
+  State.results = computeResults();
+  renderResults();
+  go('results');
+});
+
+function renderResults(){
+  const r = State.results;
+  const overallPct = Math.round(r.overall);
+  $('#overallPct').textContent = overallPct + '%';
+  const cls = classify(r.overall);
+  $('#overallBadge').textContent = cls.label;
+
+  const domEl = $('#domainResults');
+  domEl.innerHTML = Object.keys(DOMAINS).map(k => {
+    const d = DOMAINS[k];
+    const val = Math.round(r.domScores[k] || 0);
+    const cc = classify(val);
+    return `
+      <div class="domain-row">
+        <div class="ic" style="background:${d.color}">${d.icon}</div>
+        <div class="info">
+          <h4>${d.name}</h4>
+          <div class="bar"><div class="bar-fill" style="background:${d.color};width:${val}%"></div></div>
+          <div class="val">${val}% · ${cc.label}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  const subEl = $('#subdomainResults');
+  subEl.innerHTML = Object.keys(r.subScores)
+    .sort((a,b) => r.subScores[b] - r.subScores[a])
+    .map(k => {
+      const s = SUBDOMAINS[k];
+      const val = Math.round(r.subScores[k]);
+      const cc = classify(val);
+      const color = DOMAINS[s.domain].color;
+      return `
+        <div class="domain-row">
+          <div class="ic" style="background:${color};font-size:18px">${s.icon}</div>
+          <div class="info">
+            <h4 style="font-size:14px">${s.name}</h4>
+            <div class="bar"><div class="bar-fill" style="background:${color};width:${val}%"></div></div>
+            <div class="val">${val}% · ${cc.label}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+}
+
+$('#toMapBtn').addEventListener('click', () => { renderMap(); go('map'); });
+
+/* ================= Screen 7: Excellence Map ================= */
+function renderMap(){
+  const r = State.results;
+  const sorted = Object.keys(r.subScores).sort((a,b) => r.subScores[b] - r.subScores[a]);
+  const strengths = sorted.filter(k => r.subScores[k] >= 70).slice(0, 3);
+  const supports  = sorted.slice().reverse().filter(k => r.subScores[k] < 70).slice(0, 2);
+
+  const sEl = $('#strengthsList');
+  if(strengths.length === 0){
+    sEl.innerHTML = `<div class="pill"><span class="ic">💡</span><div class="body"><h5>لم تظهر نقاط قوة بارزة بعد</h5><p>معظم المهارات في طور النمو، وهذا طبيعي. ركّز على الأنشطة المقترحة لتحفيز النمو.</p></div></div>`;
+  } else {
+    sEl.innerHTML = strengths.map(k => {
+      const s = SUBDOMAINS[k];
+      return `
+        <div class="pill">
+          <span class="ic">✨</span>
+          <div class="body">
+            <h5>${s.icon} ${s.name} <span style="color:var(--success);font-size:13px">· ${Math.round(r.subScores[k])}%</span></h5>
+            <p>${STRENGTH_TEXT[k]}</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  const pEl = $('#supportsList');
+  if(supports.length === 0){
+    pEl.innerHTML = `<div class="pill support"><span class="ic">🎉</span><div class="body"><h5>جميع المجالات في مستوى جيد</h5><p>استمري على الأنشطة الداعمة للحفاظ على هذا التميز.</p></div></div>`;
+  } else {
+    pEl.innerHTML = supports.map(k => {
+      const s = SUBDOMAINS[k];
+      return `
+        <div class="pill support">
+          <span class="ic">🌱</span>
+          <div class="body">
+            <h5>${s.icon} ${s.name} <span style="color:var(--warn);font-size:13px">· ${Math.round(r.subScores[k])}%</span></h5>
+            <p>${SUPPORT_TEXT[k]}</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+$('#toRecsBtn').addEventListener('click', () => { renderRecs(); go('recs'); });
+
+/* ================= Screen 8: Recommendations ================= */
+function renderRecs(){
+  const r = State.results;
+  const sorted = Object.keys(r.subScores).sort((a,b) => r.subScores[a] - r.subScores[b]);
+  const targets = sorted.slice(0, 2);
+
+  const el = $('#recsContainer');
+  el.innerHTML = targets.map(k => {
+    const s = SUBDOMAINS[k];
+    const acts = ACTIVITIES[k] || [];
+    const val = Math.round(r.subScores[k]);
+    return `
+      <div class="card">
+        <h3 style="display:flex;align-items:center;gap:8px">
+          <span>${s.icon}</span> ${s.name}
+          <span style="margin-inline-start:auto;font-size:13px;color:var(--txt-3);font-weight:600">${val}%</span>
+        </h3>
+        <p style="margin-bottom:12px">${SUPPORT_TEXT[k]}</p>
+        ${acts.map(a => `
+          <div class="activity">
+            <h5>🎯 ${a.title}</h5>
+            <div class="meta">
+              <span class="tag">📅 ${a.age} سنة</span>
+              <span class="tag">⏱️ ${a.duration}</span>
+              <span class="tag">🔁 ${a.freq}</span>
+            </div>
+            <p>${a.desc}</p>
+            <p style="margin-top:8px;font-size:12.5px;color:var(--txt-3)"><strong>👀 راقب:</strong> ${a.watch}</p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }).join('');
+}
+
+$('#toPlanBtn').addEventListener('click', () => { renderPlan(); go('plan'); });
+
+/* ================= Screen 9: 30-day Plan ================= */
+function renderPlan(){
+  const r = State.results;
+  const sorted = Object.keys(r.subScores).sort((a,b) => r.subScores[a] - r.subScores[b]);
+  const focus1 = sorted[0], focus2 = sorted[1] || sorted[0];
+  const name1 = SUBDOMAINS[focus1].name;
+  const name2 = SUBDOMAINS[focus2].name;
+  const acts1 = ACTIVITIES[focus1] || [];
+  const acts2 = ACTIVITIES[focus2] || [];
+
+  const weeks = [
+    { title:'الأسبوع الأول', focus:name1, tasks: acts1.slice(0,2).map(a => ({ title:a.title, hint:a.desc })) },
+    { title:'الأسبوع الثاني', focus:name1 + ' + ' + name2, tasks: [...acts1.slice(0,1), ...acts2.slice(0,2)].map(a => ({ title:a.title, hint:a.desc })) },
+    { title:'الأسبوع الثالث', focus:name2, tasks: acts2.slice(0,3).map(a => ({ title:a.title, hint:a.desc })) },
+    { title:'الأسبوع الرابع', focus:'التكامل والمتابعة', tasks: [
+      { title:'ممارسة الأنشطة الثلاثة المفضلة', hint:'اختر 3 أنشطة من الأسابيع السابقة وكررها بثبات.' },
+      { title:'رصد التطور', hint:'سجّل ملاحظاتك عن سلوكيات جديدة لاحظتها على طفلك.' },
+      { title:'تحضير إعادة التقييم', hint:'أعد تطبيق المقياس بعد أسبوعين لمقارنة التطور.' }
+    ]}
+  ];
+
+  const el = $('#planContainer');
+  el.innerHTML = weeks.map((w, wi) => `
+    <div class="week">
+      <div class="week-head">
+        <div class="week-num">${wi+1}</div>
+        <div>
+          <h4>${w.title}</h4>
+          <p>التركيز: ${w.focus}</p>
+        </div>
+      </div>
+      ${w.tasks.map((t, ti) => {
+        const key = `w${wi}t${ti}`;
+        const done = State.completedTasks[key];
+        return `
+          <div class="week-task" data-key="${key}">
+            <div class="check ${done ? 'done' : ''}"></div>
+            <div class="body">
+              <h6>${t.title}</h6>
+              <p>${t.hint}</p>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `).join('');
+
+  $$('#planContainer .week-task').forEach(el => {
+    el.addEventListener('click', () => {
+      const key = el.dataset.key;
+      State.completedTasks[key] = !State.completedTasks[key];
+      el.querySelector('.check').classList.toggle('done', State.completedTasks[key]);
+      saveState();
+    });
+  });
+}
+
+$('#toReportBtn').addEventListener('click', () => { renderReport(); go('report'); });
+
+/* ================= Screen 10: Report ================= */
+function renderReport(){
+  const r = State.results;
+  const child = State.child;
+  const overall = Math.round(r.overall);
+  const pattern = patternOf(r);
+  const patternLabel = { A:'نمط متألق ومتوازن', B:'نمط متوازن مع دعم محدد', C:'نمط نمو نامٍ شامل' }[pattern];
+
+  const sorted = Object.keys(r.subScores).sort((a,b) => r.subScores[b] - r.subScores[a]);
+  const strengths = sorted.filter(k => r.subScores[k] >= 70).slice(0, 3);
+  const supports  = sorted.slice().reverse().filter(k => r.subScores[k] < 70).slice(0, 2);
+
+  const today = new Date().toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
+
+  const el = $('#reportContainer');
+  el.innerHTML = `
+    <div class="hero-result" style="margin-bottom:14px">
+      <div style="font-size:15px;opacity:.9;margin-bottom:6px">تقرير نبض التميز</div>
+      <div style="font-size:22px;font-weight:800;margin-bottom:4px">${child.name || 'طفلك'}</div>
+      <div style="font-size:14px;opacity:.9">${child.age} سنوات · ${today}</div>
+      <div class="badge" style="margin-top:14px">${patternLabel}</div>
+    </div>
+
+    <div class="notice">
+      <strong>📌 تنويه منهجي:</strong>
+      هذا التقرير يصف مستوى ظهور المهارات في بيئة طفلك الحالية مقارنة ببنود هذا المقياس فقط.
+      ليس تشخيصًا طبيًا أو نفسيًا، ولا يقارن طفلك بأقران (لعدم توفر معيار سكاني)،
+      بل هو دليل تربوي لتعزيز النمو.
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">1</span> الملخص العام</h3>
+      <div class="card">
+        <p>مؤشر نبض التميز العام: <strong style="color:var(--primary);font-size:19px">${overall}%</strong></p>
+        <p style="margin-top:8px">${patternSummary(pattern, child.name)}</p>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">2</span> المحاور الأربعة</h3>
+      ${Object.keys(DOMAINS).map(k => {
+        const d = DOMAINS[k];
+        const val = Math.round(r.domScores[k] || 0);
+        return `
+          <div class="domain-row">
+            <div class="ic" style="background:${d.color}">${d.icon}</div>
+            <div class="info">
+              <h4>${d.name}</h4>
+              <div class="bar"><div class="bar-fill" style="background:${d.color};width:${val}%"></div></div>
+              <div class="val">${val}% · ${classify(val).label}</div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">3</span> نقاط القوة النسبية</h3>
+      ${strengths.length ? strengths.map(k => `
+        <div class="pill"><span class="ic">✨</span><div class="body"><h5>${SUBDOMAINS[k].name}</h5><p>${STRENGTH_TEXT[k]}</p></div></div>
+      `).join('') : '<div class="card"><p>لم تظهر نقاط قوة بارزة بعد، وهذا طبيعي مع طفل في مرحلة النمو. ركّزي على الأنشطة المقترحة.</p></div>'}
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">4</span> مجالات تستحق الدعم</h3>
+      ${supports.length ? supports.map(k => `
+        <div class="pill support"><span class="ic">🌱</span><div class="body"><h5>${SUBDOMAINS[k].name}</h5><p>${SUPPORT_TEXT[k]}</p></div></div>
+      `).join('') : '<div class="card"><p>جميع المجالات في مستوى جيد. استمرّي على الأنشطة الداعمة.</p></div>'}
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">5</span> أهم 3 توصيات عملية</h3>
+      ${supports.length ? supports.slice(0,2).flatMap(k => (ACTIVITIES[k]||[]).slice(0,2).map(a => `
+        <div class="activity">
+          <h5>🎯 ${a.title}</h5>
+          <div class="meta"><span class="tag">⏱️ ${a.duration}</span><span class="tag">🔁 ${a.freq}</span></div>
+          <p>${a.desc}</p>
+        </div>
+      `)).join('') : '<div class="card"><p>لا توجد توصيات محددة حاليًا.</p></div>'}
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">6</span> خطة 30 يومًا</h3>
+      <div class="card"><p>خطة منزلية مقسمة على 4 أسابيع، يمكنك متابعتها من تبويب «الخطة». تحتوي على أنشطة عملية لتنمية المجالات المدعومة.</p></div>
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">7</span> إرشادات للوالدين</h3>
+      <div class="card">
+        <p>💡 ركّز على <strong>الجهد</strong> لا النتيجة.</p>
+        <p style="margin-top:6px">💡 اجعل الأنشطة لعبة ممتعة لا واجبًا.</p>
+        <p style="margin-top:6px">💡 كرّر الأنشطة بانتظام لفترة كافية قبل الحكم على النتيجة.</p>
+        <p style="margin-top:6px">💡 راقب التغيرات الصغيرة واحتفل بها.</p>
+      </div>
+    </div>
+
+    <div class="report-section">
+      <h3><span class="num">8</span> موعد إعادة التقييم</h3>
+      <div class="card">
+        <p>نوصي بإعادة التقييم بعد <strong>${pattern === 'C' ? '2-3' : pattern === 'B' ? '3-4' : '6'} أشهر</strong> لمتابعة التطور. يمكنك مقارنة النتائج الجديدة بالسابقة داخل التطبيق.</p>
+      </div>
+    </div>
+  `;
+}
+
+function patternSummary(pattern, name){
+  const n = name || 'طفلك';
+  if(pattern === 'A') return `يُظهر ${n} كفاءة نمائية عالية واستقلالية ممتازة في معظم المهارات. يتألق في التواصل والتعبير العاطفي، ويتعامل مع الروتين بمرونة وثبات.`;
+  if(pattern === 'B') return `يمتلك ${n} قدرات رائعة وقلبًا دافئًا في تفاعله مع الأسرة. يمر بمرحلة نمو طبيعية مفعمة بالحيوية، ويستجيب بشكل جميل عند تقديم الدعم المناسب.`;
+  return `يمر ${n} بمرحلة نمائية ثرية تشبه اكتشاف العالم لأول مرة. معظم المهارات في طور التشكيل، ومع بيئة داعمة وروتين واضح، ستظهر قفزات رائعة في استقلاليته.`;
+}
+
+/* ================= Buttons: Print & Restart ================= */
+$('#printReport').addEventListener('click', () => window.print());
+$('#restartApp').addEventListener('click', () => {
+  if(!confirm('هل تريد بدء تقييم جديد؟ سيتم الاحتفاظ بالنتائج السابقة في الخلفية.')) return;
+  State.child = { name:'', age:null, gender:null, stage:null };
+  State.answers = {};
+  State.results = null;
+  State.completedTasks = {};
+  State.currentIdx = 0;
+  $('#childName').value = '';
+  $('#childAge').value = '';
+  $$('.chip').forEach(c => c.classList.remove('active'));
+  $('#toQuestions').disabled = true;
+  saveState();
+  go('welcome');
+});
+
+/* ================= PWA Install ================= */
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  $('#installBanner').classList.add('show');
+  $('#installMini').classList.add('show');
+});
+function triggerInstall(){
+  if(!deferredPrompt){
+    showToast('التثبيت غير متاح حاليًا. تأكد من استخدام Chrome/Edge وفُتح التطبيق عبر HTTPS.');
+    return;
+  }
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(choice => {
+    if(choice.outcome === 'accepted') showToast('تم تثبيت التطبيق بنجاح 🎉');
+    deferredPrompt = null;
+    $('#installBanner').classList.remove('show');
+    $('#installMini').classList.remove('show');
+  });
+}
+$('#installBtn').addEventListener('click', triggerInstall);
+$('#installMini').addEventListener('click', triggerInstall);
+window.addEventListener('appinstalled', () => {
+  showToast('تم تثبيت التطبيق بنجاح 🎉');
+});
+
+/* ================= Service Worker ================= */
+if('serviceWorker' in navigator && location.protocol !== 'file:'){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+/* ================= Init ================= */
+loadState();
+// Restore UI from saved state
+if(State.child.age){
+  $('#childAge').value = State.child.age;
+  $('#toQuestions').disabled = false;
+}
+if(State.child.name) $('#childName').value = State.child.name;
+if(State.child.gender){
+  const c = $(`#genderChips .chip[data-val="${State.child.gender}"]`);
+  if(c) c.classList.add('active');
+}
+if(State.child.stage){
+  const c = $(`#stageChips .chip[data-val="${State.child.stage}"]`);
+  if(c) c.classList.add('active');
+}
+// If results exist, jump to results
+if(State.results && State.screen !== 'welcome'){
+  renderResults();
+  go(State.screen, false);
+} else {
+  go('welcome', false);
+}
+</script>
+</body>
+</html>
