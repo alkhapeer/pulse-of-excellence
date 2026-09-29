@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="appHtml">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -9,20 +9,15 @@
 <title>نبض التميز — رفيقك اليومي</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   DESIGN SYSTEM v5.0
-   ============================================================ */
 :root{
-  --primary:#7C3AED; --primary-dark:#4C1D95; --primary-light:#A78BFA;
-  --coral:#FF6B9D; --coral-dark:#E11D74;
-  --mint:#06D6A0; --mint-dark:#059669;
-  --gold:#FFD166; --gold-dark:#E8A020;
-  --sky:#4ECDC4;
-  --bg:#F8F7FC; --bg-2:#F0EFF6; --card:#FFFFFF;
-  --txt:#0E0B1F; --txt-2:#4A4266; --txt-3:#9591AB;
+  --primary:#7C3AED;--primary-dark:#4C1D95;--primary-light:#A78BFA;
+  --coral:#FF6B9D;--coral-dark:#E11D74;
+  --mint:#06D6A0;--mint-dark:#059669;
+  --gold:#FFD166;
+  --bg:#F8F7FC;--bg-2:#F0EFF6;--card:#FFFFFF;
+  --txt:#0E0B1F;--txt-2:#4A4266;--txt-3:#9591AB;
   --line:#E2E0EB;
   --grad-royal:linear-gradient(135deg,#7C3AED 0%,#4C1D95 100%);
   --grad-cosmic:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);
@@ -30,172 +25,76 @@
   --grad-mint:linear-gradient(135deg,#06D6A0 0%,#4ECDC4 100%);
   --grad-ocean:linear-gradient(135deg,#4ECDC4 0%,#7C3AED 100%);
   --grad-hero:linear-gradient(160deg,#0F0B1F 0%,#2D1B5E 45%,#4C1D95 100%);
-  --grad-glass:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
   --sh-sm:0 4px 12px rgba(15,11,31,.08);
   --sh-md:0 12px 32px rgba(15,11,31,.10);
   --sh-lg:0 24px 56px rgba(15,11,31,.14);
   --sh-violet:0 16px 40px rgba(124,58,237,.32);
-  --sh-coral:0 16px 40px rgba(255,107,157,.32);
   --sh-mint:0 16px 40px rgba(6,214,160,.32);
   --sh-gold:0 16px 40px rgba(255,209,102,.32);
-  --r-xs:12px;--r-sm:16px;--r-md:22px;--r-lg:28px;--r-xl:36px;--r-full:9999px;
+  --r-sm:16px;--r-md:22px;--r-lg:28px;--r-xl:36px;--r-full:9999px;
   --safe-t:env(safe-area-inset-top,0px);
   --safe-b:env(safe-area-inset-bottom,0px);
   --font-ar:'Tajawal',system-ui,sans-serif;
   --font-en:'Nunito',system-ui,sans-serif;
-  --transition-fast:.15s cubic-bezier(.22,1,.36,1);
-  --transition:  .3s  cubic-bezier(.22,1,.36,1);
-  --transition-slow: .6s cubic-bezier(.22,1,.36,1);
 }
-
-/* ============ DARK MODE ============ */
 [data-theme="dark"]{
-  --bg:#0A0817; --bg-2:#14102A; --card:#1A1633;
-  --txt:#F5F3FF; --txt-2:#C4B5FD; --txt-3:#8B7DB8;
+  --bg:#0A0817;--bg-2:#14102A;--card:#1A1633;
+  --txt:#F5F3FF;--txt-2:#C4B5FD;--txt-3:#8B7DB8;
   --line:#2D2645;
   --sh-sm:0 4px 12px rgba(0,0,0,.3);
   --sh-md:0 12px 32px rgba(0,0,0,.4);
   --sh-lg:0 24px 56px rgba(0,0,0,.5);
 }
-[data-theme="dark"] .topbar{
-  background:rgba(10,8,23,.85); border-bottom-color:rgba(255,255,255,.06);
-}
+[data-theme="dark"] .topbar{background:rgba(10,8,23,.85);border-bottom-color:rgba(255,255,255,.06)}
 [data-theme="dark"] .topbar #topTitle{color:#F5F3FF}
 [data-theme="dark"] .icon-btn{background:#1A1633;color:#F5F3FF}
-[data-theme="dark"] .bottom-nav{
-  background:rgba(10,8,23,.92); border-top-color:rgba(255,255,255,.06);
-}
-[data-theme="dark"] .bottom-nav button.active{color:#A78BFA}
+[data-theme="dark"] .bottom-nav{background:rgba(10,8,23,.92);border-top-color:rgba(255,255,255,.06)}
 [data-theme="dark"] .card,[data-theme="dark"] .today-activity,
 [data-theme="dark"] .domain-row,[data-theme="dark"] .pill,
 [data-theme="dark"] .act-card,[data-theme="dark"] .week-card,
-[data-theme="dark"] .stat-card,[data-theme="dark"] .modal-sheet{
-  background:var(--card); border-color:rgba(255,255,255,.06);
-}
-[data-theme="dark"] .chip,[data-theme="dark"] .q-opt,
-[data-theme="dark"] .field input,[data-theme="dark"] .field select,
-[data-theme="dark"] .field textarea{
-  background:var(--bg-2); color:var(--txt); border-color:var(--line);
-}
-[data-theme="dark"] .mood-chip{background:rgba(255,255,255,.06)}
+[data-theme="dark"] .stat-card,[data-theme="dark"] .modal-sheet,
+[data-theme="dark"] .empty-state,[data-theme="dark"] .ach-card{background:var(--card);border-color:rgba(255,255,255,.06)}
+[data-theme="dark"] .chip,[data-theme="dark"] .field input,
+[data-theme="dark"] .field select,[data-theme="dark"] .field textarea{background:var(--bg-2);color:var(--txt);border-color:var(--line)}
 [data-theme="dark"] .day-dot{background:var(--bg-2);color:var(--txt-3)}
-[data-theme="dark"] .bar-wrap,[data-theme="dark"] .track{
-  background:var(--bg-2);
-}
-[data-theme="dark"] .empty-state{background:var(--card)}
+[data-theme="dark"] .bar-wrap,[data-theme="dark"] .track{background:var(--bg-2)}
+[data-theme="dark"] .mascot-bubble{background:#1A1633;color:#F5F3FF}
+[data-theme="dark"] .mascot-bubble::after{background:#1A1633}
+[data-theme="dark"] .mood-row .mo{background:var(--bg-2);border-color:var(--line)}
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow-x:hidden}
 body{
-  font-family:var(--font-ar); background:var(--bg); color:var(--txt);
-  line-height:1.65; font-size:16px; -webkit-font-smoothing:antialiased;
-  overscroll-behavior-y:none; transition:background var(--transition),color var(--transition);
+  font-family:var(--font-ar);background:var(--bg);color:var(--txt);
+  line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
+  overscroll-behavior-y:none;transition:background .3s,color .3s;
 }
 html[dir="ltr"] body{font-family:var(--font-en)}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 img,svg{display:block;max-width:100%}
 
-/* ============ MASCOT "Nabd" ============ */
-.mascot-container{
-  position:fixed; bottom:calc(var(--safe-b) + 100px);
-  inset-inline-end:18px; z-index:60;
-  display:flex; flex-direction:column; align-items:flex-end;
-  pointer-events:none;
-}
-.mascot-bubble{
-  max-width:240px; padding:14px 18px;
-  background:var(--card); border-radius:20px 20px 4px 20px;
-  box-shadow:var(--sh-md); font-size:13.5px; font-weight:600;
-  line-height:1.5; color:var(--txt);
-  margin-bottom:10px; position:relative;
-  opacity:0; transform:translateY(10px) scale(.9);
-  transition:all .4s cubic-bezier(.22,1,.36,1);
-  pointer-events:auto;
-}
-html[dir="ltr"] .mascot-bubble{border-radius:20px 20px 20px 4px}
-.mascot-bubble.show{opacity:1;transform:translateY(0) scale(1)}
-.mascot-bubble::after{
-  content:''; position:absolute; bottom:-8px; inset-inline-end:20px;
-  width:16px;height:16px;background:var(--card);
-  transform:rotate(45deg); box-shadow:var(--sh-sm);
-}
-.mascot-bubble .close-btn{
-  position:absolute; top:-8px; inset-inline-start:-8px;
-  width:24px;height:24px;border-radius:50%;
-  background:var(--txt-3);color:#fff;font-size:12px;
-  display:flex;align-items:center;justify-content:center;
-  pointer-events:auto;
-}
-.mascot{
-  width:76px;height:76px;position:relative;
-  pointer-events:auto; cursor:pointer;
-  transition:transform var(--transition-fast);
-  filter:drop-shadow(0 8px 20px rgba(124,58,237,.3));
-}
-.mascot:active{transform:scale(.92)}
-.mascot-svg{width:100%;height:100%}
-.mascot-svg .eye{animation:mascotBlink 4s infinite}
-@keyframes mascotBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
-.mascot-svg .wing{transform-origin:center;animation:mascotWave 3s ease-in-out infinite}
-@keyframes mascotWave{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
-.mascot-svg .ear{transform-origin:center;animation:mascotEar 2.6s ease-in-out infinite}
-@keyframes mascotEar{0%,100%{transform:rotate(0)}50%{transform:rotate(6deg)}}
-.mascot.idle .mascot-svg{animation:mascotIdle 3s ease-in-out infinite}
-@keyframes mascotIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-.mascot.celebrate .mascot-svg{animation:mascotCelebrate .8s ease-in-out 3}
-@keyframes mascotCelebrate{
-  0%,100%{transform:translateY(0) rotate(0)}
-  25%{transform:translateY(-14px) rotate(-8deg)}
-  75%{transform:translateY(-14px) rotate(8deg)}
-}
-.mascot-hide{
-  opacity:0;transform:scale(0);transition:all .3s;
-}
-
-/* ============ VERSION UPDATE BANNER ============ */
-.update-banner{
-  position:fixed; top:calc(var(--safe-t) + 12px);
-  inset-inline:18px; z-index:70;
-  padding:14px 18px; border-radius:var(--r-md);
-  background:var(--grad-cosmic); color:#fff;
-  box-shadow:var(--sh-violet);
-  display:none; align-items:center; gap:12px;
-  animation:slideDown .4s cubic-bezier(.22,1,.36,1);
-}
-.update-banner.show{display:flex}
-@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.update-banner .ub-icon{font-size:24px}
-.update-banner .ub-body{flex:1;font-size:13px;font-weight:700;line-height:1.4}
-.update-banner button{
-  padding:9px 14px;border-radius:12px;
-  background:rgba(255,255,255,.22);color:#fff;
-  font-size:12.5px;font-weight:800;
-  backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.28);
-}
-
-/* ============ AMBIENT ORBS ============ */
+/* ========== AMBIENT ========== */
 .ambient{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.35;transition:opacity var(--transition)}
-[data-theme="dark"] .orb{opacity:.2}
-.orb.o1{width:340px;height:340px;background:var(--primary-light);top:-100px;inset-inline-end:-80px;animation:float1 18s ease-in-out infinite}
-.orb.o2{width:280px;height:280px;background:#FF8FB8;bottom:-80px;inset-inline-start:-60px;animation:float2 22s ease-in-out infinite}
-.orb.o3{width:220px;height:220px;background:#3EE4B7;top:40%;inset-inline-start:-100px;animation:float3 26s ease-in-out infinite}
+.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;transition:opacity .3s}
+[data-theme="dark"] .orb{opacity:.15}
+.orb.o1{width:340px;height:340px;background:var(--primary-light);top:-100px;right:-80px;animation:float1 18s ease-in-out infinite}
+.orb.o2{width:280px;height:280px;background:#FF8FB8;bottom:-80px;left:-60px;animation:float2 22s ease-in-out infinite}
+.orb.o3{width:220px;height:220px;background:#3EE4B7;top:40%;left:-100px;animation:float3 26s ease-in-out infinite}
 @keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,40px) scale(1.1)}}
 @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.08)}}
 @keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,30px) scale(1.05)}}
 
 #app{position:relative;z-index:1;min-height:100vh;max-width:520px;margin:0 auto;display:flex;flex-direction:column}
 
-/* ============ TOPBAR ============ */
+/* ========== TOPBAR ========== */
 .topbar{
   position:sticky;top:0;z-index:50;
   padding:calc(var(--safe-t) + 14px) 18px 14px;
   display:flex;align-items:center;gap:12px;
   background:rgba(255,255,255,.85);
   backdrop-filter:blur(24px) saturate(1.6);
-  border-bottom:1px solid transparent;transition:all var(--transition);
+  border-bottom:1px solid transparent;transition:all .3s;
 }
 .topbar.scrolled{border-bottom-color:var(--line)}
 .topbar.dark{background:rgba(15,11,31,.65);border-bottom-color:rgba(255,255,255,.08)}
@@ -206,34 +105,30 @@ html[dir="ltr"] .mascot-bubble{border-radius:20px 20px 20px 4px}
   background:var(--card);box-shadow:var(--sh-sm);
   display:flex;align-items:center;justify-content:center;
   font-size:20px;font-weight:700;color:var(--txt);
-  transition:all var(--transition-fast);flex-shrink:0;
+  transition:all .15s;flex-shrink:0;
 }
 .icon-btn:active{transform:scale(.9)}
 .icon-btn.hidden{visibility:hidden}
-#topTitle{
-  font-size:17px;font-weight:800;flex:1;text-align:center;
-  color:var(--txt);padding-inline:44px;white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis;
-}
+#topTitle{font-size:17px;font-weight:800;flex:1;text-align:center;color:var(--txt);padding-inline:44px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .child-avatar{
   width:42px;height:42px;border-radius:50%;flex-shrink:0;
   background:var(--grad-cosmic);color:#fff;
   display:flex;align-items:center;justify-content:center;
   font-size:18px;font-weight:800;box-shadow:var(--sh-violet);
-  cursor:pointer;border:2px solid var(--card);transition:transform var(--transition-fast);
+  cursor:pointer;border:2px solid var(--card);transition:transform .15s;
 }
 .child-avatar:active{transform:scale(.92)}
 
-/* ============ SCREENS ============ */
-.screen{display:none;flex:1;flex-direction:column;padding:8px 18px calc(var(--safe-b) + 110px);animation:screenIn .45s cubic-bezier(.22,1,.36,1)}
+/* ========== SCREENS ========== */
+.screen{display:none;flex:1;flex-direction:column;padding:8px 18px calc(var(--safe-b) + 110px);animation:screenIn .4s cubic-bezier(.22,1,.36,1)}
 .screen.active{display:flex}
-@keyframes screenIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes screenIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
-/* ============ BUTTONS ============ */
+/* ========== BUTTONS ========== */
 .btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:18px 22px;border-radius:var(--r-md);
-  font-size:16px;font-weight:800;transition:all var(--transition-fast);
+  font-size:16px;font-weight:800;transition:all .2s cubic-bezier(.22,1,.36,1);
   background:var(--bg-2);color:var(--txt);position:relative;overflow:hidden;
 }
 .btn.primary{background:var(--grad-cosmic);color:#fff;box-shadow:var(--sh-violet)}
@@ -247,64 +142,57 @@ html[dir="ltr"] .mascot-bubble{border-radius:20px 20px 20px 4px}
 .btn:disabled{opacity:.4;pointer-events:none}
 .btn-sm{padding:10px 16px;font-size:13.5px;border-radius:12px;width:auto;font-weight:800}
 
-/* ============ CARDS ============ */
+/* ========== CARDS ========== */
 .card{background:var(--card);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-md);margin-bottom:14px;border:1px solid rgba(15,11,31,.04);position:relative;overflow:hidden}
 .card.gradient{background:var(--grad-royal);color:#fff;box-shadow:var(--sh-violet)}
-.card.gradient::after{content:'';position:absolute;top:-50%;inset-inline-end:-50%;width:200%;height:200%;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.18),transparent 40%);pointer-events:none}
-.card h3{font-size:18px;font-weight:800;margin-bottom:10px;position:relative;z-index:1}
-.card p{font-size:14.5px;line-height:1.75;position:relative;z-index:1}
+.card h3{font-size:18px;font-weight:800;margin-bottom:10px}
+.card p{font-size:14.5px;line-height:1.75}
 
-/* ============ FORM ============ */
+/* ========== FORM ========== */
 .field{margin-bottom:18px}
 .field label{display:block;font-size:13.5px;font-weight:800;margin-bottom:10px;color:var(--txt-2)}
 .field label .req{color:var(--coral)}
 .field input,.field select,.field textarea{
   width:100%;padding:18px 20px;border-radius:var(--r-md);
   border:2px solid var(--line);background:var(--card);
-  font-size:16px;font-weight:600;transition:all var(--transition-fast);
+  font-size:16px;font-weight:600;transition:all .2s;
   -webkit-appearance:none;appearance:none;color:var(--txt);
 }
 .field textarea{min-height:100px;resize:vertical;line-height:1.6}
 .field input:focus,.field select:focus,.field textarea:focus{
-  outline:none;border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(124,58,237,.12);
+  outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(124,58,237,.12);
 }
-.field select{
-  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237C3AED' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:left 20px center;background-size:16px;padding-inline-start:52px;
-}
-html[dir="ltr"] .field select{background-position:right 20px center;padding-inline-start:20px;padding-inline-end:52px}
 .chips{display:flex;gap:10px;flex-wrap:wrap}
-.chip{padding:13px 20px;border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);font-size:14.5px;font-weight:700;color:var(--txt-2);transition:all var(--transition-fast)}
+.chip{padding:13px 20px;border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);font-size:14.5px;font-weight:700;color:var(--txt-2);transition:all .2s}
 .chip.active{background:var(--grad-cosmic);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(124,58,237,.3)}
 
-/* ============ HOME HERO ============ */
+/* ========== HOME HERO ========== */
 .home-hero{padding:26px 22px;border-radius:var(--r-xl);background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet);margin-bottom:16px;position:relative;overflow:hidden}
 .home-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 0%,rgba(255,107,157,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(6,214,160,.25),transparent 45%);pointer-events:none}
-.home-hero > *{position:relative;z-index:1}
+.home-hero>*{position:relative;z-index:1}
 .home-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .home-greet{font-size:14px;font-weight:600;opacity:.85}
-.home-name{font-size:20px;font-weight:900;margin-top:2px;letter-spacing:-.3px}
+.home-name{font-size:20px;font-weight:900;margin-top:2px}
 .streak-badge{display:flex;align-items:center;gap:6px;padding:10px 16px;border-radius:var(--r-full);background:var(--grad-sunset);color:#fff;font-size:15px;font-weight:900;box-shadow:0 8px 20px rgba(255,107,157,.4);animation:streakPulse 2.4s ease-in-out infinite}
 @keyframes streakPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .streak-badge .flame{font-size:20px}
 .streak-badge .num{font-size:22px;line-height:1}
 .streak-badge .lbl{font-size:11px;opacity:.9;font-weight:700}
-.home-daily-mood{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:var(--r-md);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);margin-bottom:16px}
+.home-daily-mood{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:var(--r-md);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
 .home-daily-mood .q{font-size:13.5px;font-weight:700;opacity:.9;text-align:center}
 .mood-chips{display:flex;justify-content:center;gap:8px}
-.mood-chip{width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:24px;display:flex;align-items:center;justify-content:center;transition:all var(--transition-fast)}
+.mood-chip{width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:24px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .mood-chip:active{transform:scale(.92)}
 .mood-chip.selected{background:rgba(255,255,255,.3);border-color:#fff;transform:scale(1.08);box-shadow:0 8px 20px rgba(255,255,255,.2)}
 
 .today-activity{background:var(--card);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-md);margin-bottom:16px;position:relative;overflow:hidden;border:1px solid rgba(15,11,31,.04)}
-.today-activity::before{content:'';position:absolute;top:0;inset-inline:0;height:6px;background:var(--grad-cosmic)}
+.today-activity::before{content:'';position:absolute;top:0;right:0;left:0;height:6px;background:var(--grad-cosmic)}
 .today-activity.done::before{background:var(--grad-mint)}
-.today-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-full);background:#EDE9FE;color:var(--primary-dark);font-size:11.5px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;margin-bottom:12px}
+.today-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-full);background:#EDE9FE;color:var(--primary-dark);font-size:11.5px;font-weight:900;text-transform:uppercase;margin-bottom:12px}
 .today-activity.done .today-tag{background:#D9F9EE;color:var(--mint-dark)}
 .today-icon{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:14px;box-shadow:var(--sh-sm)}
 .today-activity.done .today-icon{background:#D9F9EE}
-.today-activity h3{font-size:20px;font-weight:900;margin-bottom:6px;letter-spacing:-.3px;color:var(--txt)}
+.today-activity h3{font-size:20px;font-weight:900;margin-bottom:6px;color:var(--txt)}
 .today-activity .subtitle{font-size:13.5px;color:var(--txt-3);line-height:1.6;margin-bottom:14px}
 .today-activity .meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .a-tag{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--r-full);font-size:12px;font-weight:800;background:var(--bg-2);color:var(--txt-2)}
@@ -318,7 +206,7 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 .week-progress-head .lbl{font-size:13px;font-weight:800;color:var(--txt-3)}
 .week-progress-head .pct{font-size:20px;font-weight:900;color:var(--primary)}
 .week-dots{display:flex;justify-content:space-between;gap:6px;margin-top:12px}
-.day-dot{flex:1;aspect-ratio:1;max-width:40px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--txt-3);position:relative;transition:all var(--transition)}
+.day-dot{flex:1;aspect-ratio:1;max-width:40px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--txt-3);transition:all .3s}
 .day-dot.today{box-shadow:0 0 0 3px var(--primary-light)}
 .day-dot.done{background:var(--grad-mint);color:#fff}
 .day-dot.done::after{content:'✓';font-size:14px;font-weight:900}
@@ -329,8 +217,8 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 .stat-card .val{font-size:22px;font-weight:900;color:var(--txt);line-height:1}
 .stat-card .lbl{font-size:11px;font-weight:800;color:var(--txt-3);margin-top:4px}
 
-/* ============ ACTIVITY CARDS ============ */
-.act-card{background:var(--card);border-radius:var(--r-md);padding:16px;box-shadow:var(--sh-sm);margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(15,11,31,.04);transition:transform var(--transition-fast)}
+/* ========== ACTIVITY CARDS ========== */
+.act-card{background:var(--card);border-radius:var(--r-md);padding:16px;box-shadow:var(--sh-sm);margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(15,11,31,.04);transition:transform .15s}
 .act-card:active{transform:scale(.99)}
 .act-card.done{opacity:.7}
 .act-card .ac-ic{width:52px;height:52px;border-radius:16px;flex-shrink:0;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:24px}
@@ -343,7 +231,48 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 .act-card.done .chk{background:var(--grad-mint);border-color:transparent;box-shadow:var(--sh-mint)}
 .act-card.done .chk::after{content:'✓';font-size:15px}
 
-/* ============ MODAL ============ */
+/* ========== QUESTION OPTIONS ========== */
+.q-opt{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);text-align:right;font-size:15.5px;font-weight:700;transition:all .22s;margin-bottom:12px;width:100%}
+.q-opt .radio{width:28px;height:28px;border-radius:50%;border:2.5px solid var(--line);flex-shrink:0;background:var(--card);position:relative;transition:all .22s}
+.q-opt.selected{border-color:var(--primary);background:linear-gradient(135deg,#F5F3FF 0%,#fff 100%);box-shadow:0 8px 24px rgba(124,58,237,.14)}
+.q-opt.selected .radio{border-color:var(--primary);background:var(--grad-cosmic)}
+.q-opt.selected .radio::after{content:'';position:absolute;inset:7px;border-radius:50%;background:#fff}
+.q-opt .hint{font-size:12.5px;color:var(--txt-3);font-weight:500;margin-top:3px;display:block}
+
+/* ========== RESULTS ========== */
+.prog-hero{padding:24px 22px;border-radius:var(--r-xl);background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet);margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+.prog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 0%,rgba(255,209,102,.35),transparent 45%),radial-gradient(circle at 100% 100%,rgba(6,214,160,.25),transparent 45%);pointer-events:none}
+.prog-hero>*{position:relative;z-index:1}
+.progress-ring{width:160px;height:160px;margin:0 auto 16px;position:relative}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring .bg{stroke:rgba(255,255,255,.15);fill:none}
+.progress-ring .fg{stroke:url(#ringGrad);stroke-linecap:round;fill:none;transition:stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)}
+.progress-ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.progress-ring .pct-num{font-size:38px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#C4B5FD);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.progress-ring .pct-lbl{font-size:10.5px;font-weight:700;color:rgba(255,255,255,.7);margin-top:4px}
+
+.domain-row{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:var(--r-md);background:var(--card);margin-bottom:10px;box-shadow:var(--sh-sm);border:1px solid rgba(15,11,31,.04)}
+.domain-row .ic{width:46px;height:46px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
+.domain-row .info{flex:1;min-width:0}
+.domain-row .info h4{font-size:14px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px;color:var(--txt)}
+.domain-row .info h4 .val{margin-inline-start:auto;font-size:13px;font-weight:800}
+.domain-row .track{height:7px;background:var(--bg-2);border-radius:var(--r-full);overflow:hidden;margin-bottom:5px}
+.domain-row .fill{height:100%;border-radius:var(--r-full);transition:width 1s cubic-bezier(.22,1,.36,1)}
+.domain-row .meta{font-size:11.5px;color:var(--txt-3);font-weight:700}
+
+/* ========== PILL (strength/support) ========== */
+.pill{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:var(--r-md);background:var(--card);box-shadow:var(--sh-sm);position:relative;overflow:hidden;border:1px solid rgba(15,11,31,.04);margin-bottom:10px}
+.pill::before{content:'';position:absolute;right:0;top:0;bottom:0;width:5px;background:var(--grad-mint)}
+.pill.support::before{background:var(--grad-sunset)}
+.pill .icon-bubble{width:44px;height:44px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;background:#D9F9EE}
+.pill.support .icon-bubble{background:#FFF4D6}
+.pill .body{flex:1;min-width:0}
+.pill h5{font-size:14px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--txt)}
+.pill h5 .score{padding:3px 10px;border-radius:var(--r-full);font-size:11px;font-weight:800;background:#D9F9EE;color:var(--mint-dark)}
+.pill.support h5 .score{background:#FFF4D6;color:#E8A020}
+.pill p{font-size:12.5px;color:var(--txt-2);line-height:1.6}
+
+/* ========== MODAL ========== */
 .modal-overlay{position:fixed;inset:0;background:rgba(15,11,31,.55);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-end;justify-content:center;animation:fadeIn .25s}
 .modal-overlay.show{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -353,23 +282,22 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 .modal-sheet h3{font-size:20px;font-weight:900;margin-bottom:8px;color:var(--txt)}
 .modal-sheet .sub{font-size:13.5px;color:var(--txt-3);margin-bottom:20px;line-height:1.6}
 .mood-row{display:flex;justify-content:space-between;gap:8px;margin-bottom:20px}
-.mood-row .mo{flex:1;aspect-ratio:1;max-width:64px;border-radius:18px;background:var(--bg);border:2px solid var(--line);font-size:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all var(--transition-fast);padding:4px}
+.mood-row .mo{flex:1;aspect-ratio:1;max-width:64px;border-radius:18px;background:var(--bg);border:2px solid var(--line);font-size:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all .15s;padding:4px}
 .mood-row .mo span{font-size:9px;font-weight:800;color:var(--txt-3)}
 .mood-row .mo.selected{border-color:var(--primary);background:#F5F3FF;transform:scale(1.08)}
 .mood-row .mo.selected span{color:var(--primary)}
 
-/* ============ BOTTOM NAV ============ */
+/* ========== BOTTOM NAV ========== */
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.92);backdrop-filter:blur(28px) saturate(1.6);border-top:1px solid rgba(15,11,31,.06);padding:8px 8px calc(var(--safe-b) + 8px);display:none;justify-content:space-around;z-index:40;box-shadow:0 -8px 24px rgba(15,11,31,.06)}
 .bottom-nav.show{display:flex}
-.bottom-nav button{flex:1;padding:8px 2px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:800;color:var(--txt-3);transition:all var(--transition-fast);position:relative}
-.bottom-nav button .ic{font-size:22px;line-height:1;transition:transform var(--transition-fast)}
+.bottom-nav button{flex:1;padding:8px 2px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:800;color:var(--txt-3);transition:all .15s;position:relative}
+.bottom-nav button .ic{font-size:22px;line-height:1;transition:transform .15s}
 .bottom-nav button.active{color:var(--primary)}
 .bottom-nav button.active .ic{transform:scale(1.15) translateY(-1px)}
 .bottom-nav button.center-btn .ic{background:var(--grad-cosmic);color:#fff;width:52px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-top:-24px;box-shadow:var(--sh-violet);border:3px solid var(--card)}
 .bottom-nav button.center-btn.active .ic{transform:scale(1.08) translateY(-24px)}
-.bottom-nav button.center-btn span:not(.ic){margin-top:-4px}
 
-/* ============ UTILITIES ============ */
+/* ========== UTILITIES ========== */
 .sec-title{font-size:12.5px;font-weight:900;color:var(--txt-3);margin:22px 4px 12px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .sec-title::before{content:'';width:4px;height:16px;border-radius:99px;background:var(--grad-cosmic)}
 .spacer{flex:1}
@@ -379,26 +307,76 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 .empty-state .em{font-size:48px;margin-bottom:12px;opacity:.6}
 .empty-state h4{font-size:16px;font-weight:800;margin-bottom:6px;color:var(--txt-2)}
 .empty-state p{font-size:13px;color:var(--txt-3);line-height:1.6}
-.toast{position:fixed;bottom:calc(var(--safe-b) + 130px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--txt);color:var(--bg);padding:14px 22px;border-radius:var(--r-md);font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:all var(--transition);z-index:999;box-shadow:var(--sh-lg);max-width:88%;text-align:center}
+.toast{position:fixed;bottom:calc(var(--safe-b) + 130px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--txt);color:var(--bg);padding:14px 22px;border-radius:var(--r-md);font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:all .3s;z-index:999;box-shadow:var(--sh-lg);max-width:88%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .confetti-piece{position:fixed;width:12px;height:12px;border-radius:3px;pointer-events:none;z-index:998;animation:confettiFall 3.2s cubic-bezier(.3,.6,.5,1) forwards}
 @keyframes confettiFall{0%{transform:translateY(-20vh) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.progress-bar-wrap{height:12px;background:var(--bg-2);border-radius:var(--r-full);overflow:hidden;box-shadow:inset 0 2px 4px rgba(15,11,31,.06)}
+.progress-bar-fill{height:100%;background:var(--grad-cosmic);border-radius:var(--r-full);transition:width .6s cubic-bezier(.22,1,.36,1);width:5%}
+
+/* ========== MASCOT ========== */
+.mascot-container{position:fixed;bottom:calc(var(--safe-b) + 100px);right:18px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;pointer-events:none}
+html[dir="ltr"] .mascot-container{right:auto;left:18px;align-items:flex-start}
+.mascot-bubble{max-width:240px;padding:14px 18px;background:var(--card);border-radius:20px 20px 4px 20px;box-shadow:var(--sh-md);font-size:13.5px;font-weight:600;line-height:1.5;color:var(--txt);margin-bottom:10px;position:relative;opacity:0;transform:translateY(10px) scale(.9);transition:all .4s cubic-bezier(.22,1,.36,1);pointer-events:auto}
+html[dir="ltr"] .mascot-bubble{border-radius:20px 20px 20px 4px}
+.mascot-bubble.show{opacity:1;transform:translateY(0) scale(1)}
+.mascot-bubble::after{content:'';position:absolute;bottom:-8px;right:20px;width:16px;height:16px;background:var(--card);transform:rotate(45deg);box-shadow:var(--sh-sm)}
+html[dir="ltr"] .mascot-bubble::after{right:auto;left:20px}
+.mascot-bubble .close-btn{position:absolute;top:-8px;left:-8px;width:24px;height:24px;border-radius:50%;background:var(--txt-3);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;pointer-events:auto}
+html[dir="ltr"] .mascot-bubble .close-btn{left:auto;right:-8px}
+.mascot{width:76px;height:76px;position:relative;pointer-events:auto;cursor:pointer;transition:transform .15s;filter:drop-shadow(0 8px 20px rgba(124,58,237,.3))}
+.mascot:active{transform:scale(.92)}
+.mascot-svg{width:100%;height:100%}
+.mascot-svg .eye{animation:mascotBlink 4s infinite;transform-origin:center}
+@keyframes mascotBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.mascot-svg .wing{animation:mascotWave 3s ease-in-out infinite;transform-origin:center}
+@keyframes mascotWave{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
+.mascot.idle .mascot-svg{animation:mascotIdle 3s ease-in-out infinite}
+@keyframes mascotIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.mascot.celebrate .mascot-svg{animation:mascotCelebrate .8s ease-in-out 3}
+@keyframes mascotCelebrate{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-14px) rotate(-8deg)}75%{transform:translateY(-14px) rotate(8deg)}}
+
+/* ========== UPDATE BANNER ========== */
+.update-banner{position:fixed;top:calc(var(--safe-t) + 12px);left:18px;right:18px;z-index:70;padding:14px 18px;border-radius:var(--r-md);background:var(--grad-cosmic);color:#fff;box-shadow:var(--sh-violet);display:none;align-items:center;gap:12px;animation:slideDown .4s}
+.update-banner.show{display:flex}
+@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.update-banner .ub-icon{font-size:24px}
+.update-banner .ub-body{flex:1;font-size:13px;font-weight:700;line-height:1.4}
+.update-banner button{padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.22);color:#fff;font-size:12.5px;font-weight:800;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28)}
+
+/* ========== WELCOME ========== */
+.welcome-screen{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px}
+.welcome-logo{width:130px;height:130px;margin:0 auto 28px;position:relative;animation:float1 5s ease-in-out infinite}
+.welcome-logo .core{position:absolute;inset:0;border-radius:36px;background:var(--grad-cosmic);box-shadow:0 24px 60px rgba(124,58,237,.4),0 0 0 12px rgba(124,58,237,.08),0 0 0 24px rgba(124,58,237,.04);display:flex;align-items:center;justify-content:center}
+.welcome-logo .core svg{width:70px;height:70px}
+.welcome h1{font-size:36px;font-weight:900;line-height:1.15;margin-bottom:12px;background:var(--grad-cosmic);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px}
+.welcome .tagline{font-size:16px;color:var(--txt-2);line-height:1.7;margin-bottom:32px;padding-inline:8px;font-weight:500}
+.feat-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;text-align:right}
+.feat{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:var(--r-md);background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);box-shadow:var(--sh-sm)}
+[data-theme="dark"] .feat{background:rgba(26,22,51,.75);border-color:rgba(255,255,255,.06)}
+.feat .icon-box{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#EDE9FE;color:var(--primary)}
+.feat h4{font-size:15px;font-weight:800;margin-bottom:2px;color:var(--txt)}
+.feat p{font-size:12.5px;color:var(--txt-3);line-height:1.5}
+.install-banner{display:none;align-items:center;gap:12px;padding:16px;border-radius:var(--r-md);background:var(--grad-hero);color:#fff;margin:14px 0;box-shadow:var(--sh-violet);position:relative;overflow:hidden}
+.install-banner.show{display:flex}
+.install-banner .ib-icon{font-size:32px;flex-shrink:0;position:relative;z-index:1}
+.install-banner .body{flex:1;position:relative;z-index:1}
+.install-banner h5{font-size:14px;font-weight:800;margin-bottom:2px}
+.install-banner p{font-size:11.5px;opacity:.85;line-height:1.45}
+.install-banner button{background:rgba(255,255,255,.22);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;font-weight:800;backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.28);position:relative;z-index:1}
 </style>
 </head>
 <body>
-<!-- Ambient background -->
 <div class="ambient" aria-hidden="true">
   <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 </div>
 
-<!-- Update banner -->
 <div class="update-banner" id="updateBanner">
   <span class="ub-icon">🎉</span>
   <div class="ub-body" id="updateBannerText">تحديث جديد متاح!</div>
-  <button onclick="applyUpdate()" data-i18n="settings.updateNow">تحديث الآن</button>
+  <button onclick="applyUpdate()">تحديث الآن</button>
 </div>
 
-<!-- Mascot -->
 <div class="mascot-container" id="mascotContainer">
   <div class="mascot-bubble" id="mascotBubble">
     <button class="close-btn" onclick="hideMascotBubble()">✕</button>
@@ -406,29 +384,20 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
   </div>
   <div class="mascot idle" id="mascot" onclick="mascotSpeak()">
     <svg class="mascot-svg" viewBox="0 0 100 100">
-      <!-- Owl body -->
       <ellipse cx="50" cy="58" rx="32" ry="36" fill="#7C3AED"/>
-      <!-- Belly -->
       <ellipse cx="50" cy="68" rx="22" ry="24" fill="#EDE9FE"/>
-      <!-- Head top -->
       <ellipse cx="50" cy="34" rx="30" ry="26" fill="#7C3AED"/>
-      <!-- Ear tufts -->
-      <path class="ear" d="M28 14 L34 26 L22 22 Z" fill="#7C3AED"/>
-      <path class="ear" d="M72 14 L66 26 L78 22 Z" fill="#7C3AED"/>
-      <!-- Eyes -->
+      <path d="M28 14 L34 26 L22 22 Z" fill="#7C3AED"/>
+      <path d="M72 14 L66 26 L78 22 Z" fill="#7C3AED"/>
       <circle cx="38" cy="36" r="10" fill="#fff"/>
       <circle cx="62" cy="36" r="10" fill="#fff"/>
       <circle class="eye" cx="38" cy="36" r="5" fill="#0F0B1F"/>
       <circle class="eye" cx="62" cy="36" r="5" fill="#0F0B1F"/>
-      <!-- Eye shine -->
       <circle cx="40" cy="34" r="1.5" fill="#fff"/>
       <circle cx="64" cy="34" r="1.5" fill="#fff"/>
-      <!-- Beak -->
       <path d="M47 44 L53 44 L50 50 Z" fill="#FFD166"/>
-      <!-- Wings -->
       <path class="wing" d="M18 55 Q10 62 18 72 Q22 70 24 60 Z" fill="#6D28D9"/>
       <path class="wing" d="M82 55 Q90 62 82 72 Q78 70 76 60 Z" fill="#6D28D9"/>
-      <!-- Feet -->
       <path d="M42 92 L42 96 M38 96 L46 96" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
       <path d="M58 92 L58 96 M54 96 L62 96" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
     </svg>
@@ -437,44 +406,306 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 
 <div id="app">
   <header class="topbar" id="topbar">
-    <button class="icon-btn hidden" id="backBtn" aria-label="Back">←</button>
-    <h1 id="topTitle" data-i18n="app.name">نبض التميز</h1>
+    <button class="icon-btn hidden" id="backBtn">←</button>
+    <h1 id="topTitle">نبض التميز</h1>
     <div class="child-avatar" id="childAvatar" style="display:none" title="Profile">👶</div>
   </header>
 
   <main id="main">
-    <!-- Onboarding screens will be injected here -->
-    <div id="screensContainer"></div>
+
+    <!-- ==================== WELCOME ==================== -->
+    <section class="screen active" id="s-welcome">
+      <div class="welcome-screen welcome">
+        <div class="welcome-logo">
+          <div class="core">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+            </svg>
+          </div>
+        </div>
+        <h1>نبض التميّز</h1>
+        <p class="tagline">رحلة يومية مع طفلك: نشاط واحد كل يوم،<br>متابعة تقدّمك، وتقارير تُظهر النمو.</p>
+
+        <div class="feat-grid">
+          <div class="feat">
+            <div class="icon-box">🎯</div>
+            <div><h4>تقييم شامل</h4><p>خريطة نمو دقيقة لأربعة محاور رئيسية</p></div>
+          </div>
+          <div class="feat">
+            <div class="icon-box" style="background:#FFE4EE;color:#E11D74">📅</div>
+            <div><h4>نشاط يومي</h4><p>تمرين منزلي بسيط كل يوم (5 دقائق)</p></div>
+          </div>
+          <div class="feat">
+            <div class="icon-box" style="background:#D9F9EE;color:#059669">🏆</div>
+            <div><h4>إنجازات وتقدّم</h4><p>تتبّع التطور واحتفل بكل خطوة</p></div>
+          </div>
+        </div>
+
+        <button class="btn primary" id="startBtn">ابدأ رحلة طفلك <span style="font-size:20px">✨</span></button>
+
+        <div class="install-banner" id="installBanner">
+          <span class="ib-icon">📲</span>
+          <div class="body"><h5>ثبّت التطبيق</h5><p>استخدمه دون اتصال يوميًا</p></div>
+          <button id="installBtn">تثبيت</button>
+        </div>
+        <p class="muted mt-20">⏱️ مدة التقييم: 10–15 دقيقة</p>
+      </div>
+    </section>
+
+    <!-- ==================== CHILD INFO ==================== -->
+    <section class="screen" id="s-child">
+      <h2 style="font-size:26px;font-weight:900;margin:8px 4px 6px">أخبرنا عن طفلك</h2>
+      <p class="muted" style="margin:0 4px 24px">سنخصص التجربة الكاملة بناءً على عمره</p>
+      <div class="field">
+        <label>👶 اسم الطفل</label>
+        <input type="text" id="childName" placeholder="مثال: يوسف" maxlength="30">
+      </div>
+      <div class="field">
+        <label>🎂 العمر بالسنة <span class="req">*</span></label>
+        <select id="childAge">
+          <option value="">اختر عمر الطفل</option>
+          <option value="3">3 سنوات</option><option value="4">4 سنوات</option>
+          <option value="5">5 سنوات</option><option value="6">6 سنوات</option>
+          <option value="7">7 سنوات</option><option value="8">8 سنوات</option>
+          <option value="9">9 سنوات</option><option value="10">10 سنوات</option>
+          <option value="11">11 سنة</option><option value="12">12 سنة</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>⚧ الجنس</label>
+        <div class="chips" id="genderChips">
+          <button class="chip" data-val="male">👦 ولد</button>
+          <button class="chip" data-val="female">👧 بنت</button>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="toQuestions" disabled>متابعة للتقييم <span style="font-size:20px">←</span></button>
+    </section>
+
+    <!-- ==================== QUESTIONS ==================== -->
+    <section class="screen" id="s-questions">
+      <div style="padding:6px 4px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
+          <div style="font-size:13px;color:var(--txt-3);font-weight:700" id="qProgressText">سؤال 1 من 20</div>
+          <div style="font-size:22px;font-weight:900;color:var(--primary);line-height:1" id="qPercent">5<small style="font-size:13px;font-weight:800;color:var(--txt-3)">%</small></div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="qProgressFill"></div>
+        </div>
+      </div>
+      <div id="qContainer"></div>
+      <div class="spacer"></div>
+      <div style="display:flex;gap:10px;margin-top:24px">
+        <button class="btn ghost" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding-inline:22px">←</button>
+        <button class="btn primary" id="qNextBtn" disabled style="flex:1">التالي</button>
+      </div>
+    </section>
+
+    <!-- ==================== RESULTS ==================== -->
+    <section class="screen" id="s-results">
+      <div class="prog-hero">
+        <div class="progress-ring">
+          <svg width="160" height="160" viewBox="0 0 160 160">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#C4B5FD"/><stop offset="50%" stop-color="#FF6B9D"/><stop offset="100%" stop-color="#06D6A0"/>
+              </linearGradient>
+            </defs>
+            <circle class="bg" cx="80" cy="80" r="68" stroke-width="12"/>
+            <circle class="fg" id="ringFg" cx="80" cy="80" r="68" stroke-width="12"/>
+          </svg>
+          <div class="center">
+            <div class="pct-num" id="overallPct">—</div>
+            <div class="pct-lbl">نبض التميّز</div>
+          </div>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:var(--r-full);background:rgba(255,255,255,.18);backdrop-filter:blur(12px);font-size:13.5px;font-weight:800;border:1px solid rgba(255,255,255,.28)">
+          <span style="width:8px;height:8px;border-radius:50%;background:#FFD166;box-shadow:0 0 12px #FFD166"></span>
+          <span id="overallBadge">—</span>
+        </div>
+      </div>
+      <div style="padding:16px;border-radius:var(--r-md);background:linear-gradient(135deg,#FFF8E5,#FFFDF7);border:1.5px solid #F8E1A0;font-size:13px;color:#7A5C10;line-height:1.7;margin-bottom:18px;display:flex;gap:12px;align-items:flex-start">
+        <span style="font-size:20px">📌</span>
+        <div><strong style="display:block;margin-bottom:4px">تنويه منهجي</strong>
+        هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية. ليست تشخيصًا طبيًا، ولا مقارنة بأقران.</div>
+      </div>
+      <div class="sec-title">المحاور الأربعة</div>
+      <div id="domainResults"></div>
+      <div class="sec-title">المجالات الفرعية</div>
+      <div id="subdomainResults"></div>
+      <div class="spacer"></div>
+      <button class="btn primary mt-20" id="startCompanionBtn">🚀 ابدأ رحلة الرفيق اليومي</button>
+    </section>
+
+    <!-- ==================== HOME ==================== -->
+    <section class="screen" id="s-home">
+      <div class="home-hero">
+        <div class="home-top">
+          <div>
+            <div class="home-greet" id="greetText">مساء الخير 👋</div>
+            <div class="home-name" id="childNameHome">طفلك</div>
+          </div>
+          <div class="streak-badge" id="streakBadge">
+            <span class="flame">🔥</span>
+            <div style="display:flex;flex-direction:column;align-items:center">
+              <span class="num" id="streakNum">0</span>
+              <span class="lbl">يوم</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-daily-mood">
+          <div class="q">💭 كيف حال طفلك اليوم؟</div>
+          <div class="mood-chips" id="moodChips">
+            <button class="mood-chip" data-mood="5">🤩</button>
+            <button class="mood-chip" data-mood="4">😊</button>
+            <button class="mood-chip" data-mood="3">😐</button>
+            <button class="mood-chip" data-mood="2">😔</button>
+            <button class="mood-chip" data-mood="1">😤</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec-title">🎯 نشاط اليوم</div>
+      <div id="todayActivityContainer"></div>
+
+      <div class="sec-title">📊 تقدم الأسبوع</div>
+      <div class="week-progress-card">
+        <div class="week-progress-head">
+          <div class="lbl" id="weekLabel">الأسبوع الأول</div>
+          <div class="pct" id="weekPct">0%</div>
+        </div>
+        <div class="week-dots" id="weekDots"></div>
+      </div>
+
+      <div class="sec-title">📈 ملخص سريع</div>
+      <div class="quick-stats">
+        <div class="stat-card"><div class="ic">🎯</div><div class="val" id="totalActivities">0</div><div class="lbl">نشاط مكتمل</div></div>
+        <div class="stat-card"><div class="ic">🔥</div><div class="val" id="longestStreak">0</div><div class="lbl">أطول سلسلة</div></div>
+        <div class="stat-card"><div class="ic">🏆</div><div class="val" id="achievementsCount">0</div><div class="lbl">إنجاز</div></div>
+      </div>
+    </section>
+
+    <!-- ==================== TODAY DETAIL ==================== -->
+    <section class="screen" id="s-today">
+      <div id="todayDetail"></div>
+    </section>
+
+    <!-- ==================== ACTIVITIES LIBRARY ==================== -->
+    <section class="screen" id="s-activities">
+      <h2 style="font-size:26px;font-weight:900;margin:8px 4px 6px">مكتبة الأنشطة</h2>
+      <p class="muted" style="margin:0 4px 20px">جميع الأنشطة المنزلية المخصصة لعمر طفلك</p>
+      <div class="chips" style="margin-bottom:16px" id="activityFilters">
+        <button class="chip active" data-filter="all">الكل</button>
+        <button class="chip" data-filter="emotional">💗 عاطفي</button>
+        <button class="chip" data-filter="cognitive">🧠 عقلي</button>
+        <button class="chip" data-filter="behavioral">🎯 سلوكي</button>
+        <button class="chip" data-filter="skills">🤝 مهاري</button>
+      </div>
+      <div id="activitiesList"></div>
+    </section>
+
+    <!-- ==================== PROGRESS ==================== -->
+    <section class="screen" id="s-progress">
+      <div class="prog-hero">
+        <div style="font-size:56px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#FFD166);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px" id="progressStreak">0</div>
+        <div style="font-size:14px;font-weight:700;opacity:.85;margin-top:4px">🔥 أيام متتالية</div>
+        <div style="font-size:12px;opacity:.7;margin-top:8px" id="progressSub">استمر! كل يوم خطوة نحو الأفضل</div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:16px">📅 آخر 7 أيام</h3>
+        <div style="display:flex;justify-content:space-between;gap:6px;align-items:flex-end;height:130px" id="weeklyChart"></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:15px;margin-bottom:16px">🏆 الإنجازات</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="achievementsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ==================== PROFILE ==================== -->
+    <section class="screen" id="s-profile">
+      <h2 style="font-size:26px;font-weight:900;margin:8px 4px 6px">الملف الشخصي</h2>
+      <p class="muted" style="margin:0 4px 20px">بيانات طفلك وإعدادات التطبيق</p>
+
+      <div class="card" style="text-align:center;padding:26px">
+        <div style="width:80px;height:80px;border-radius:24px;background:var(--grad-cosmic);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin:0 auto 14px;box-shadow:var(--sh-violet)" id="profileAvatar">👶</div>
+        <h3 style="font-size:20px;font-weight:900;margin-bottom:4px" id="profileName">طفلك</h3>
+        <p style="font-size:13.5px;color:var(--txt-3)" id="profileMeta">— سنوات</p>
+      </div>
+
+      <div class="sec-title">⚙️ الإعدادات</div>
+      <div class="card" style="padding:0">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)">
+          <div><div style="font-size:14.5px;font-weight:800">🌙 الوضع المظلم</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">استخدام مريح ليلاً</div></div>
+          <button id="darkToggle" class="btn-sm" style="background:var(--bg-2);padding:8px 14px;border-radius:var(--r-full);font-size:13px;font-weight:800">تشغيل</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)">
+          <div><div style="font-size:14.5px;font-weight:800">🌐 اللغة</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">العربية / English</div></div>
+          <div style="display:flex;gap:6px">
+            <button class="btn-sm" onclick="applyLang('ar')" style="background:var(--bg-2);padding:8px 12px;border-radius:var(--r-full);font-size:13px;font-weight:800">ع</button>
+            <button class="btn-sm" onclick="applyLang('en')" style="background:var(--bg-2);padding:8px 12px;border-radius:var(--r-full);font-size:13px;font-weight:800">EN</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)">
+          <div><div style="font-size:14.5px;font-weight:800">🔊 المؤثرات الصوتية</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">نقرات وأصوات الاحتفال</div></div>
+          <button id="soundToggle" class="btn-sm" style="background:var(--bg-2);padding:8px 14px;border-radius:var(--r-full);font-size:13px;font-weight:800">تشغيل</button>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px">
+          <div><div style="font-size:14.5px;font-weight:800">🔔 تذكير يومي</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">تنبيه لطيف بنشاط اليوم</div></div>
+          <button id="notifToggle" class="btn-sm" style="background:var(--bg-2);padding:8px 14px;border-radius:var(--r-full);font-size:13px;font-weight:800">تشغيل</button>
+        </div>
+      </div>
+
+      <div class="sec-title">📤 مشاركة</div>
+      <div class="card">
+        <p style="font-size:13.5px;color:var(--txt-2);margin-bottom:12px">شارك تقدمك مع العائلة والأصدقاء</p>
+        <button class="btn primary" onclick="shareAchievement('streak', {n: computeStreak(activeChild()).current})">📤 مشاركة سلسلة الأيام</button>
+      </div>
+
+      <div class="sec-title">🔄 إعادة التقييم</div>
+      <div class="card">
+        <p style="font-size:13.5px;color:var(--txt-2);margin-bottom:12px">يمكنك إعادة التقييم لقياس التطور.</p>
+        <button class="btn primary" id="reassessBtn">🔄 بدء تقييم جديد</button>
+      </div>
+
+      <div class="sec-title">🔍 فحص التحديثات</div>
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><div style="font-size:14px;font-weight:800">الإصدار الحالي</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px" id="currentVersion">v1.4.0</div></div>
+          <button class="btn-sm" id="checkUpdateBtn" style="background:var(--grad-cosmic);color:#fff;padding:10px 16px;border-radius:var(--r-full);font-size:13px;font-weight:800">فحص الآن</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <nav class="bottom-nav" id="bottomNav">
-    <button data-target="s-home" data-i18n-btn="home"><span class="ic">🏠</span><span data-i18n="nav.home">الرئيسية</span></button>
-    <button data-target="s-activities" data-i18n-btn="activities"><span class="ic">🎯</span><span data-i18n="nav.activities">الأنشطة</span></button>
-    <button class="center-btn" id="logCenterBtn"><span class="ic">➕</span><span data-i18n="nav.log">تسجيل</span></button>
-    <button data-target="s-progress" data-i18n-btn="progress"><span class="ic">📊</span><span data-i18n="nav.progress">التقدم</span></button>
-    <button data-target="s-profile" data-i18n-btn="profile"><span class="ic">👤</span><span data-i18n="nav.profile">الملف</span></button>
+    <button data-target="s-home"><span class="ic">🏠</span><span>الرئيسية</span></button>
+    <button data-target="s-activities"><span class="ic">🎯</span><span>الأنشطة</span></button>
+    <button class="center-btn" id="logCenterBtn"><span class="ic">➕</span><span>تسجيل</span></button>
+    <button data-target="s-progress"><span class="ic">📊</span><span>التقدم</span></button>
+    <button data-target="s-profile"><span class="ic">👤</span><span>الملف</span></button>
   </nav>
 
   <div class="modal-overlay" id="logModal">
     <div class="modal-sheet">
       <div class="modal-grip"></div>
-      <h3 data-i18n="log.title">سجّل نشاط اليوم ✨</h3>
+      <h3>سجّل نشاط اليوم ✨</h3>
       <p class="sub" id="logActivityName">—</p>
-      <div style="font-size:13.5px;font-weight:800;color:var(--txt-2);margin-bottom:10px" data-i18n="log.howWasIt">كيف كانت تجربتك؟</div>
+      <div style="font-size:13.5px;font-weight:800;color:var(--txt-2);margin-bottom:10px">كيف كانت تجربتك؟</div>
       <div class="mood-row" id="logMoodRow">
-        <button class="mo" data-mood="5">🤩<span data-i18n="log.moods.excellent">ممتاز</span></button>
-        <button class="mo" data-mood="4">😊<span data-i18n="log.moods.good">جيد</span></button>
-        <button class="mo" data-mood="3">😐<span data-i18n="log.moods.okay">عادي</span></button>
-        <button class="mo" data-mood="2">😔<span data-i18n="log.moods.hard">صعب</span></button>
-        <button class="mo" data-mood="1">😤<span data-i18n="log.moods.failed">لم ينجح</span></button>
+        <button class="mo" data-mood="5">🤩<span>ممتاز</span></button>
+        <button class="mo" data-mood="4">😊<span>جيد</span></button>
+        <button class="mo" data-mood="3">😐<span>عادي</span></button>
+        <button class="mo" data-mood="2">😔<span>صعب</span></button>
+        <button class="mo" data-mood="1">😤<span>لم ينجح</span></button>
       </div>
       <div class="field">
-        <label data-i18n="log.note">📝 ملاحظة (اختياري)</label>
-        <textarea id="logNote" maxlength="200" data-i18n-placeholder="log.notePlaceholder" placeholder="مثال: تفاعل بحماس..."></textarea>
+        <label>📝 ملاحظة (اختياري)</label>
+        <textarea id="logNote" maxlength="200" placeholder="مثال: تفاعل بحماس..."></textarea>
       </div>
       <div style="display:flex;gap:10px;margin-top:16px">
-        <button class="btn" id="cancelLog" style="flex:0 0 auto;padding:16px 22px" data-i18n="log.cancel">إلغاء</button>
-        <button class="btn primary" id="confirmLog" style="flex:1" data-i18n="log.save">حفظ التسجيل 🎉</button>
+        <button class="btn" id="cancelLog" style="flex:0 0 auto;padding:16px 22px">إلغاء</button>
+        <button class="btn primary" id="confirmLog" style="flex:1">حفظ التسجيل 🎉</button>
       </div>
     </div>
   </div>
@@ -484,84 +715,172 @@ html[dir="ltr"] .field select{background-position:right 20px center;padding-inli
 
 <script>
 /* ============================================================
-   NABD AL-TAMAYOZ v5.0 — Application Logic
+   NABD AL-TAMAYOZ v5.0 — FULLY WORKING
    ============================================================ */
 
-/* ============ CONSTANTS ============ */
 const APP_VERSION = "1.4.0";
-const VERSION_CHECK_INTERVAL = 6 * 60 * 60 * 1000; // 6 hours
-const VERSION_STORAGE_KEY = 'nabd_version';
-const STATE_STORAGE_KEY = 'nabd_v5';
+const VERSION_CHECK_INTERVAL = 6 * 60 * 60 * 1000;
 
-/* ============ DATA (loaded from JSON, with fallback inline) ============ */
-let QUESTIONS = [];
-let ACTIVITIES = {};
-let i18n = { ar: {}, en: {} };
-let currentLang = 'ar';
+/* ============ DATA ============ */
+const DOMAINS = {
+  emotional:  { name:'العاطفي', nameEn:'Emotional', icon:'💗', color:'#7C3AED', grad:'linear-gradient(135deg,#7C3AED,#FF6B9D)' },
+  cognitive:  { name:'العقلي',  nameEn:'Cognitive', icon:'🧠', color:'#4ECDC4', grad:'linear-gradient(135deg,#4ECDC4,#7C3AED)' },
+  behavioral: { name:'السلوكي', nameEn:'Behavioral',icon:'🎯', color:'#06D6A0', grad:'linear-gradient(135deg,#06D6A0,#4ECDC4)' },
+  skills:     { name:'المهاري', nameEn:'Skills',    icon:'🤝', color:'#FF6B9D', grad:'linear-gradient(135deg,#FF6B9D,#FFD166)' }
+};
+const SUBDOMAINS = {
+  'emo-awareness':  { name:'الوعي الانفعالي الذاتي', domain:'emotional', icon:'💭' },
+  'emo-regulation': { name:'التنظيم والضبط العاطفي', domain:'emotional', icon:'🧘' },
+  'emo-empathy':    { name:'التعاطف والوعي الاجتماعي', domain:'emotional', icon:'🤍' },
+  'cog-memory':     { name:'الذاكرة العاملة', domain:'cognitive', icon:'🧩' },
+  'cog-flex':       { name:'المرونة المعرفية', domain:'cognitive', icon:'🔄' },
+  'cog-reason':     { name:'التفكير المنطقي', domain:'cognitive', icon:'🔍' },
+  'beh-inhibit':    { name:'الضبط التثبيطي', domain:'behavioral', icon:'✋' },
+  'beh-routine':    { name:'الالتزام بالروتين', domain:'behavioral', icon:'📋' },
+  'skl-comm':       { name:'المهارات التواصلية', domain:'skills', icon:'💬' },
+  'skl-social':     { name:'المهارات الاجتماعية', domain:'skills', icon:'🤝' }
+};
+const QUESTIONS = [
+  { id:'BND-EMO-01', text:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.', domain:'emotional', sub:'emo-awareness', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-02', text:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب.', domain:'emotional', sub:'emo-awareness', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-03', text:'يوضح السبب المباشر لشعوره بالضيق عندما يسأله أحد الأبوين.', domain:'emotional', sub:'emo-awareness', ageMin:5, ageMax:7 },
+  { id:'BND-EMO-05', text:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة محددة.', domain:'emotional', sub:'emo-awareness', ageMin:7, ageMax:12 },
+  { id:'BND-EMO-07', text:'يلجأ لأحد الأبوين لطلب التهدئة عند تعثر لعبته.', domain:'emotional', sub:'emo-regulation', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-08', text:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه.', domain:'emotional', sub:'emo-regulation', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-09', text:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.', domain:'emotional', sub:'emo-regulation', ageMin:5, ageMax:7 },
+  { id:'BND-EMO-11', text:'يستعيد توازنه العاطفي ويتجاوز شعور الخسارة.', domain:'emotional', sub:'emo-regulation', ageMin:7, ageMax:12 },
+  { id:'BND-EMO-12', text:'يقدم لعبة أو لمسة حنونة لمواساة طفل آخر يبكي.', domain:'emotional', sub:'emo-empathy', ageMin:3, ageMax:5 },
+  { id:'BND-EMO-13', text:'يسأل صديقه عما يضايقه فور رؤيته متألماً.', domain:'emotional', sub:'emo-empathy', ageMin:3, ageMax:6 },
+  { id:'BND-EMO-15', text:'يخفض صوته تلقائياً عند علمه بمرض أحد أفراد الأسرة.', domain:'emotional', sub:'emo-empathy', ageMin:7, ageMax:12 },
+  { id:'BND-COG-01', text:'ينفذ تعليمات شفاهية متتابعة من خطوتين دون نسيان.', domain:'cognitive', sub:'cog-memory', ageMin:3, ageMax:5 },
+  { id:'BND-COG-02', text:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات دون تكرار.', domain:'cognitive', sub:'cog-memory', ageMin:5, ageMax:7 },
+  { id:'BND-COG-03', text:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها.', domain:'cognitive', sub:'cog-memory', ageMin:5, ageMax:7 },
+  { id:'BND-COG-05', text:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات.', domain:'cognitive', sub:'cog-memory', ageMin:7, ageMax:12 },
+  { id:'BND-COG-07', text:'ينقل تصنيف الأشياء من معيار اللون إلى معيار الشكل.', domain:'cognitive', sub:'cog-flex', ageMin:3, ageMax:5 },
+  { id:'BND-COG-09', text:'يتقبل تعديل موعد الخروج دون تذمر يستمر لأكثر من بضع دقائق.', domain:'cognitive', sub:'cog-flex', ageMin:5, ageMax:8 },
+  { id:'BND-COG-11', text:'يجرب طريقة تفكير جديدة فور فشل المحاولة الأولى.', domain:'cognitive', sub:'cog-flex', ageMin:7, ageMax:12 },
+  { id:'BND-COG-12', text:'يقدم تفسيراً واقعياً لسبب انسكاب الماء أو انكسار الغرض.', domain:'cognitive', sub:'cog-reason', ageMin:3, ageMax:6 },
+  { id:'BND-COG-13', text:'يميز بوضوح بين الأحداث الحقيقية والأحداث الخيالية.', domain:'cognitive', sub:'cog-reason', ageMin:5, ageMax:8 },
+  { id:'BND-COG-14', text:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم.', domain:'cognitive', sub:'cog-reason', ageMin:6, ageMax:9 },
+  { id:'BND-COG-16', text:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار.', domain:'cognitive', sub:'cog-reason', ageMin:7, ageMax:12 },
+  { id:'BND-BEH-01', text:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع حركي.', domain:'behavioral', sub:'beh-inhibit', ageMin:3, ageMax:6 },
+  { id:'BND-BEH-02', text:'ينتظر دوره في توزيع الوجبات بالبيت دون تذمر.', domain:'behavioral', sub:'beh-inhibit', ageMin:5, ageMax:9 },
+  { id:'BND-BEH-03', text:'يتوقف عن الحركة والجري تماماً فور سماع إشارة النهي.', domain:'behavioral', sub:'beh-inhibit', ageMin:5, ageMax:12 },
+  { id:'BND-BEH-06', text:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.', domain:'behavioral', sub:'beh-routine', ageMin:3, ageMax:6 },
+  { id:'BND-BEH-07', text:'يبدأ بتنفيذ الخطوة الأولى من روتين العودة للبيت فور دخوله.', domain:'behavioral', sub:'beh-routine', ageMin:5, ageMax:9 },
+  { id:'BND-BEH-08', text:'يعيد ألعابه وأدواته المدرسية إلى مواضعها فور الانتهاء.', domain:'behavioral', sub:'beh-routine', ageMin:7, ageMax:12 },
+  { id:'BND-SKL-01', text:'يستخدم جملة صريحة وواضحة لطلب طعامه أو ألعابه.', domain:'skills', sub:'skl-comm', ageMin:3, ageMax:6 },
+  { id:'BND-SKL-02', text:'ينظر باتجاه المتحدث أثناء الحوار المباشر معه.', domain:'skills', sub:'skl-comm', ageMin:5, ageMax:9 },
+  { id:'BND-SKL-03', text:'عندما يتلقى توجيهاً غير واضح، يستفسر بكلماته.', domain:'skills', sub:'skl-comm', ageMin:7, ageMax:12 },
+  { id:'BND-SKL-06', text:'يشارك أدواته وألعابه مع زملائه بالتناوب أثناء اللعب.', domain:'skills', sub:'skl-social', ageMin:3, ageMax:6 },
+  { id:'BND-SKL-07', text:'يقترح حلاً وسطاً مرضياً عند الخلاف مع صديقه.', domain:'skills', sub:'skl-social', ageMin:5, ageMax:9 },
+  { id:'BND-SKL-08', text:'يتعاون مع فريق من الأقران لإتمام مهمة مشتركة بنجاح.', domain:'skills', sub:'skl-social', ageMin:7, ageMax:12 }
+];
+const LIKERT = [
+  { val:0, label:'لم يظهر بعد', hint:'يحتاج دائمًا للمساعدة', icon:'🌱' },
+  { val:1, label:'يظهر أحيانًا', hint:'يحتاج تذكيرًا أو مساعدة جزئية', icon:'🌿' },
+  { val:2, label:'يظهر غالبًا', hint:'بمبادرة ذاتية غالبًا', icon:'🌳' },
+  { val:3, label:'بثبات واستقلالية', hint:'بانتظام ودون تذكير', icon:'⭐' }
+];
+const ACTIVITIES = {
+  'emo-awareness': [
+    { icon:'📖', title:'قاموس المشاعر اليومي', duration:'5 د', freq:'يوميًا', age:[3,5], desc:'بطاقات وجوه للمشاعر الأساسية، يختار الطفل وجهه الحالي ويسميه بكلمة.', watch:'هل يستبدل الصراخ بالتسمية اللفظية؟' },
+    { icon:'📚', title:'قصة بطلي والموقف المفاجئ', duration:'10 د', freq:'3×أسبوعيًا', age:[5,7], desc:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.', watch:'هل يربط السبب بالنتيجة الانفعالية؟' },
+    { icon:'🌤️', title:'لوحة الطقس الداخلي', duration:'5 د', freq:'عند الحاجة', age:[7,12], desc:'تشبيه الحالة الداخلية بالطقس (مشمس/غائم/عاصف).', watch:'هل يستخدم مفردات دقيقة؟' }
+  ],
+  'emo-regulation': [
+    { icon:'🧘', title:'ركن التنفس والتهدئة', duration:'5-10 د', freq:'عند التوتر', age:[5,7], desc:'مساحة هادئة بوسادة، يتنفس فيها الطفل 3 أنفاس بطيئة.', watch:'هل يقبل الابتعاد للتهدئة؟' },
+    { icon:'🤗', title:'عناق التهدئة المشتركة', duration:'3-5 د', freq:'عند الضيق', age:[3,5], desc:'احتضان هادئ مع صوت منخفض "أنا بجانبك، نتنفس معًا".', watch:'هل تنخفض حدة البكاء؟' },
+    { icon:'🌉', title:'إعادة بناء الجسر', duration:'15 د', freq:'2×أسبوعيًا', age:[7,12], desc:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم "لنجرب فكرة جديدة".', watch:'هل يعود للمهمة بعد الإحباط؟' }
+  ],
+  'emo-empathy': [
+    { icon:'🎁', title:'صندوق المواساة', duration:'2 د', freq:'عند البكاء', age:[3,5], desc:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.', watch:'هل يبادر بتقديم غرض التهدئة؟' },
+    { icon:'🎭', title:'محقق الاطمئنان اللفظي', duration:'10 د', freq:'2×أسبوعيًا', age:[3,6], desc:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.', watch:'هل يسأل تلقائيًا عن حال الآخرين؟' },
+    { icon:'🤫', title:'ساعة الهدوء الأسرية', duration:'30-60 د', freq:'عند المرض', age:[7,12], desc:'شرح ظرف مرض أحد الأفراد والاتفاق على نشاط همس.', watch:'هل يخفض صوته تلقائيًا؟' }
+  ],
+  'cog-memory': [
+    { icon:'🎒', title:'حقيبة السفر الذهنية', duration:'10 د', freq:'3×أسبوعيًا', age:[5,7], desc:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.', watch:'هل يتذكر التسلسل دون إغفال؟' },
+    { icon:'👨‍🍳', title:'الطاهي الصغير', duration:'15 د', freq:'2×أسبوعيًا', age:[3,5], desc:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.', watch:'هل ينفذ الخطوة التالية تلقائيًا؟' },
+    { icon:'🎴', title:'البحث عن المطابقات', duration:'10 د', freq:'3×أسبوعيًا', age:[5,7], desc:'لعبة الذاكرة (Memory) ببطاقات مقلوبة.', watch:'هل تقل الأخطاء العشوائية؟' },
+    { icon:'🧩', title:'لغز المراحل الثلاث', duration:'15 د', freq:'2×أسبوعيًا', age:[7,12], desc:'حل واجب أو تركيب لعبة متعددة الخطوات.', watch:'هل يحافظ على تسلسل الخطوات؟' }
+  ],
+  'cog-flex': [
+    { icon:'🔀', title:'التصنيف المقلوب', duration:'10 د', freq:'3×أسبوعيًا', age:[3,5], desc:'تصنيف المكعبات حسب اللون، ثم يغير المربي القاعدة فجأة.', watch:'هل ينتقل بسلاسة للقاعدة الجديدة؟' },
+    { icon:'📋', title:'خطة (ب) الممتعة', duration:'10 د', freq:'أسبوعيًا', age:[5,8], desc:'رسم خطة أساسية وخطة بديلة للأنشطة.', watch:'هل يتقبل البديل دون مقاومة؟' },
+    { icon:'🎯', title:'لغز الطرق البديلة', duration:'15 د', freq:'2×أسبوعيًا', age:[7,12], desc:'موازنة أغراض فوق قاعدة غير مستوية مع منع التكرار.', watch:'هل يجرب طرقًا جديدة؟' }
+  ],
+  'cog-reason': [
+    { icon:'🔬', title:'المكتشف الصغير', duration:'15 د', freq:'أسبوعيًا', age:[3,6], desc:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟"', watch:'هل يقدم تبريرات منطقية؟' },
+    { icon:'🧠', title:'ماذا يعلم صديقي؟', duration:'10 د', freq:'2×أسبوعيًا', age:[5,8], desc:'لعبة نقل لعبة دون علم الأخ، ثم السؤال: أين سيبحث؟', watch:'هل يدرك أن الأخ لا يعلم النقل؟' },
+    { icon:'⚖️', title:'ميزان القرار اليومي', duration:'5 د', freq:'عند الاختيار', age:[7,12], desc:'طلب دليلين منطقيين لترجيح خيار على آخر.', watch:'هل يقدم حججًا متماسكة؟' }
+  ],
+  'beh-inhibit': [
+    { icon:'🧊', title:'التمثال المجمد', duration:'10 د', freq:'3×أسبوعيًا', age:[3,6], desc:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.', watch:'هل يكبح جسده فور التوقف؟' },
+    { icon:'🚦', title:'إشارة المرور المنزلية', duration:'10 د', freq:'3×أسبوعيًا', age:[5,9], desc:'بطاقات ملونة للجري والمشي والتوقف.', watch:'هل يتوقف فورًا عند الأحمر؟' },
+    { icon:'✨', title:'الكلمة السحرية', duration:'10 د', freq:'3×أسبوعيًا', age:[5,9], desc:'لا ينفذ الطفل إلا إذا سبقت التعليمات بالكلمة السحرية.', watch:'هل يتريث قبل الحركة؟' }
+  ],
+  'beh-routine': [
+    { icon:'📅', title:'لوحة محطات اليوم', duration:'مستمر', freq:'يوميًا', age:[5,9], desc:'لوحة بصور متتابعة لروتين العودة.', watch:'هل ينتقل بين المحطات باعتياد؟' },
+    { icon:'⏱️', title:'تحدي الـ 5 دقائق', duration:'5 د', freq:'يوميًا', age:[7,12], desc:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.', watch:'هل يستجيب بسرعة ومنهجية؟' },
+    { icon:'🎒', title:'محطة الاستعداد للغد', duration:'10 د', freq:'يوميًا', age:[7,12], desc:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.', watch:'هل يخرج الصباح بسلاسة؟' }
+  ],
+  'skl-comm': [
+    { icon:'📖', title:'القراءة الحوارية', duration:'10-15 د', freq:'يوميًا', age:[3,6], desc:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.', watch:'هل تزداد طول جملة الطفل؟' },
+    { icon:'🎤', title:'مقابلة المذيع', duration:'10 د', freq:'3×أسبوعيًا', age:[5,9], desc:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للطرف الآخر.', watch:'هل ينتظر دوره وينظر للمتحدث؟' },
+    { icon:'❓', title:'مراسل الاستفسار', duration:'10 د', freq:'2×أسبوعيًا', age:[7,12], desc:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.', watch:'هل يطرح أسئلة استفسارية؟' }
+  ],
+  'skl-social': [
+    { icon:'⏳', title:'عداد التناوب', duration:'15 د', freq:'عند اللعب', age:[3,6], desc:'مؤقت رملي دقيقتان للتبادل بين الأطفال.', watch:'هل يسلّم اللعبة بهدوء؟' },
+    { icon:'🌉', title:'جسور الحلول الوسطى', duration:'5 د', freq:'عند النزاع', age:[5,9], desc:'بطاقة "حلول" لسؤال الطرفين عن حل يرضيهما معًا.', watch:'هل يقترح حلولًا وسيطة؟' },
+    { icon:'🏗️', title:'مشروع البناء الجماعي', duration:'30 د', freq:'أسبوعيًا', age:[7,12], desc:'بناء مدينة من الوسائد مع توزيع أدوار.', watch:'هل يلتزم بدوره ويتعاون؟' }
+  ]
+};
+const ACHIEVEMENTS = [
+  { id:'first-step', icon:'🌟', name:'البداية', check:s=>s.totalLogs>=1 },
+  { id:'streak-3', icon:'🔥', name:'3 أيام', check:s=>s.currentStreak>=3 },
+  { id:'streak-7', icon:'⚡', name:'أسبوع', check:s=>s.currentStreak>=7 },
+  { id:'streak-14', icon:'💫', name:'14 يومًا', check:s=>s.currentStreak>=14 },
+  { id:'streak-30', icon:'👑', name:'شهر', check:s=>s.currentStreak>=30 },
+  { id:'activities-10', icon:'🎯', name:'10 أنشطة', check:s=>s.totalLogs>=10 },
+  { id:'activities-30', icon:'🏆', name:'30 نشاطًا', check:s=>s.totalLogs>=30 },
+  { id:'activities-100', icon:'💎', name:'100 نشاط', check:s=>s.totalLogs>=100 },
+  { id:'assess-done', icon:'📋', name:'التقييم', check:s=>!!s.assessment }
+];
 
 /* ============ STATE ============ */
 const DEFAULT_STATE = {
-  onboarded: false,
-  children: [],
-  activeChildId: null,
-  settings: {
-    notifications: false,
-    reminderTime: '19:00',
-    darkMode: false,
-    soundEffects: true,
-    language: 'ar'
-  },
-  lastVersionCheck: 0,
-  seenVersion: APP_VERSION
+  onboarded: false, children: [], activeChildId: null,
+  settings: { notifications:false, reminderTime:'19:00', darkMode:false, soundEffects:true, language:'ar' },
+  lastVersionCheck: 0
 };
+let State = JSON.parse(JSON.stringify(DEFAULT_STATE));
 
-let State = { ...DEFAULT_STATE };
-
-/* ============ HELPERS ============ */
 const $  = (s,p=document)=>p.querySelector(s);
 const $$ = (s,p=document)=>Array.from(p.querySelectorAll(s));
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function todayKey(d=new Date()){ return d.toISOString().slice(0,10); }
 function daysBetween(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
-function t(key, vars){
-  const parts = key.split('.');
-  let val = i18n[currentLang];
-  for(const p of parts){ val = val?.[p]; }
-  if(typeof val !== 'string') return key;
-  if(vars) Object.keys(vars).forEach(k => { val = val.replace(`{${k}}`, vars[k]); });
-  return val;
-}
-function isRTL(){ return currentLang === 'ar'; }
-function applyLang(lang){
-  currentLang = lang;
-  State.settings.language = lang;
-  document.documentElement.lang = lang;
-  document.documentElement.dir = isRTL() ? 'rtl' : 'ltr';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    el.textContent = t(el.dataset.i18n);
-  });
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-    el.placeholder = t(el.dataset.i18nPlaceholder);
-  });
-  save();
-}
+function activeChild(){ return State.children.find(c=>c.id===State.activeChildId) || State.children[0]; }
 
 /* ============ STORAGE ============ */
-function save(){ try{ localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(State)); }catch(e){} }
+function save(){ try{ localStorage.setItem('nabd_v5', JSON.stringify(State)); }catch(e){} }
 function load(){
   try{
-    const s = localStorage.getItem(STATE_STORAGE_KEY);
-    if(s){ State = { ...DEFAULT_STATE, ...JSON.parse(s) }; State.settings = { ...DEFAULT_STATE.settings, ...(State.settings||{}) }; }
+    const s = localStorage.getItem('nabd_v5');
+    if(s){
+      const p = JSON.parse(s);
+      State = { ...DEFAULT_STATE, ...p };
+      State.settings = { ...DEFAULT_STATE.settings, ...(p.settings||{}) };
+      State.children = p.children || [];
+    }
   }catch(e){}
 }
 
-/* ============ SOUND ENGINE (Web Audio API) ============ */
-const Sound = (() => {
+/* ============ SOUND ============ */
+const Sound = (()=>{
   let ctx = null;
   function init(){
-    if(!ctx){
-      try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
-    }
+    if(!ctx){ try{ ctx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
     if(ctx && ctx.state === 'suspended') ctx.resume();
     return ctx;
   }
@@ -569,8 +888,7 @@ const Sound = (() => {
     if(!State.settings.soundEffects) return;
     const c = init(); if(!c) return;
     const t0 = c.currentTime + delay;
-    const osc = c.createOscillator();
-    const gain = c.createGain();
+    const osc = c.createOscillator(), gain = c.createGain();
     osc.type = type;
     osc.frequency.setValueAtTime(freq, t0);
     if(slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t0 + duration);
@@ -580,36 +898,21 @@ const Sound = (() => {
     osc.start(t0); osc.stop(t0 + duration + 0.02);
   }
   return {
-    click(){ beep({freq:900, duration:0.06, type:'sine', volume:0.12}); },
+    click(){ beep({freq:900, duration:0.06, volume:0.12}); },
     tap(){ beep({freq:600, duration:0.05, type:'triangle', volume:0.1}); },
-    success(){
-      beep({freq:523, duration:0.15, type:'sine', volume:0.18, delay:0});
-      beep({freq:659, duration:0.15, type:'sine', volume:0.18, delay:0.12});
-      beep({freq:784, duration:0.25, type:'sine', volume:0.18, delay:0.24});
-    },
-    celebrate(){
-      const notes = [523, 659, 784, 1047, 784, 1047];
-      notes.forEach((f,i) => beep({freq:f, duration:0.16, type:'triangle', volume:0.15, delay:i*0.09}));
-    },
-    streak(){
-      beep({freq:880, duration:0.1, type:'square', volume:0.1, slideTo:1200});
-    },
-    error(){
-      beep({freq:300, duration:0.2, type:'sawtooth', volume:0.15, slideTo:150});
-    },
+    success(){ beep({freq:523, duration:0.15, volume:0.18}); beep({freq:659, duration:0.15, volume:0.18, delay:0.12}); beep({freq:784, duration:0.25, volume:0.18, delay:0.24}); },
+    celebrate(){ [523,659,784,1047,784,1047].forEach((f,i)=>beep({freq:f, duration:0.16, type:'triangle', volume:0.15, delay:i*0.09})); },
     unlock(){ init(); }
   };
 })();
 
 /* ============ MASCOT ============ */
 const Mascot = {
-  timer: null,
   hideTimer: null,
-  speak(message, duration=6000){
+  speak(msg, duration=6000){
     clearTimeout(this.hideTimer);
-    const bubble = $('#mascotBubble');
-    $('#mascotText').textContent = message;
-    bubble.classList.add('show');
+    $('#mascotText').textContent = msg;
+    $('#mascotBubble').classList.add('show');
     Sound.tap();
     this.hideTimer = setTimeout(()=>this.hide(), duration);
   },
@@ -621,61 +924,46 @@ const Mascot = {
   },
   greetDaily(){
     const hour = new Date().getHours();
-    const period = hour<12 ? 'morning' : hour<18 ? 'afternoon' : 'evening';
-    const msgs = i18n[currentLang]?.mascot?.[period] || [];
-    const msg = msgs[Math.floor(Math.random()*msgs.length)] || '...';
-    this.speak(msg);
+    const msgs = hour<12 ? [
+      'صباح الخير! هل أنت مستعد لنشاط اليوم؟',
+      'يوم جديد، فرصة جديدة لنمو طفلك! 🌟',
+      'صباح النشاط! طفلك في انتظارك 💫'
+    ] : hour<18 ? [
+      'كيف كان يومك مع طفلك حتى الآن؟',
+      'لا تنسَ نشاط اليوم — 5 دقائق تكفي!',
+      'وقت رائع لتجربة نشاط جديد معًا 🌿'
+    ] : [
+      'مساء الخير! هل جربت نشاط اليوم؟',
+      'قبل النوم، دقائق مع طفلك تصنع فرقًا 💫',
+      'أنت تقوم بعمل رائع — استمر! 🌙'
+    ];
+    this.speak(msgs[Math.floor(Math.random()*msgs.length)]);
   },
   idleTalk(){
-    const msgs = i18n[currentLang]?.mascot?.[
-      new Date().getHours()<12 ? 'morning' : new Date().getHours()<18 ? 'afternoon' : 'evening'
-    ] || [];
-    const msg = msgs[Math.floor(Math.random()*msgs.length)] || '...';
-    this.speak(msg, 4000);
+    const hour = new Date().getHours();
+    const msgs = hour<12 ? [
+      'جاهز لنشاط اليوم؟ اضغط على الزر 🌟',
+      'كل دقيقة مع طفلك استثمار 💫'
+    ] : hour<18 ? [
+      'كيف حالك؟ هل نبدأ نشاط اليوم؟',
+      'طفلك يتعلم منك كل يوم 🌿'
+    ] : [
+      'يوم رائع! هل جربت نشاط اليوم؟',
+      'دقائق قليلة مع طفلك قبل النوم 💫'
+    ];
+    this.speak(msgs[Math.floor(Math.random()*msgs.length)], 4000);
   }
 };
-function hideMascotBubble(){ Mascot.hide(); }
-function mascotSpeak(){ Mascot.idleTalk(); }
+window.hideMascotBubble = ()=>Mascot.hide();
+window.mascotSpeak = ()=>Mascot.idleTalk();
 
-/* ============ VERSION CHECK ============ */
-async function checkVersion(force=false){
-  const now = Date.now();
-  if(!force && (now - State.lastVersionCheck) < VERSION_CHECK_INTERVAL) return;
-  try {
-    const res = await fetch('./version.json?t=' + now, { cache: 'no-store' });
-    if(!res.ok) return;
-    const data = await res.json();
-    State.lastVersionCheck = now;
-    save();
-    if(data.version && data.version !== APP_VERSION){
-      showUpdateBanner(data);
-    }
-  } catch(e){ console.warn('Version check failed:', e); }
-}
-function showUpdateBanner(data){
-  const banner = $('#updateBanner');
-  $('#updateBannerText').textContent = `${t('settings.updateAvailable')} v${data.version}`;
-  banner.classList.add('show');
-  window._updateData = data;
-}
-async function applyUpdate(){
-  const banner = $('#updateBanner');
-  banner.classList.remove('show');
-  // Tell SW to skip waiting
-  if(navigator.serviceWorker?.controller){
-    navigator.serviceWorker.controller.postMessage({ type: 'SKIP_WAITING' });
-  }
-  setTimeout(()=>location.reload(), 400);
-}
-// Register listener for SW updates
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.addEventListener('message', (e)=>{
-    if(e.data?.type === 'VERSION_CHECK'){
-      if(e.data.data?.version && e.data.data.version !== APP_VERSION){
-        showUpdateBanner(e.data.data);
-      }
-    }
-  });
+/* ============ TOAST ============ */
+function showToast(msg, ms=2600){
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>el.classList.remove('show'), ms);
 }
 
 /* ============ CONFETTI ============ */
@@ -694,13 +982,11 @@ function fireConfetti(){
   }
 }
 
-/* ============ TOAST ============ */
-function showToast(msg, ms=2600){
-  const el = $('#toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(el._t);
-  el._t = setTimeout(()=>el.classList.remove('show'), ms);
+/* ============ LANGUAGE ============ */
+function applyLang(lang){
+  State.settings.language = lang;
+  save();
+  showToast(lang==='ar' ? 'العربية' : 'English');
 }
 
 /* ============ THEME ============ */
@@ -708,85 +994,722 @@ function applyTheme(){
   const theme = State.settings.darkMode ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', theme);
   $('#themeColorMeta').content = theme==='dark' ? '#0A0817' : '#F8F7FC';
+}
+
+/* ============ NAVIGATION ============ */
+const TITLES = {
+  welcome:'نبض التميز', child:'بيانات الطفل', questions:'التقييم', results:'نتائج طفلك',
+  home:'الرئيسية', today:'نشاط اليوم', activities:'مكتبة الأنشطة',
+  progress:'تقدّمك', profile:'الملف الشخصي'
+};
+function go(screen){
+  $$('.screen').forEach(s=>s.classList.remove('active'));
+  const el = $('#s-'+screen);
+  if(el) el.classList.add('active');
+  $('#topTitle').textContent = TITLES[screen] || 'نبض التميز';
+  const showBack = ['today','questions','child','activities'].includes(screen);
+  $('#backBtn').classList.toggle('hidden', !showBack);
+  const showNav = ['home','activities','progress','profile'].includes(screen);
+  $('#bottomNav').classList.toggle('show', showNav);
+  if(showNav){
+    $$('#bottomNav button').forEach(b=>{
+      if(b.dataset.target) b.classList.toggle('active', b.dataset.target==='s-'+screen);
+      else b.classList.remove('active');
+    });
+  }
+  $('#childAvatar').style.display = ['home','progress','activities'].includes(screen) ? 'flex' : 'none';
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+/* ============ STREAK ============ */
+function computeStreak(child){
+  const logs = child.logs || [];
+  if(!logs.length) return { current:0, longest:0 };
+  const dates = [...new Set(logs.map(l=>l.date))].sort();
+  let longest = 1, current = 1;
+  for(let i=1;i<dates.length;i++){
+    const diff = daysBetween(dates[i-1], dates[i]);
+    if(diff===1) current++;
+    else { if(current>longest) longest=current; current=1; }
+  }
+  if(current>longest) longest = current;
+  const last = dates[dates.length-1];
+  if(daysBetween(last, todayKey())>1) current = 0;
+  return { current, longest };
+}
+
+/* ============ PLAN & TODAY ============ */
+function generatePlan(child){
+  const results = child.assessment?.results;
+  if(!results) return null;
+  const sorted = Object.keys(results.subScores).sort((a,b)=>results.subScores[a]-results.subScores[b]);
+  const focus = sorted.slice(0,2);
+  const weeks = [];
+  for(let w=0; w<4; w++){
+    const focusSub = focus[w % 2];
+    const allActs = ACTIVITIES[focusSub] || [];
+    const ageActs = allActs.filter(a => child.age>=a.age[0] && child.age<=a.age[1]);
+    const pool = ageActs.length ? ageActs : allActs;
+    const tasks = [];
+    for(let d=0; d<7; d++){
+      tasks.push({ sub:focusSub, ...pool[(w*7+d) % pool.length] });
+    }
+    weeks.push({ focus:focusSub, tasks });
+  }
+  return { weeks, startDate: todayKey(), focus };
+}
+function getTodayActivity(child){
+  if(!child.plan) return null;
+  const start = new Date(child.plan.startDate);
+  const dayIdx = Math.floor((new Date() - start) / 86400000);
+  if(dayIdx < 0) return null;
+  const wIdx = Math.floor(dayIdx / 7), dInW = dayIdx % 7;
+  if(wIdx >= child.plan.weeks.length) return null;
+  const task = child.plan.weeks[wIdx].tasks[dInW];
+  return task ? { ...task, weekIdx:wIdx, dayInWeek:dInW } : null;
+}
+function isActivityDone(child, date, sub, title){
+  return (child.logs || []).some(l => l.date===date && l.sub===sub && l.title===title);
+}
+
+/* ============ RENDER: HOME ============ */
+function renderHome(){
+  const child = activeChild();
+  if(!child){ go('welcome'); return; }
+  const streak = computeStreak(child);
+  const hour = new Date().getHours();
+  $('#greetText').textContent = hour<12 ? 'صباح الخير ☀️' : hour<18 ? 'مساء الخير 🌤️' : 'مساء الخير 🌙';
+  $('#childNameHome').textContent = child.name;
+  $('#streakNum').textContent = streak.current;
+
+  const todayMood = child.moodHistory?.[todayKey()];
+  $$('#moodChips .mood-chip').forEach(b=>{
+    b.classList.toggle('selected', todayMood && parseInt(b.dataset.mood,10)===todayMood);
+  });
+
+  renderTodayCard(child);
+  renderWeekProgress(child);
+
+  const totalLogs = (child.logs || []).length;
+  const stats = { currentStreak: streak.current, totalLogs, assessment: child.assessment };
+  const unlocked = ACHIEVEMENTS.filter(a => a.check(stats)).length;
+  $('#totalActivities').textContent = totalLogs;
+  $('#longestStreak').textContent = streak.longest;
+  $('#achievementsCount').textContent = unlocked;
+}
+
+function renderTodayCard(child){
+  const act = getTodayActivity(child);
+  const cont = $('#todayActivityContainer');
+  if(!act){
+    cont.innerHTML = `<div class="empty-state"><div class="em">🎉</div><h4>أكملت جميع الأنشطة!</h4><p>راجع تقدمك أو أعد التقييم لخطة جديدة.</p></div>`;
+    return;
+  }
+  const done = isActivityDone(child, todayKey(), act.sub, act.title);
+  const sd = SUBDOMAINS[act.sub], dom = DOMAINS[sd.domain];
+  cont.innerHTML = `
+    <div class="today-activity ${done?'done':''}">
+      <div class="today-tag">${done?'✓ مكتمل':'اليوم'}</div>
+      <div class="today-icon">${act.icon}</div>
+      <h3>${act.title}</h3>
+      <p class="subtitle">${act.desc}</p>
+      <div class="meta-chips">
+        <span class="a-tag violet">${dom.icon} ${sd.name}</span>
+        <span class="a-tag coral">⏱️ ${act.duration}</span>
+        <span class="a-tag mint">🔁 ${act.freq}</span>
+      </div>
+      ${done ? `<div class="done-badge">🎉 أُنجز اليوم — رائع!</div>`
+             : `<div style="display:flex;gap:10px">
+                  <button class="btn light" style="flex:0 0 auto;padding:14px 20px" onclick="openTodayDetail()">📖 التفاصيل</button>
+                  <button class="btn primary" style="flex:1" onclick="openLogModal()">ابدأ النشاط 🎯</button>
+                </div>`}
+    </div>`;
+}
+function renderWeekProgress(child){
+  const start = child.plan ? new Date(child.plan.startDate) : new Date();
+  const dayIdx = Math.floor((new Date() - start) / 86400000);
+  const wIdx = Math.floor(Math.max(dayIdx,0)/7);
+  const week = child.plan?.weeks[wIdx];
+  if(!week){ $('#weekLabel').textContent = 'انتهت الرحلة'; $('#weekPct').textContent = '100%'; $('#weekDots').innerHTML=''; return; }
+  $('#weekLabel').textContent = ['الأسبوع الأول','الأسبوع الثاني','الأسبوع الثالث','الأسبوع الرابع'][wIdx] || `الأسبوع ${wIdx+1}`;
+  const startWeek = new Date(start); startWeek.setDate(startWeek.getDate() + wIdx*7);
+  let doneCount = 0; const dots = [];
+  for(let d=0; d<7; d++){
+    const dt = new Date(startWeek); dt.setDate(dt.getDate()+d);
+    const key = todayKey(dt);
+    const task = week.tasks[d];
+    const taskDone = (child.logs||[]).some(l=>l.date===key && l.sub===task?.sub && l.title===task?.title);
+    if(taskDone) doneCount++;
+    const isToday = key === todayKey();
+    const isFuture = dt > new Date();
+    dots.push(`<div class="day-dot ${taskDone?'done':''} ${isToday?'today':''} ${isFuture?'future':''}">${isToday&&!taskDone?'اليوم':''}</div>`);
+  }
+  $('#weekPct').textContent = Math.round((doneCount/7)*100) + '%';
+  $('#weekDots').innerHTML = dots.join('');
+}
+
+/* ============ TODAY DETAIL ============ */
+function openTodayDetail(){
+  const child = activeChild();
+  const act = getTodayActivity(child);
+  if(!act) return;
+  const sd = SUBDOMAINS[act.sub], dom = DOMAINS[sd.domain];
+  const done = isActivityDone(child, todayKey(), act.sub, act.title);
+  $('#todayDetail').innerHTML = `
+    <div class="prog-hero" style="text-align:right">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-full);background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">
+        ${dom.icon} ${sd.name}
+      </div>
+      <div style="font-size:56px;margin-bottom:10px">${act.icon}</div>
+      <h2 style="font-size:24px;font-weight:900;margin-bottom:8px">${act.title}</h2>
+      <p style="font-size:14px;opacity:.9;line-height:1.6">${act.desc}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${act.duration}</span>
+        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${act.freq}</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:16px;margin-bottom:10px">👀 ما الذي تراقبه؟</h3>
+      <p style="font-size:14px;color:var(--txt-2);line-height:1.7">${act.watch}</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:16px;margin-bottom:10px">💡 نصائح للتنفيذ</h3>
+      <ul style="font-size:13.5px;color:var(--txt-2);line-height:1.8;padding-inline-start:20px">
+        <li>اختر وقتًا هادئًا بدون مشتتات.</li>
+        <li>اجعلها لعبة لا واجبًا.</li>
+        <li>الثناء على الجهد لا النتيجة.</li>
+      </ul>
+    </div>
+    ${done ? '<div class="card gradient" style="text-align:center"><h3>🎉 أحسنت! أنجزت نشاط اليوم</h3></div>'
+           : '<button class="btn primary mt-20" onclick="openLogModal()">ابدأ النشاط 🎯</button>'}
+    <button class="btn ghost mt-12" onclick="go(\'home\')">← العودة للرئيسية</button>`;
+  go('today');
+}
+window.openTodayDetail = openTodayDetail;
+window.go = go;
+
+/* ============ ACTIVITIES LIBRARY ============ */
+let actFilter = 'all';
+$$('#activityFilters .chip').forEach(c=>{
+  c.addEventListener('click', ()=>{
+    $$('#activityFilters .chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active'); actFilter = c.dataset.filter;
+    renderActivitiesLibrary();
+  });
+});
+function renderActivitiesLibrary(){
+  const child = activeChild(); if(!child) return;
+  const items = [];
+  Object.keys(ACTIVITIES).forEach(sub=>{
+    const sd = SUBDOMAINS[sub];
+    if(actFilter !== 'all' && sd.domain !== actFilter) return;
+    ACTIVITIES[sub].forEach(a=>{
+      if(child.age < a.age[0] || child.age > a.age[1]) return;
+      const done = (child.logs || []).some(l => l.sub===sub && l.title===a.title);
+      items.push({ sub, sd, ...a, done });
+    });
+  });
+  if(!items.length){
+    $('#activitiesList').innerHTML = `<div class="empty-state"><div class="em">🔍</div><h4>لا توجد أنشطة</h4><p>جرّب فلترًا آخر</p></div>`;
+    return;
+  }
+  $('#activitiesList').innerHTML = items.map(a=>`
+    <div class="act-card ${a.done?'done':''}" data-sub="${a.sub}" data-title="${a.title}">
+      <div class="ac-ic">${a.icon}</div>
+      <div class="body">
+        <div class="domain-lbl">${DOMAINS[a.sd.domain].icon} ${a.sd.name}</div>
+        <h5>${a.title}</h5>
+        <p>${a.desc}</p>
+      </div>
+      <div class="chk"></div>
+    </div>`).join('');
+  $$('#activitiesList .act-card').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const sub = el.dataset.sub, title = el.dataset.title;
+      const act = ACTIVITIES[sub].find(x=>x.title===title);
+      if(act) showActivitySheet(sub, act);
+    });
+  });
+}
+function showActivitySheet(sub, act){
+  const child = activeChild();
+  const sd = SUBDOMAINS[sub], dom = DOMAINS[sd.domain];
+  const done = (child.logs||[]).some(l=>l.sub===sub && l.title===act.title);
+  $('#todayDetail').innerHTML = `
+    <div class="prog-hero" style="text-align:right">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-full);background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">${dom.icon} ${sd.name}</div>
+      <div style="font-size:56px;margin-bottom:10px">${act.icon}</div>
+      <h2 style="font-size:24px;font-weight:900;margin-bottom:8px">${act.title}</h2>
+      <p style="font-size:14px;opacity:.9;line-height:1.6">${act.desc}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${act.duration}</span>
+        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${act.freq}</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:16px;margin-bottom:10px">👀 ما الذي تراقبه؟</h3>
+      <p style="font-size:14px;color:var(--txt-2);line-height:1.7">${act.watch}</p>
+    </div>
+    ${done ? '<div class="card gradient" style="text-align:center"><h3>🎉 أُنجز</h3></div>'
+           : `<button class="btn primary mt-20" onclick="openLogModalCustom('${sub}', '${act.title}')">تسجيل هذا النشاط 🎯</button>`}
+    <button class="btn ghost mt-12" onclick="go('activities')">← العودة للمكتبة</button>`;
+  go('today');
+}
+
+/* ============ LOG MODAL ============ */
+let logState = { mood:null, note:'', custom:null };
+function openLogModal(){
+  const child = activeChild();
+  const act = getTodayActivity(child);
+  if(!act){ showToast('لا يوجد نشاط مخصص لليوم'); return; }
+  logState = { mood:null, note:'', custom:null };
+  $('#logActivityName').textContent = act.title;
+  $$('#logMoodRow .mo').forEach(b=>b.classList.remove('selected'));
+  $('#logNote').value = '';
+  $('#logModal').classList.add('show');
+}
+window.openLogModal = openLogModal;
+window.openLogModalCustom = function(sub, title){
+  const act = ACTIVITIES[sub]?.find(a=>a.title===title);
+  if(!act) return;
+  logState = { mood:null, note:'', custom:{ sub, act } };
+  $('#logActivityName').textContent = act.title;
+  $$('#logMoodRow .mo').forEach(b=>b.classList.remove('selected'));
+  $('#logNote').value = '';
+  $('#logModal').classList.add('show');
+};
+$$('#logMoodRow .mo').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    $$('#logMoodRow .mo').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+    logState.mood = parseInt(b.dataset.mood,10);
+  });
+});
+$('#cancelLog').addEventListener('click', ()=>$('#logModal').classList.remove('show'));
+$('#logNote').addEventListener('input', e=>logState.note = e.target.value.trim());
+
+$('#confirmLog').addEventListener('click', ()=>{
+  const child = activeChild();
+  if(!logState.mood){ showToast('اختر كيف كانت التجربة'); return; }
+  let sub, act;
+  if(logState.custom){ sub = logState.custom.sub; act = logState.custom.act; }
+  else { act = getTodayActivity(child); if(!act) return; sub = act.sub; }
+  if(!child.logs) child.logs = [];
+  const oldStreak = computeStreak(child).current;
+  const existing = child.logs.find(l=>l.date===todayKey() && l.sub===sub && l.title===act.title);
+  if(existing){ existing.mood = logState.mood; existing.note = logState.note; }
+  else {
+    child.logs.push({
+      date: todayKey(), sub, domain: SUBDOMAINS[sub].domain,
+      title: act.title, icon: act.icon,
+      mood: logState.mood, note: logState.note, ts: Date.now()
+    });
+  }
   save();
+  $('#logModal').classList.remove('show');
+  const newStreak = computeStreak(child).current;
+  Sound.celebrate();
+  Mascot.celebrate();
+  fireConfetti();
+  setTimeout(()=>{
+    if(newStreak > oldStreak && newStreak >= 3){
+      showToast(`🔥 سلسلتك الآن ${newStreak} أيام!`, 3200);
+    } else {
+      showToast('🎉 تم تسجيل النشاط', 2600);
+    }
+  }, 400);
+  renderHome();
+  if(curScreen()==='today') openTodayDetail();
+  if(curScreen()==='activities') renderActivitiesLibrary();
+});
+function curScreen(){ return $$('.screen.active')[0]?.id.replace('s-','') || 'home'; }
+
+/* ============ PROGRESS SCREEN ============ */
+function renderProgress(){
+  const child = activeChild(); if(!child) return;
+  const streak = computeStreak(child);
+  $('#progressStreak').textContent = streak.current;
+  $('#progressSub').textContent = streak.current===0 ? 'ابدأ اليوم لبناء سلسلتك 🔥'
+    : streak.current<3 ? 'بداية رائعة! استمر'
+    : streak.current<7 ? 'أنت في الطريق الصحيح 💪'
+    : streak.current<14 ? 'أسبوع رائع! 🌟'
+    : 'أنت بطل حقيقي 👑';
+
+  const today = new Date(); const days = [];
+  for(let i=6; i>=0; i--){
+    const d = new Date(today); d.setDate(d.getDate()-i);
+    const key = todayKey(d);
+    const count = (child.logs||[]).filter(l=>l.date===key).length;
+    days.push({ key, d, count, isToday: i===0 });
+  }
+  const max = Math.max(1, ...days.map(d=>d.count));
+  const dayNames = ['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
+  $('#weeklyChart').innerHTML = days.map(d=>{
+    const h = (d.count/max)*100;
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%">
+      <div style="width:100%;flex:1;border-radius:12px;background:var(--bg-2);display:flex;align-items:flex-end;overflow:hidden">
+        <div style="width:100%;height:${h}%;border-radius:12px;background:var(--grad-cosmic)"></div>
+      </div>
+      <div style="font-size:11px;font-weight:800;color:${d.isToday?'var(--primary)':'var(--txt-3)'}">${dayNames[d.d.getDay()]}</div>
+    </div>`;
+  }).join('');
+
+  const totalLogs = (child.logs||[]).length;
+  const stats = { currentStreak: streak.current, totalLogs, assessment: child.assessment };
+  $('#achievementsGrid').innerHTML = ACHIEVEMENTS.map(a=>{
+    const unlocked = a.check(stats);
+    return `<div class="ach-card" style="background:var(--card);border-radius:var(--r-md);padding:14px 8px;box-shadow:var(--sh-sm);text-align:center;${unlocked?'':'opacity:.4;filter:grayscale(1)'}">
+      <div style="font-size:32px;margin-bottom:6px">${a.icon}</div>
+      <div style="font-size:11px;font-weight:800;color:var(--txt)">${a.name}</div>
+    </div>`;
+  }).join('');
 }
-function toggleDarkMode(){
-  State.settings.darkMode = !State.settings.darkMode;
-  applyTheme();
-  Sound.click();
+
+/* ============ PROFILE ============ */
+function renderProfile(){
+  const child = activeChild(); if(!child) return;
+  $('#profileAvatar').textContent = child.gender==='female' ? '👧' : '👦';
+  $('#profileName').textContent = child.name;
+  $('#profileMeta').textContent = `${child.age} سنوات · ${(child.logs||[]).length} نشاط · ${computeStreak(child).current} يوم متتالي`;
+  $('#darkToggle').textContent = State.settings.darkMode ? 'مفعّل ✓' : 'تشغيل';
+  $('#darkToggle').style.background = State.settings.darkMode ? 'var(--grad-mint)' : 'var(--bg-2)';
+  $('#darkToggle').style.color = State.settings.darkMode ? '#fff' : 'var(--txt)';
+  $('#soundToggle').textContent = State.settings.soundEffects ? 'مفعّل ✓' : 'صامت';
+  $('#soundToggle').style.background = State.settings.soundEffects ? 'var(--grad-mint)' : 'var(--bg-2)';
+  $('#soundToggle').style.color = State.settings.soundEffects ? '#fff' : 'var(--txt)';
+  $('#notifToggle').textContent = State.settings.notifications ? 'مفعّل ✓' : 'تشغيل';
+  $('#notifToggle').style.background = State.settings.notifications ? 'var(--grad-mint)' : 'var(--bg-2)';
+  $('#notifToggle').style.color = State.settings.notifications ? '#fff' : 'var(--txt)';
+  $('#currentVersion').textContent = 'v' + APP_VERSION;
 }
+$('#darkToggle').addEventListener('click', ()=>{ State.settings.darkMode = !State.settings.darkMode; applyTheme(); save(); Sound.click(); renderProfile(); });
+$('#soundToggle').addEventListener('click', ()=>{ State.settings.soundEffects = !State.settings.soundEffects; save(); Sound.click(); renderProfile(); });
+$('#notifToggle').addEventListener('click', async ()=>{
+  if(State.settings.notifications){ State.settings.notifications = false; save(); showToast('تم إيقاف التذكيرات'); renderProfile(); return; }
+  if('Notification' in window){
+    const p = await Notification.requestPermission();
+    if(p==='granted'){ State.settings.notifications = true; save(); showToast('✓ تم التفعيل'); renderProfile(); }
+    else showToast('لم يتم منح الإذن');
+  } else showToast('جهازك لا يدعم التنبيهات');
+});
+$('#reassessBtn').addEventListener('click', ()=>{
+  if(!confirm('بدء تقييم جديد؟')) return;
+  const child = activeChild();
+  window._tmpChild = { name:child.name, age:child.age, gender:child.gender };
+  window._isReassess = true;
+  $('#childName').value = child.name;
+  $('#childAge').value = child.age;
+  $('#toQuestions').disabled = false;
+  go('child');
+});
+$('#checkUpdateBtn').addEventListener('click', async ()=>{
+  showToast('🔄 جاري الفحص...');
+  await checkVersion(true);
+});
+
+/* ============ VERSION CHECK ============ */
+async function checkVersion(force=false){
+  const now = Date.now();
+  if(!force && (now - State.lastVersionCheck) < VERSION_CHECK_INTERVAL) return;
+  try {
+    const res = await fetch('./version.json?t='+now, { cache:'no-store' });
+    if(!res.ok) return;
+    const data = await res.json();
+    State.lastVersionCheck = now; save();
+    if(data.version && data.version !== APP_VERSION){
+      $('#updateBannerText').textContent = `🎉 تحديث جديد متاح! v${data.version}`;
+      $('#updateBanner').classList.add('show');
+      Mascot.speak('🎉 يوجد تحديث جديد! اضغط عليه للتحديث.');
+    } else if(force){
+      showToast('✓ التطبيق محدَّث');
+    }
+  } catch(e){ if(force) showToast('لا يمكن الاتصال بالخادم'); }
+}
+window.applyUpdate = function(){
+  if(navigator.serviceWorker?.controller){
+    navigator.serviceWorker.controller.postMessage({ type:'SKIP_WAITING' });
+  }
+  setTimeout(()=>location.reload(), 400);
+};
 
 /* ============ SOCIAL SHARE ============ */
-async function shareAchievement(type, data){
+window.shareAchievement = async function(type, data){
   let text = '';
-  if(type === 'streak'){
-    text = t('social.shareStreak', { n: data.n });
-  } else if(type === 'activity'){
-    text = t('social.shareActivity', { title: data.title });
-  } else if(type === 'assessment'){
-    text = t('social.shareAssessment');
-  }
+  if(type==='streak') text = `أنا أحافظ على ${data.n} يوم متتالي مع نبض التميز! 🔥`;
+  else if(type==='activity') text = `أنجزت اليوم نشاط: ${data.title} 🎯`;
   const url = location.href;
   if(navigator.share){
-    try {
-      await navigator.share({ title: t('social.shareTitle'), text, url });
-      return;
-    } catch(e){ if(e.name === 'AbortError') return; }
+    try { await navigator.share({ title:'نبض التميز', text, url }); return; }
+    catch(e){ if(e.name==='AbortError') return; }
   }
-  // Fallback: copy to clipboard
-  try {
-    await navigator.clipboard.writeText(text + '\n' + url);
-    showToast(t('social.shared'));
-  } catch(e){
-    showToast(text);
+  try { await navigator.clipboard.writeText(text+'\n'+url); showToast('✓ تم النسخ!'); }
+  catch(e){ showToast(text); }
+};
+
+/* ============ ONBOARDING: WELCOME ============ */
+$('#startBtn').addEventListener('click', ()=>{ Sound.click(); go('child'); });
+
+/* ============ CHILD INFO ============ */
+let tmpChild = { name:'', age:null, gender:null };
+$$('#genderChips .chip').forEach(c=>{
+  c.addEventListener('click', ()=>{
+    $$('#genderChips .chip').forEach(x=>x.classList.remove('active'));
+    c.classList.add('active'); tmpChild.gender = c.dataset.val; Sound.click();
+  });
+});
+$('#childName').addEventListener('input', e=>tmpChild.name = e.target.value.trim());
+$('#childAge').addEventListener('change', e=>{
+  tmpChild.age = parseInt(e.target.value,10) || null;
+  $('#toQuestions').disabled = !tmpChild.age;
+});
+$('#toQuestions').addEventListener('click', ()=>{
+  if(!tmpChild.age){ showToast('الرجاء اختيار العمر'); return; }
+  if(window._isReassess){ tmpChild = window._tmpChild; }
+  window._applicableQs = QUESTIONS.filter(q => tmpChild.age>=q.ageMin && tmpChild.age<=q.ageMax);
+  window._answers = {};
+  window._qIdx = 0;
+  Sound.click();
+  go('questions');
+  renderQuestion();
+});
+
+/* ============ QUESTIONS ============ */
+function renderQuestion(){
+  const qs = window._applicableQs, idx = window._qIdx, q = qs[idx];
+  if(!q) return;
+  const total = qs.length;
+  const pct = Math.round((idx/total)*100);
+  $('#qProgressText').textContent = `سؤال ${idx+1} من ${total}`;
+  $('#qPercent').innerHTML = pct + '<small style="font-size:13px;font-weight:800;color:var(--txt-3)">%</small>';
+  $('#qProgressFill').style.width = Math.max(pct,4) + '%';
+  const dom = DOMAINS[q.domain];
+  $('#qContainer').innerHTML = `
+    <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:var(--r-full);font-size:13px;font-weight:800;background:${dom.color}1a;color:${dom.color};border:1px solid ${dom.color}33;margin-bottom:22px">
+      <span style="width:8px;height:8px;border-radius:50%;background:${dom.color}"></span>
+      ${dom.icon} ${dom.name}
+    </div>
+    <div style="font-size:24px;font-weight:800;line-height:1.5;margin-bottom:32px;color:var(--txt)">${q.text}</div>
+    <div id="qOptions">
+      ${LIKERT.map(opt=>`
+        <button class="q-opt ${window._answers[q.id]===opt.val?'selected':''}" data-val="${opt.val}">
+          <span class="radio"></span>
+          <span style="flex:1">
+            <span style="display:block">${opt.icon} ${opt.label}</span>
+            <span class="hint">${opt.hint}</span>
+          </span>
+        </button>
+      `).join('')}
+    </div>`;
+  $$('#qOptions .q-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      window._answers[q.id] = parseInt(btn.dataset.val,10);
+      $$('#qOptions .q-opt').forEach(b=>b.classList.toggle('selected', b===btn));
+      $('#qNextBtn').disabled = false;
+      Sound.tap();
+      if(navigator.vibrate) navigator.vibrate(8);
+    });
+  });
+  $('#qPrevBtn').style.visibility = idx===0 ? 'hidden' : 'visible';
+  $('#qNextBtn').disabled = window._answers[q.id]===undefined;
+  $('#qNextBtn').innerHTML = idx===total-1 ? 'عرض النتائج <span style="font-size:20px">✨</span>' : 'التالي';
+}
+$('#qPrevBtn').addEventListener('click', ()=>{ if(window._qIdx>0){ window._qIdx--; renderQuestion(); Sound.tap(); }});
+$('#qNextBtn').addEventListener('click', ()=>{
+  const q = window._applicableQs[window._qIdx];
+  if(window._answers[q.id]===undefined){ showToast('الرجاء اختيار إجابة'); return; }
+  if(window._qIdx < window._applicableQs.length-1){ window._qIdx++; renderQuestion(); Sound.tap(); }
+  else { finalizeAssessment(); }
+});
+
+/* ============ SCORING ============ */
+function computeResults(qs, answers){
+  const subAgg = {}, domAgg = {};
+  qs.forEach(q=>{
+    const s = answers[q.id]; if(s===undefined) return;
+    if(!subAgg[q.sub]) subAgg[q.sub] = {sum:0,count:0};
+    subAgg[q.sub].sum += s; subAgg[q.sub].count++;
+    if(!domAgg[q.domain]) domAgg[q.domain] = {sum:0,count:0};
+    domAgg[q.domain].sum += s; domAgg[q.domain].count++;
+  });
+  const subScores = {}, domScores = {};
+  Object.keys(subAgg).forEach(k=>subScores[k]=(subAgg[k].sum/(subAgg[k].count*3))*100);
+  Object.keys(domAgg).forEach(k=>domScores[k]=(domAgg[k].sum/(domAgg[k].count*3))*100);
+  const tS = Object.values(domAgg).reduce((a,b)=>a+b.sum,0);
+  const tM = Object.values(domAgg).reduce((a,b)=>a+b.count*3,0);
+  return { subScores, domScores, overall: tM>0 ? (tS/tM)*100 : 0 };
+}
+function classify(p){
+  if(p>=75) return 'أداء مرتفع نسبيًا';
+  if(p>=50) return 'مجال متوازن';
+  return 'فرصة واعدة للتعزيز';
+}
+function finalizeAssessment(){
+  const results = computeResults(window._applicableQs, window._answers);
+  const existingChild = window._isReassess ? activeChild() : null;
+  if(existingChild){
+    existingChild.assessmentHistory = existingChild.assessmentHistory || [];
+    existingChild.assessmentHistory.push(existingChild.assessment);
+    existingChild.assessment = { results, date: todayKey(), applicableCount: window._applicableQs.length };
+    existingChild.plan = generatePlan(existingChild);
+    save();
+    window._isReassess = false;
+  } else {
+    const child = {
+      id: uid(),
+      name: tmpChild.name || 'طفلي',
+      age: tmpChild.age,
+      gender: tmpChild.gender,
+      createdAt: new Date().toISOString(),
+      assessment: { results, date: todayKey(), applicableCount: window._applicableQs.length },
+      logs: [], completedTasks: {}, moodHistory: {}
+    };
+    child.plan = generatePlan(child);
+    State.children.push(child);
+    State.activeChildId = child.id;
+    State.onboarded = true;
+    save();
   }
+  renderResults(results);
+  go('results');
+  Sound.celebrate();
+  setTimeout(fireConfetti, 400);
+  setTimeout(()=>Mascot.speak('🎉 مبروك! رحلتك تبدأ الآن — نشاط جديد كل يوم!'), 1200);
 }
 
-/* ============ INITIALIZATION ============ */
-async function loadDataFiles(){
-  // Try to load from JSON files (network or cache)
-  const load = async (path) => {
-    try {
-      const r = await fetch(path, { cache: 'no-cache' });
-      if(r.ok) return await r.json();
-    } catch(e){}
-    return null;
-  };
-  const [qs, acts, ar, en] = await Promise.all([
-    load('./data/questions.json'),
-    load('./data/activities.json'),
-    load('./data/i18n-ar.json'),
-    load('./data/i18n-en.json')
-  ]);
-  if(qs?.questions) QUESTIONS = qs.questions;
-  if(acts?.activities) ACTIVITIES = acts.activities;
-  if(ar) i18n.ar = ar;
-  if(en) i18n.en = en;
+/* ============ RESULTS RENDER ============ */
+function renderResults(results){
+  const pct = Math.round(results.overall);
+  const circ = 2 * Math.PI * 68;
+  const offset = circ - (pct/100) * circ;
+  const ring = $('#ringFg');
+  ring.setAttribute('stroke-dasharray', circ);
+  ring.setAttribute('stroke-dashoffset', circ);
+  setTimeout(()=>ring.setAttribute('stroke-dashoffset', offset), 200);
+  let n = 0;
+  const step = Math.max(1, Math.round(pct/40));
+  const int = setInterval(()=>{
+    n = Math.min(n+step, pct);
+    $('#overallPct').textContent = n + '%';
+    if(n>=pct) clearInterval(int);
+  }, 25);
+  $('#overallBadge').textContent = classify(pct);
+
+  $('#domainResults').innerHTML = Object.keys(DOMAINS).map(k=>{
+    const d = DOMAINS[k], val = Math.round(results.domScores[k]||0);
+    return `<div class="domain-row">
+      <div class="ic" style="background:${d.grad}">${d.icon}</div>
+      <div class="info">
+        <h4>${d.name} <span class="val" style="color:${d.color}">${val}%</span></h4>
+        <div class="track"><div class="fill" style="background:${d.grad};width:0%" data-w="${val}"></div></div>
+        <div class="meta">${classify(val)}</div>
+      </div></div>`;
+  }).join('');
+  $('#subdomainResults').innerHTML = Object.keys(results.subScores)
+    .sort((a,b)=>results.subScores[b]-results.subScores[a])
+    .map(k=>{
+      const s = SUBDOMAINS[k], d = DOMAINS[s.domain], val = Math.round(results.subScores[k]);
+      return `<div class="domain-row">
+        <div class="ic" style="background:${d.grad};font-size:22px">${s.icon}</div>
+        <div class="info">
+          <h4 style="font-size:13.5px">${s.name} <span class="val" style="color:${d.color}">${val}%</span></h4>
+          <div class="track"><div class="fill" style="background:${d.grad};width:0%" data-w="${val}"></div></div>
+        </div></div>`;
+    }).join('');
+  setTimeout(()=>$$('.domain-row .fill').forEach(f=>f.style.width = f.dataset.w+'%'), 300);
+}
+
+/* ============ START COMPANION ============ */
+$('#startCompanionBtn').addEventListener('click', ()=>{
+  Sound.success();
+  renderHome();
+  go('home');
+  setTimeout(()=>Mascot.greetDaily(), 600);
+});
+
+/* ============ HOME MOOD CHIPS ============ */
+$$('#moodChips .mood-chip').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const child = activeChild(); if(!child) return;
+    if(!child.moodHistory) child.moodHistory = {};
+    const m = parseInt(b.dataset.mood,10);
+    child.moodHistory[todayKey()] = m;
+    save();
+    $$('#moodChips .mood-chip').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+    Sound.tap();
+    if(navigator.vibrate) navigator.vibrate([8,30,8]);
+    showToast('سُجّل مزاج اليوم 💭');
+  });
+});
+
+/* ============ BOTTOM NAV ============ */
+$$('#bottomNav button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    Sound.tap();
+    if(b.dataset.target){
+      const s = b.dataset.target.replace('s-','');
+      if(s==='home') renderHome();
+      if(s==='activities') renderActivitiesLibrary();
+      if(s==='progress') renderProgress();
+      if(s==='profile') renderProfile();
+      go(s);
+    } else if(b.id==='logCenterBtn'){
+      openLogModal();
+    }
+  });
+});
+$('#backBtn').addEventListener('click', ()=>{
+  const map = { today:'home', questions:'child', child:'welcome', activities:'home' };
+  go(map[curScreen()] || 'home');
+});
+$('#childAvatar').addEventListener('click', ()=>{ renderProfile(); go('profile'); });
+
+/* ============ PWA INSTALL ============ */
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault();
+  deferredPrompt = e;
+  $('#installBanner').classList.add('show');
+});
+$('#installBtn').addEventListener('click', async ()=>{
+  if(!deferredPrompt){ showToast('غير متاح حاليًا'); return; }
+  deferredPrompt.prompt();
+  const r = await deferredPrompt.userChoice;
+  if(r.outcome==='accepted') showToast('🎉 تم التثبيت');
+  deferredPrompt = null;
+  $('#installBanner').classList.remove('show');
+});
+if('serviceWorker' in navigator && location.protocol !== 'file:'){
+  window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
 
 /* ============ BOOT ============ */
-async function boot(){
+function boot(){
   load();
-  await loadDataFiles();
-  applyLang(State.settings.language || 'ar');
   applyTheme();
-  // Version check
-  checkVersion();
-  setInterval(()=>checkVersion(), VERSION_CHECK_INTERVAL);
-  // Welcome mascot
-  setTimeout(()=>{
-    if(State.onboarded) Mascot.greetDaily();
-  }, 1200);
-  // Route
   if(State.onboarded && State.children.length){
     renderHome();
     go('home');
+    setTimeout(()=>Mascot.greetDaily(), 1200);
   } else {
     go('welcome');
+    setTimeout(()=>Mascot.speak('أهلاً بك! اضغط "ابدأ الرحلة" لنبدأ 🌟'), 800);
   }
+  checkVersion();
+  setInterval(()=>checkVersion(), VERSION_CHECK_INTERVAL);
 }
 document.addEventListener('DOMContentLoaded', boot);
-document.addEventListener('click', () => Sound.unlock(), { once:true });
+document.addEventListener('click', ()=>Sound.unlock(), { once:true });
+window.applyLang = function(lang){
+  State.settings.language = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==='ar' ? 'rtl' : 'ltr';
+  document.body.style.fontFamily = lang==='ar' ? 'var(--font-ar)' : 'var(--font-en)';
+  save();
+  showToast(lang==='ar' ? 'تم التبديل إلى العربية' : 'Switched to English');
+};
+window.computeStreak = computeStreak;
+window.activeChild = activeChild;
 </script>
 </body>
 </html>
