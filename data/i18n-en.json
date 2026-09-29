@@ -1,0 +1,103 @@
+{
+  "app": {
+    "name": "Nabd Al-Tamayoz",
+    "tagline": "Your daily companion for smarter parenting",
+    "subtitle": "A daily journey with your child: one activity per day, progress tracking, and monthly reports showing growth."
+  },
+  "nav": {
+    "home": "Home",
+    "activities": "Activities",
+    "log": "Log",
+    "progress": "Progress",
+    "profile": "Profile"
+  },
+  "home": {
+    "greetMorning": "Good morning ☀️",
+    "greetAfternoon": "Good afternoon 🌤️",
+    "greetEvening": "Good evening 🌙",
+    "howIsChild": "💭 How is your child today?",
+    "todayActivity": "🎯 Today's Activity",
+    "weekProgress": "📊 Week Progress",
+    "quickStats": "📈 Quick Stats",
+    "totalActivities": "Activities done",
+    "longestStreak": "Longest streak",
+    "achievements": "Achievements",
+    "dayStreak": "days",
+    "startActivity": "Start Activity 🎯",
+    "doneToday": "🎉 Done today — Awesome!",
+    "details": "📖 Details"
+  },
+  "activity": {
+    "watchFor": "👀 What to watch for?",
+    "tips": "💡 Implementation Tips",
+    "tipsList": [
+      "Choose a calm time without distractions.",
+      "Make it a game, not a chore.",
+      "Praise effort, not results.",
+      "Repeat regularly to see the impact."
+    ],
+    "logThis": "Log this activity 🎯"
+  },
+  "log": {
+    "title": "Log today's activity ✨",
+    "howWasIt": "How was your experience?",
+    "moods": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "okay": "Okay",
+      "hard": "Hard",
+      "failed": "Didn't work"
+    },
+    "note": "📝 Note (optional)",
+    "notePlaceholder": "E.g.: Engaged enthusiastically, loved it, needed a reminder...",
+    "cancel": "Cancel",
+    "save": "Save Log 🎉"
+  },
+  "mascot": {
+    "morning": [
+      "Good morning! Ready for today's activity?",
+      "A new day, a new chance for your child's growth! 🌟",
+      "Morning activity awaits! Your child is waiting 💫"
+    ],
+    "afternoon": [
+      "How's your day going with your child so far?",
+      "Don't forget today's activity — 5 minutes is enough!",
+      "A great time to try a new activity together 🌿"
+    ],
+    "evening": [
+      "Good evening! Did you try today's activity?",
+      "Before bed, minutes with your child make a difference 💫",
+      "You're doing a great job — keep going! 🌙"
+    ],
+    "streak3": "🔥 3 days in a row! You're amazing!",
+    "streak7": "⚡ A full week! Keep it up!",
+    "streak30": "👑 A full month! You're a true champion!",
+    "assessmentDone": "🎉 Congrats! Assessment complete — your journey begins!",
+    "activityDone": "🌟 Well done! Today's activity is complete!",
+    "welcomeBack": "Welcome back! 👋"
+  },
+  "social": {
+    "shareTitle": "Share your achievement",
+    "shareStreak": "I'm on a {n}-day streak with Nabd Al-Tamayoz! 🔥",
+    "shareActivity": "Completed today's activity: {title} 🎯",
+    "shareAssessment": "Discovered my child's growth map with Nabd Al-Tamayoz! 🗺️",
+    "copyLink": "Copy link",
+    "shared": "✓ Copied!"
+  },
+  "settings": {
+    "dailyReminder": "🔔 Daily reminder",
+    "reminderTime": "⏰ Reminder time",
+    "addChild": "➕ Add another child",
+    "darkMode": "🌙 Dark mode",
+    "language": "🌐 Language",
+    "soundEffects": "🔊 Sound effects",
+    "reassessment": "🔄 Reassessment",
+    "reassessmentDesc": "You can reassess to measure progress and compare results.",
+    "startNew": "🔄 Start new assessment",
+    "reports": "📄 Previous reports",
+    "checkUpdate": "🔍 Check for updates",
+    "upToDate": "✓ App is up to date",
+    "updateAvailable": "🎉 New update available!",
+    "updateNow": "Update now"
+  }
+}

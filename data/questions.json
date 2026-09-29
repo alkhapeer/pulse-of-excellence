@@ -1,0 +1,24 @@
+{
+  "version": "1.4.0",
+  "lastUpdated": "2026-09-29",
+  "questions": [
+    {
+      "id": "BND-EMO-01",
+      "ar": "يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.",
+      "en": "Uses clear words to name their distress instead of screaming.",
+      "domain": "emotional",
+      "sub": "emo-awareness",
+      "ageMin": 3,
+      "ageMax": 5
+    },
+    {
+      "id": "BND-EMO-02",
+      "ar": "يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب والمواقف المفاجئة.",
+      "en": "Names their fear or confusion with clear words during play and sudden situations.",
+      "domain": "emotional",
+      "sub": "emo-awareness",
+      "ageMin": 3,
+      "ageMax": 5
+    }
+  ]
+}
