@@ -1,560 +1,480 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0F0B1F" id="themeColorMeta">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="نبض التميز">
-<title>نبض التميز — رفيقك اليومي</title>
+<title>Nabd · نبض التميز</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --primary:#7C3AED;--primary-dark:#4C1D95;--primary-light:#A78BFA;
-  --coral:#FF6B9D;--coral-dark:#E11D74;
-  --mint:#06D6A0;--mint-dark:#059669;
-  --gold:#FFD166;
+  --violet:#7C3AED;--violet-d:#4C1D95;--violet-l:#A78BFA;
+  --coral:#FF6B9D;--mint:#06D6A0;--gold:#FFD166;--sky:#4ECDC4;
   --bg:#F8F7FC;--bg-2:#F0EFF6;--card:#FFFFFF;
   --txt:#0E0B1F;--txt-2:#4A4266;--txt-3:#9591AB;
   --line:#E2E0EB;
-  --grad-royal:linear-gradient(135deg,#7C3AED 0%,#4C1D95 100%);
-  --grad-cosmic:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);
-  --grad-sunset:linear-gradient(135deg,#FF6B9D 0%,#FFD166 100%);
-  --grad-mint:linear-gradient(135deg,#06D6A0 0%,#4ECDC4 100%);
-  --grad-ocean:linear-gradient(135deg,#4ECDC4 0%,#7C3AED 100%);
+  --grad:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);
   --grad-hero:linear-gradient(160deg,#0F0B1F 0%,#2D1B5E 45%,#4C1D95 100%);
+  --grad-mint:linear-gradient(135deg,#06D6A0,#4ECDC4);
+  --grad-sun:linear-gradient(135deg,#FF6B9D,#FFD166);
   --sh-sm:0 4px 12px rgba(15,11,31,.08);
   --sh-md:0 12px 32px rgba(15,11,31,.10);
-  --sh-lg:0 24px 56px rgba(15,11,31,.14);
   --sh-violet:0 16px 40px rgba(124,58,237,.32);
   --sh-mint:0 16px 40px rgba(6,214,160,.32);
-  --sh-gold:0 16px 40px rgba(255,209,102,.32);
-  --r-sm:16px;--r-md:22px;--r-lg:28px;--r-xl:36px;--r-full:9999px;
-  --safe-t:env(safe-area-inset-top,0px);
-  --safe-b:env(safe-area-inset-bottom,0px);
-  --font-ar:'Tajawal',system-ui,sans-serif;
-  --font-en:'Nunito',system-ui,sans-serif;
+  --r-sm:14px;--r-md:20px;--r-lg:26px;--r-full:9999px;
+  --st:env(safe-area-inset-top,0px);
+  --sb:env(safe-area-inset-bottom,0px);
 }
 [data-theme="dark"]{
   --bg:#0A0817;--bg-2:#14102A;--card:#1A1633;
-  --txt:#F5F3FF;--txt-2:#C4B5FD;--txt-3:#8B7DB8;
-  --line:#2D2645;
-  --sh-sm:0 4px 12px rgba(0,0,0,.3);
-  --sh-md:0 12px 32px rgba(0,0,0,.4);
-  --sh-lg:0 24px 56px rgba(0,0,0,.5);
+  --txt:#F5F3FF;--txt-2:#C4B5FD;--txt-3:#8B7DB8;--line:#2D2645;
 }
-[data-theme="dark"] .topbar{background:rgba(10,8,23,.85);border-bottom-color:rgba(255,255,255,.06)}
-[data-theme="dark"] .topbar #topTitle{color:#F5F3FF}
-[data-theme="dark"] .icon-btn{background:#1A1633;color:#F5F3FF}
-[data-theme="dark"] .bottom-nav{background:rgba(10,8,23,.92);border-top-color:rgba(255,255,255,.06)}
-[data-theme="dark"] .card,[data-theme="dark"] .today-activity,
-[data-theme="dark"] .domain-row,[data-theme="dark"] .pill,
-[data-theme="dark"] .act-card,[data-theme="dark"] .week-card,
-[data-theme="dark"] .stat-card,[data-theme="dark"] .modal-sheet,
-[data-theme="dark"] .empty-state,[data-theme="dark"] .ach-card{background:var(--card);border-color:rgba(255,255,255,.06)}
-[data-theme="dark"] .chip,[data-theme="dark"] .field input,
-[data-theme="dark"] .field select,[data-theme="dark"] .field textarea{background:var(--bg-2);color:var(--txt);border-color:var(--line)}
-[data-theme="dark"] .day-dot{background:var(--bg-2);color:var(--txt-3)}
-[data-theme="dark"] .bar-wrap,[data-theme="dark"] .track{background:var(--bg-2)}
-[data-theme="dark"] .mascot-bubble{background:#1A1633;color:#F5F3FF}
-[data-theme="dark"] .mascot-bubble::after{background:#1A1633}
-[data-theme="dark"] .mood-row .mo{background:var(--bg-2);border-color:var(--line)}
-
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow-x:hidden}
 body{
-  font-family:var(--font-ar);background:var(--bg);color:var(--txt);
-  line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
-  overscroll-behavior-y:none;transition:background .3s,color .3s;
+  font-family:'Tajawal',system-ui,sans-serif;
+  background:var(--bg);color:var(--txt);line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased;
 }
-html[dir="ltr"] body{font-family:var(--font-en)}
+html[dir="ltr"] body{font-family:'Nunito',system-ui,sans-serif}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
-img,svg{display:block;max-width:100%}
+#app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative}
 
-/* ========== AMBIENT ========== */
-.ambient{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;transition:opacity .3s}
-[data-theme="dark"] .orb{opacity:.15}
-.orb.o1{width:340px;height:340px;background:var(--primary-light);top:-100px;right:-80px;animation:float1 18s ease-in-out infinite}
-.orb.o2{width:280px;height:280px;background:#FF8FB8;bottom:-80px;left:-60px;animation:float2 22s ease-in-out infinite}
-.orb.o3{width:220px;height:220px;background:#3EE4B7;top:40%;left:-100px;animation:float3 26s ease-in-out infinite}
-@keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,40px) scale(1.1)}}
-@keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.08)}}
-@keyframes float3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,30px) scale(1.05)}}
-
-#app{position:relative;z-index:1;min-height:100vh;max-width:520px;margin:0 auto;display:flex;flex-direction:column}
-
-/* ========== TOPBAR ========== */
+/* TOPBAR */
 .topbar{
-  position:sticky;top:0;z-index:50;
-  padding:calc(var(--safe-t) + 14px) 18px 14px;
-  display:flex;align-items:center;gap:12px;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(24px) saturate(1.6);
-  border-bottom:1px solid transparent;transition:all .3s;
+  position:sticky;top:0;z-index:50;padding:calc(var(--st) + 12px) 16px 12px;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(20px);
+  border-bottom:1px solid transparent;transition:border-color .3s;
 }
 .topbar.scrolled{border-bottom-color:var(--line)}
 .topbar.dark{background:rgba(15,11,31,.65);border-bottom-color:rgba(255,255,255,.08)}
 .topbar.dark #topTitle{color:#fff}
 .topbar.dark .icon-btn{background:rgba(255,255,255,.12);color:#fff}
 .icon-btn{
-  width:42px;height:42px;border-radius:50%;
-  background:var(--card);box-shadow:var(--sh-sm);
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;font-weight:700;color:var(--txt);
-  transition:all .15s;flex-shrink:0;
+  width:42px;height:42px;border-radius:50%;background:var(--card);
+  box-shadow:var(--sh-sm);display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:700;color:var(--txt);transition:all .15s;flex-shrink:0;
 }
 .icon-btn:active{transform:scale(.9)}
 .icon-btn.hidden{visibility:hidden}
-#topTitle{font-size:17px;font-weight:800;flex:1;text-align:center;color:var(--txt);padding-inline:44px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.child-avatar{
-  width:42px;height:42px;border-radius:50%;flex-shrink:0;
-  background:var(--grad-cosmic);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;font-weight:800;box-shadow:var(--sh-violet);
-  cursor:pointer;border:2px solid var(--card);transition:transform .15s;
+#topTitle{font-size:16px;font-weight:800;flex:1;text-align:center;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lang-btn{
+  padding:8px 12px;border-radius:var(--r-full);background:var(--card);
+  box-shadow:var(--sh-sm);font-size:13px;font-weight:800;color:var(--violet);
+  flex-shrink:0;transition:all .15s;display:flex;align-items:center;gap:5px;
 }
-.child-avatar:active{transform:scale(.92)}
+.lang-btn:active{transform:scale(.95)}
+.lang-btn .flag{font-size:15px}
 
-/* ========== SCREENS ========== */
-.screen{display:none;flex:1;flex-direction:column;padding:8px 18px calc(var(--safe-b) + 110px);animation:screenIn .4s cubic-bezier(.22,1,.36,1)}
+/* SCREENS */
+.screen{display:none;flex:1;flex-direction:column;padding:8px 16px calc(var(--sb) + 96px);animation:fadeIn .35s}
 .screen.active{display:flex}
-@keyframes screenIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* ========== BUTTONS ========== */
+/* BUTTONS */
 .btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
-  width:100%;padding:18px 22px;border-radius:var(--r-md);
-  font-size:16px;font-weight:800;transition:all .2s cubic-bezier(.22,1,.36,1);
+  width:100%;padding:16px 20px;border-radius:var(--r-md);
+  font-size:16px;font-weight:800;transition:all .2s;
   background:var(--bg-2);color:var(--txt);position:relative;overflow:hidden;
 }
-.btn.primary{background:var(--grad-cosmic);color:#fff;box-shadow:var(--sh-violet)}
+.btn.primary{background:var(--grad);color:#fff;box-shadow:var(--sh-violet)}
 .btn.primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:translateX(-100%);animation:shine 3s infinite}
 @keyframes shine{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
-.btn.primary:active{transform:translateY(2px) scale(.98);box-shadow:0 8px 20px rgba(124,58,237,.3)}
-.btn.mint{background:var(--grad-mint);color:#fff;box-shadow:var(--sh-mint)}
-.btn.gold{background:var(--grad-sunset);color:#fff;box-shadow:var(--sh-gold)}
-.btn.ghost{background:transparent;color:var(--primary);font-weight:800}
+.btn.primary:active{transform:translateY(2px) scale(.98)}
+.btn.ghost{background:transparent;color:var(--violet);font-weight:800}
 .btn.light{background:var(--card);box-shadow:var(--sh-sm)}
 .btn:disabled{opacity:.4;pointer-events:none}
-.btn-sm{padding:10px 16px;font-size:13.5px;border-radius:12px;width:auto;font-weight:800}
+.btn-sm{padding:9px 14px;font-size:13px;border-radius:12px;width:auto;font-weight:800}
 
-/* ========== CARDS ========== */
-.card{background:var(--card);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-md);margin-bottom:14px;border:1px solid rgba(15,11,31,.04);position:relative;overflow:hidden}
-.card.gradient{background:var(--grad-royal);color:#fff;box-shadow:var(--sh-violet)}
-.card h3{font-size:18px;font-weight:800;margin-bottom:10px}
-.card p{font-size:14.5px;line-height:1.75}
+/* CARDS */
+.card{background:var(--card);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-sm);margin-bottom:14px}
+.card.grad{background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet)}
+.card h3{font-size:17px;font-weight:800;margin-bottom:10px}
+.card p{font-size:14px;line-height:1.7}
 
-/* ========== FORM ========== */
-.field{margin-bottom:18px}
-.field label{display:block;font-size:13.5px;font-weight:800;margin-bottom:10px;color:var(--txt-2)}
-.field label .req{color:var(--coral)}
+/* FIELDS */
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:800;margin-bottom:8px;color:var(--txt-2)}
 .field input,.field select,.field textarea{
-  width:100%;padding:18px 20px;border-radius:var(--r-md);
+  width:100%;padding:16px 18px;border-radius:var(--r-md);
   border:2px solid var(--line);background:var(--card);
   font-size:16px;font-weight:600;transition:all .2s;
   -webkit-appearance:none;appearance:none;color:var(--txt);
 }
-.field textarea{min-height:100px;resize:vertical;line-height:1.6}
 .field input:focus,.field select:focus,.field textarea:focus{
-  outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(124,58,237,.12);
+  outline:none;border-color:var(--violet);box-shadow:0 0 0 4px rgba(124,58,237,.12)
 }
-.chips{display:flex;gap:10px;flex-wrap:wrap}
-.chip{padding:13px 20px;border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);font-size:14.5px;font-weight:700;color:var(--txt-2);transition:all .2s}
-.chip.active{background:var(--grad-cosmic);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(124,58,237,.3)}
+.field textarea{min-height:90px;resize:vertical}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:11px 18px;border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);font-size:14px;font-weight:700;color:var(--txt-2);transition:all .15s}
+.chip.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:var(--sh-violet)}
 
-/* ========== HOME HERO ========== */
-.home-hero{padding:26px 22px;border-radius:var(--r-xl);background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet);margin-bottom:16px;position:relative;overflow:hidden}
-.home-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 0%,rgba(255,107,157,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(6,214,160,.25),transparent 45%);pointer-events:none}
+/* PROGRESS */
+.pbar{height:10px;background:var(--bg-2);border-radius:var(--r-full);overflow:hidden}
+.pbar-fill{height:100%;background:var(--grad);border-radius:var(--r-full);transition:width .5s}
+.pinfo{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-size:13px;font-weight:700;color:var(--txt-3)}
+.pinfo .pct{font-size:20px;color:var(--violet);font-weight:900}
+
+/* QUESTION */
+.q-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--r-full);font-size:12.5px;font-weight:800;margin-bottom:18px}
+.q-text{font-size:22px;font-weight:800;line-height:1.5;margin-bottom:24px;color:var(--txt)}
+.q-opt{
+  display:flex;align-items:center;gap:14px;padding:16px 18px;
+  border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);
+  text-align:start;font-size:15px;font-weight:700;transition:all .2s;
+  width:100%;margin-bottom:10px;
+}
+.q-opt .radio{width:24px;height:24px;border-radius:50%;border:2.5px solid var(--line);flex-shrink:0;background:var(--card);position:relative;transition:all .2s}
+.q-opt.selected{border-color:var(--violet);background:linear-gradient(135deg,rgba(124,58,237,.08),transparent)}
+.q-opt.selected .radio{border-color:var(--violet);background:var(--grad)}
+.q-opt.selected .radio::after{content:'';position:absolute;inset:6px;border-radius:50%;background:#fff}
+.q-opt .body{flex:1}
+.q-opt .hint{font-size:12px;color:var(--txt-3);font-weight:500;margin-top:2px;display:block}
+html[dir="ltr"] .q-opt{text-align:left}
+
+/* RESULT */
+.hero{
+  padding:28px 22px;border-radius:var(--r-lg);background:var(--grad-hero);color:#fff;
+  box-shadow:var(--sh-violet);margin-bottom:16px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(255,107,157,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(6,214,160,.25),transparent 45%);pointer-events:none}
+.hero>*{position:relative;z-index:1}
+.ring{width:170px;height:170px;margin:0 auto 16px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .bg{stroke:rgba(255,255,255,.15);fill:none}
+.ring .fg{stroke:url(#ringGrad);stroke-linecap:round;fill:none;transition:stroke-dashoffset 1.2s}
+.ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .num{font-size:42px;font-weight:900;line-height:1;letter-spacing:-1px;background:linear-gradient(135deg,#fff,#C4B5FD);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.ring .lbl{font-size:11px;font-weight:700;color:rgba(255,255,255,.75);margin-top:4px}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--r-full);background:rgba(255,255,255,.18);font-size:13px;font-weight:800;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(12px)}
+.hero .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+
+.domain-row{display:flex;align-items:center;gap:12px;padding:16px;border-radius:var(--r-md);background:var(--card);margin-bottom:10px;box-shadow:var(--sh-sm)}
+.domain-row .ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
+.domain-row .body{flex:1;min-width:0}
+.domain-row .body h4{font-size:14px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.domain-row .body h4 .v{margin-inline-start:auto;font-size:13px}
+.domain-row .track{height:7px;background:var(--bg-2);border-radius:var(--r-full);overflow:hidden}
+.domain-row .fill{height:100%;border-radius:var(--r-full);transition:width 1s}
+
+/* NOTICE */
+.notice{padding:14px 16px;border-radius:var(--r-md);background:linear-gradient(135deg,#FFF8E5,#FFFDF7);border:1.5px solid #F8E1A0;font-size:13px;color:#7A5C10;line-height:1.65;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.notice .ic{font-size:18px;flex-shrink:0;margin-top:2px}
+[data-theme="dark"] .notice{background:linear-gradient(135deg,#3A2F1A,#2A2415);border-color:#5A4A20;color:#F0D9A0}
+
+/* HOME */
+.home-hero{padding:24px 20px;border-radius:var(--r-lg);background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet);margin-bottom:16px;position:relative;overflow:hidden}
+.home-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 0%,rgba(255,107,157,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(6,214,160,.25),transparent 45%)}
 .home-hero>*{position:relative;z-index:1}
-.home-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.home-greet{font-size:14px;font-weight:600;opacity:.85}
-.home-name{font-size:20px;font-weight:900;margin-top:2px}
-.streak-badge{display:flex;align-items:center;gap:6px;padding:10px 16px;border-radius:var(--r-full);background:var(--grad-sunset);color:#fff;font-size:15px;font-weight:900;box-shadow:0 8px 20px rgba(255,107,157,.4);animation:streakPulse 2.4s ease-in-out infinite}
-@keyframes streakPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.streak-badge .flame{font-size:20px}
-.streak-badge .num{font-size:22px;line-height:1}
-.streak-badge .lbl{font-size:11px;opacity:.9;font-weight:700}
-.home-daily-mood{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:var(--r-md);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
-.home-daily-mood .q{font-size:13.5px;font-weight:700;opacity:.9;text-align:center}
-.mood-chips{display:flex;justify-content:center;gap:8px}
-.mood-chip{width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:24px;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.mood-chip:active{transform:scale(.92)}
+.home-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
+.home-top .greet{font-size:13px;opacity:.85;font-weight:600}
+.home-top .name{font-size:20px;font-weight:900;margin-top:2px}
+.streak{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--r-full);background:var(--grad-sun);color:#fff;font-weight:900;box-shadow:0 8px 20px rgba(255,107,157,.4)}
+.streak .flame{font-size:18px}
+.streak .n{font-size:22px;line-height:1}
+.streak .lbl{font-size:10px;opacity:.9;font-weight:700}
+.mood-widget{padding:14px;border-radius:var(--r-md);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
+.mood-widget .q{font-size:13px;font-weight:700;text-align:center;margin-bottom:10px;opacity:.9}
+.mood-chips{display:flex;justify-content:center;gap:6px}
+.mood-chip{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:22px;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .mood-chip.selected{background:rgba(255,255,255,.3);border-color:#fff;transform:scale(1.08);box-shadow:0 8px 20px rgba(255,255,255,.2)}
 
-.today-activity{background:var(--card);border-radius:var(--r-lg);padding:22px;box-shadow:var(--sh-md);margin-bottom:16px;position:relative;overflow:hidden;border:1px solid rgba(15,11,31,.04)}
-.today-activity::before{content:'';position:absolute;top:0;right:0;left:0;height:6px;background:var(--grad-cosmic)}
-.today-activity.done::before{background:var(--grad-mint)}
-.today-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-full);background:#EDE9FE;color:var(--primary-dark);font-size:11.5px;font-weight:900;text-transform:uppercase;margin-bottom:12px}
-.today-activity.done .today-tag{background:#D9F9EE;color:var(--mint-dark)}
-.today-icon{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:32px;margin-bottom:14px;box-shadow:var(--sh-sm)}
-.today-activity.done .today-icon{background:#D9F9EE}
-.today-activity h3{font-size:20px;font-weight:900;margin-bottom:6px;color:var(--txt)}
-.today-activity .subtitle{font-size:13.5px;color:var(--txt-3);line-height:1.6;margin-bottom:14px}
-.today-activity .meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.a-tag{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--r-full);font-size:12px;font-weight:800;background:var(--bg-2);color:var(--txt-2)}
-.a-tag.violet{background:#EDE9FE;color:var(--primary-dark)}
-.a-tag.coral{background:#FFE4EE;color:var(--coral-dark)}
-.a-tag.mint{background:#D9F9EE;color:var(--mint-dark)}
-.today-activity .done-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-full);background:var(--grad-mint);color:#fff;font-size:13px;font-weight:900;box-shadow:var(--sh-mint)}
+.today{background:var(--card);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh-md);margin-bottom:16px;position:relative;overflow:hidden}
+.today::before{content:'';position:absolute;top:0;inset-inline:0;height:5px;background:var(--grad)}
+.today.done::before{background:var(--grad-mint)}
+.today .tag{display:inline-flex;padding:5px 12px;border-radius:var(--r-full);background:#EDE9FE;color:var(--violet-d);font-size:11px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;margin-bottom:12px}
+.today.done .tag{background:#D9F9EE;color:#059669}
+.today .ic{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:12px;box-shadow:var(--sh-sm)}
+.today h3{font-size:18px;font-weight:900;margin-bottom:6px}
+.today .desc{font-size:13px;color:var(--txt-3);line-height:1.6;margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag-item{display:inline-flex;align-items:center;gap:4px;padding:6px 11px;border-radius:var(--r-full);font-size:11.5px;font-weight:800;background:var(--bg-2);color:var(--txt-2)}
+.tag-item.v{background:#EDE9FE;color:var(--violet-d)}
+.tag-item.c{background:#FFE4EE;color:#E11D74}
+.tag-item.m{background:#D9F9EE;color:#059669}
+.done-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-full);background:var(--grad-mint);color:#fff;font-size:13px;font-weight:900;box-shadow:var(--sh-mint)}
 
-.week-progress-card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);margin-bottom:14px}
-.week-progress-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.week-progress-head .lbl{font-size:13px;font-weight:800;color:var(--txt-3)}
-.week-progress-head .pct{font-size:20px;font-weight:900;color:var(--primary)}
-.week-dots{display:flex;justify-content:space-between;gap:6px;margin-top:12px}
-.day-dot{flex:1;aspect-ratio:1;max-width:40px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--txt-3);transition:all .3s}
-.day-dot.today{box-shadow:0 0 0 3px var(--primary-light)}
+.week-card{background:var(--card);border-radius:var(--r-lg);padding:16px;box-shadow:var(--sh-sm);margin-bottom:14px}
+.week-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;font-weight:800;color:var(--txt-3)}
+.week-head .pct{font-size:18px;color:var(--violet);font-weight:900}
+.week-dots{display:flex;justify-content:space-between;gap:5px}
+.day-dot{flex:1;aspect-ratio:1;max-width:36px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:var(--txt-3)}
+.day-dot.today{box-shadow:0 0 0 3px var(--violet-l)}
 .day-dot.done{background:var(--grad-mint);color:#fff}
-.day-dot.done::after{content:'✓';font-size:14px;font-weight:900}
+.day-dot.done::after{content:'✓';font-size:13px;font-weight:900}
 .day-dot.future{opacity:.4}
+
 .quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.stat-card{background:var(--card);border-radius:var(--r-md);padding:16px 12px;box-shadow:var(--sh-sm);text-align:center}
-.stat-card .ic{font-size:22px;margin-bottom:6px}
-.stat-card .val{font-size:22px;font-weight:900;color:var(--txt);line-height:1}
-.stat-card .lbl{font-size:11px;font-weight:800;color:var(--txt-3);margin-top:4px}
+.stat{background:var(--card);border-radius:var(--r-md);padding:14px 10px;box-shadow:var(--sh-sm);text-align:center}
+.stat .ic{font-size:20px;margin-bottom:4px}
+.stat .v{font-size:20px;font-weight:900;color:var(--txt);line-height:1}
+.stat .l{font-size:10.5px;font-weight:800;color:var(--txt-3);margin-top:4px}
 
-/* ========== ACTIVITY CARDS ========== */
-.act-card{background:var(--card);border-radius:var(--r-md);padding:16px;box-shadow:var(--sh-sm);margin-bottom:10px;display:flex;gap:14px;align-items:flex-start;border:1px solid rgba(15,11,31,.04);transition:transform .15s}
-.act-card:active{transform:scale(.99)}
-.act-card.done{opacity:.7}
-.act-card .ac-ic{width:52px;height:52px;border-radius:16px;flex-shrink:0;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:24px}
-.act-card.done .ac-ic{background:#D9F9EE}
-.act-card .body{flex:1;min-width:0}
-.act-card h5{font-size:14.5px;font-weight:800;margin-bottom:3px;color:var(--txt)}
-.act-card .domain-lbl{font-size:11.5px;font-weight:800;color:var(--primary);margin-bottom:6px}
-.act-card p{font-size:12.5px;color:var(--txt-3);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.act-card .chk{width:28px;height:28px;border-radius:50%;flex-shrink:0;border:2.5px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
-.act-card.done .chk{background:var(--grad-mint);border-color:transparent;box-shadow:var(--sh-mint)}
-.act-card.done .chk::after{content:'✓';font-size:15px}
+/* ACTIVITIES */
+.act-row{background:var(--card);border-radius:var(--r-md);padding:14px;box-shadow:var(--sh-sm);margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
+.act-row .ic{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.act-row.done .ic{background:#D9F9EE}
+.act-row .body{flex:1;min-width:0}
+.act-row .dom{font-size:11px;font-weight:800;color:var(--violet);margin-bottom:3px}
+.act-row h5{font-size:14px;font-weight:800;margin-bottom:2px}
+.act-row p{font-size:12px;color:var(--txt-3);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.act-row .chk{width:24px;height:24px;border-radius:50%;border:2.5px solid var(--line);background:var(--card);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+.act-row.done .chk{background:var(--grad-mint);border-color:transparent}
+.act-row.done .chk::after{content:'✓';font-size:14px}
 
-/* ========== QUESTION OPTIONS ========== */
-.q-opt{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:var(--r-md);background:var(--card);border:2px solid var(--line);text-align:right;font-size:15.5px;font-weight:700;transition:all .22s;margin-bottom:12px;width:100%}
-.q-opt .radio{width:28px;height:28px;border-radius:50%;border:2.5px solid var(--line);flex-shrink:0;background:var(--card);position:relative;transition:all .22s}
-.q-opt.selected{border-color:var(--primary);background:linear-gradient(135deg,#F5F3FF 0%,#fff 100%);box-shadow:0 8px 24px rgba(124,58,237,.14)}
-.q-opt.selected .radio{border-color:var(--primary);background:var(--grad-cosmic)}
-.q-opt.selected .radio::after{content:'';position:absolute;inset:7px;border-radius:50%;background:#fff}
-.q-opt .hint{font-size:12.5px;color:var(--txt-3);font-weight:500;margin-top:3px;display:block}
-
-/* ========== RESULTS ========== */
-.prog-hero{padding:24px 22px;border-radius:var(--r-xl);background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet);margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
-.prog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 0%,rgba(255,209,102,.35),transparent 45%),radial-gradient(circle at 100% 100%,rgba(6,214,160,.25),transparent 45%);pointer-events:none}
+/* PROGRESS SCREEN */
+.prog-hero{padding:24px 20px;border-radius:var(--r-lg);background:var(--grad-hero);color:#fff;box-shadow:var(--sh-violet);margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
+.prog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 0%,rgba(255,209,102,.35),transparent 45%),radial-gradient(circle at 100% 100%,rgba(6,214,160,.25),transparent 45%)}
 .prog-hero>*{position:relative;z-index:1}
-.progress-ring{width:160px;height:160px;margin:0 auto 16px;position:relative}
-.progress-ring svg{transform:rotate(-90deg)}
-.progress-ring .bg{stroke:rgba(255,255,255,.15);fill:none}
-.progress-ring .fg{stroke:url(#ringGrad);stroke-linecap:round;fill:none;transition:stroke-dashoffset 1.4s cubic-bezier(.22,1,.36,1)}
-.progress-ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.progress-ring .pct-num{font-size:38px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#C4B5FD);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.progress-ring .pct-lbl{font-size:10.5px;font-weight:700;color:rgba(255,255,255,.7);margin-top:4px}
+.prog-hero .big{font-size:56px;font-weight:900;line-height:1;letter-spacing:-2px;background:linear-gradient(135deg,#fff,#FFD166);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.prog-hero .lbl{font-size:14px;font-weight:700;opacity:.85;margin-top:6px}
+.prog-hero .sub{font-size:12px;opacity:.7;margin-top:8px}
 
-.domain-row{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:var(--r-md);background:var(--card);margin-bottom:10px;box-shadow:var(--sh-sm);border:1px solid rgba(15,11,31,.04)}
-.domain-row .ic{width:46px;height:46px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
-.domain-row .info{flex:1;min-width:0}
-.domain-row .info h4{font-size:14px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px;color:var(--txt)}
-.domain-row .info h4 .val{margin-inline-start:auto;font-size:13px;font-weight:800}
-.domain-row .track{height:7px;background:var(--bg-2);border-radius:var(--r-full);overflow:hidden;margin-bottom:5px}
-.domain-row .fill{height:100%;border-radius:var(--r-full);transition:width 1s cubic-bezier(.22,1,.36,1)}
-.domain-row .meta{font-size:11.5px;color:var(--txt-3);font-weight:700}
+.chart-card{background:var(--card);border-radius:var(--r-lg);padding:18px;box-shadow:var(--sh-sm);margin-bottom:14px}
+.chart-card h4{font-size:15px;font-weight:900;margin-bottom:16px}
+.bars{display:flex;justify-content:space-between;gap:5px;align-items:flex-end;height:120px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%}
+.bar-col .bar-wrap{width:100%;flex:1;border-radius:10px;background:var(--bg-2);position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.bar-col .bar-fill{width:100%;border-radius:10px;background:var(--grad);transition:height .8s}
+.bar-col .day{font-size:10.5px;font-weight:800;color:var(--txt-3)}
+.bar-col.today .day{color:var(--violet)}
 
-/* ========== PILL (strength/support) ========== */
-.pill{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:var(--r-md);background:var(--card);box-shadow:var(--sh-sm);position:relative;overflow:hidden;border:1px solid rgba(15,11,31,.04);margin-bottom:10px}
-.pill::before{content:'';position:absolute;right:0;top:0;bottom:0;width:5px;background:var(--grad-mint)}
-.pill.support::before{background:var(--grad-sunset)}
-.pill .icon-bubble{width:44px;height:44px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;background:#D9F9EE}
-.pill.support .icon-bubble{background:#FFF4D6}
-.pill .body{flex:1;min-width:0}
-.pill h5{font-size:14px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--txt)}
-.pill h5 .score{padding:3px 10px;border-radius:var(--r-full);font-size:11px;font-weight:800;background:#D9F9EE;color:var(--mint-dark)}
-.pill.support h5 .score{background:#FFF4D6;color:#E8A020}
-.pill p{font-size:12.5px;color:var(--txt-2);line-height:1.6}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ach{background:var(--card);border-radius:var(--r-md);padding:12px 6px;box-shadow:var(--sh-sm);text-align:center;position:relative;overflow:hidden}
+.ach.locked{opacity:.4;filter:grayscale(1)}
+.ach.unlocked::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:var(--grad-sun)}
+.ach .em{font-size:28px;margin-bottom:4px}
+.ach .nm{font-size:10.5px;font-weight:800;color:var(--txt)}
 
-/* ========== MODAL ========== */
-.modal-overlay{position:fixed;inset:0;background:rgba(15,11,31,.55);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-end;justify-content:center;animation:fadeIn .25s}
-.modal-overlay.show{display:flex}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-sheet{width:100%;max-width:520px;background:var(--card);border-radius:var(--r-xl) var(--r-xl) 0 0;padding:24px 22px calc(var(--safe-b) + 24px);animation:slideUp .35s cubic-bezier(.22,1,.36,1);max-height:88vh;overflow-y:auto}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.modal-grip{width:44px;height:5px;background:var(--line);border-radius:99px;margin:0 auto 18px}
-.modal-sheet h3{font-size:20px;font-weight:900;margin-bottom:8px;color:var(--txt)}
-.modal-sheet .sub{font-size:13.5px;color:var(--txt-3);margin-bottom:20px;line-height:1.6}
-.mood-row{display:flex;justify-content:space-between;gap:8px;margin-bottom:20px}
-.mood-row .mo{flex:1;aspect-ratio:1;max-width:64px;border-radius:18px;background:var(--bg);border:2px solid var(--line);font-size:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:all .15s;padding:4px}
-.mood-row .mo span{font-size:9px;font-weight:800;color:var(--txt-3)}
-.mood-row .mo.selected{border-color:var(--primary);background:#F5F3FF;transform:scale(1.08)}
-.mood-row .mo.selected span{color:var(--primary)}
+/* PROFILE */
+.profile-head{background:var(--card);border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-sm);text-align:center;margin-bottom:14px}
+.profile-head .av{width:80px;height:80px;border-radius:24px;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin:0 auto 12px;box-shadow:var(--sh-violet)}
+.profile-head h3{font-size:20px;font-weight:900;margin-bottom:4px}
+.profile-head p{font-size:13px;color:var(--txt-3)}
+.settings-card{background:var(--card);border-radius:var(--r-lg);padding:0;box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:14px}
+.settings-row{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+.settings-row:last-child{border-bottom:none}
+.settings-row .lbl{font-size:14px;font-weight:800}
+.settings-row .sub{font-size:11.5px;color:var(--txt-3);margin-top:2px}
+.toggle{padding:7px 14px;border-radius:var(--r-full);font-size:12.5px;font-weight:800;background:var(--bg-2);color:var(--txt)}
+.toggle.on{background:var(--grad-mint);color:#fff;box-shadow:var(--sh-mint)}
 
-/* ========== BOTTOM NAV ========== */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.92);backdrop-filter:blur(28px) saturate(1.6);border-top:1px solid rgba(15,11,31,.06);padding:8px 8px calc(var(--safe-b) + 8px);display:none;justify-content:space-around;z-index:40;box-shadow:0 -8px 24px rgba(15,11,31,.06)}
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:520px;background:rgba(255,255,255,.95);
+  backdrop-filter:blur(24px);border-top:1px solid var(--line);
+  padding:6px 6px calc(var(--sb) + 6px);display:none;justify-content:space-around;
+  z-index:40;box-shadow:0 -8px 24px rgba(15,11,31,.06);
+}
 .bottom-nav.show{display:flex}
-.bottom-nav button{flex:1;padding:8px 2px;border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:800;color:var(--txt-3);transition:all .15s;position:relative}
-.bottom-nav button .ic{font-size:22px;line-height:1;transition:transform .15s}
-.bottom-nav button.active{color:var(--primary)}
-.bottom-nav button.active .ic{transform:scale(1.15) translateY(-1px)}
-.bottom-nav button.center-btn .ic{background:var(--grad-cosmic);color:#fff;width:52px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-top:-24px;box-shadow:var(--sh-violet);border:3px solid var(--card)}
-.bottom-nav button.center-btn.active .ic{transform:scale(1.08) translateY(-24px)}
+.bottom-nav button{flex:1;padding:8px 2px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:800;color:var(--txt-3);transition:all .15s}
+.bottom-nav button .ic{font-size:20px;line-height:1}
+.bottom-nav button.active{color:var(--violet)}
+.bottom-nav button.active .ic{transform:scale(1.15)}
 
-/* ========== UTILITIES ========== */
-.sec-title{font-size:12.5px;font-weight:900;color:var(--txt-3);margin:22px 4px 12px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-.sec-title::before{content:'';width:4px;height:16px;border-radius:99px;background:var(--grad-cosmic)}
-.spacer{flex:1}
-.mt-8{margin-top:8px}.mt-12{margin-top:12px}.mt-20{margin-top:20px}
-.muted{color:var(--txt-3);font-size:13px;line-height:1.6}
-.empty-state{text-align:center;padding:40px 20px;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--sh-sm)}
-.empty-state .em{font-size:48px;margin-bottom:12px;opacity:.6}
-.empty-state h4{font-size:16px;font-weight:800;margin-bottom:6px;color:var(--txt-2)}
-.empty-state p{font-size:13px;color:var(--txt-3);line-height:1.6}
-.toast{position:fixed;bottom:calc(var(--safe-b) + 130px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--txt);color:var(--bg);padding:14px 22px;border-radius:var(--r-md);font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:all .3s;z-index:999;box-shadow:var(--sh-lg);max-width:88%;text-align:center}
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(15,11,31,.55);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.modal.show{display:flex}
+.modal-sheet{width:100%;max-width:520px;background:var(--card);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:22px 20px calc(var(--sb) + 20px);animation:slideUp .3s;max-height:88vh;overflow-y:auto}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.grip{width:40px;height:5px;background:var(--line);border-radius:99px;margin:0 auto 16px}
+.modal-sheet h3{font-size:19px;font-weight:900;margin-bottom:6px}
+.modal-sheet .sub{font-size:13px;color:var(--txt-3);margin-bottom:16px}
+.mood-row{display:flex;justify-content:space-between;gap:6px;margin-bottom:16px}
+.mo{flex:1;aspect-ratio:1;max-width:60px;border-radius:16px;background:var(--bg);border:2px solid var(--line);font-size:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:all .15s}
+.mo span{font-size:9px;font-weight:800;color:var(--txt-3)}
+.mo.selected{border-color:var(--violet);background:rgba(124,58,237,.08);transform:scale(1.05)}
+.mo.selected span{color:var(--violet)}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(var(--sb) + 110px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--txt);color:var(--bg);padding:13px 20px;border-radius:var(--r-md);font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:all .3s;z-index:999;box-shadow:var(--sh-md);max-width:88%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.confetti-piece{position:fixed;width:12px;height:12px;border-radius:3px;pointer-events:none;z-index:998;animation:confettiFall 3.2s cubic-bezier(.3,.6,.5,1) forwards}
-@keyframes confettiFall{0%{transform:translateY(-20vh) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
-.progress-bar-wrap{height:12px;background:var(--bg-2);border-radius:var(--r-full);overflow:hidden;box-shadow:inset 0 2px 4px rgba(15,11,31,.06)}
-.progress-bar-fill{height:100%;background:var(--grad-cosmic);border-radius:var(--r-full);transition:width .6s cubic-bezier(.22,1,.36,1);width:5%}
 
-/* ========== MASCOT ========== */
-.mascot-container{position:fixed;bottom:calc(var(--safe-b) + 100px);right:18px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;pointer-events:none}
-html[dir="ltr"] .mascot-container{right:auto;left:18px;align-items:flex-start}
-.mascot-bubble{max-width:240px;padding:14px 18px;background:var(--card);border-radius:20px 20px 4px 20px;box-shadow:var(--sh-md);font-size:13.5px;font-weight:600;line-height:1.5;color:var(--txt);margin-bottom:10px;position:relative;opacity:0;transform:translateY(10px) scale(.9);transition:all .4s cubic-bezier(.22,1,.36,1);pointer-events:auto}
-html[dir="ltr"] .mascot-bubble{border-radius:20px 20px 20px 4px}
-.mascot-bubble.show{opacity:1;transform:translateY(0) scale(1)}
-.mascot-bubble::after{content:'';position:absolute;bottom:-8px;right:20px;width:16px;height:16px;background:var(--card);transform:rotate(45deg);box-shadow:var(--sh-sm)}
-html[dir="ltr"] .mascot-bubble::after{right:auto;left:20px}
-.mascot-bubble .close-btn{position:absolute;top:-8px;left:-8px;width:24px;height:24px;border-radius:50%;background:var(--txt-3);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;pointer-events:auto}
-html[dir="ltr"] .mascot-bubble .close-btn{left:auto;right:-8px}
-.mascot{width:76px;height:76px;position:relative;pointer-events:auto;cursor:pointer;transition:transform .15s;filter:drop-shadow(0 8px 20px rgba(124,58,237,.3))}
-.mascot:active{transform:scale(.92)}
-.mascot-svg{width:100%;height:100%}
-.mascot-svg .eye{animation:mascotBlink 4s infinite;transform-origin:center}
-@keyframes mascotBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
-.mascot-svg .wing{animation:mascotWave 3s ease-in-out infinite;transform-origin:center}
-@keyframes mascotWave{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
-.mascot.idle .mascot-svg{animation:mascotIdle 3s ease-in-out infinite}
-@keyframes mascotIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-.mascot.celebrate .mascot-svg{animation:mascotCelebrate .8s ease-in-out 3}
-@keyframes mascotCelebrate{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-14px) rotate(-8deg)}75%{transform:translateY(-14px) rotate(8deg)}}
+/* MISC */
+.sec-title{font-size:12px;font-weight:900;color:var(--txt-3);margin:18px 4px 10px;letter-spacing:1.2px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.sec-title::before{content:'';width:3px;height:14px;border-radius:99px;background:var(--grad)}
+.spacer{flex:1}
+.mt-16{margin-top:16px}
+.muted{color:var(--txt-3);font-size:12.5px;line-height:1.5}
+.center{text-align:center}
+.confetti{position:fixed;width:10px;height:10px;pointer-events:none;z-index:998;animation:cfall 3s cubic-bezier(.3,.6,.5,1) forwards}
+@keyframes cfall{0%{transform:translateY(-20vh) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 
-/* ========== UPDATE BANNER ========== */
-.update-banner{position:fixed;top:calc(var(--safe-t) + 12px);left:18px;right:18px;z-index:70;padding:14px 18px;border-radius:var(--r-md);background:var(--grad-cosmic);color:#fff;box-shadow:var(--sh-violet);display:none;align-items:center;gap:12px;animation:slideDown .4s}
-.update-banner.show{display:flex}
-@keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
-.update-banner .ub-icon{font-size:24px}
-.update-banner .ub-body{flex:1;font-size:13px;font-weight:700;line-height:1.4}
-.update-banner button{padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.22);color:#fff;font-size:12.5px;font-weight:800;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.28)}
-
-/* ========== WELCOME ========== */
-.welcome-screen{flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px}
-.welcome-logo{width:130px;height:130px;margin:0 auto 28px;position:relative;animation:float1 5s ease-in-out infinite}
-.welcome-logo .core{position:absolute;inset:0;border-radius:36px;background:var(--grad-cosmic);box-shadow:0 24px 60px rgba(124,58,237,.4),0 0 0 12px rgba(124,58,237,.08),0 0 0 24px rgba(124,58,237,.04);display:flex;align-items:center;justify-content:center}
-.welcome-logo .core svg{width:70px;height:70px}
-.welcome h1{font-size:36px;font-weight:900;line-height:1.15;margin-bottom:12px;background:var(--grad-cosmic);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.5px}
-.welcome .tagline{font-size:16px;color:var(--txt-2);line-height:1.7;margin-bottom:32px;padding-inline:8px;font-weight:500}
-.feat-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;text-align:right}
-.feat{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:var(--r-md);background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);box-shadow:var(--sh-sm)}
-[data-theme="dark"] .feat{background:rgba(26,22,51,.75);border-color:rgba(255,255,255,.06)}
-.feat .icon-box{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:#EDE9FE;color:var(--primary)}
-.feat h4{font-size:15px;font-weight:800;margin-bottom:2px;color:var(--txt)}
-.feat p{font-size:12.5px;color:var(--txt-3);line-height:1.5}
-.install-banner{display:none;align-items:center;gap:12px;padding:16px;border-radius:var(--r-md);background:var(--grad-hero);color:#fff;margin:14px 0;box-shadow:var(--sh-violet);position:relative;overflow:hidden}
-.install-banner.show{display:flex}
-.install-banner .ib-icon{font-size:32px;flex-shrink:0;position:relative;z-index:1}
-.install-banner .body{flex:1;position:relative;z-index:1}
-.install-banner h5{font-size:14px;font-weight:800;margin-bottom:2px}
-.install-banner p{font-size:11.5px;opacity:.85;line-height:1.45}
-.install-banner button{background:rgba(255,255,255,.22);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;font-weight:800;backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.28);position:relative;z-index:1}
+@media (max-width:400px){
+  .q-text{font-size:19px}
+  .btn{padding:15px 18px;font-size:15px}
+}
 </style>
 </head>
 <body>
-<div class="ambient" aria-hidden="true">
-  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
-</div>
-
-<div class="update-banner" id="updateBanner">
-  <span class="ub-icon">🎉</span>
-  <div class="ub-body" id="updateBannerText">تحديث جديد متاح!</div>
-  <button onclick="applyUpdate()">تحديث الآن</button>
-</div>
-
-<div class="mascot-container" id="mascotContainer">
-  <div class="mascot-bubble" id="mascotBubble">
-    <button class="close-btn" onclick="hideMascotBubble()">✕</button>
-    <span id="mascotText"></span>
-  </div>
-  <div class="mascot idle" id="mascot" onclick="mascotSpeak()">
-    <svg class="mascot-svg" viewBox="0 0 100 100">
-      <ellipse cx="50" cy="58" rx="32" ry="36" fill="#7C3AED"/>
-      <ellipse cx="50" cy="68" rx="22" ry="24" fill="#EDE9FE"/>
-      <ellipse cx="50" cy="34" rx="30" ry="26" fill="#7C3AED"/>
-      <path d="M28 14 L34 26 L22 22 Z" fill="#7C3AED"/>
-      <path d="M72 14 L66 26 L78 22 Z" fill="#7C3AED"/>
-      <circle cx="38" cy="36" r="10" fill="#fff"/>
-      <circle cx="62" cy="36" r="10" fill="#fff"/>
-      <circle class="eye" cx="38" cy="36" r="5" fill="#0F0B1F"/>
-      <circle class="eye" cx="62" cy="36" r="5" fill="#0F0B1F"/>
-      <circle cx="40" cy="34" r="1.5" fill="#fff"/>
-      <circle cx="64" cy="34" r="1.5" fill="#fff"/>
-      <path d="M47 44 L53 44 L50 50 Z" fill="#FFD166"/>
-      <path class="wing" d="M18 55 Q10 62 18 72 Q22 70 24 60 Z" fill="#6D28D9"/>
-      <path class="wing" d="M82 55 Q90 62 82 72 Q78 70 76 60 Z" fill="#6D28D9"/>
-      <path d="M42 92 L42 96 M38 96 L46 96" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M58 92 L58 96 M54 96 L62 96" stroke="#FFD166" stroke-width="2.5" stroke-linecap="round"/>
-    </svg>
-  </div>
-</div>
-
 <div id="app">
+
+  <!-- ====== TOPBAR ====== -->
   <header class="topbar" id="topbar">
-    <button class="icon-btn hidden" id="backBtn">←</button>
+    <button class="icon-btn hidden" id="backBtn" aria-label="back">←</button>
     <h1 id="topTitle">نبض التميز</h1>
-    <div class="child-avatar" id="childAvatar" style="display:none" title="Profile">👶</div>
+    <button class="lang-btn" id="langBtn" aria-label="switch language">
+      <span class="flag" id="langFlag">🇬🇧</span>
+      <span id="langTxt">EN</span>
+    </button>
   </header>
 
   <main id="main">
 
-    <!-- ==================== WELCOME ==================== -->
+    <!-- ================= WELCOME ================= -->
     <section class="screen active" id="s-welcome">
-      <div class="welcome-screen welcome">
-        <div class="welcome-logo">
-          <div class="core">
-            <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
-            </svg>
-          </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px">
+        <div style="width:120px;height:120px;margin:0 auto 24px;border-radius:34px;background:var(--grad);box-shadow:0 24px 60px rgba(124,58,237,.4);display:flex;align-items:center;justify-content:center">
+          <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+          </svg>
         </div>
-        <h1>نبض التميّز</h1>
-        <p class="tagline">رحلة يومية مع طفلك: نشاط واحد كل يوم،<br>متابعة تقدّمك، وتقارير تُظهر النمو.</p>
+        <h1 style="font-size:32px;font-weight:900;line-height:1.15;margin-bottom:10px;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" data-i18n="app_name">نبض التميّز</h1>
+        <p style="font-size:15px;color:var(--txt-2);line-height:1.6;margin-bottom:28px;padding:0 8px" data-i18n="app_tagline">رحلة يومية مع طفلك: تقييم شامل، نشاط كل يوم، وتتبّع التطور</p>
 
-        <div class="feat-grid">
-          <div class="feat">
-            <div class="icon-box">🎯</div>
-            <div><h4>تقييم شامل</h4><p>خريطة نمو دقيقة لأربعة محاور رئيسية</p></div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:start">
+          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px 16px;margin:0">
+            <div style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🎯</div>
+            <div><div style="font-size:14px;font-weight:800" data-i18n="welcome_f1">تقييم شامل</div><div style="font-size:12px;color:var(--txt-3)" data-i18n="welcome_f1d">4 محاور نمائية رئيسية</div></div>
           </div>
-          <div class="feat">
-            <div class="icon-box" style="background:#FFE4EE;color:#E11D74">📅</div>
-            <div><h4>نشاط يومي</h4><p>تمرين منزلي بسيط كل يوم (5 دقائق)</p></div>
+          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px 16px;margin:0">
+            <div style="width:44px;height:44px;border-radius:14px;background:#FFE4EE;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📅</div>
+            <div><div style="font-size:14px;font-weight:800" data-i18n="welcome_f2">نشاط يومي</div><div style="font-size:12px;color:var(--txt-3)" data-i18n="welcome_f2d">تمرين منزلي بسيط كل يوم</div></div>
           </div>
-          <div class="feat">
-            <div class="icon-box" style="background:#D9F9EE;color:#059669">🏆</div>
-            <div><h4>إنجازات وتقدّم</h4><p>تتبّع التطور واحتفل بكل خطوة</p></div>
+          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px 16px;margin:0">
+            <div style="width:44px;height:44px;border-radius:14px;background:#D9F9EE;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🏆</div>
+            <div><div style="font-size:14px;font-weight:800" data-i18n="welcome_f3">إنجازات وتقدم</div><div style="font-size:12px;color:var(--txt-3)" data-i18n="welcome_f3d">تتبّع التطور واحتفل بكل خطوة</div></div>
           </div>
         </div>
 
-        <button class="btn primary" id="startBtn">ابدأ رحلة طفلك <span style="font-size:20px">✨</span></button>
-
-        <div class="install-banner" id="installBanner">
-          <span class="ib-icon">📲</span>
-          <div class="body"><h5>ثبّت التطبيق</h5><p>استخدمه دون اتصال يوميًا</p></div>
-          <button id="installBtn">تثبيت</button>
-        </div>
-        <p class="muted mt-20">⏱️ مدة التقييم: 10–15 دقيقة</p>
+        <button class="btn primary" id="startBtn">
+          <span data-i18n="welcome_start">ابدأ الرحلة</span> <span>✨</span>
+        </button>
+        <p class="muted mt-16" data-i18n="welcome_time">⏱️ مدة التقييم: 10-15 دقيقة</p>
       </div>
     </section>
 
-    <!-- ==================== CHILD INFO ==================== -->
+    <!-- ================= CHILD ================= -->
     <section class="screen" id="s-child">
-      <h2 style="font-size:26px;font-weight:900;margin:8px 4px 6px">أخبرنا عن طفلك</h2>
-      <p class="muted" style="margin:0 4px 24px">سنخصص التجربة الكاملة بناءً على عمره</p>
+      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px" data-i18n="child_title">بيانات الطفل</h2>
+      <p class="muted" style="margin:0 4px 20px" data-i18n="child_sub">سنخصص التجربة حسب عمره</p>
+
       <div class="field">
-        <label>👶 اسم الطفل</label>
-        <input type="text" id="childName" placeholder="مثال: يوسف" maxlength="30">
+        <label data-i18n="child_name">👶 اسم الطفل (اختياري)</label>
+        <input type="text" id="childName" maxlength="30" data-i18n-placeholder="child_name_ph" placeholder="مثال: يوسف">
       </div>
+
       <div class="field">
-        <label>🎂 العمر بالسنة <span class="req">*</span></label>
+        <label data-i18n="child_age">🎂 العمر بالسنة *</label>
         <select id="childAge">
-          <option value="">اختر عمر الطفل</option>
-          <option value="3">3 سنوات</option><option value="4">4 سنوات</option>
-          <option value="5">5 سنوات</option><option value="6">6 سنوات</option>
-          <option value="7">7 سنوات</option><option value="8">8 سنوات</option>
-          <option value="9">9 سنوات</option><option value="10">10 سنوات</option>
-          <option value="11">11 سنة</option><option value="12">12 سنة</option>
+          <option value="" data-i18n="child_age_ph">اختر العمر</option>
+          <option value="3">3</option><option value="4">4</option>
+          <option value="5">5</option><option value="6">6</option>
+          <option value="7">7</option><option value="8">8</option>
+          <option value="9">9</option><option value="10">10</option>
+          <option value="11">11</option><option value="12">12</option>
         </select>
       </div>
+
       <div class="field">
-        <label>⚧ الجنس</label>
+        <label data-i18n="child_gender">⚧ الجنس (اختياري)</label>
         <div class="chips" id="genderChips">
-          <button class="chip" data-val="male">👦 ولد</button>
-          <button class="chip" data-val="female">👧 بنت</button>
+          <button class="chip" data-val="male" data-i18n="child_male">👦 ولد</button>
+          <button class="chip" data-val="female" data-i18n="child_female">👧 بنت</button>
         </div>
       </div>
+
       <div class="spacer"></div>
-      <button class="btn primary mt-20" id="toQuestions" disabled>متابعة للتقييم <span style="font-size:20px">←</span></button>
+      <button class="btn primary mt-16" id="toQuestions" disabled>
+        <span data-i18n="child_next">متابعة للتقييم</span> <span>←</span>
+      </button>
     </section>
 
-    <!-- ==================== QUESTIONS ==================== -->
+    <!-- ================= QUESTIONS ================= -->
     <section class="screen" id="s-questions">
-      <div style="padding:6px 4px 20px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px">
-          <div style="font-size:13px;color:var(--txt-3);font-weight:700" id="qProgressText">سؤال 1 من 20</div>
-          <div style="font-size:22px;font-weight:900;color:var(--primary);line-height:1" id="qPercent">5<small style="font-size:13px;font-weight:800;color:var(--txt-3)">%</small></div>
+      <div style="padding:4px 4px 16px">
+        <div class="pinfo">
+          <span id="qProgressText">1 / 34</span>
+          <span class="pct" id="qPercent">3<small>%</small></span>
         </div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill" id="qProgressFill"></div>
-        </div>
+        <div class="pbar"><div class="pbar-fill" id="qProgressFill" style="width:3%"></div></div>
       </div>
       <div id="qContainer"></div>
       <div class="spacer"></div>
-      <div style="display:flex;gap:10px;margin-top:24px">
-        <button class="btn ghost" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding-inline:22px">←</button>
-        <button class="btn primary" id="qNextBtn" disabled style="flex:1">التالي</button>
+      <div style="display:flex;gap:10px;margin-top:20px">
+        <button class="btn light" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding:14px 22px">←</button>
+        <button class="btn primary" id="qNextBtn" disabled style="flex:1"><span data-i18n="q_next">التالي</span></button>
       </div>
     </section>
 
-    <!-- ==================== RESULTS ==================== -->
+    <!-- ================= RESULTS ================= -->
     <section class="screen" id="s-results">
-      <div class="prog-hero">
-        <div class="progress-ring">
-          <svg width="160" height="160" viewBox="0 0 160 160">
+      <div class="hero">
+        <div class="ring">
+          <svg width="170" height="170" viewBox="0 0 170 170">
             <defs>
               <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#C4B5FD"/><stop offset="50%" stop-color="#FF6B9D"/><stop offset="100%" stop-color="#06D6A0"/>
+                <stop offset="0%" stop-color="#C4B5FD"/>
+                <stop offset="50%" stop-color="#FF6B9D"/>
+                <stop offset="100%" stop-color="#06D6A0"/>
               </linearGradient>
             </defs>
-            <circle class="bg" cx="80" cy="80" r="68" stroke-width="12"/>
-            <circle class="fg" id="ringFg" cx="80" cy="80" r="68" stroke-width="12"/>
+            <circle class="bg" cx="85" cy="85" r="72" stroke-width="13"/>
+            <circle class="fg" id="ringFg" cx="85" cy="85" r="72" stroke-width="13" stroke-dasharray="452" stroke-dashoffset="452"/>
           </svg>
           <div class="center">
-            <div class="pct-num" id="overallPct">—</div>
-            <div class="pct-lbl">نبض التميّز</div>
+            <div class="num" id="overallPct">0%</div>
+            <div class="lbl" data-i18n="results_score_lbl">نبض التميّز</div>
           </div>
         </div>
-        <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:var(--r-full);background:rgba(255,255,255,.18);backdrop-filter:blur(12px);font-size:13.5px;font-weight:800;border:1px solid rgba(255,255,255,.28)">
-          <span style="width:8px;height:8px;border-radius:50%;background:#FFD166;box-shadow:0 0 12px #FFD166"></span>
+        <div class="badge">
+          <span class="dot"></span>
           <span id="overallBadge">—</span>
         </div>
       </div>
-      <div style="padding:16px;border-radius:var(--r-md);background:linear-gradient(135deg,#FFF8E5,#FFFDF7);border:1.5px solid #F8E1A0;font-size:13px;color:#7A5C10;line-height:1.7;margin-bottom:18px;display:flex;gap:12px;align-items:flex-start">
-        <span style="font-size:20px">📌</span>
-        <div><strong style="display:block;margin-bottom:4px">تنويه منهجي</strong>
-        هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية. ليست تشخيصًا طبيًا، ولا مقارنة بأقران.</div>
+
+      <div class="notice">
+        <span class="ic">📌</span>
+        <div><strong data-i18n="results_notice_t">تنويه منهجي</strong><span data-i18n="results_notice_b"> هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية. ليست تشخيصًا طبيًا ولا مقارنة بأقران.</span></div>
       </div>
-      <div class="sec-title">المحاور الأربعة</div>
+
+      <div class="sec-title" data-i18n="results_domains">المحاور الأربعة</div>
       <div id="domainResults"></div>
-      <div class="sec-title">المجالات الفرعية</div>
+
+      <div class="sec-title" data-i18n="results_subdomains">المجالات الفرعية</div>
       <div id="subdomainResults"></div>
+
       <div class="spacer"></div>
-      <button class="btn primary mt-20" id="startCompanionBtn">🚀 ابدأ رحلة الرفيق اليومي</button>
+      <button class="btn primary mt-16" id="startCompanionBtn">
+        <span>🚀</span> <span data-i18n="results_start_companion">ابدأ رحلة الرفيق اليومي</span>
+      </button>
     </section>
 
-    <!-- ==================== HOME ==================== -->
+    <!-- ================= HOME ================= -->
     <section class="screen" id="s-home">
       <div class="home-hero">
         <div class="home-top">
           <div>
-            <div class="home-greet" id="greetText">مساء الخير 👋</div>
-            <div class="home-name" id="childNameHome">طفلك</div>
+            <div class="greet" id="greetText">—</div>
+            <div class="name" id="childNameHome">—</div>
           </div>
-          <div class="streak-badge" id="streakBadge">
+          <div class="streak">
             <span class="flame">🔥</span>
             <div style="display:flex;flex-direction:column;align-items:center">
-              <span class="num" id="streakNum">0</span>
-              <span class="lbl">يوم</span>
+              <span class="n" id="streakNum">0</span>
+              <span class="lbl" data-i18n="home_day">يوم</span>
             </div>
           </div>
         </div>
-        <div class="home-daily-mood">
-          <div class="q">💭 كيف حال طفلك اليوم؟</div>
+        <div class="mood-widget">
+          <div class="q" data-i18n="home_mood_q">💭 كيف حال طفلك اليوم؟</div>
           <div class="mood-chips" id="moodChips">
             <button class="mood-chip" data-mood="5">🤩</button>
             <button class="mood-chip" data-mood="4">😊</button>
@@ -565,147 +485,141 @@ html[dir="ltr"] .mascot-bubble .close-btn{left:auto;right:-8px}
         </div>
       </div>
 
-      <div class="sec-title">🎯 نشاط اليوم</div>
-      <div id="todayActivityContainer"></div>
+      <div class="sec-title" data-i18n="home_today_title">🎯 نشاط اليوم</div>
+      <div id="todayCard"></div>
 
-      <div class="sec-title">📊 تقدم الأسبوع</div>
-      <div class="week-progress-card">
-        <div class="week-progress-head">
-          <div class="lbl" id="weekLabel">الأسبوع الأول</div>
-          <div class="pct" id="weekPct">0%</div>
+      <div class="sec-title" data-i18n="home_week_title">📊 تقدم الأسبوع</div>
+      <div class="week-card">
+        <div class="week-head">
+          <span id="weekLabel">—</span>
+          <span class="pct" id="weekPct">0%</span>
         </div>
         <div class="week-dots" id="weekDots"></div>
       </div>
 
-      <div class="sec-title">📈 ملخص سريع</div>
+      <div class="sec-title" data-i18n="home_stats_title">📈 ملخص سريع</div>
       <div class="quick-stats">
-        <div class="stat-card"><div class="ic">🎯</div><div class="val" id="totalActivities">0</div><div class="lbl">نشاط مكتمل</div></div>
-        <div class="stat-card"><div class="ic">🔥</div><div class="val" id="longestStreak">0</div><div class="lbl">أطول سلسلة</div></div>
-        <div class="stat-card"><div class="ic">🏆</div><div class="val" id="achievementsCount">0</div><div class="lbl">إنجاز</div></div>
+        <div class="stat"><div class="ic">🎯</div><div class="v" id="statActivities">0</div><div class="l" data-i18n="home_stat_acts">نشاط</div></div>
+        <div class="stat"><div class="ic">🔥</div><div class="v" id="statLongest">0</div><div class="l" data-i18n="home_stat_long">أطول سلسلة</div></div>
+        <div class="stat"><div class="ic">🏆</div><div class="v" id="statAch">0</div><div class="l" data-i18n="home_stat_ach">إنجاز</div></div>
       </div>
     </section>
 
-    <!-- ==================== TODAY DETAIL ==================== -->
+    <!-- ================= TODAY DETAIL ================= -->
     <section class="screen" id="s-today">
       <div id="todayDetail"></div>
     </section>
 
-    <!-- ==================== ACTIVITIES LIBRARY ==================== -->
+    <!-- ================= ACTIVITIES LIBRARY ================= -->
     <section class="screen" id="s-activities">
-      <h2 style="font-size:26px;font-weight:900;margin:8px 4px 6px">مكتبة الأنشطة</h2>
-      <p class="muted" style="margin:0 4px 20px">جميع الأنشطة المنزلية المخصصة لعمر طفلك</p>
-      <div class="chips" style="margin-bottom:16px" id="activityFilters">
-        <button class="chip active" data-filter="all">الكل</button>
-        <button class="chip" data-filter="emotional">💗 عاطفي</button>
-        <button class="chip" data-filter="cognitive">🧠 عقلي</button>
-        <button class="chip" data-filter="behavioral">🎯 سلوكي</button>
-        <button class="chip" data-filter="skills">🤝 مهاري</button>
+      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px" data-i18n="acts_title">مكتبة الأنشطة</h2>
+      <p class="muted" style="margin:0 4px 16px" data-i18n="acts_sub">جميع الأنشطة المنزلية المتاحة</p>
+      <div class="chips" style="margin-bottom:14px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px" id="actFilters">
+        <button class="chip active" data-f="all" data-i18n="acts_all">الكل</button>
+        <button class="chip" data-f="emotional">💗 <span data-i18n="domain_emotional">عاطفي</span></button>
+        <button class="chip" data-f="cognitive">🧠 <span data-i18n="domain_cognitive">عقلي</span></button>
+        <button class="chip" data-f="behavioral">🎯 <span data-i18n="domain_behavioral">سلوكي</span></button>
+        <button class="chip" data-f="skills">🤝 <span data-i18n="domain_skills">مهاري</span></button>
       </div>
-      <div id="activitiesList"></div>
+      <div id="actsList"></div>
     </section>
 
-    <!-- ==================== PROGRESS ==================== -->
+    <!-- ================= PROGRESS ================= -->
     <section class="screen" id="s-progress">
       <div class="prog-hero">
-        <div style="font-size:56px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#FFD166);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px" id="progressStreak">0</div>
-        <div style="font-size:14px;font-weight:700;opacity:.85;margin-top:4px">🔥 أيام متتالية</div>
-        <div style="font-size:12px;opacity:.7;margin-top:8px" id="progressSub">استمر! كل يوم خطوة نحو الأفضل</div>
+        <div class="big" id="progStreak">0</div>
+        <div class="lbl" data-i18n="prog_streak_lbl">🔥 أيام متتالية</div>
+        <div class="sub" id="progSub">—</div>
       </div>
-      <div class="card">
-        <h3 style="font-size:15px;margin-bottom:16px">📅 آخر 7 أيام</h3>
-        <div style="display:flex;justify-content:space-between;gap:6px;align-items:flex-end;height:130px" id="weeklyChart"></div>
+      <div class="chart-card">
+        <h4 data-i18n="prog_week_chart">📅 آخر 7 أيام</h4>
+        <div class="bars" id="weeklyChart"></div>
       </div>
-      <div class="card">
-        <h3 style="font-size:15px;margin-bottom:16px">🏆 الإنجازات</h3>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="achievementsGrid"></div>
+      <div class="chart-card">
+        <h4 data-i18n="prog_achievements">🏆 الإنجازات</h4>
+        <div class="ach-grid" id="achGrid"></div>
       </div>
     </section>
 
-    <!-- ==================== PROFILE ==================== -->
+    <!-- ================= PROFILE ================= -->
     <section class="screen" id="s-profile">
-      <h2 style="font-size:26px;font-weight:900;margin:8px 4px 6px">الملف الشخصي</h2>
-      <p class="muted" style="margin:0 4px 20px">بيانات طفلك وإعدادات التطبيق</p>
+      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px" data-i18n="profile_title">الملف الشخصي</h2>
+      <p class="muted" style="margin:0 4px 16px" data-i18n="profile_sub">إعدادات وبيانات</p>
 
-      <div class="card" style="text-align:center;padding:26px">
-        <div style="width:80px;height:80px;border-radius:24px;background:var(--grad-cosmic);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin:0 auto 14px;box-shadow:var(--sh-violet)" id="profileAvatar">👶</div>
-        <h3 style="font-size:20px;font-weight:900;margin-bottom:4px" id="profileName">طفلك</h3>
-        <p style="font-size:13.5px;color:var(--txt-3)" id="profileMeta">— سنوات</p>
+      <div class="profile-head">
+        <div class="av" id="profileAvatar">👶</div>
+        <h3 id="profileName">—</h3>
+        <p id="profileMeta">—</p>
       </div>
 
-      <div class="sec-title">⚙️ الإعدادات</div>
-      <div class="card" style="padding:0">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)">
-          <div><div style="font-size:14.5px;font-weight:800">🌙 الوضع المظلم</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">استخدام مريح ليلاً</div></div>
-          <button id="darkToggle" class="btn-sm" style="background:var(--bg-2);padding:8px 14px;border-radius:var(--r-full);font-size:13px;font-weight:800">تشغيل</button>
+      <div class="sec-title" data-i18n="profile_settings">⚙️ الإعدادات</div>
+      <div class="settings-card">
+        <div class="settings-row">
+          <div><div class="lbl" data-i18n="set_dark">🌙 الوضع المظلم</div><div class="sub" data-i18n="set_dark_sub">استخدام مريح ليلاً</div></div>
+          <button class="toggle" id="darkToggle">—</button>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)">
-          <div><div style="font-size:14.5px;font-weight:800">🌐 اللغة</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">العربية / English</div></div>
+        <div class="settings-row">
+          <div><div class="lbl" data-i18n="set_lang">🌐 اللغة</div><div class="sub" data-i18n="set_lang_sub">العربية / English</div></div>
           <div style="display:flex;gap:6px">
-            <button class="btn-sm" onclick="applyLang('ar')" style="background:var(--bg-2);padding:8px 12px;border-radius:var(--r-full);font-size:13px;font-weight:800">ع</button>
-            <button class="btn-sm" onclick="applyLang('en')" style="background:var(--bg-2);padding:8px 12px;border-radius:var(--r-full);font-size:13px;font-weight:800">EN</button>
+            <button class="toggle" id="langArBtn">ع</button>
+            <button class="toggle" id="langEnBtn">EN</button>
           </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)">
-          <div><div style="font-size:14.5px;font-weight:800">🔊 المؤثرات الصوتية</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">نقرات وأصوات الاحتفال</div></div>
-          <button id="soundToggle" class="btn-sm" style="background:var(--bg-2);padding:8px 14px;border-radius:var(--r-full);font-size:13px;font-weight:800">تشغيل</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px">
-          <div><div style="font-size:14.5px;font-weight:800">🔔 تذكير يومي</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px">تنبيه لطيف بنشاط اليوم</div></div>
-          <button id="notifToggle" class="btn-sm" style="background:var(--bg-2);padding:8px 14px;border-radius:var(--r-full);font-size:13px;font-weight:800">تشغيل</button>
+        <div class="settings-row">
+          <div><div class="lbl" data-i18n="set_sound">🔊 الأصوات</div><div class="sub" data-i18n="set_sound_sub">نقرات وتنبيهات</div></div>
+          <button class="toggle" id="soundToggle">—</button>
         </div>
       </div>
 
-      <div class="sec-title">📤 مشاركة</div>
-      <div class="card">
-        <p style="font-size:13.5px;color:var(--txt-2);margin-bottom:12px">شارك تقدمك مع العائلة والأصدقاء</p>
-        <button class="btn primary" onclick="shareAchievement('streak', {n: computeStreak(activeChild()).current})">📤 مشاركة سلسلة الأيام</button>
-      </div>
-
-      <div class="sec-title">🔄 إعادة التقييم</div>
-      <div class="card">
-        <p style="font-size:13.5px;color:var(--txt-2);margin-bottom:12px">يمكنك إعادة التقييم لقياس التطور.</p>
-        <button class="btn primary" id="reassessBtn">🔄 بدء تقييم جديد</button>
-      </div>
-
-      <div class="sec-title">🔍 فحص التحديثات</div>
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><div style="font-size:14px;font-weight:800">الإصدار الحالي</div><div style="font-size:12px;color:var(--txt-3);margin-top:2px" id="currentVersion">v1.4.0</div></div>
-          <button class="btn-sm" id="checkUpdateBtn" style="background:var(--grad-cosmic);color:#fff;padding:10px 16px;border-radius:var(--r-full);font-size:13px;font-weight:800">فحص الآن</button>
+      <div class="sec-title" data-i18n="profile_actions">🔄 إعادة</div>
+      <div class="settings-card">
+        <div class="settings-row" style="cursor:pointer" id="reassessRow">
+          <div><div class="lbl" data-i18n="profile_reassess">إعادة التقييم</div><div class="sub" data-i18n="profile_reassess_sub">بدء تقييم جديد</div></div>
+          <span style="font-size:20px">→</span>
+        </div>
+        <div class="settings-row" style="cursor:pointer" id="resetRow">
+          <div><div class="lbl" style="color:#E11D74" data-i18n="profile_reset">مسح كل البيانات</div><div class="sub" data-i18n="profile_reset_sub">حذف نهائي</div></div>
+          <span style="font-size:20px">🗑️</span>
         </div>
       </div>
+
+      <p class="muted center" style="margin-top:20px">
+        <span data-i18n="version_lbl">الإصدار</span>: <span id="versionText">1.0.0</span>
+      </p>
     </section>
 
   </main>
 
+  <!-- ====== BOTTOM NAV ====== -->
   <nav class="bottom-nav" id="bottomNav">
-    <button data-target="s-home"><span class="ic">🏠</span><span>الرئيسية</span></button>
-    <button data-target="s-activities"><span class="ic">🎯</span><span>الأنشطة</span></button>
-    <button class="center-btn" id="logCenterBtn"><span class="ic">➕</span><span>تسجيل</span></button>
-    <button data-target="s-progress"><span class="ic">📊</span><span>التقدم</span></button>
-    <button data-target="s-profile"><span class="ic">👤</span><span>الملف</span></button>
+    <button data-screen="home"><span class="ic">🏠</span><span data-i18n="nav_home">الرئيسية</span></button>
+    <button data-screen="activities"><span class="ic">🎯</span><span data-i18n="nav_acts">الأنشطة</span></button>
+    <button id="logCenterBtn"><span class="ic" style="background:var(--grad);color:#fff;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-top:-22px;border:3px solid var(--card);box-shadow:var(--sh-violet)">➕</span><span data-i18n="nav_log" style="margin-top:-2px">تسجيل</span></button>
+    <button data-screen="progress"><span class="ic">📊</span><span data-i18n="nav_prog">التقدم</span></button>
+    <button data-screen="profile"><span class="ic">👤</span><span data-i18n="nav_profile">الملف</span></button>
   </nav>
 
-  <div class="modal-overlay" id="logModal">
+  <!-- ====== LOG MODAL ====== -->
+  <div class="modal" id="logModal">
     <div class="modal-sheet">
-      <div class="modal-grip"></div>
-      <h3>سجّل نشاط اليوم ✨</h3>
-      <p class="sub" id="logActivityName">—</p>
-      <div style="font-size:13.5px;font-weight:800;color:var(--txt-2);margin-bottom:10px">كيف كانت تجربتك؟</div>
+      <div class="grip"></div>
+      <h3 data-i18n="log_title">سجّل نشاط اليوم</h3>
+      <p class="sub" id="logActName">—</p>
+      <div style="font-size:13px;font-weight:800;color:var(--txt-2);margin-bottom:10px" data-i18n="log_mood">كيف كانت التجربة؟</div>
       <div class="mood-row" id="logMoodRow">
-        <button class="mo" data-mood="5">🤩<span>ممتاز</span></button>
-        <button class="mo" data-mood="4">😊<span>جيد</span></button>
-        <button class="mo" data-mood="3">😐<span>عادي</span></button>
-        <button class="mo" data-mood="2">😔<span>صعب</span></button>
-        <button class="mo" data-mood="1">😤<span>لم ينجح</span></button>
+        <button class="mo" data-mood="5">🤩<span data-i18n="log_m5">ممتاز</span></button>
+        <button class="mo" data-mood="4">😊<span data-i18n="log_m4">جيد</span></button>
+        <button class="mo" data-mood="3">😐<span data-i18n="log_m3">عادي</span></button>
+        <button class="mo" data-mood="2">😔<span data-i18n="log_m2">صعب</span></button>
+        <button class="mo" data-mood="1">😤<span data-i18n="log_m1">لم ينجح</span></button>
       </div>
       <div class="field">
-        <label>📝 ملاحظة (اختياري)</label>
-        <textarea id="logNote" maxlength="200" placeholder="مثال: تفاعل بحماس..."></textarea>
+        <label data-i18n="log_note">📝 ملاحظة (اختياري)</label>
+        <textarea id="logNote" maxlength="200" data-i18n-placeholder="log_note_ph" placeholder="ملاحظات..."></textarea>
       </div>
-      <div style="display:flex;gap:10px;margin-top:16px">
-        <button class="btn" id="cancelLog" style="flex:0 0 auto;padding:16px 22px">إلغاء</button>
-        <button class="btn primary" id="confirmLog" style="flex:1">حفظ التسجيل 🎉</button>
+      <div style="display:flex;gap:10px;margin-top:10px">
+        <button class="btn light" id="cancelLog" style="flex:0 0 auto;padding:14px 20px" data-i18n="log_cancel">إلغاء</button>
+        <button class="btn primary" id="confirmLog" style="flex:1"><span data-i18n="log_save">حفظ</span> 🎉</button>
       </div>
     </div>
   </div>
@@ -714,760 +628,452 @@ html[dir="ltr"] .mascot-bubble .close-btn{left:auto;right:-8px}
 </div>
 
 <script>
-/* ============================================================
-   NABD AL-TAMAYOZ v5.0 — FULLY WORKING
-   ============================================================ */
+/* ================================================================
+   NABD v6.0 — WORKING BILINGUAL APP
+   ================================================================ */
+const APP_VERSION = "1.0.0";
 
-const APP_VERSION = "1.4.0";
-const VERSION_CHECK_INTERVAL = 6 * 60 * 60 * 1000;
+/* ============ i18n ============ */
+const I18N = {
+  ar: {
+    app_name:'نبض التميّز',
+    app_tagline:'رحلة يومية مع طفلك: تقييم شامل، نشاط كل يوم، وتتبّع التطور',
+    welcome_f1:'تقييم شامل', welcome_f1d:'4 محاور نمائية رئيسية',
+    welcome_f2:'نشاط يومي', welcome_f2d:'تمرين منزلي بسيط كل يوم',
+    welcome_f3:'إنجازات وتقدم', welcome_f3d:'تتبّع التطور واحتفل بكل خطوة',
+    welcome_start:'ابدأ الرحلة', welcome_time:'⏱️ مدة التقييم: 10-15 دقيقة',
+    child_title:'بيانات الطفل', child_sub:'سنخصص التجربة حسب عمره',
+    child_name:'👶 اسم الطفل (اختياري)', child_name_ph:'مثال: يوسف',
+    child_age:'🎂 العمر بالسنة *', child_age_ph:'اختر العمر',
+    child_gender:'⚧ الجنس (اختياري)', child_male:'👦 ولد', child_female:'👧 بنت',
+    child_next:'متابعة للتقييم',
+    q_next:'التالي',
+    results_score_lbl:'نبض التميّز',
+    results_notice_t:'تنويه منهجي',
+    results_notice_b:' هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية. ليست تشخيصًا طبيًا ولا مقارنة بأقران.',
+    results_domains:'المحاور الأربعة',
+    results_subdomains:'المجالات الفرعية',
+    results_start_companion:'ابدأ رحلة الرفيق اليومي',
+    home_day:'يوم', home_mood_q:'💭 كيف حال طفلك اليوم؟',
+    home_today_title:'🎯 نشاط اليوم', home_week_title:'📊 تقدم الأسبوع',
+    home_stats_title:'📈 ملخص سريع',
+    home_stat_acts:'نشاط', home_stat_long:'أطول سلسلة', home_stat_ach:'إنجاز',
+    acts_title:'مكتبة الأنشطة', acts_sub:'جميع الأنشطة المنزلية المتاحة', acts_all:'الكل',
+    domain_emotional:'عاطفي', domain_cognitive:'عقلي', domain_behavioral:'سلوكي', domain_skills:'مهاري',
+    prog_streak_lbl:'🔥 أيام متتالية',
+    prog_week_chart:'📅 آخر 7 أيام', prog_achievements:'🏆 الإنجازات',
+    profile_title:'الملف الشخصي', profile_sub:'إعدادات وبيانات',
+    profile_settings:'⚙️ الإعدادات',
+    set_dark:'🌙 الوضع المظلم', set_dark_sub:'استخدام مريح ليلاً',
+    set_lang:'🌐 اللغة', set_lang_sub:'العربية / English',
+    set_sound:'🔊 الأصوات', set_sound_sub:'نقرات وتنبيهات',
+    profile_actions:'🔄 إعادة',
+    profile_reassess:'إعادة التقييم', profile_reassess_sub:'بدء تقييم جديد',
+    profile_reset:'مسح كل البيانات', profile_reset_sub:'حذف نهائي',
+    version_lbl:'الإصدار',
+    nav_home:'الرئيسية', nav_acts:'الأنشطة', nav_log:'تسجيل', nav_prog:'التقدم', nav_profile:'الملف',
+    log_title:'سجّل نشاط اليوم', log_mood:'كيف كانت التجربة؟',
+    log_m5:'ممتاز', log_m4:'جيد', log_m3:'عادي', log_m2:'صعب', log_m1:'لم ينجح',
+    log_note:'📝 ملاحظة (اختياري)', log_note_ph:'ملاحظات...',
+    log_cancel:'إلغاء', log_save:'حفظ',
+    // greetings
+    greet_morning:'صباح الخير ☀️', greet_afternoon:'مساء الخير 🌤️', greet_evening:'مساء الخير 🌙',
+    // status labels
+    status_high:'أداء مرتفع نسبيًا', status_mid:'مجال متوازن', status_low:'فرصة واعدة للتعزيز',
+    week_1:'الأسبوع الأول', week_2:'الأسبوع الثاني', week_3:'الأسبوع الثالث', week_4:'الأسبوع الرابع',
+    today_lbl:'اليوم', done_today:'🎉 أُنجز اليوم — رائع!',
+    start_activity:'ابدأ النشاط 🎯', view_details:'📖 التفاصيل',
+    activity_done:'🎉 أحسنت! أنجزت نشاط اليوم',
+    log_this:'سجّل هذا النشاط',
+    toast_saved:'🎉 تم الحفظ', toast_mood_saved:'💭 تم تسجيل المزاج',
+    toast_new_streak:'🔥 سلسلتك الآن', toast_choose_mood:'اختر شعورك',
+    toast_choose_age:'الرجاء اختيار العمر',
+    toast_answered:'الرجاء اختيار إجابة',
+    empty_acts:'لا توجد أنشطة', empty_done:'أكملت جميع الأنشطة!',
+    back_home:'← العودة للرئيسية',
+    watch_for:'👀 ما الذي تراقبه؟',
+    tips:'💡 نصائح للتنفيذ',
+    tips1:'اختر وقتًا هادئًا بدون مشتتات.',
+    tips2:'اجعلها لعبة لا واجبًا.',
+    tips3:'الثناء على الجهد لا النتيجة.',
+    duration:'⏱️ المدة', freq:'🔁 التكرار'
+  },
+  en: {
+    app_name:'Nabd Excellence',
+    app_tagline:'A daily journey with your child: assessment, activity every day, progress tracking',
+    welcome_f1:'Complete Assessment', welcome_f1d:'4 main developmental domains',
+    welcome_f2:'Daily Activity', welcome_f2d:'Simple home exercise every day',
+    welcome_f3:'Achievements & Progress', welcome_f3d:'Track growth, celebrate each step',
+    welcome_start:'Start the Journey', welcome_time:'⏱️ Duration: 10-15 minutes',
+    child_title:'Child Information', child_sub:'We will tailor the experience to their age',
+    child_name:'👶 Child name (optional)', child_name_ph:'e.g., Youssef',
+    child_age:'🎂 Age in years *', child_age_ph:'Choose age',
+    child_gender:'⚧ Gender (optional)', child_male:'👦 Boy', child_female:'👧 Girl',
+    child_next:'Continue to assessment',
+    q_next:'Next',
+    results_score_lbl:'Nabd Score',
+    results_notice_t:'Methodological note',
+    results_notice_b:' This score reflects the level of skills in your child\'s current environment. It is not a medical diagnosis nor a comparison with peers.',
+    results_domains:'Four Domains',
+    results_subdomains:'Sub-domains',
+    results_start_companion:'Start Daily Companion Journey',
+    home_day:'days', home_mood_q:'💭 How is your child today?',
+    home_today_title:"🎯 Today's Activity", home_week_title:'📊 Week Progress',
+    home_stats_title:'📈 Quick Stats',
+    home_stat_acts:'Activities', home_stat_long:'Longest streak', home_stat_ach:'Achievements',
+    acts_title:'Activity Library', acts_sub:'All available home activities', acts_all:'All',
+    domain_emotional:'Emotional', domain_cognitive:'Cognitive', domain_behavioral:'Behavioral', domain_skills:'Skills',
+    prog_streak_lbl:'🔥 Consecutive days',
+    prog_week_chart:'📅 Last 7 days', prog_achievements:'🏆 Achievements',
+    profile_title:'Profile', profile_sub:'Settings and data',
+    profile_settings:'⚙️ Settings',
+    set_dark:'🌙 Dark Mode', set_dark_sub:'Comfortable use at night',
+    set_lang:'🌐 Language', set_lang_sub:'العربية / English',
+    set_sound:'🔊 Sound', set_sound_sub:'Clicks and alerts',
+    profile_actions:'🔄 Actions',
+    profile_reassess:'Reassess', profile_reassess_sub:'Start new assessment',
+    profile_reset:'Reset all data', profile_reset_sub:'Permanent deletion',
+    version_lbl:'Version',
+    nav_home:'Home', nav_acts:'Activities', nav_log:'Log', nav_prog:'Progress', nav_profile:'Profile',
+    log_title:"Log today's activity", log_mood:'How was the experience?',
+    log_m5:'Excellent', log_m4:'Good', log_m3:'OK', log_m2:'Hard', log_m1:'Did not work',
+    log_note:'📝 Note (optional)', log_note_ph:'Notes...',
+    log_cancel:'Cancel', log_save:'Save',
+    greet_morning:'Good morning ☀️', greet_afternoon:'Good afternoon 🌤️', greet_evening:'Good evening 🌙',
+    status_high:'Relatively high performance', status_mid:'Balanced area', status_low:'Promising area for growth',
+    week_1:'Week 1', week_2:'Week 2', week_3:'Week 3', week_4:'Week 4',
+    today_lbl:'Today', done_today:'🎉 Done today — awesome!',
+    start_activity:'Start Activity 🎯', view_details:'📖 Details',
+    activity_done:'🎉 Well done! Today\'s activity is complete',
+    log_this:'Log this activity',
+    toast_saved:'🎉 Saved', toast_mood_saved:'💭 Mood recorded',
+    toast_new_streak:'🔥 Your streak is now', toast_choose_mood:'Choose a mood',
+    toast_choose_age:'Please choose age',
+    toast_answered:'Please select an answer',
+    empty_acts:'No activities found', empty_done:'You completed all activities!',
+    back_home:'← Back to home',
+    watch_for:'👀 What to watch for?',
+    tips:'💡 Implementation tips',
+    tips1:'Choose a calm time without distractions.',
+    tips2:'Make it a game, not a chore.',
+    tips3:'Praise effort, not results.',
+    duration:'⏱️ Duration', freq:'🔁 Frequency'
+  }
+};
 
-/* ============ DATA ============ */
+/* ============ DOMAINS ============ */
 const DOMAINS = {
-  emotional:  { name:'العاطفي', nameEn:'Emotional', icon:'💗', color:'#7C3AED', grad:'linear-gradient(135deg,#7C3AED,#FF6B9D)' },
-  cognitive:  { name:'العقلي',  nameEn:'Cognitive', icon:'🧠', color:'#4ECDC4', grad:'linear-gradient(135deg,#4ECDC4,#7C3AED)' },
-  behavioral: { name:'السلوكي', nameEn:'Behavioral',icon:'🎯', color:'#06D6A0', grad:'linear-gradient(135deg,#06D6A0,#4ECDC4)' },
-  skills:     { name:'المهاري', nameEn:'Skills',    icon:'🤝', color:'#FF6B9D', grad:'linear-gradient(135deg,#FF6B9D,#FFD166)' }
+  emotional:  { icon:'💗', color:'#E74C3C', grad:'linear-gradient(135deg,#E74C3C,#FF6B9D)', ar:'العاطفي', en:'Emotional' },
+  cognitive:  { icon:'🧠', color:'#7C3AED', grad:'linear-gradient(135deg,#7C3AED,#A78BFA)', ar:'العقلي', en:'Cognitive' },
+  behavioral: { icon:'🎯', color:'#06D6A0', grad:'linear-gradient(135deg,#06D6A0,#4ECDC4)', ar:'السلوكي', en:'Behavioral' },
+  skills:     { icon:'🤝', color:'#FF6B9D', grad:'linear-gradient(135deg,#FF6B9D,#FFD166)', ar:'المهاري', en:'Skills' }
 };
 const SUBDOMAINS = {
-  'emo-awareness':  { name:'الوعي الانفعالي الذاتي', domain:'emotional', icon:'💭' },
-  'emo-regulation': { name:'التنظيم والضبط العاطفي', domain:'emotional', icon:'🧘' },
-  'emo-empathy':    { name:'التعاطف والوعي الاجتماعي', domain:'emotional', icon:'🤍' },
-  'cog-memory':     { name:'الذاكرة العاملة', domain:'cognitive', icon:'🧩' },
-  'cog-flex':       { name:'المرونة المعرفية', domain:'cognitive', icon:'🔄' },
-  'cog-reason':     { name:'التفكير المنطقي', domain:'cognitive', icon:'🔍' },
-  'beh-inhibit':    { name:'الضبط التثبيطي', domain:'behavioral', icon:'✋' },
-  'beh-routine':    { name:'الالتزام بالروتين', domain:'behavioral', icon:'📋' },
-  'skl-comm':       { name:'المهارات التواصلية', domain:'skills', icon:'💬' },
-  'skl-social':     { name:'المهارات الاجتماعية', domain:'skills', icon:'🤝' }
+  'emo-awareness':  { domain:'emotional', icon:'💭', ar:'الوعي الانفعالي', en:'Emotional Awareness' },
+  'emo-regulation': { domain:'emotional', icon:'🧘', ar:'التنظيم العاطفي', en:'Emotional Regulation' },
+  'emo-empathy':    { domain:'emotional', icon:'🤍', ar:'التعاطف', en:'Empathy' },
+  'cog-memory':     { domain:'cognitive', icon:'🧩', ar:'الذاكرة العاملة', en:'Working Memory' },
+  'cog-flex':       { domain:'cognitive', icon:'🔄', ar:'المرونة المعرفية', en:'Cognitive Flexibility' },
+  'cog-reason':     { domain:'cognitive', icon:'🔍', ar:'التفكير المنطقي', en:'Logical Reasoning' },
+  'beh-inhibit':    { domain:'behavioral', icon:'✋', ar:'الضبط التثبيطي', en:'Inhibitory Control' },
+  'beh-routine':    { domain:'behavioral', icon:'📋', ar:'الالتزام بالروتين', en:'Routine Compliance' },
+  'skl-comm':       { domain:'skills', icon:'💬', ar:'المهارات التواصلية', en:'Communication' },
+  'skl-social':     { domain:'skills', icon:'🤝', ar:'المهارات الاجتماعية', en:'Social Skills' }
 };
+
+/* ============ 34 QUESTIONS (AR + EN) ============ */
 const QUESTIONS = [
-  { id:'BND-EMO-01', text:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.', domain:'emotional', sub:'emo-awareness', ageMin:3, ageMax:5 },
-  { id:'BND-EMO-02', text:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب.', domain:'emotional', sub:'emo-awareness', ageMin:3, ageMax:5 },
-  { id:'BND-EMO-03', text:'يوضح السبب المباشر لشعوره بالضيق عندما يسأله أحد الأبوين.', domain:'emotional', sub:'emo-awareness', ageMin:5, ageMax:7 },
-  { id:'BND-EMO-05', text:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة محددة.', domain:'emotional', sub:'emo-awareness', ageMin:7, ageMax:12 },
-  { id:'BND-EMO-07', text:'يلجأ لأحد الأبوين لطلب التهدئة عند تعثر لعبته.', domain:'emotional', sub:'emo-regulation', ageMin:3, ageMax:5 },
-  { id:'BND-EMO-08', text:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه.', domain:'emotional', sub:'emo-regulation', ageMin:3, ageMax:5 },
-  { id:'BND-EMO-09', text:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.', domain:'emotional', sub:'emo-regulation', ageMin:5, ageMax:7 },
-  { id:'BND-EMO-11', text:'يستعيد توازنه العاطفي ويتجاوز شعور الخسارة.', domain:'emotional', sub:'emo-regulation', ageMin:7, ageMax:12 },
-  { id:'BND-EMO-12', text:'يقدم لعبة أو لمسة حنونة لمواساة طفل آخر يبكي.', domain:'emotional', sub:'emo-empathy', ageMin:3, ageMax:5 },
-  { id:'BND-EMO-13', text:'يسأل صديقه عما يضايقه فور رؤيته متألماً.', domain:'emotional', sub:'emo-empathy', ageMin:3, ageMax:6 },
-  { id:'BND-EMO-15', text:'يخفض صوته تلقائياً عند علمه بمرض أحد أفراد الأسرة.', domain:'emotional', sub:'emo-empathy', ageMin:7, ageMax:12 },
-  { id:'BND-COG-01', text:'ينفذ تعليمات شفاهية متتابعة من خطوتين دون نسيان.', domain:'cognitive', sub:'cog-memory', ageMin:3, ageMax:5 },
-  { id:'BND-COG-02', text:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات دون تكرار.', domain:'cognitive', sub:'cog-memory', ageMin:5, ageMax:7 },
-  { id:'BND-COG-03', text:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها.', domain:'cognitive', sub:'cog-memory', ageMin:5, ageMax:7 },
-  { id:'BND-COG-05', text:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات.', domain:'cognitive', sub:'cog-memory', ageMin:7, ageMax:12 },
-  { id:'BND-COG-07', text:'ينقل تصنيف الأشياء من معيار اللون إلى معيار الشكل.', domain:'cognitive', sub:'cog-flex', ageMin:3, ageMax:5 },
-  { id:'BND-COG-09', text:'يتقبل تعديل موعد الخروج دون تذمر يستمر لأكثر من بضع دقائق.', domain:'cognitive', sub:'cog-flex', ageMin:5, ageMax:8 },
-  { id:'BND-COG-11', text:'يجرب طريقة تفكير جديدة فور فشل المحاولة الأولى.', domain:'cognitive', sub:'cog-flex', ageMin:7, ageMax:12 },
-  { id:'BND-COG-12', text:'يقدم تفسيراً واقعياً لسبب انسكاب الماء أو انكسار الغرض.', domain:'cognitive', sub:'cog-reason', ageMin:3, ageMax:6 },
-  { id:'BND-COG-13', text:'يميز بوضوح بين الأحداث الحقيقية والأحداث الخيالية.', domain:'cognitive', sub:'cog-reason', ageMin:5, ageMax:8 },
-  { id:'BND-COG-14', text:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم.', domain:'cognitive', sub:'cog-reason', ageMin:6, ageMax:9 },
-  { id:'BND-COG-16', text:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار.', domain:'cognitive', sub:'cog-reason', ageMin:7, ageMax:12 },
-  { id:'BND-BEH-01', text:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع حركي.', domain:'behavioral', sub:'beh-inhibit', ageMin:3, ageMax:6 },
-  { id:'BND-BEH-02', text:'ينتظر دوره في توزيع الوجبات بالبيت دون تذمر.', domain:'behavioral', sub:'beh-inhibit', ageMin:5, ageMax:9 },
-  { id:'BND-BEH-03', text:'يتوقف عن الحركة والجري تماماً فور سماع إشارة النهي.', domain:'behavioral', sub:'beh-inhibit', ageMin:5, ageMax:12 },
-  { id:'BND-BEH-06', text:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.', domain:'behavioral', sub:'beh-routine', ageMin:3, ageMax:6 },
-  { id:'BND-BEH-07', text:'يبدأ بتنفيذ الخطوة الأولى من روتين العودة للبيت فور دخوله.', domain:'behavioral', sub:'beh-routine', ageMin:5, ageMax:9 },
-  { id:'BND-BEH-08', text:'يعيد ألعابه وأدواته المدرسية إلى مواضعها فور الانتهاء.', domain:'behavioral', sub:'beh-routine', ageMin:7, ageMax:12 },
-  { id:'BND-SKL-01', text:'يستخدم جملة صريحة وواضحة لطلب طعامه أو ألعابه.', domain:'skills', sub:'skl-comm', ageMin:3, ageMax:6 },
-  { id:'BND-SKL-02', text:'ينظر باتجاه المتحدث أثناء الحوار المباشر معه.', domain:'skills', sub:'skl-comm', ageMin:5, ageMax:9 },
-  { id:'BND-SKL-03', text:'عندما يتلقى توجيهاً غير واضح، يستفسر بكلماته.', domain:'skills', sub:'skl-comm', ageMin:7, ageMax:12 },
-  { id:'BND-SKL-06', text:'يشارك أدواته وألعابه مع زملائه بالتناوب أثناء اللعب.', domain:'skills', sub:'skl-social', ageMin:3, ageMax:6 },
-  { id:'BND-SKL-07', text:'يقترح حلاً وسطاً مرضياً عند الخلاف مع صديقه.', domain:'skills', sub:'skl-social', ageMin:5, ageMax:9 },
-  { id:'BND-SKL-08', text:'يتعاون مع فريق من الأقران لإتمام مهمة مشتركة بنجاح.', domain:'skills', sub:'skl-social', ageMin:7, ageMax:12 }
+  {id:'BND-EMO-01',ar:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.',en:'Uses clear words to name their distress instead of screaming.',domain:'emotional',sub:'emo-awareness'},
+  {id:'BND-EMO-02',ar:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب.',en:'Names their fear or confusion with clear words during play.',domain:'emotional',sub:'emo-awareness'},
+  {id:'BND-EMO-03',ar:'يوضح السبب المباشر لشعوره بالضيق عند سؤاله.',en:'Explains the direct reason for their distress when asked.',domain:'emotional',sub:'emo-awareness'},
+  {id:'BND-EMO-05',ar:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة.',en:'Expresses frustration when struggling with a task.',domain:'emotional',sub:'emo-awareness'},
+  {id:'BND-EMO-07',ar:'يلجأ للمربي لطلب التهدئة عند تعثر لعبته.',en:'Seeks the caregiver for calming when play gets hard.',domain:'emotional',sub:'emo-regulation'},
+  {id:'BND-EMO-08',ar:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه.',en:'Responds to verbal guidance or hug to calm anger.',domain:'emotional',sub:'emo-regulation'},
+  {id:'BND-EMO-09',ar:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.',en:'Pauses and steps away to self-calm when upset.',domain:'emotional',sub:'emo-regulation'},
+  {id:'BND-EMO-11',ar:'يستعيد توازنه ويتجاوز شعور الخسارة في الألعاب.',en:'Regains balance and moves past losing in games.',domain:'emotional',sub:'emo-regulation'},
+  {id:'BND-EMO-12',ar:'يقدم لعبة أو لمسة حنونة لمواساة طفل يبكي.',en:'Offers a toy or gentle touch to comfort a crying child.',domain:'emotional',sub:'emo-empathy'},
+  {id:'BND-EMO-13',ar:'يسأل صديقه عما يضايقه فور رؤيته متألماً.',en:'Asks a friend what bothers them upon seeing them upset.',domain:'emotional',sub:'emo-empathy'},
+  {id:'BND-EMO-15',ar:'يخفض صوته تلقائياً عند علمه بمرض أحد أفراد الأسرة.',en:'Lowers their voice automatically upon learning a family member is sick.',domain:'emotional',sub:'emo-empathy'},
+  {id:'BND-COG-01',ar:'ينفذ تعليمات متتابعة من خطوتين بترتيبها الصحيح.',en:'Follows two-step sequential instructions in correct order.',domain:'cognitive',sub:'cog-memory'},
+  {id:'BND-COG-02',ar:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات.',en:'Executes three-step home instructions.',domain:'cognitive',sub:'cog-memory'},
+  {id:'BND-COG-03',ar:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها.',en:'Recalls and repeats verbal rules of group games.',domain:'cognitive',sub:'cog-memory'},
+  {id:'BND-COG-05',ar:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات.',en:'Retains sequential mental steps while doing homework.',domain:'cognitive',sub:'cog-memory'},
+  {id:'BND-COG-07',ar:'ينقل تصنيف الأشياء من معيار اللون إلى الشكل.',en:'Shifts sorting from color to shape criterion.',domain:'cognitive',sub:'cog-flex'},
+  {id:'BND-COG-09',ar:'يتقبل تعديل موعد الخروج دون تذمر ممتد.',en:'Accepts a change in outing schedule without prolonged complaint.',domain:'cognitive',sub:'cog-flex'},
+  {id:'BND-COG-11',ar:'يجرب طريقة تفكير جديدة فور فشل المحاولة الأولى.',en:'Tries a new approach right after the first attempt fails.',domain:'cognitive',sub:'cog-flex'},
+  {id:'BND-COG-12',ar:'يقدم تفسيراً واقعياً لسبب انسكاب الماء.',en:'Gives a realistic explanation for why water spilled.',domain:'cognitive',sub:'cog-reason'},
+  {id:'BND-COG-13',ar:'يميز بين الأحداث الحقيقية والأحداث الخيالية.',en:'Distinguishes between real and imaginary events.',domain:'cognitive',sub:'cog-reason'},
+  {id:'BND-COG-14',ar:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم.',en:'Expects a friend to look for the toy in its old place.',domain:'cognitive',sub:'cog-reason'},
+  {id:'BND-COG-16',ar:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار.',en:'Provides logical reasoning supported by evidence when choosing.',domain:'cognitive',sub:'cog-reason'},
+  {id:'BND-BEH-01',ar:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع.',en:'Waits their turn calmly in group play without pushing.',domain:'behavioral',sub:'beh-inhibit'},
+  {id:'BND-BEH-02',ar:'ينتظر دوره في توزيع الوجبات بالبيت دون تذمر.',en:'Waits their turn at home meal distribution without complaint.',domain:'behavioral',sub:'beh-inhibit'},
+  {id:'BND-BEH-03',ar:'يتوقف عن الحركة تماماً فور سماع إشارة النهي.',en:'Stops moving completely upon hearing a stop signal.',domain:'behavioral',sub:'beh-inhibit'},
+  {id:'BND-BEH-06',ar:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.',en:'Puts on shoes or clothes independently when preparing to go out.',domain:'behavioral',sub:'beh-routine'},
+  {id:'BND-BEH-07',ar:'يبدأ الخطوة الأولى من روتين العودة فور دخوله.',en:'Starts the first step of return routine upon entering.',domain:'behavioral',sub:'beh-routine'},
+  {id:'BND-BEH-08',ar:'يعيد ألعابه وأدواته إلى مواضعها فور الانتهاء.',en:'Returns toys and tools to their places after use.',domain:'behavioral',sub:'beh-routine'},
+  {id:'BND-SKL-01',ar:'يستخدم جملة صريحة لطلب طعامه أو ألعابه.',en:'Uses a clear sentence to request food or toys.',domain:'skills',sub:'skl-comm'},
+  {id:'BND-SKL-02',ar:'ينظر باتجاه المتحدث أثناء الحوار المباشر.',en:'Looks at the speaker during direct conversation.',domain:'skills',sub:'skl-comm'},
+  {id:'BND-SKL-03',ar:'عندما لا يفهم، يستفسر بكلماته بدلاً من التوقف.',en:'When unclear, asks for clarification instead of stopping.',domain:'skills',sub:'skl-comm'},
+  {id:'BND-SKL-06',ar:'يشارك أدواته وألعابه مع زملائه بالتناوب.',en:'Shares tools and toys with peers by taking turns.',domain:'skills',sub:'skl-social'},
+  {id:'BND-SKL-07',ar:'يقترح حلاً وسطاً عند الخلاف مع صديقه.',en:'Suggests a middle-ground solution when disagreeing with a friend.',domain:'skills',sub:'skl-social'},
+  {id:'BND-SKL-08',ar:'يتعاون مع فريق لإتمام مهمة مشتركة بنجاح.',en:'Cooperates with a team to complete a shared task successfully.',domain:'skills',sub:'skl-social'}
 ];
-const LIKERT = [
-  { val:0, label:'لم يظهر بعد', hint:'يحتاج دائمًا للمساعدة', icon:'🌱' },
-  { val:1, label:'يظهر أحيانًا', hint:'يحتاج تذكيرًا أو مساعدة جزئية', icon:'🌿' },
-  { val:2, label:'يظهر غالبًا', hint:'بمبادرة ذاتية غالبًا', icon:'🌳' },
-  { val:3, label:'بثبات واستقلالية', hint:'بانتظام ودون تذكير', icon:'⭐' }
-];
+
+/* ============ 30 ACTIVITIES (AR + EN) ============ */
 const ACTIVITIES = {
   'emo-awareness': [
-    { icon:'📖', title:'قاموس المشاعر اليومي', duration:'5 د', freq:'يوميًا', age:[3,5], desc:'بطاقات وجوه للمشاعر الأساسية، يختار الطفل وجهه الحالي ويسميه بكلمة.', watch:'هل يستبدل الصراخ بالتسمية اللفظية؟' },
-    { icon:'📚', title:'قصة بطلي والموقف المفاجئ', duration:'10 د', freq:'3×أسبوعيًا', age:[5,7], desc:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.', watch:'هل يربط السبب بالنتيجة الانفعالية؟' },
-    { icon:'🌤️', title:'لوحة الطقس الداخلي', duration:'5 د', freq:'عند الحاجة', age:[7,12], desc:'تشبيه الحالة الداخلية بالطقس (مشمس/غائم/عاصف).', watch:'هل يستخدم مفردات دقيقة؟' }
+    {icon:'📖',dur:'5 د',frq:'يوميًا',title_ar:'قاموس المشاعر اليومي',title_en:'Daily Emotions Dictionary',desc_ar:'بطاقات وجوه للمشاعر، يختار الطفل وجهه ويسميه.',desc_en:'Emotion face cards; child picks and names their current feeling.',watch_ar:'هل يستبدل الصراخ بالتسمية؟',watch_en:'Does he replace screaming with naming?',age:[3,5]},
+    {icon:'📚',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'قصة بطلي المنزعج',title_en:'My Upset Hero Story',desc_ar:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب.',desc_en:'Read a story and pause at an upset character to link the reason.',watch_ar:'هل يربط السبب بالشعور؟',watch_en:'Does he link cause to feeling?',age:[5,7]},
+    {icon:'🌤️',dur:'5 د',frq:'عند الحاجة',title_ar:'لوحة الطقس الداخلي',title_en:'Inner Weather Board',desc_ar:'تشبيه الحالة الداخلية بالطقس (مشمس/غائم).',desc_en:'Compare inner state to weather (sunny/cloudy).',watch_ar:'هل يستخدم مفردات دقيقة؟',watch_en:'Does he use precise words?',age:[7,12]}
   ],
   'emo-regulation': [
-    { icon:'🧘', title:'ركن التنفس والتهدئة', duration:'5-10 د', freq:'عند التوتر', age:[5,7], desc:'مساحة هادئة بوسادة، يتنفس فيها الطفل 3 أنفاس بطيئة.', watch:'هل يقبل الابتعاد للتهدئة؟' },
-    { icon:'🤗', title:'عناق التهدئة المشتركة', duration:'3-5 د', freq:'عند الضيق', age:[3,5], desc:'احتضان هادئ مع صوت منخفض "أنا بجانبك، نتنفس معًا".', watch:'هل تنخفض حدة البكاء؟' },
-    { icon:'🌉', title:'إعادة بناء الجسر', duration:'15 د', freq:'2×أسبوعيًا', age:[7,12], desc:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم "لنجرب فكرة جديدة".', watch:'هل يعود للمهمة بعد الإحباط؟' }
+    {icon:'🧘',dur:'5-10 د',frq:'عند التوتر',title_ar:'ركن التنفس والتهدئة',title_en:'Breathing Calm Corner',desc_ar:'مساحة هادئة بوسادة، يتنفس الطفل 3 أنفاس بطيئة.',desc_en:'Calm space with a pillow; child takes 3 slow breaths.',watch_ar:'هل يقبل الابتعاد للتهدئة؟',watch_en:'Does he accept stepping away?',age:[5,7]},
+    {icon:'🤗',dur:'3-5 د',frq:'عند الضيق',title_ar:'عناق التهدئة المشتركة',title_en:'Co-regulation Hug',desc_ar:'احتضان هادئ مع صوت منخفض "أنا بجانبك".',desc_en:'Gentle hug with a low voice: "I\'m here with you".',watch_ar:'هل تنخفض حدة البكاء؟',watch_en:'Does crying intensity decrease?',age:[3,5]},
+    {icon:'🌉',dur:'15 د',frq:'2×أسبوعيًا',title_ar:'إعادة بناء الجسر',title_en:'Rebuild the Bridge',desc_ar:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم محاولة جديدة.',desc_en:'Build a model; when it falls, brief break then retry.',watch_ar:'هل يعود للمهمة بعد الإحباط؟',watch_en:'Does he return to task after frustration?',age:[7,12]}
   ],
   'emo-empathy': [
-    { icon:'🎁', title:'صندوق المواساة', duration:'2 د', freq:'عند البكاء', age:[3,5], desc:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.', watch:'هل يبادر بتقديم غرض التهدئة؟' },
-    { icon:'🎭', title:'محقق الاطمئنان اللفظي', duration:'10 د', freq:'2×أسبوعيًا', age:[3,6], desc:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.', watch:'هل يسأل تلقائيًا عن حال الآخرين؟' },
-    { icon:'🤫', title:'ساعة الهدوء الأسرية', duration:'30-60 د', freq:'عند المرض', age:[7,12], desc:'شرح ظرف مرض أحد الأفراد والاتفاق على نشاط همس.', watch:'هل يخفض صوته تلقائيًا؟' }
+    {icon:'🎁',dur:'2 د',frq:'عند البكاء',title_ar:'صندوق المواساة',title_en:'Comfort Box',desc_ar:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.',desc_en:'Box with a stuffed toy and tissue; child offers to one crying.',watch_ar:'هل يبادر بتقديم غرض التهدئة؟',watch_en:'Does he initiate offering comfort?',age:[3,5]},
+    {icon:'🎭',dur:'10 د',frq:'2×أسبوعيًا',title_ar:'محقق الاطمئنان',title_en:'Empathy Detective',desc_ar:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.',desc_en:'Puppet role-play to practice supportive phrases.',watch_ar:'هل يسأل تلقائيًا عن حال الآخرين؟',watch_en:'Does he ask about others automatically?',age:[3,6]},
+    {icon:'🤫',dur:'30-60 د',frq:'عند المرض',title_ar:'ساعة الهدوء الأسرية',title_en:'Family Quiet Hour',desc_ar:'الاتفاق على نشاط همس مراعاةً لمريض.',desc_en:'Agree on a whisper activity in consideration of a sick member.',watch_ar:'هل يخفض صوته تلقائيًا؟',watch_en:'Does he lower his voice automatically?',age:[7,12]}
   ],
   'cog-memory': [
-    { icon:'🎒', title:'حقيبة السفر الذهنية', duration:'10 د', freq:'3×أسبوعيًا', age:[5,7], desc:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.', watch:'هل يتذكر التسلسل دون إغفال؟' },
-    { icon:'👨‍🍳', title:'الطاهي الصغير', duration:'15 د', freq:'2×أسبوعيًا', age:[3,5], desc:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.', watch:'هل ينفذ الخطوة التالية تلقائيًا؟' },
-    { icon:'🎴', title:'البحث عن المطابقات', duration:'10 د', freq:'3×أسبوعيًا', age:[5,7], desc:'لعبة الذاكرة (Memory) ببطاقات مقلوبة.', watch:'هل تقل الأخطاء العشوائية؟' },
-    { icon:'🧩', title:'لغز المراحل الثلاث', duration:'15 د', freq:'2×أسبوعيًا', age:[7,12], desc:'حل واجب أو تركيب لعبة متعددة الخطوات.', watch:'هل يحافظ على تسلسل الخطوات؟' }
+    {icon:'🎒',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'حقيبة السفر الذهنية',title_en:'Mental Suitcase',desc_ar:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.',desc_en:'"I packed in my suitcase..." game adding items sequentially.',watch_ar:'هل يتذكر التسلسل؟',watch_en:'Does he recall the sequence?',age:[5,7]},
+    {icon:'👨‍🍳',dur:'15 د',frq:'2×أسبوعيًا',title_ar:'الطاهي الصغير',title_en:'Little Chef',desc_ar:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.',desc_en:'Follow a 3-step recipe without repetitive instructions.',watch_ar:'هل ينفذ الخطوة التالية تلقائيًا؟',watch_en:'Does he do the next step automatically?',age:[3,5]},
+    {icon:'🎴',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'البحث عن المطابقات',title_en:'Memory Match',desc_ar:'بطاقات مقلوبة للذاكرة وبناء خريطة ذهنية.',desc_en:'Memory cards to build mental map of positions.',watch_ar:'هل تقل الأخطاء؟',watch_en:'Do errors decrease?',age:[5,7]},
+    {icon:'🧩',dur:'15 د',frq:'2×أسبوعيًا',title_ar:'لغز المراحل الثلاث',title_en:'Three-Step Puzzle',desc_ar:'حل مهمة متعددة الخطوات مع تتبع الخطة.',desc_en:'Solve a multi-step task while tracking the plan.',watch_ar:'هل يحافظ على التسلسل؟',watch_en:'Does he keep the sequence?',age:[7,12]}
   ],
   'cog-flex': [
-    { icon:'🔀', title:'التصنيف المقلوب', duration:'10 د', freq:'3×أسبوعيًا', age:[3,5], desc:'تصنيف المكعبات حسب اللون، ثم يغير المربي القاعدة فجأة.', watch:'هل ينتقل بسلاسة للقاعدة الجديدة؟' },
-    { icon:'📋', title:'خطة (ب) الممتعة', duration:'10 د', freq:'أسبوعيًا', age:[5,8], desc:'رسم خطة أساسية وخطة بديلة للأنشطة.', watch:'هل يتقبل البديل دون مقاومة؟' },
-    { icon:'🎯', title:'لغز الطرق البديلة', duration:'15 د', freq:'2×أسبوعيًا', age:[7,12], desc:'موازنة أغراض فوق قاعدة غير مستوية مع منع التكرار.', watch:'هل يجرب طرقًا جديدة؟' }
+    {icon:'🔀',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'التصنيف المقلوب',title_en:'Silly Sorting',desc_ar:'تصنيف المكعبات حسب اللون، ثم تغيير القاعدة للحجم.',desc_en:'Sort blocks by color, then switch to size.',watch_ar:'هل ينتقل بسلاسة؟',watch_en:'Does he transition smoothly?',age:[3,5]},
+    {icon:'📋',dur:'10 د',frq:'أسبوعيًا',title_ar:'خطة ب الممتعة',title_en:'Plan B Game',desc_ar:'رسم خطة أساسية وخطة بديلة للأنشطة.',desc_en:'Draw main and alternative plans for activities.',watch_ar:'هل يتقبل البديل؟',watch_en:'Does he accept alternative?',age:[5,8]},
+    {icon:'🎯',dur:'15 د',frq:'2×أسبوعيًا',title_ar:'لغز الطرق البديلة',title_en:'Alternative Paths Puzzle',desc_ar:'منع تكرار نفس المحاولة وإلزام الطفل بتجربة أفكار جديدة.',desc_en:'Prevent retry of same attempt; force new ideas.',watch_ar:'هل يجرب طرقًا جديدة؟',watch_en:'Does he try new approaches?',age:[7,12]}
   ],
   'cog-reason': [
-    { icon:'🔬', title:'المكتشف الصغير', duration:'15 د', freq:'أسبوعيًا', age:[3,6], desc:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟"', watch:'هل يقدم تبريرات منطقية؟' },
-    { icon:'🧠', title:'ماذا يعلم صديقي؟', duration:'10 د', freq:'2×أسبوعيًا', age:[5,8], desc:'لعبة نقل لعبة دون علم الأخ، ثم السؤال: أين سيبحث؟', watch:'هل يدرك أن الأخ لا يعلم النقل؟' },
-    { icon:'⚖️', title:'ميزان القرار اليومي', duration:'5 د', freq:'عند الاختيار', age:[7,12], desc:'طلب دليلين منطقيين لترجيح خيار على آخر.', watch:'هل يقدم حججًا متماسكة؟' }
+    {icon:'🔬',dur:'15 د',frq:'أسبوعيًا',title_ar:'المكتشف الصغير',title_en:'Little Discoverer',desc_ar:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟".',desc_en:'Float/sink experiment asking "why?".',watch_ar:'هل يقدم تبريرات منطقية؟',watch_en:'Does he give logical reasons?',age:[3,6]},
+    {icon:'🧠',dur:'10 د',frq:'2×أسبوعيًا',title_ar:'ماذا يعلم صديقي؟',title_en:'What Does My Friend Know?',desc_ar:'لعبة نقل شيء دون علم الأخ، ثم السؤال: أين سيبحث؟',desc_en:'Move an object without the sibling knowing; where will they look?',watch_ar:'هل يدرك أن الآخر لا يعلم؟',watch_en:'Does he realize others don\'t know?',age:[5,8]},
+    {icon:'⚖️',dur:'5 د',frq:'عند الاختيار',title_ar:'ميزان القرار',title_en:'Decision Balance',desc_ar:'طلب دليلين منطقيين لترجيح خيار.',desc_en:'Ask for two logical reasons supporting a choice.',watch_ar:'هل يقدم حججًا متماسكة؟',watch_en:'Does he provide coherent arguments?',age:[7,12]}
   ],
   'beh-inhibit': [
-    { icon:'🧊', title:'التمثال المجمد', duration:'10 د', freq:'3×أسبوعيًا', age:[3,6], desc:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.', watch:'هل يكبح جسده فور التوقف؟' },
-    { icon:'🚦', title:'إشارة المرور المنزلية', duration:'10 د', freq:'3×أسبوعيًا', age:[5,9], desc:'بطاقات ملونة للجري والمشي والتوقف.', watch:'هل يتوقف فورًا عند الأحمر؟' },
-    { icon:'✨', title:'الكلمة السحرية', duration:'10 د', freq:'3×أسبوعيًا', age:[5,9], desc:'لا ينفذ الطفل إلا إذا سبقت التعليمات بالكلمة السحرية.', watch:'هل يتريث قبل الحركة؟' }
+    {icon:'🧊',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'التمثال المجمد',title_en:'Freeze Dance',desc_ar:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.',desc_en:'Dance with music; freeze instantly when it stops.',watch_ar:'هل يكبح جسده فورًا؟',watch_en:'Does he freeze instantly?',age:[3,6]},
+    {icon:'🚦',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'إشارة المرور',title_en:'Home Traffic Light',desc_ar:'بطاقات ملونة للجري والمشي والتوقف.',desc_en:'Colored cards for run, walk, and stop.',watch_ar:'هل يتوقف عند الأحمر؟',watch_en:'Does he stop on red?',age:[5,9]},
+    {icon:'✨',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'الكلمة السحرية',title_en:'Magic Word (Simon Says)',desc_ar:'لا ينفذ إلا إذا سبقت التعليمات بالكلمة السحرية.',desc_en:'Only act if the magic word precedes the instruction.',watch_ar:'هل يتريث قبل الحركة؟',watch_en:'Does he pause before acting?',age:[5,9]}
   ],
   'beh-routine': [
-    { icon:'📅', title:'لوحة محطات اليوم', duration:'مستمر', freq:'يوميًا', age:[5,9], desc:'لوحة بصور متتابعة لروتين العودة.', watch:'هل ينتقل بين المحطات باعتياد؟' },
-    { icon:'⏱️', title:'تحدي الـ 5 دقائق', duration:'5 د', freq:'يوميًا', age:[7,12], desc:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.', watch:'هل يستجيب بسرعة ومنهجية؟' },
-    { icon:'🎒', title:'محطة الاستعداد للغد', duration:'10 د', freq:'يوميًا', age:[7,12], desc:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.', watch:'هل يخرج الصباح بسلاسة؟' }
+    {icon:'📅',dur:'مستمر',frq:'يوميًا',title_ar:'لوحة محطات اليوم',title_en:'Day Stations Board',desc_ar:'لوحة بصور متتابعة لروتين العودة مع علامة صح.',desc_en:'Board with sequential return-routine images with checkmarks.',watch_ar:'هل ينتقل باعتياد؟',watch_en:'Does he transition habitually?',age:[5,9]},
+    {icon:'⏱️',dur:'5 د',frq:'يوميًا',title_ar:'تحدي 5 دقائق',title_en:'5-Minute Challenge',desc_ar:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.',desc_en:'Timer with energetic tone to return toys before it rings.',watch_ar:'هل يستجيب بسرعة؟',watch_en:'Does he respond quickly?',age:[7,12]},
+    {icon:'🎒',dur:'10 د',frq:'يوميًا',title_ar:'محطة الاستعداد للغد',title_en:'Tomorrow Prep Station',desc_ar:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.',desc_en:'Prepare tools and bag in the evening at the exit.',watch_ar:'هل يخرج الصباح بسلاسة؟',watch_en:'Does the morning flow smoothly?',age:[7,12]}
   ],
   'skl-comm': [
-    { icon:'📖', title:'القراءة الحوارية', duration:'10-15 د', freq:'يوميًا', age:[3,6], desc:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.', watch:'هل تزداد طول جملة الطفل؟' },
-    { icon:'🎤', title:'مقابلة المذيع', duration:'10 د', freq:'3×أسبوعيًا', age:[5,9], desc:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للطرف الآخر.', watch:'هل ينتظر دوره وينظر للمتحدث؟' },
-    { icon:'❓', title:'مراسل الاستفسار', duration:'10 د', freq:'2×أسبوعيًا', age:[7,12], desc:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.', watch:'هل يطرح أسئلة استفسارية؟' }
+    {icon:'📖',dur:'10-15 د',frq:'يوميًا',title_ar:'القراءة الحوارية',title_en:'Dialogic Reading',desc_ar:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.',desc_en:'Read a picture book with open questions; expand child\'s sentences.',watch_ar:'هل تزداد طول جملته؟',watch_en:'Does his sentence length grow?',age:[3,6]},
+    {icon:'🎤',dur:'10 د',frq:'3×أسبوعيًا',title_ar:'مقابلة المذيع',title_en:'Talk Show Interview',desc_ar:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للمتحدث.',desc_en:'Toy microphone; only the holder speaks, looking at the other.',watch_ar:'هل ينتظر دوره؟',watch_en:'Does he wait his turn?',age:[5,9]},
+    {icon:'❓',dur:'10 د',frq:'2×أسبوعيًا',title_ar:'مراسل الاستفسار',title_en:'Curious Reporter',desc_ar:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.',desc_en:'Deliberately vague instructions; encourage child to ask.',watch_ar:'هل يطرح أسئلة استفسارية؟',watch_en:'Does he ask clarifying questions?',age:[7,12]}
   ],
   'skl-social': [
-    { icon:'⏳', title:'عداد التناوب', duration:'15 د', freq:'عند اللعب', age:[3,6], desc:'مؤقت رملي دقيقتان للتبادل بين الأطفال.', watch:'هل يسلّم اللعبة بهدوء؟' },
-    { icon:'🌉', title:'جسور الحلول الوسطى', duration:'5 د', freq:'عند النزاع', age:[5,9], desc:'بطاقة "حلول" لسؤال الطرفين عن حل يرضيهما معًا.', watch:'هل يقترح حلولًا وسيطة؟' },
-    { icon:'🏗️', title:'مشروع البناء الجماعي', duration:'30 د', freq:'أسبوعيًا', age:[7,12], desc:'بناء مدينة من الوسائد مع توزيع أدوار.', watch:'هل يلتزم بدوره ويتعاون؟' }
+    {icon:'⏳',dur:'15 د',frq:'عند اللعب',title_ar:'عداد التناوب',title_en:'Turn Timer',desc_ar:'مؤقت رملي دقيقتان للتبادل بين الأطفال.',desc_en:'Two-minute sand timer to alternate between children.',watch_ar:'هل يسلّم اللعبة بهدوء؟',watch_en:'Does he hand over calmly?',age:[3,6]},
+    {icon:'🌉',dur:'5 د',frq:'عند النزاع',title_ar:'جسور الحلول',title_en:'Solutions Bridge',desc_ar:'بطاقة حلول لسؤال الطرفين عن حل يرضيهما.',desc_en:'Solutions card to ask both parties for a mutually acceptable fix.',watch_ar:'هل يقترح حلولًا؟',watch_en:'Does he suggest solutions?',age:[5,9]},
+    {icon:'🏗️',dur:'30 د',frq:'أسبوعيًا',title_ar:'البناء الجماعي',title_en:'Team Build Project',desc_ar:'بناء مدينة من الوسائد مع توزيع أدوار.',desc_en:'Build a pillow city with assigned roles.',watch_ar:'هل يلتزم بدوره؟',watch_en:'Does he stick to his role?',age:[7,12]}
   ]
 };
+
+/* ============ ACHIEVEMENTS ============ */
 const ACHIEVEMENTS = [
-  { id:'first-step', icon:'🌟', name:'البداية', check:s=>s.totalLogs>=1 },
-  { id:'streak-3', icon:'🔥', name:'3 أيام', check:s=>s.currentStreak>=3 },
-  { id:'streak-7', icon:'⚡', name:'أسبوع', check:s=>s.currentStreak>=7 },
-  { id:'streak-14', icon:'💫', name:'14 يومًا', check:s=>s.currentStreak>=14 },
-  { id:'streak-30', icon:'👑', name:'شهر', check:s=>s.currentStreak>=30 },
-  { id:'activities-10', icon:'🎯', name:'10 أنشطة', check:s=>s.totalLogs>=10 },
-  { id:'activities-30', icon:'🏆', name:'30 نشاطًا', check:s=>s.totalLogs>=30 },
-  { id:'activities-100', icon:'💎', name:'100 نشاط', check:s=>s.totalLogs>=100 },
-  { id:'assess-done', icon:'📋', name:'التقييم', check:s=>!!s.assessment }
+  {id:'first',  icon:'🌟', name:{ar:'البداية',en:'First Step'}, check:s=>s.total>=1},
+  {id:'s3',     icon:'🔥', name:{ar:'3 أيام',en:'3 Days'},      check:s=>s.streak>=3},
+  {id:'s7',     icon:'⚡', name:{ar:'أسبوع',en:'1 Week'},        check:s=>s.streak>=7},
+  {id:'s14',    icon:'💫', name:{ar:'14 يومًا',en:'2 Weeks'},    check:s=>s.streak>=14},
+  {id:'s30',    icon:'👑', name:{ar:'شهر',en:'1 Month'},        check:s=>s.streak>=30},
+  {id:'a10',    icon:'🎯', name:{ar:'10 أنشطة',en:'10 Acts'},    check:s=>s.total>=10},
+  {id:'a30',    icon:'🏆', name:{ar:'30 نشاطًا',en:'30 Acts'},   check:s=>s.total>=30},
+  {id:'a100',   icon:'💎', name:{ar:'100 نشاط',en:'100 Acts'},   check:s=>s.total>=100},
+  {id:'ass',    icon:'📋', name:{ar:'التقييم',en:'Assessment'},  check:s=>!!s.done}
 ];
 
 /* ============ STATE ============ */
 const DEFAULT_STATE = {
-  onboarded: false, children: [], activeChildId: null,
-  settings: { notifications:false, reminderTime:'19:00', darkMode:false, soundEffects:true, language:'ar' },
-  lastVersionCheck: 0
+  lang:'ar', dark:false, sound:true,
+  onboarded:false,
+  child:null, // {name, age, gender}
+  assessment:null, // {results, date}
+  plan:null,
+  logs:[], // {date, sub, title, mood, note}
+  moodHistory:{},
+  currentAnswers:{},
+  currentIdx:0
 };
 let State = JSON.parse(JSON.stringify(DEFAULT_STATE));
 
-const $  = (s,p=document)=>p.querySelector(s);
-const $$ = (s,p=document)=>Array.from(p.querySelectorAll(s));
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
-function todayKey(d=new Date()){ return d.toISOString().slice(0,10); }
-function daysBetween(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
-function activeChild(){ return State.children.find(c=>c.id===State.activeChildId) || State.children[0]; }
-
-/* ============ STORAGE ============ */
-function save(){ try{ localStorage.setItem('nabd_v5', JSON.stringify(State)); }catch(e){} }
+const $ = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+function save(){ try{ localStorage.setItem('nabd_v6', JSON.stringify(State)); }catch(e){} }
 function load(){
   try{
-    const s = localStorage.getItem('nabd_v5');
-    if(s){
-      const p = JSON.parse(s);
-      State = { ...DEFAULT_STATE, ...p };
-      State.settings = { ...DEFAULT_STATE.settings, ...(p.settings||{}) };
-      State.children = p.children || [];
-    }
+    const s = localStorage.getItem('nabd_v6');
+    if(s){ State = {...DEFAULT_STATE, ...JSON.parse(s)}; }
   }catch(e){}
 }
+function t(k){ return (I18N[State.lang] && I18N[State.lang][k]) || k; }
+function today(){ return new Date().toISOString().slice(0,10); }
+function daysDiff(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function vibrate(p){ if(navigator.vibrate) navigator.vibrate(p); }
 
 /* ============ SOUND ============ */
 const Sound = (()=>{
-  let ctx = null;
-  function init(){
-    if(!ctx){ try{ ctx = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} }
-    if(ctx && ctx.state === 'suspended') ctx.resume();
-    return ctx;
-  }
-  function beep({freq=800, duration=0.08, type='sine', volume=0.15, delay=0, slideTo=null}={}){
-    if(!State.settings.soundEffects) return;
+  let ctx=null;
+  function init(){ if(!ctx){ try{ ctx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(ctx && ctx.state==='suspended') ctx.resume(); return ctx; }
+  function beep({f=800,d=0.07,type='sine',vol=0.12,delay=0}={}){
+    if(!State.sound) return;
     const c = init(); if(!c) return;
     const t0 = c.currentTime + delay;
-    const osc = c.createOscillator(), gain = c.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, t0);
-    if(slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t0 + duration);
-    gain.gain.setValueAtTime(volume, t0);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
-    osc.connect(gain); gain.connect(c.destination);
-    osc.start(t0); osc.stop(t0 + duration + 0.02);
+    const o = c.createOscillator(), g = c.createGain();
+    o.type=type; o.frequency.setValueAtTime(f,t0);
+    g.gain.setValueAtTime(vol,t0); g.gain.exponentialRampToValueAtTime(0.0001,t0+d);
+    o.connect(g); g.connect(c.destination); o.start(t0); o.stop(t0+d+0.02);
   }
   return {
-    click(){ beep({freq:900, duration:0.06, volume:0.12}); },
-    tap(){ beep({freq:600, duration:0.05, type:'triangle', volume:0.1}); },
-    success(){ beep({freq:523, duration:0.15, volume:0.18}); beep({freq:659, duration:0.15, volume:0.18, delay:0.12}); beep({freq:784, duration:0.25, volume:0.18, delay:0.24}); },
-    celebrate(){ [523,659,784,1047,784,1047].forEach((f,i)=>beep({freq:f, duration:0.16, type:'triangle', volume:0.15, delay:i*0.09})); },
+    click(){ beep({f:800,d:0.05}); },
+    tap(){ beep({f:600,d:0.04,type:'triangle',vol:0.1}); },
+    success(){ beep({f:523,d:0.12,vol:0.15}); beep({f:659,d:0.12,vol:0.15,delay:0.1}); beep({f:784,d:0.2,vol:0.15,delay:0.2}); },
+    celebrate(){ [523,659,784,1047].forEach((f,i)=>beep({f,d:0.14,type:'triangle',vol:0.14,delay:i*0.09})); },
     unlock(){ init(); }
   };
 })();
 
-/* ============ MASCOT ============ */
-const Mascot = {
-  hideTimer: null,
-  speak(msg, duration=6000){
-    clearTimeout(this.hideTimer);
-    $('#mascotText').textContent = msg;
-    $('#mascotBubble').classList.add('show');
-    Sound.tap();
-    this.hideTimer = setTimeout(()=>this.hide(), duration);
-  },
-  hide(){ $('#mascotBubble').classList.remove('show'); },
-  celebrate(){
-    const m = $('#mascot');
-    m.classList.add('celebrate');
-    setTimeout(()=>m.classList.remove('celebrate'), 2600);
-  },
-  greetDaily(){
-    const hour = new Date().getHours();
-    const msgs = hour<12 ? [
-      'صباح الخير! هل أنت مستعد لنشاط اليوم؟',
-      'يوم جديد، فرصة جديدة لنمو طفلك! 🌟',
-      'صباح النشاط! طفلك في انتظارك 💫'
-    ] : hour<18 ? [
-      'كيف كان يومك مع طفلك حتى الآن؟',
-      'لا تنسَ نشاط اليوم — 5 دقائق تكفي!',
-      'وقت رائع لتجربة نشاط جديد معًا 🌿'
-    ] : [
-      'مساء الخير! هل جربت نشاط اليوم؟',
-      'قبل النوم، دقائق مع طفلك تصنع فرقًا 💫',
-      'أنت تقوم بعمل رائع — استمر! 🌙'
-    ];
-    this.speak(msgs[Math.floor(Math.random()*msgs.length)]);
-  },
-  idleTalk(){
-    const hour = new Date().getHours();
-    const msgs = hour<12 ? [
-      'جاهز لنشاط اليوم؟ اضغط على الزر 🌟',
-      'كل دقيقة مع طفلك استثمار 💫'
-    ] : hour<18 ? [
-      'كيف حالك؟ هل نبدأ نشاط اليوم؟',
-      'طفلك يتعلم منك كل يوم 🌿'
-    ] : [
-      'يوم رائع! هل جربت نشاط اليوم؟',
-      'دقائق قليلة مع طفلك قبل النوم 💫'
-    ];
-    this.speak(msgs[Math.floor(Math.random()*msgs.length)], 4000);
-  }
-};
-window.hideMascotBubble = ()=>Mascot.hide();
-window.mascotSpeak = ()=>Mascot.idleTalk();
-
-/* ============ TOAST ============ */
-function showToast(msg, ms=2600){
+/* ============ TOAST & CONFETTI ============ */
+function toast(msg, ms=2400){
   const el = $('#toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(el._t);
-  el._t = setTimeout(()=>el.classList.remove('show'), ms);
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'), ms);
 }
-
-/* ============ CONFETTI ============ */
-function fireConfetti(){
+function confetti(){
   const colors = ['#7C3AED','#FF6B9D','#06D6A0','#FFD166','#4ECDC4'];
-  for(let i=0;i<80;i++){
+  for(let i=0;i<70;i++){
     const p = document.createElement('div');
-    p.className = 'confetti-piece';
-    p.style.left = Math.random()*100 + 'vw';
+    p.className='confetti';
+    p.style.left = Math.random()*100+'vw';
     p.style.background = colors[Math.floor(Math.random()*colors.length)];
-    p.style.animationDelay = (Math.random()*0.6) + 's';
-    p.style.animationDuration = (2.6 + Math.random()*1.2) + 's';
-    if(Math.random()>0.6) p.style.borderRadius = '50%';
+    p.style.animationDelay = (Math.random()*0.5)+'s';
+    p.style.borderRadius = Math.random()>0.5?'50%':'3px';
     document.body.appendChild(p);
-    setTimeout(()=>p.remove(), 4200);
+    setTimeout(()=>p.remove(), 3400);
   }
 }
 
 /* ============ LANGUAGE ============ */
 function applyLang(lang){
-  State.settings.language = lang;
+  State.lang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.body.style.fontFamily = lang === 'ar' ? "'Tajawal',sans-serif" : "'Nunito',sans-serif";
+  // Update all data-i18n text
+  $$('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+  $$('[data-i18n-placeholder]').forEach(el => { el.placeholder = t(el.dataset.i18nPlaceholder); });
+  // Update lang button
+  $('#langFlag').textContent = lang === 'ar' ? '🇬🇧' : '🇸🇦';
+  $('#langTxt').textContent = lang === 'ar' ? 'EN' : 'AR';
+  // Update profile lang toggles
+  if($('#langArBtn')){
+    $('#langArBtn').classList.toggle('on', lang === 'ar');
+    $('#langEnBtn').classList.toggle('on', lang === 'en');
+  }
   save();
-  showToast(lang==='ar' ? 'العربية' : 'English');
+  // Re-render dynamic screens if visible
+  const cur = getCurScreen();
+  if(cur === 'home') renderHome();
+  if(cur === 'activities') renderActivitiesList();
+  if(cur === 'progress') renderProgress();
+  if(cur === 'profile') renderProfile();
+  if(cur === 'results' && State.assessment) renderResults(State.assessment.results);
+  if(cur === 'questions') renderQuestion();
+  if(cur === 'today') renderTodayDetail();
 }
 
 /* ============ THEME ============ */
 function applyTheme(){
-  const theme = State.settings.darkMode ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', theme);
-  $('#themeColorMeta').content = theme==='dark' ? '#0A0817' : '#F8F7FC';
+  document.documentElement.setAttribute('data-theme', State.dark?'dark':'light');
+  $('#themeColorMeta').content = State.dark ? '#0A0817' : '#F8F7FC';
+  if($('#darkToggle')){
+    $('#darkToggle').textContent = State.dark ? (State.lang==='ar'?'مفعّل ✓':'ON ✓') : (State.lang==='ar'?'تشغيل':'OFF');
+    $('#darkToggle').classList.toggle('on', State.dark);
+  }
 }
 
 /* ============ NAVIGATION ============ */
 const TITLES = {
-  welcome:'نبض التميز', child:'بيانات الطفل', questions:'التقييم', results:'نتائج طفلك',
-  home:'الرئيسية', today:'نشاط اليوم', activities:'مكتبة الأنشطة',
-  progress:'تقدّمك', profile:'الملف الشخصي'
+  welcome:{ar:'نبض التميز',en:'Nabd Excellence'},
+  child:{ar:'بيانات الطفل',en:'Child Info'},
+  questions:{ar:'التقييم',en:'Assessment'},
+  results:{ar:'نتائج طفلك',en:'Results'},
+  home:{ar:'الرئيسية',en:'Home'},
+  today:{ar:'نشاط اليوم',en:"Today's Activity"},
+  activities:{ar:'مكتبة الأنشطة',en:'Activity Library'},
+  progress:{ar:'التقدم',en:'Progress'},
+  profile:{ar:'الملف الشخصي',en:'Profile'}
 };
+const DARK_SCREENS = ['welcome','results','home','progress','today'];
+const NAV_SCREENS = ['home','activities','progress','profile'];
+
 function go(screen){
-  $$('.screen').forEach(s=>s.classList.remove('active'));
-  const el = $('#s-'+screen);
+  $$('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('s-'+screen);
   if(el) el.classList.add('active');
-  $('#topTitle').textContent = TITLES[screen] || 'نبض التميز';
-  const showBack = ['today','questions','child','activities'].includes(screen);
+  $('#topTitle').textContent = TITLES[screen]?.[State.lang] || '';
+  $('#topbar').classList.toggle('dark', DARK_SCREENS.includes(screen));
+  const showBack = ['child','questions','today'].includes(screen);
   $('#backBtn').classList.toggle('hidden', !showBack);
-  const showNav = ['home','activities','progress','profile'].includes(screen);
+  const showNav = NAV_SCREENS.includes(screen);
   $('#bottomNav').classList.toggle('show', showNav);
   if(showNav){
-    $$('#bottomNav button').forEach(b=>{
-      if(b.dataset.target) b.classList.toggle('active', b.dataset.target==='s-'+screen);
-      else b.classList.remove('active');
+    $$('#bottomNav button[data-screen]').forEach(b => {
+      b.classList.toggle('active', b.dataset.screen === screen);
     });
   }
-  $('#childAvatar').style.display = ['home','progress','activities'].includes(screen) ? 'flex' : 'none';
   window.scrollTo({top:0, behavior:'instant'});
-}
-
-/* ============ STREAK ============ */
-function computeStreak(child){
-  const logs = child.logs || [];
-  if(!logs.length) return { current:0, longest:0 };
-  const dates = [...new Set(logs.map(l=>l.date))].sort();
-  let longest = 1, current = 1;
-  for(let i=1;i<dates.length;i++){
-    const diff = daysBetween(dates[i-1], dates[i]);
-    if(diff===1) current++;
-    else { if(current>longest) longest=current; current=1; }
-  }
-  if(current>longest) longest = current;
-  const last = dates[dates.length-1];
-  if(daysBetween(last, todayKey())>1) current = 0;
-  return { current, longest };
-}
-
-/* ============ PLAN & TODAY ============ */
-function generatePlan(child){
-  const results = child.assessment?.results;
-  if(!results) return null;
-  const sorted = Object.keys(results.subScores).sort((a,b)=>results.subScores[a]-results.subScores[b]);
-  const focus = sorted.slice(0,2);
-  const weeks = [];
-  for(let w=0; w<4; w++){
-    const focusSub = focus[w % 2];
-    const allActs = ACTIVITIES[focusSub] || [];
-    const ageActs = allActs.filter(a => child.age>=a.age[0] && child.age<=a.age[1]);
-    const pool = ageActs.length ? ageActs : allActs;
-    const tasks = [];
-    for(let d=0; d<7; d++){
-      tasks.push({ sub:focusSub, ...pool[(w*7+d) % pool.length] });
-    }
-    weeks.push({ focus:focusSub, tasks });
-  }
-  return { weeks, startDate: todayKey(), focus };
-}
-function getTodayActivity(child){
-  if(!child.plan) return null;
-  const start = new Date(child.plan.startDate);
-  const dayIdx = Math.floor((new Date() - start) / 86400000);
-  if(dayIdx < 0) return null;
-  const wIdx = Math.floor(dayIdx / 7), dInW = dayIdx % 7;
-  if(wIdx >= child.plan.weeks.length) return null;
-  const task = child.plan.weeks[wIdx].tasks[dInW];
-  return task ? { ...task, weekIdx:wIdx, dayInWeek:dInW } : null;
-}
-function isActivityDone(child, date, sub, title){
-  return (child.logs || []).some(l => l.date===date && l.sub===sub && l.title===title);
-}
-
-/* ============ RENDER: HOME ============ */
-function renderHome(){
-  const child = activeChild();
-  if(!child){ go('welcome'); return; }
-  const streak = computeStreak(child);
-  const hour = new Date().getHours();
-  $('#greetText').textContent = hour<12 ? 'صباح الخير ☀️' : hour<18 ? 'مساء الخير 🌤️' : 'مساء الخير 🌙';
-  $('#childNameHome').textContent = child.name;
-  $('#streakNum').textContent = streak.current;
-
-  const todayMood = child.moodHistory?.[todayKey()];
-  $$('#moodChips .mood-chip').forEach(b=>{
-    b.classList.toggle('selected', todayMood && parseInt(b.dataset.mood,10)===todayMood);
-  });
-
-  renderTodayCard(child);
-  renderWeekProgress(child);
-
-  const totalLogs = (child.logs || []).length;
-  const stats = { currentStreak: streak.current, totalLogs, assessment: child.assessment };
-  const unlocked = ACHIEVEMENTS.filter(a => a.check(stats)).length;
-  $('#totalActivities').textContent = totalLogs;
-  $('#longestStreak').textContent = streak.longest;
-  $('#achievementsCount').textContent = unlocked;
-}
-
-function renderTodayCard(child){
-  const act = getTodayActivity(child);
-  const cont = $('#todayActivityContainer');
-  if(!act){
-    cont.innerHTML = `<div class="empty-state"><div class="em">🎉</div><h4>أكملت جميع الأنشطة!</h4><p>راجع تقدمك أو أعد التقييم لخطة جديدة.</p></div>`;
-    return;
-  }
-  const done = isActivityDone(child, todayKey(), act.sub, act.title);
-  const sd = SUBDOMAINS[act.sub], dom = DOMAINS[sd.domain];
-  cont.innerHTML = `
-    <div class="today-activity ${done?'done':''}">
-      <div class="today-tag">${done?'✓ مكتمل':'اليوم'}</div>
-      <div class="today-icon">${act.icon}</div>
-      <h3>${act.title}</h3>
-      <p class="subtitle">${act.desc}</p>
-      <div class="meta-chips">
-        <span class="a-tag violet">${dom.icon} ${sd.name}</span>
-        <span class="a-tag coral">⏱️ ${act.duration}</span>
-        <span class="a-tag mint">🔁 ${act.freq}</span>
-      </div>
-      ${done ? `<div class="done-badge">🎉 أُنجز اليوم — رائع!</div>`
-             : `<div style="display:flex;gap:10px">
-                  <button class="btn light" style="flex:0 0 auto;padding:14px 20px" onclick="openTodayDetail()">📖 التفاصيل</button>
-                  <button class="btn primary" style="flex:1" onclick="openLogModal()">ابدأ النشاط 🎯</button>
-                </div>`}
-    </div>`;
-}
-function renderWeekProgress(child){
-  const start = child.plan ? new Date(child.plan.startDate) : new Date();
-  const dayIdx = Math.floor((new Date() - start) / 86400000);
-  const wIdx = Math.floor(Math.max(dayIdx,0)/7);
-  const week = child.plan?.weeks[wIdx];
-  if(!week){ $('#weekLabel').textContent = 'انتهت الرحلة'; $('#weekPct').textContent = '100%'; $('#weekDots').innerHTML=''; return; }
-  $('#weekLabel').textContent = ['الأسبوع الأول','الأسبوع الثاني','الأسبوع الثالث','الأسبوع الرابع'][wIdx] || `الأسبوع ${wIdx+1}`;
-  const startWeek = new Date(start); startWeek.setDate(startWeek.getDate() + wIdx*7);
-  let doneCount = 0; const dots = [];
-  for(let d=0; d<7; d++){
-    const dt = new Date(startWeek); dt.setDate(dt.getDate()+d);
-    const key = todayKey(dt);
-    const task = week.tasks[d];
-    const taskDone = (child.logs||[]).some(l=>l.date===key && l.sub===task?.sub && l.title===task?.title);
-    if(taskDone) doneCount++;
-    const isToday = key === todayKey();
-    const isFuture = dt > new Date();
-    dots.push(`<div class="day-dot ${taskDone?'done':''} ${isToday?'today':''} ${isFuture?'future':''}">${isToday&&!taskDone?'اليوم':''}</div>`);
-  }
-  $('#weekPct').textContent = Math.round((doneCount/7)*100) + '%';
-  $('#weekDots').innerHTML = dots.join('');
-}
-
-/* ============ TODAY DETAIL ============ */
-function openTodayDetail(){
-  const child = activeChild();
-  const act = getTodayActivity(child);
-  if(!act) return;
-  const sd = SUBDOMAINS[act.sub], dom = DOMAINS[sd.domain];
-  const done = isActivityDone(child, todayKey(), act.sub, act.title);
-  $('#todayDetail').innerHTML = `
-    <div class="prog-hero" style="text-align:right">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-full);background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">
-        ${dom.icon} ${sd.name}
-      </div>
-      <div style="font-size:56px;margin-bottom:10px">${act.icon}</div>
-      <h2 style="font-size:24px;font-weight:900;margin-bottom:8px">${act.title}</h2>
-      <p style="font-size:14px;opacity:.9;line-height:1.6">${act.desc}</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${act.duration}</span>
-        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${act.freq}</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3 style="font-size:16px;margin-bottom:10px">👀 ما الذي تراقبه؟</h3>
-      <p style="font-size:14px;color:var(--txt-2);line-height:1.7">${act.watch}</p>
-    </div>
-    <div class="card">
-      <h3 style="font-size:16px;margin-bottom:10px">💡 نصائح للتنفيذ</h3>
-      <ul style="font-size:13.5px;color:var(--txt-2);line-height:1.8;padding-inline-start:20px">
-        <li>اختر وقتًا هادئًا بدون مشتتات.</li>
-        <li>اجعلها لعبة لا واجبًا.</li>
-        <li>الثناء على الجهد لا النتيجة.</li>
-      </ul>
-    </div>
-    ${done ? '<div class="card gradient" style="text-align:center"><h3>🎉 أحسنت! أنجزت نشاط اليوم</h3></div>'
-           : '<button class="btn primary mt-20" onclick="openLogModal()">ابدأ النشاط 🎯</button>'}
-    <button class="btn ghost mt-12" onclick="go(\'home\')">← العودة للرئيسية</button>`;
-  go('today');
-}
-window.openTodayDetail = openTodayDetail;
-window.go = go;
-
-/* ============ ACTIVITIES LIBRARY ============ */
-let actFilter = 'all';
-$$('#activityFilters .chip').forEach(c=>{
-  c.addEventListener('click', ()=>{
-    $$('#activityFilters .chip').forEach(x=>x.classList.remove('active'));
-    c.classList.add('active'); actFilter = c.dataset.filter;
-    renderActivitiesLibrary();
-  });
-});
-function renderActivitiesLibrary(){
-  const child = activeChild(); if(!child) return;
-  const items = [];
-  Object.keys(ACTIVITIES).forEach(sub=>{
-    const sd = SUBDOMAINS[sub];
-    if(actFilter !== 'all' && sd.domain !== actFilter) return;
-    ACTIVITIES[sub].forEach(a=>{
-      if(child.age < a.age[0] || child.age > a.age[1]) return;
-      const done = (child.logs || []).some(l => l.sub===sub && l.title===a.title);
-      items.push({ sub, sd, ...a, done });
-    });
-  });
-  if(!items.length){
-    $('#activitiesList').innerHTML = `<div class="empty-state"><div class="em">🔍</div><h4>لا توجد أنشطة</h4><p>جرّب فلترًا آخر</p></div>`;
-    return;
-  }
-  $('#activitiesList').innerHTML = items.map(a=>`
-    <div class="act-card ${a.done?'done':''}" data-sub="${a.sub}" data-title="${a.title}">
-      <div class="ac-ic">${a.icon}</div>
-      <div class="body">
-        <div class="domain-lbl">${DOMAINS[a.sd.domain].icon} ${a.sd.name}</div>
-        <h5>${a.title}</h5>
-        <p>${a.desc}</p>
-      </div>
-      <div class="chk"></div>
-    </div>`).join('');
-  $$('#activitiesList .act-card').forEach(el=>{
-    el.addEventListener('click', ()=>{
-      const sub = el.dataset.sub, title = el.dataset.title;
-      const act = ACTIVITIES[sub].find(x=>x.title===title);
-      if(act) showActivitySheet(sub, act);
-    });
-  });
-}
-function showActivitySheet(sub, act){
-  const child = activeChild();
-  const sd = SUBDOMAINS[sub], dom = DOMAINS[sd.domain];
-  const done = (child.logs||[]).some(l=>l.sub===sub && l.title===act.title);
-  $('#todayDetail').innerHTML = `
-    <div class="prog-hero" style="text-align:right">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-full);background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">${dom.icon} ${sd.name}</div>
-      <div style="font-size:56px;margin-bottom:10px">${act.icon}</div>
-      <h2 style="font-size:24px;font-weight:900;margin-bottom:8px">${act.title}</h2>
-      <p style="font-size:14px;opacity:.9;line-height:1.6">${act.desc}</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${act.duration}</span>
-        <span style="padding:8px 14px;border-radius:var(--r-full);background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${act.freq}</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3 style="font-size:16px;margin-bottom:10px">👀 ما الذي تراقبه؟</h3>
-      <p style="font-size:14px;color:var(--txt-2);line-height:1.7">${act.watch}</p>
-    </div>
-    ${done ? '<div class="card gradient" style="text-align:center"><h3>🎉 أُنجز</h3></div>'
-           : `<button class="btn primary mt-20" onclick="openLogModalCustom('${sub}', '${act.title}')">تسجيل هذا النشاط 🎯</button>`}
-    <button class="btn ghost mt-12" onclick="go('activities')">← العودة للمكتبة</button>`;
-  go('today');
-}
-
-/* ============ LOG MODAL ============ */
-let logState = { mood:null, note:'', custom:null };
-function openLogModal(){
-  const child = activeChild();
-  const act = getTodayActivity(child);
-  if(!act){ showToast('لا يوجد نشاط مخصص لليوم'); return; }
-  logState = { mood:null, note:'', custom:null };
-  $('#logActivityName').textContent = act.title;
-  $$('#logMoodRow .mo').forEach(b=>b.classList.remove('selected'));
-  $('#logNote').value = '';
-  $('#logModal').classList.add('show');
-}
-window.openLogModal = openLogModal;
-window.openLogModalCustom = function(sub, title){
-  const act = ACTIVITIES[sub]?.find(a=>a.title===title);
-  if(!act) return;
-  logState = { mood:null, note:'', custom:{ sub, act } };
-  $('#logActivityName').textContent = act.title;
-  $$('#logMoodRow .mo').forEach(b=>b.classList.remove('selected'));
-  $('#logNote').value = '';
-  $('#logModal').classList.add('show');
-};
-$$('#logMoodRow .mo').forEach(b=>{
-  b.addEventListener('click', ()=>{
-    $$('#logMoodRow .mo').forEach(x=>x.classList.remove('selected'));
-    b.classList.add('selected');
-    logState.mood = parseInt(b.dataset.mood,10);
-  });
-});
-$('#cancelLog').addEventListener('click', ()=>$('#logModal').classList.remove('show'));
-$('#logNote').addEventListener('input', e=>logState.note = e.target.value.trim());
-
-$('#confirmLog').addEventListener('click', ()=>{
-  const child = activeChild();
-  if(!logState.mood){ showToast('اختر كيف كانت التجربة'); return; }
-  let sub, act;
-  if(logState.custom){ sub = logState.custom.sub; act = logState.custom.act; }
-  else { act = getTodayActivity(child); if(!act) return; sub = act.sub; }
-  if(!child.logs) child.logs = [];
-  const oldStreak = computeStreak(child).current;
-  const existing = child.logs.find(l=>l.date===todayKey() && l.sub===sub && l.title===act.title);
-  if(existing){ existing.mood = logState.mood; existing.note = logState.note; }
-  else {
-    child.logs.push({
-      date: todayKey(), sub, domain: SUBDOMAINS[sub].domain,
-      title: act.title, icon: act.icon,
-      mood: logState.mood, note: logState.note, ts: Date.now()
-    });
-  }
   save();
-  $('#logModal').classList.remove('show');
-  const newStreak = computeStreak(child).current;
-  Sound.celebrate();
-  Mascot.celebrate();
-  fireConfetti();
-  setTimeout(()=>{
-    if(newStreak > oldStreak && newStreak >= 3){
-      showToast(`🔥 سلسلتك الآن ${newStreak} أيام!`, 3200);
-    } else {
-      showToast('🎉 تم تسجيل النشاط', 2600);
-    }
-  }, 400);
-  renderHome();
-  if(curScreen()==='today') openTodayDetail();
-  if(curScreen()==='activities') renderActivitiesLibrary();
-});
-function curScreen(){ return $$('.screen.active')[0]?.id.replace('s-','') || 'home'; }
-
-/* ============ PROGRESS SCREEN ============ */
-function renderProgress(){
-  const child = activeChild(); if(!child) return;
-  const streak = computeStreak(child);
-  $('#progressStreak').textContent = streak.current;
-  $('#progressSub').textContent = streak.current===0 ? 'ابدأ اليوم لبناء سلسلتك 🔥'
-    : streak.current<3 ? 'بداية رائعة! استمر'
-    : streak.current<7 ? 'أنت في الطريق الصحيح 💪'
-    : streak.current<14 ? 'أسبوع رائع! 🌟'
-    : 'أنت بطل حقيقي 👑';
-
-  const today = new Date(); const days = [];
-  for(let i=6; i>=0; i--){
-    const d = new Date(today); d.setDate(d.getDate()-i);
-    const key = todayKey(d);
-    const count = (child.logs||[]).filter(l=>l.date===key).length;
-    days.push({ key, d, count, isToday: i===0 });
-  }
-  const max = Math.max(1, ...days.map(d=>d.count));
-  const dayNames = ['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
-  $('#weeklyChart').innerHTML = days.map(d=>{
-    const h = (d.count/max)*100;
-    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%">
-      <div style="width:100%;flex:1;border-radius:12px;background:var(--bg-2);display:flex;align-items:flex-end;overflow:hidden">
-        <div style="width:100%;height:${h}%;border-radius:12px;background:var(--grad-cosmic)"></div>
-      </div>
-      <div style="font-size:11px;font-weight:800;color:${d.isToday?'var(--primary)':'var(--txt-3)'}">${dayNames[d.d.getDay()]}</div>
-    </div>`;
-  }).join('');
-
-  const totalLogs = (child.logs||[]).length;
-  const stats = { currentStreak: streak.current, totalLogs, assessment: child.assessment };
-  $('#achievementsGrid').innerHTML = ACHIEVEMENTS.map(a=>{
-    const unlocked = a.check(stats);
-    return `<div class="ach-card" style="background:var(--card);border-radius:var(--r-md);padding:14px 8px;box-shadow:var(--sh-sm);text-align:center;${unlocked?'':'opacity:.4;filter:grayscale(1)'}">
-      <div style="font-size:32px;margin-bottom:6px">${a.icon}</div>
-      <div style="font-size:11px;font-weight:800;color:var(--txt)">${a.name}</div>
-    </div>`;
-  }).join('');
+}
+function getCurScreen(){
+  const a = document.querySelector('.screen.active');
+  return a ? a.id.replace('s-','') : 'welcome';
 }
 
-/* ============ PROFILE ============ */
-function renderProfile(){
-  const child = activeChild(); if(!child) return;
-  $('#profileAvatar').textContent = child.gender==='female' ? '👧' : '👦';
-  $('#profileName').textContent = child.name;
-  $('#profileMeta').textContent = `${child.age} سنوات · ${(child.logs||[]).length} نشاط · ${computeStreak(child).current} يوم متتالي`;
-  $('#darkToggle').textContent = State.settings.darkMode ? 'مفعّل ✓' : 'تشغيل';
-  $('#darkToggle').style.background = State.settings.darkMode ? 'var(--grad-mint)' : 'var(--bg-2)';
-  $('#darkToggle').style.color = State.settings.darkMode ? '#fff' : 'var(--txt)';
-  $('#soundToggle').textContent = State.settings.soundEffects ? 'مفعّل ✓' : 'صامت';
-  $('#soundToggle').style.background = State.settings.soundEffects ? 'var(--grad-mint)' : 'var(--bg-2)';
-  $('#soundToggle').style.color = State.settings.soundEffects ? '#fff' : 'var(--txt)';
-  $('#notifToggle').textContent = State.settings.notifications ? 'مفعّل ✓' : 'تشغيل';
-  $('#notifToggle').style.background = State.settings.notifications ? 'var(--grad-mint)' : 'var(--bg-2)';
-  $('#notifToggle').style.color = State.settings.notifications ? '#fff' : 'var(--txt)';
-  $('#currentVersion').textContent = 'v' + APP_VERSION;
-}
-$('#darkToggle').addEventListener('click', ()=>{ State.settings.darkMode = !State.settings.darkMode; applyTheme(); save(); Sound.click(); renderProfile(); });
-$('#soundToggle').addEventListener('click', ()=>{ State.settings.soundEffects = !State.settings.soundEffects; save(); Sound.click(); renderProfile(); });
-$('#notifToggle').addEventListener('click', async ()=>{
-  if(State.settings.notifications){ State.settings.notifications = false; save(); showToast('تم إيقاف التذكيرات'); renderProfile(); return; }
-  if('Notification' in window){
-    const p = await Notification.requestPermission();
-    if(p==='granted'){ State.settings.notifications = true; save(); showToast('✓ تم التفعيل'); renderProfile(); }
-    else showToast('لم يتم منح الإذن');
-  } else showToast('جهازك لا يدعم التنبيهات');
-});
-$('#reassessBtn').addEventListener('click', ()=>{
-  if(!confirm('بدء تقييم جديد؟')) return;
-  const child = activeChild();
-  window._tmpChild = { name:child.name, age:child.age, gender:child.gender };
-  window._isReassess = true;
-  $('#childName').value = child.name;
-  $('#childAge').value = child.age;
-  $('#toQuestions').disabled = false;
-  go('child');
-});
-$('#checkUpdateBtn').addEventListener('click', async ()=>{
-  showToast('🔄 جاري الفحص...');
-  await checkVersion(true);
+/* ============ BACK BUTTON ============ */
+$('#backBtn').addEventListener('click', () => {
+  const cur = getCurScreen();
+  const map = { child:'welcome', questions:'child', today:'home' };
+  go(map[cur] || 'home');
 });
 
-/* ============ VERSION CHECK ============ */
-async function checkVersion(force=false){
-  const now = Date.now();
-  if(!force && (now - State.lastVersionCheck) < VERSION_CHECK_INTERVAL) return;
-  try {
-    const res = await fetch('./version.json?t='+now, { cache:'no-store' });
-    if(!res.ok) return;
-    const data = await res.json();
-    State.lastVersionCheck = now; save();
-    if(data.version && data.version !== APP_VERSION){
-      $('#updateBannerText').textContent = `🎉 تحديث جديد متاح! v${data.version}`;
-      $('#updateBanner').classList.add('show');
-      Mascot.speak('🎉 يوجد تحديث جديد! اضغط عليه للتحديث.');
-    } else if(force){
-      showToast('✓ التطبيق محدَّث');
-    }
-  } catch(e){ if(force) showToast('لا يمكن الاتصال بالخادم'); }
-}
-window.applyUpdate = function(){
-  if(navigator.serviceWorker?.controller){
-    navigator.serviceWorker.controller.postMessage({ type:'SKIP_WAITING' });
-  }
-  setTimeout(()=>location.reload(), 400);
-};
+/* ============ LANGUAGE BUTTON ============ */
+$('#langBtn').addEventListener('click', () => {
+  applyLang(State.lang === 'ar' ? 'en' : 'ar');
+  Sound.click();
+});
+$('#langArBtn')?.addEventListener('click', () => { applyLang('ar'); Sound.click(); });
+$('#langEnBtn')?.addEventListener('click', () => { applyLang('en'); Sound.click(); });
 
-/* ============ SOCIAL SHARE ============ */
-window.shareAchievement = async function(type, data){
-  let text = '';
-  if(type==='streak') text = `أنا أحافظ على ${data.n} يوم متتالي مع نبض التميز! 🔥`;
-  else if(type==='activity') text = `أنجزت اليوم نشاط: ${data.title} 🎯`;
-  const url = location.href;
-  if(navigator.share){
-    try { await navigator.share({ title:'نبض التميز', text, url }); return; }
-    catch(e){ if(e.name==='AbortError') return; }
-  }
-  try { await navigator.clipboard.writeText(text+'\n'+url); showToast('✓ تم النسخ!'); }
-  catch(e){ showToast(text); }
-};
-
-/* ============ ONBOARDING: WELCOME ============ */
-$('#startBtn').addEventListener('click', ()=>{ Sound.click(); go('child'); });
+/* ============ WELCOME ============ */
+$('#startBtn').addEventListener('click', () => { Sound.click(); go('child'); });
 
 /* ============ CHILD INFO ============ */
-let tmpChild = { name:'', age:null, gender:null };
-$$('#genderChips .chip').forEach(c=>{
-  c.addEventListener('click', ()=>{
-    $$('#genderChips .chip').forEach(x=>x.classList.remove('active'));
-    c.classList.add('active'); tmpChild.gender = c.dataset.val; Sound.click();
+let tmpGender = null;
+$$('#genderChips .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    $$('#genderChips .chip').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    tmpGender = c.dataset.val;
+    Sound.click();
   });
 });
-$('#childName').addEventListener('input', e=>tmpChild.name = e.target.value.trim());
-$('#childAge').addEventListener('change', e=>{
-  tmpChild.age = parseInt(e.target.value,10) || null;
-  $('#toQuestions').disabled = !tmpChild.age;
+$('#childAge').addEventListener('change', e => {
+  $('#toQuestions').disabled = !e.target.value;
 });
-$('#toQuestions').addEventListener('click', ()=>{
-  if(!tmpChild.age){ showToast('الرجاء اختيار العمر'); return; }
-  if(window._isReassess){ tmpChild = window._tmpChild; }
-  window._applicableQs = QUESTIONS.filter(q => tmpChild.age>=q.ageMin && tmpChild.age<=q.ageMax);
-  window._answers = {};
-  window._qIdx = 0;
+
+$('#toQuestions').addEventListener('click', () => {
+  const name = $('#childName').value.trim();
+  const age = parseInt($('#childAge').value, 10);
+  if(!age){ toast(t('toast_choose_age')); return; }
+  State.child = { name: name || (State.lang==='ar'?'طفلي':'My Child'), age, gender: tmpGender };
+  State.currentAnswers = {};
+  State.currentIdx = 0;
   Sound.click();
   go('questions');
   renderQuestion();
@@ -1475,241 +1081,631 @@ $('#toQuestions').addEventListener('click', ()=>{
 
 /* ============ QUESTIONS ============ */
 function renderQuestion(){
-  const qs = window._applicableQs, idx = window._qIdx, q = qs[idx];
+  const q = QUESTIONS[State.currentIdx];
   if(!q) return;
-  const total = qs.length;
-  const pct = Math.round((idx/total)*100);
-  $('#qProgressText').textContent = `سؤال ${idx+1} من ${total}`;
-  $('#qPercent').innerHTML = pct + '<small style="font-size:13px;font-weight:800;color:var(--txt-3)">%</small>';
-  $('#qProgressFill').style.width = Math.max(pct,4) + '%';
+  const total = QUESTIONS.length;
+  const idx = State.currentIdx;
+  const pct = Math.round((idx / total) * 100);
+  $('#qProgressText').textContent = `${idx+1} / ${total}`;
+  $('#qPercent').innerHTML = pct + '<small>%</small>';
+  $('#qProgressFill').style.width = Math.max(pct,3) + '%';
+
   const dom = DOMAINS[q.domain];
+  const answer = State.currentAnswers[q.id];
+  const options = [
+    {v:0, ar:'لم يظهر بعد',   en:'Not yet',       icon:'🌱', hint_ar:'يحتاج دائمًا للمساعدة',       hint_en:'Always needs help'},
+    {v:1, ar:'يظهر أحيانًا',  en:'Sometimes',     icon:'🌿', hint_ar:'يحتاج تذكيرًا أو مساعدة جزئية', hint_en:'Needs reminder or partial help'},
+    {v:2, ar:'يظهر غالبًا',   en:'Often',         icon:'🌳', hint_ar:'بمبادرة ذاتية غالبًا',         hint_en:'Often self-initiated'},
+    {v:3, ar:'بثبات واستقلالية', en:'Consistently & independently', icon:'⭐', hint_ar:'بانتظام ودون تذكير', hint_en:'Regularly, no reminders'}
+  ];
+
   $('#qContainer').innerHTML = `
-    <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:var(--r-full);font-size:13px;font-weight:800;background:${dom.color}1a;color:${dom.color};border:1px solid ${dom.color}33;margin-bottom:22px">
-      <span style="width:8px;height:8px;border-radius:50%;background:${dom.color}"></span>
-      ${dom.icon} ${dom.name}
+    <div class="q-chip" style="background:${dom.color}1a;color:${dom.color}">
+      ${dom.icon} ${dom[State.lang]}
     </div>
-    <div style="font-size:24px;font-weight:800;line-height:1.5;margin-bottom:32px;color:var(--txt)">${q.text}</div>
+    <div class="q-text">${q[State.lang]}</div>
     <div id="qOptions">
-      ${LIKERT.map(opt=>`
-        <button class="q-opt ${window._answers[q.id]===opt.val?'selected':''}" data-val="${opt.val}">
+      ${options.map(o => `
+        <button class="q-opt ${answer === o.v ? 'selected' : ''}" data-v="${o.v}">
           <span class="radio"></span>
-          <span style="flex:1">
-            <span style="display:block">${opt.icon} ${opt.label}</span>
-            <span class="hint">${opt.hint}</span>
+          <span class="body">
+            <span>${o.icon} ${o[State.lang]}</span>
+            <span class="hint">${State.lang === 'ar' ? o.hint_ar : o.hint_en}</span>
           </span>
         </button>
       `).join('')}
     </div>`;
-  $$('#qOptions .q-opt').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      window._answers[q.id] = parseInt(btn.dataset.val,10);
-      $$('#qOptions .q-opt').forEach(b=>b.classList.toggle('selected', b===btn));
+
+  $$('#qOptions .q-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = parseInt(btn.dataset.v, 10);
+      State.currentAnswers[q.id] = v;
+      $$('#qOptions .q-opt').forEach(b => b.classList.toggle('selected', b === btn));
       $('#qNextBtn').disabled = false;
-      Sound.tap();
-      if(navigator.vibrate) navigator.vibrate(8);
+      Sound.tap(); vibrate(8); save();
     });
   });
-  $('#qPrevBtn').style.visibility = idx===0 ? 'hidden' : 'visible';
-  $('#qNextBtn').disabled = window._answers[q.id]===undefined;
-  $('#qNextBtn').innerHTML = idx===total-1 ? 'عرض النتائج <span style="font-size:20px">✨</span>' : 'التالي';
+
+  $('#qPrevBtn').style.visibility = idx === 0 ? 'hidden' : 'visible';
+  $('#qNextBtn').disabled = answer === undefined;
+  const lastLbl = State.lang === 'ar' ? 'عرض النتائج ✨' : 'Show Results ✨';
+  $('#qNextBtn').innerHTML = idx === total-1 ? lastLbl : `<span data-i18n="q_next">${t('q_next')}</span>`;
 }
-$('#qPrevBtn').addEventListener('click', ()=>{ if(window._qIdx>0){ window._qIdx--; renderQuestion(); Sound.tap(); }});
-$('#qNextBtn').addEventListener('click', ()=>{
-  const q = window._applicableQs[window._qIdx];
-  if(window._answers[q.id]===undefined){ showToast('الرجاء اختيار إجابة'); return; }
-  if(window._qIdx < window._applicableQs.length-1){ window._qIdx++; renderQuestion(); Sound.tap(); }
-  else { finalizeAssessment(); }
+
+$('#qPrevBtn').addEventListener('click', () => {
+  if(State.currentIdx > 0){ State.currentIdx--; renderQuestion(); Sound.tap(); }
+});
+$('#qNextBtn').addEventListener('click', () => {
+  const q = QUESTIONS[State.currentIdx];
+  if(State.currentAnswers[q.id] === undefined){ toast(t('toast_answered')); return; }
+  if(State.currentIdx < QUESTIONS.length - 1){
+    State.currentIdx++; renderQuestion(); Sound.tap();
+  } else {
+    finalizeAssessment();
+  }
 });
 
 /* ============ SCORING ============ */
-function computeResults(qs, answers){
+function computeResults(answers){
   const subAgg = {}, domAgg = {};
-  qs.forEach(q=>{
-    const s = answers[q.id]; if(s===undefined) return;
-    if(!subAgg[q.sub]) subAgg[q.sub] = {sum:0,count:0};
-    subAgg[q.sub].sum += s; subAgg[q.sub].count++;
-    if(!domAgg[q.domain]) domAgg[q.domain] = {sum:0,count:0};
-    domAgg[q.domain].sum += s; domAgg[q.domain].count++;
+  QUESTIONS.forEach(q => {
+    const s = answers[q.id]; if(s === undefined) return;
+    if(!subAgg[q.sub]) subAgg[q.sub] = {sum:0,c:0};
+    subAgg[q.sub].sum += s; subAgg[q.sub].c++;
+    if(!domAgg[q.domain]) domAgg[q.domain] = {sum:0,c:0};
+    domAgg[q.domain].sum += s; domAgg[q.domain].c++;
   });
-  const subScores = {}, domScores = {};
-  Object.keys(subAgg).forEach(k=>subScores[k]=(subAgg[k].sum/(subAgg[k].count*3))*100);
-  Object.keys(domAgg).forEach(k=>domScores[k]=(domAgg[k].sum/(domAgg[k].count*3))*100);
-  const tS = Object.values(domAgg).reduce((a,b)=>a+b.sum,0);
-  const tM = Object.values(domAgg).reduce((a,b)=>a+b.count*3,0);
-  return { subScores, domScores, overall: tM>0 ? (tS/tM)*100 : 0 };
+  const subs = {}, doms = {};
+  Object.keys(subAgg).forEach(k => subs[k] = (subAgg[k].sum/(subAgg[k].c*3))*100);
+  Object.keys(domAgg).forEach(k => doms[k] = (domAgg[k].sum/(domAgg[k].c*3))*100);
+  const ts = Object.values(domAgg).reduce((a,b)=>a+b.sum,0);
+  const tm = Object.values(domAgg).reduce((a,b)=>a+b.c*3,0);
+  return { subs, doms, overall: tm > 0 ? (ts/tm)*100 : 0 };
 }
 function classify(p){
-  if(p>=75) return 'أداء مرتفع نسبيًا';
-  if(p>=50) return 'مجال متوازن';
-  return 'فرصة واعدة للتعزيز';
+  if(p >= 75) return t('status_high');
+  if(p >= 50) return t('status_mid');
+  return t('status_low');
 }
+
 function finalizeAssessment(){
-  const results = computeResults(window._applicableQs, window._answers);
-  const existingChild = window._isReassess ? activeChild() : null;
-  if(existingChild){
-    existingChild.assessmentHistory = existingChild.assessmentHistory || [];
-    existingChild.assessmentHistory.push(existingChild.assessment);
-    existingChild.assessment = { results, date: todayKey(), applicableCount: window._applicableQs.length };
-    existingChild.plan = generatePlan(existingChild);
-    save();
-    window._isReassess = false;
-  } else {
-    const child = {
-      id: uid(),
-      name: tmpChild.name || 'طفلي',
-      age: tmpChild.age,
-      gender: tmpChild.gender,
-      createdAt: new Date().toISOString(),
-      assessment: { results, date: todayKey(), applicableCount: window._applicableQs.length },
-      logs: [], completedTasks: {}, moodHistory: {}
-    };
-    child.plan = generatePlan(child);
-    State.children.push(child);
-    State.activeChildId = child.id;
-    State.onboarded = true;
-    save();
+  const results = computeResults(State.currentAnswers);
+  // check all zeros
+  const allZero = Object.values(State.currentAnswers).every(v => v === 0);
+  if(allZero){
+    toast(State.lang === 'ar' ? 'يرجى التأكد من الإجابات' : 'Please verify answers', 3200);
   }
+  State.assessment = { results, date: today() };
+  State.plan = generatePlan(results);
+  State.onboarded = true;
+  save();
   renderResults(results);
   go('results');
   Sound.celebrate();
-  setTimeout(fireConfetti, 400);
-  setTimeout(()=>Mascot.speak('🎉 مبروك! رحلتك تبدأ الآن — نشاط جديد كل يوم!'), 1200);
+  setTimeout(confetti, 300);
+}
+
+/* ============ PLAN GENERATION ============ */
+function generatePlan(results){
+  const sorted = Object.keys(results.subs).sort((a,b) => results.subs[a] - results.subs[b]);
+  const focus = sorted.slice(0, 2);
+  const weeks = [];
+  const startDate = today();
+  for(let w = 0; w < 4; w++){
+    const fSub = focus[w % 2];
+    const allActs = ACTIVITIES[fSub] || [];
+    const ageActs = allActs.filter(a => State.child.age >= a.age[0] && State.child.age <= a.age[1]);
+    const pool = ageActs.length ? ageActs : allActs;
+    const tasks = [];
+    for(let d = 0; d < 7; d++){
+      tasks.push({ sub: fSub, ...pool[(w*7 + d) % pool.length] });
+    }
+    weeks.push({ focus: fSub, tasks });
+  }
+  return { weeks, startDate };
+}
+
+function getTodayActivity(){
+  if(!State.plan) return null;
+  const start = new Date(State.plan.startDate);
+  const dayIdx = Math.floor((new Date() - start) / 86400000);
+  if(dayIdx < 0) return null;
+  const wIdx = Math.floor(dayIdx / 7), dIdx = dayIdx % 7;
+  if(wIdx >= State.plan.weeks.length) return null;
+  const t = State.plan.weeks[wIdx].tasks[dIdx];
+  return t ? { ...t, weekIdx: wIdx, dayInWeek: dIdx } : null;
+}
+function isDone(date, sub, titleKey){
+  return State.logs.some(l => l.date === date && l.sub === sub && (l.title_ar === titleKey || l.title_en === titleKey));
+}
+function isTodayDone(){
+  const act = getTodayActivity();
+  if(!act) return false;
+  const key = act[State.lang === 'ar' ? 'title_ar' : 'title_en'];
+  return isDone(today(), act.sub, key);
+}
+
+/* ============ STREAK ============ */
+function computeStreak(){
+  if(!State.logs.length) return {current:0, longest:0};
+  const dates = [...new Set(State.logs.map(l => l.date))].sort();
+  let longest = 1, current = 1;
+  for(let i = 1; i < dates.length; i++){
+    const d = daysDiff(dates[i-1], dates[i]);
+    if(d === 1) current++;
+    else { if(current > longest) longest = current; current = 1; }
+  }
+  if(current > longest) longest = current;
+  const last = dates[dates.length-1];
+  if(daysDiff(last, today()) > 1) current = 0;
+  return { current, longest };
 }
 
 /* ============ RESULTS RENDER ============ */
 function renderResults(results){
   const pct = Math.round(results.overall);
-  const circ = 2 * Math.PI * 68;
+  const circ = 2 * Math.PI * 72;
   const offset = circ - (pct/100) * circ;
   const ring = $('#ringFg');
   ring.setAttribute('stroke-dasharray', circ);
   ring.setAttribute('stroke-dashoffset', circ);
-  setTimeout(()=>ring.setAttribute('stroke-dashoffset', offset), 200);
+  setTimeout(() => ring.setAttribute('stroke-dashoffset', offset), 200);
+
+  // Count up
   let n = 0;
-  const step = Math.max(1, Math.round(pct/40));
-  const int = setInterval(()=>{
-    n = Math.min(n+step, pct);
+  const step = Math.max(1, Math.round(pct/30));
+  const int = setInterval(() => {
+    n = Math.min(n + step, pct);
     $('#overallPct').textContent = n + '%';
-    if(n>=pct) clearInterval(int);
-  }, 25);
+    if(n >= pct) clearInterval(int);
+  }, 30);
+
   $('#overallBadge').textContent = classify(pct);
 
-  $('#domainResults').innerHTML = Object.keys(DOMAINS).map(k=>{
-    const d = DOMAINS[k], val = Math.round(results.domScores[k]||0);
-    return `<div class="domain-row">
-      <div class="ic" style="background:${d.grad}">${d.icon}</div>
-      <div class="info">
-        <h4>${d.name} <span class="val" style="color:${d.color}">${val}%</span></h4>
-        <div class="track"><div class="fill" style="background:${d.grad};width:0%" data-w="${val}"></div></div>
-        <div class="meta">${classify(val)}</div>
-      </div></div>`;
+  // Domains
+  $('#domainResults').innerHTML = Object.keys(DOMAINS).map(k => {
+    const d = DOMAINS[k];
+    const v = Math.round(results.doms[k] || 0);
+    return `
+      <div class="domain-row">
+        <div class="ic" style="background:${d.grad}">${d.icon}</div>
+        <div class="body">
+          <h4>${d[State.lang]} <span class="v" style="color:${d.color}">${v}%</span></h4>
+          <div class="track"><div class="fill" style="background:${d.grad};width:0" data-w="${v}"></div></div>
+        </div>
+      </div>`;
   }).join('');
-  $('#subdomainResults').innerHTML = Object.keys(results.subScores)
-    .sort((a,b)=>results.subScores[b]-results.subScores[a])
-    .map(k=>{
-      const s = SUBDOMAINS[k], d = DOMAINS[s.domain], val = Math.round(results.subScores[k]);
-      return `<div class="domain-row">
-        <div class="ic" style="background:${d.grad};font-size:22px">${s.icon}</div>
-        <div class="info">
-          <h4 style="font-size:13.5px">${s.name} <span class="val" style="color:${d.color}">${val}%</span></h4>
-          <div class="track"><div class="fill" style="background:${d.grad};width:0%" data-w="${val}"></div></div>
-        </div></div>`;
-    }).join('');
-  setTimeout(()=>$$('.domain-row .fill').forEach(f=>f.style.width = f.dataset.w+'%'), 300);
+
+  // Subdomains
+  const sortedSubs = Object.keys(results.subs).sort((a,b) => results.subs[b] - results.subs[a]);
+  $('#subdomainResults').innerHTML = sortedSubs.map(k => {
+    const s = SUBDOMAINS[k], d = DOMAINS[s.domain];
+    const v = Math.round(results.subs[k]);
+    return `
+      <div class="domain-row">
+        <div class="ic" style="background:${d.grad};font-size:20px">${s.icon}</div>
+        <div class="body">
+          <h4 style="font-size:13px">${s[State.lang]} <span class="v" style="color:${d.color}">${v}%</span></h4>
+          <div class="track"><div class="fill" style="background:${d.grad};width:0" data-w="${v}"></div></div>
+        </div>
+      </div>`;
+  }).join('');
+
+  setTimeout(() => $$('.domain-row .fill').forEach(f => f.style.width = f.dataset.w + '%'), 300);
 }
 
-/* ============ START COMPANION ============ */
-$('#startCompanionBtn').addEventListener('click', ()=>{
+$('#startCompanionBtn').addEventListener('click', () => {
   Sound.success();
   renderHome();
   go('home');
-  setTimeout(()=>Mascot.greetDaily(), 600);
 });
 
-/* ============ HOME MOOD CHIPS ============ */
-$$('#moodChips .mood-chip').forEach(b=>{
-  b.addEventListener('click', ()=>{
-    const child = activeChild(); if(!child) return;
-    if(!child.moodHistory) child.moodHistory = {};
-    const m = parseInt(b.dataset.mood,10);
-    child.moodHistory[todayKey()] = m;
-    save();
-    $$('#moodChips .mood-chip').forEach(x=>x.classList.remove('selected'));
-    b.classList.add('selected');
-    Sound.tap();
-    if(navigator.vibrate) navigator.vibrate([8,30,8]);
-    showToast('سُجّل مزاج اليوم 💭');
+/* ============ HOME RENDER ============ */
+function renderHome(){
+  if(!State.child || !State.plan){ go('welcome'); return; }
+  const hour = new Date().getHours();
+  const greetKey = hour < 12 ? 'greet_morning' : hour < 18 ? 'greet_afternoon' : 'greet_evening';
+  $('#greetText').textContent = t(greetKey);
+  $('#childNameHome').textContent = State.child.name;
+  const st = computeStreak();
+  $('#streakNum').textContent = st.current;
+
+  // Mood chips
+  const todayMood = State.moodHistory[today()];
+  $$('#moodChips .mood-chip').forEach(b => {
+    b.classList.toggle('selected', todayMood && parseInt(b.dataset.mood,10) === todayMood);
   });
+
+  // Today card
+  renderTodayCard();
+
+  // Week progress
+  renderWeekProgress();
+
+  // Quick stats
+  $('#statActivities').textContent = State.logs.length;
+  $('#statLongest').textContent = st.longest;
+  const stats = { total: State.logs.length, streak: st.current, done: true };
+  $('#statAch').textContent = ACHIEVEMENTS.filter(a => a.check(stats)).length;
+}
+
+function renderTodayCard(){
+  const act = getTodayActivity();
+  const c = $('#todayCard');
+  if(!act){
+    c.innerHTML = `<div class="card" style="text-align:center;padding:30px">
+      <div style="font-size:40px;margin-bottom:10px">🎉</div>
+      <h3>${t('empty_done')}</h3>
+    </div>`;
+    return;
+  }
+  const dom = DOMAINS[SUBDOMAINS[act.sub].domain];
+  const sub = SUBDOMAINS[act.sub];
+  const done = isTodayDone();
+  const titleKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+  const descKey = State.lang === 'ar' ? 'desc_ar' : 'desc_en';
+
+  c.innerHTML = `
+    <div class="today ${done?'done':''}">
+      <div class="tag">${done ? '✓' : t('today_lbl')}</div>
+      <div class="ic">${act.icon}</div>
+      <h3>${act[titleKey]}</h3>
+      <p class="desc">${act[descKey]}</p>
+      <div class="tags">
+        <span class="tag-item v">${dom.icon} ${sub[State.lang]}</span>
+        <span class="tag-item c">⏱️ ${act.dur}</span>
+        <span class="tag-item m">🔁 ${act.frq}</span>
+      </div>
+      ${done ? `<div class="done-badge">${t('done_today')}</div>` :
+        `<div style="display:flex;gap:8px">
+           <button class="btn light" style="flex:0 0 auto;padding:12px 18px" onclick="openTodayDetail()">${t('view_details')}</button>
+           <button class="btn primary" style="flex:1" onclick="openLogModal()">${t('start_activity')}</button>
+         </div>`}
+    </div>`;
+}
+
+function renderWeekProgress(){
+  const start = new Date(State.plan.startDate);
+  const dayIdx = Math.floor((new Date() - start) / 86400000);
+  const wIdx = Math.floor(Math.max(dayIdx,0) / 7);
+  const week = State.plan.weeks[wIdx];
+  if(!week){
+    $('#weekLabel').textContent = State.lang === 'ar' ? 'انتهت' : 'Done';
+    $('#weekPct').textContent = '100%';
+    $('#weekDots').innerHTML = '';
+    return;
+  }
+  $('#weekLabel').textContent = t('week_' + (wIdx+1));
+  const startWeek = new Date(start); startWeek.setDate(startWeek.getDate() + wIdx*7);
+  let doneCount = 0;
+  const dots = [];
+  for(let d = 0; d < 7; d++){
+    const dt = new Date(startWeek); dt.setDate(dt.getDate() + d);
+    const key = dt.toISOString().slice(0,10);
+    const task = week.tasks[d];
+    const tKey = task[State.lang === 'ar' ? 'title_ar' : 'title_en'];
+    const isDoneDay = State.logs.some(l => l.date === key && l.sub === task.sub && (l.title_ar === tKey || l.title_en === tKey));
+    if(isDoneDay) doneCount++;
+    const isToday = key === today();
+    const isFuture = dt > new Date();
+    dots.push(`<div class="day-dot ${isDoneDay?'done':''} ${isToday?'today':''} ${isFuture?'future':''}">${isToday && !isDoneDay ? '•' : ''}</div>`);
+  }
+  $('#weekPct').textContent = Math.round((doneCount/7)*100) + '%';
+  $('#weekDots').innerHTML = dots.join('');
+}
+
+/* ============ MOOD CHIPS ============ */
+$$('#moodChips .mood-chip').forEach(b => {
+  b.addEventListener('click', () => {
+    const m = parseInt(b.dataset.mood, 10);
+    State.moodHistory[today()] = m;
+    $$('#moodChips .mood-chip').forEach(x => x.classList.remove('selected'));
+    b.classList.add('selected');
+    save();
+    Sound.tap(); vibrate([8,30,8]);
+    toast(t('toast_mood_saved'));
+  });
+});
+
+/* ============ TODAY DETAIL ============ */
+window.openTodayDetail = function(){
+  const act = getTodayActivity();
+  if(!act) return;
+  const dom = DOMAINS[SUBDOMAINS[act.sub].domain];
+  const sub = SUBDOMAINS[act.sub];
+  const done = isTodayDone();
+  const titleKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+  const descKey = State.lang === 'ar' ? 'desc_ar' : 'desc_en';
+  const watchKey = State.lang === 'ar' ? 'watch_ar' : 'watch_en';
+
+  $('#todayDetail').innerHTML = `
+    <div class="hero" style="text-align:start">
+      <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">
+        ${dom.icon} ${sub[State.lang]}
+      </div>
+      <div style="font-size:52px;margin-bottom:10px">${act.icon}</div>
+      <h2 style="font-size:22px;font-weight:900;margin-bottom:8px">${act[titleKey]}</h2>
+      <p style="font-size:14px;opacity:.9;line-height:1.6">${act[descKey]}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${act.dur}</span>
+        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${act.frq}</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">${t('watch_for')}</h3>
+      <p style="color:var(--txt-2)">${act[watchKey]}</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">${t('tips')}</h3>
+      <ul style="font-size:13.5px;color:var(--txt-2);line-height:1.8;padding-inline-start:20px">
+        <li>${t('tips1')}</li>
+        <li>${t('tips2')}</li>
+        <li>${t('tips3')}</li>
+      </ul>
+    </div>
+    ${done ? `<div class="card grad" style="text-align:center"><h3>${t('activity_done')}</h3></div>` :
+      `<button class="btn primary mt-16" onclick="openLogModal()">${t('start_activity')}</button>`}
+    <button class="btn ghost mt-16" onclick="go('home')">${t('back_home')}</button>`;
+  go('today');
+};
+
+/* ============ ACTIVITIES LIBRARY ============ */
+let actFilter = 'all';
+$$('#actFilters .chip').forEach(c => {
+  c.addEventListener('click', () => {
+    $$('#actFilters .chip').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    actFilter = c.dataset.f;
+    renderActivitiesList();
+    Sound.tap();
+  });
+});
+function renderActivitiesList(){
+  if(!State.child) return;
+  const items = [];
+  Object.keys(ACTIVITIES).forEach(subKey => {
+    const sub = SUBDOMAINS[subKey];
+    if(actFilter !== 'all' && sub.domain !== actFilter) return;
+    ACTIVITIES[subKey].forEach(a => {
+      if(State.child.age < a.age[0] || State.child.age > a.age[1]) return;
+      const tKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+      const done = State.logs.some(l => l.sub === subKey && (l.title_ar === a.title_ar || l.title_en === a.title_en));
+      items.push({ subKey, sub, ...a, done });
+    });
+  });
+  if(!items.length){
+    $('#actsList').innerHTML = `<div class="card" style="text-align:center;padding:30px;color:var(--txt-3)">${t('empty_acts')}</div>`;
+    return;
+  }
+  const titleKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+  const descKey = State.lang === 'ar' ? 'desc_ar' : 'desc_en';
+  $('#actsList').innerHTML = items.map(a => `
+    <div class="act-row ${a.done?'done':''}" data-sub="${a.subKey}" data-tar="${a.title_ar}">
+      <div class="ic">${a.icon}</div>
+      <div class="body">
+        <div class="dom">${DOMAINS[a.sub.domain].icon} ${a.sub[State.lang]}</div>
+        <h5>${a[titleKey]}</h5>
+        <p>${a[descKey]}</p>
+      </div>
+      <div class="chk"></div>
+    </div>`).join('');
+
+  $$('#actsList .act-row').forEach(el => {
+    el.addEventListener('click', () => {
+      const sub = el.dataset.sub, tar = el.dataset.tar;
+      const act = ACTIVITIES[sub].find(x => x.title_ar === tar);
+      if(!act) return;
+      showActivityDetail(sub, act);
+    });
+  });
+}
+function showActivityDetail(subKey, act){
+  const dom = DOMAINS[SUBDOMAINS[subKey].domain];
+  const sub = SUBDOMAINS[subKey];
+  const done = State.logs.some(l => l.sub === subKey && l.title_ar === act.title_ar);
+  const titleKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+  const descKey = State.lang === 'ar' ? 'desc_ar' : 'desc_en';
+  const watchKey = State.lang === 'ar' ? 'watch_ar' : 'watch_en';
+
+  $('#todayDetail').innerHTML = `
+    <div class="hero" style="text-align:start">
+      <div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">
+        ${dom.icon} ${sub[State.lang]}
+      </div>
+      <div style="font-size:52px;margin-bottom:10px">${act.icon}</div>
+      <h2 style="font-size:22px;font-weight:900;margin-bottom:8px">${act[titleKey]}</h2>
+      <p style="font-size:14px;opacity:.9;line-height:1.6">${act[descKey]}</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${act.dur}</span>
+        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${act.frq}</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px">${t('watch_for')}</h3>
+      <p style="color:var(--txt-2)">${act[watchKey]}</p>
+    </div>
+    ${done ? `<div class="card grad" style="text-align:center"><h3>${t('activity_done')}</h3></div>` :
+      `<button class="btn primary mt-16" onclick="logCustom('${subKey}','${act.title_ar}')">${t('log_this')}</button>`}
+    <button class="btn ghost mt-16" onclick="go('activities')">← ${State.lang === 'ar' ? 'المكتبة' : 'Library'}</button>`;
+  go('today');
+}
+
+/* ============ LOG MODAL ============ */
+let logState = { mood:null, note:'', custom:null };
+window.openLogModal = function(){
+  const act = getTodayActivity();
+  if(!act){ toast(t('empty_done')); return; }
+  const titleKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+  logState = { mood:null, note:'', custom:null };
+  $('#logActName').textContent = act[titleKey];
+  $$('#logMoodRow .mo').forEach(b => b.classList.remove('selected'));
+  $('#logNote').value = '';
+  $('#logModal').classList.add('show');
+};
+window.logCustom = function(subKey, titleAr){
+  const act = ACTIVITIES[subKey].find(x => x.title_ar === titleAr);
+  if(!act) return;
+  const titleKey = State.lang === 'ar' ? 'title_ar' : 'title_en';
+  logState = { mood:null, note:'', custom:{ subKey, act } };
+  $('#logActName').textContent = act[titleKey];
+  $$('#logMoodRow .mo').forEach(b => b.classList.remove('selected'));
+  $('#logNote').value = '';
+  $('#logModal').classList.add('show');
+};
+$$('#logMoodRow .mo').forEach(b => {
+  b.addEventListener('click', () => {
+    $$('#logMoodRow .mo').forEach(x => x.classList.remove('selected'));
+    b.classList.add('selected');
+    logState.mood = parseInt(b.dataset.mood, 10);
+    Sound.tap();
+  });
+});
+$('#cancelLog').addEventListener('click', () => $('#logModal').classList.remove('show'));
+$('#logNote').addEventListener('input', e => logState.note = e.target.value);
+
+$('#confirmLog').addEventListener('click', () => {
+  if(!logState.mood){ toast(t('toast_choose_mood')); return; }
+  let subKey, act;
+  if(logState.custom){ subKey = logState.custom.subKey; act = logState.custom.act; }
+  else { act = getTodayActivity(); subKey = act.sub; }
+  if(!act) return;
+
+  const oldStreak = computeStreak().current;
+  const existing = State.logs.find(l => l.date === today() && l.sub === subKey && l.title_ar === act.title_ar);
+  if(existing){ existing.mood = logState.mood; existing.note = logState.note; }
+  else {
+    State.logs.push({
+      date: today(), sub: subKey, title_ar: act.title_ar, title_en: act.title_en,
+      icon: act.icon, mood: logState.mood, note: logState.note, ts: Date.now()
+    });
+  }
+  save();
+  $('#logModal').classList.remove('show');
+  Sound.celebrate(); confetti();
+  const newStreak = computeStreak().current;
+  setTimeout(() => {
+    if(newStreak > oldStreak && newStreak >= 3) toast(t('toast_new_streak') + ' ' + newStreak);
+    else toast(t('toast_saved'));
+  }, 300);
+  // Refresh current screen
+  renderHome();
+  const cur = getCurScreen();
+  if(cur === 'today') openTodayDetail();
+  if(cur === 'activities') renderActivitiesList();
+});
+
+/* ============ PROGRESS ============ */
+function renderProgress(){
+  const st = computeStreak();
+  $('#progStreak').textContent = st.current;
+  $('#progSub').textContent = st.current === 0 ? (State.lang === 'ar' ? 'ابدأ اليوم لبناء سلسلتك 🔥' : 'Start today to build your streak 🔥')
+    : st.current < 3 ? (State.lang === 'ar' ? 'بداية رائعة' : 'Great start')
+    : st.current < 7 ? (State.lang === 'ar' ? 'أنت في الطريق الصحيح 💪' : 'On the right track 💪')
+    : (State.lang === 'ar' ? 'أنت بطل حقيقي 👑' : 'You\'re a true champion 👑');
+
+  // Weekly chart
+  const todayD = new Date();
+  const days = [];
+  for(let i = 6; i >= 0; i--){
+    const d = new Date(todayD); d.setDate(d.getDate() - i);
+    const key = d.toISOString().slice(0,10);
+    const count = State.logs.filter(l => l.date === key).length;
+    days.push({ key, d, count, isToday: i === 0 });
+  }
+  const max = Math.max(1, ...days.map(x => x.count));
+  const dayNames = State.lang === 'ar' ? ['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'] : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  $('#weeklyChart').innerHTML = days.map(x => `
+    <div class="bar-col ${x.isToday?'today':''}">
+      <div class="bar-wrap"><div class="bar-fill" style="height:${(x.count/max)*100}%"></div></div>
+      <div class="day">${dayNames[x.d.getDay()]}</div>
+    </div>`).join('');
+
+  // Achievements
+  const stats = { total: State.logs.length, streak: st.current, done: true };
+  $('#achGrid').innerHTML = ACHIEVEMENTS.map(a => {
+    const unlocked = a.check(stats);
+    return `<div class="ach ${unlocked?'unlocked':'locked'}">
+      <div class="em">${a.icon}</div>
+      <div class="nm">${a.name[State.lang]}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ============ PROFILE ============ */
+function renderProfile(){
+  if(!State.child) return;
+  $('#profileAvatar').textContent = State.child.gender === 'female' ? '👧' : '👦';
+  $('#profileName').textContent = State.child.name;
+  const st = computeStreak();
+  $('#profileMeta').textContent = `${State.child.age} ${State.lang==='ar'?'سنوات':'yrs'} · ${State.logs.length} ${State.lang==='ar'?'نشاط':'acts'} · ${st.current} ${State.lang==='ar'?'يوم':'days'}`;
+  $('#versionText').textContent = APP_VERSION;
+
+  // Sound toggle
+  $('#soundToggle').textContent = State.sound ? (State.lang==='ar'?'مفعّل ✓':'ON ✓') : (State.lang==='ar'?'مغلق':'OFF');
+  $('#soundToggle').classList.toggle('on', State.sound);
+
+  // Dark
+  applyTheme();
+}
+
+/* ============ SETTINGS HANDLERS ============ */
+$('#darkToggle')?.addEventListener('click', () => {
+  State.dark = !State.dark; save(); applyTheme(); Sound.click();
+});
+$('#soundToggle')?.addEventListener('click', () => {
+  State.sound = !State.sound; save(); renderProfile();
+  if(State.sound) Sound.click();
+});
+$('#reassessRow')?.addEventListener('click', () => {
+  if(!confirm(State.lang==='ar'?'بدء تقييم جديد؟':'Start new assessment?')) return;
+  State.currentAnswers = {}; State.currentIdx = 0;
+  go('child');
+  Sound.click();
+});
+$('#resetRow')?.addEventListener('click', () => {
+  if(!confirm(State.lang==='ar'?'مسح كل البيانات؟':'Reset all data?')) return;
+  State = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  save();
+  applyLang('ar'); applyTheme();
+  go('welcome');
 });
 
 /* ============ BOTTOM NAV ============ */
-$$('#bottomNav button').forEach(b=>{
-  b.addEventListener('click', ()=>{
+$$('#bottomNav button[data-screen]').forEach(b => {
+  b.addEventListener('click', () => {
+    const s = b.dataset.screen;
+    if(s === 'home') renderHome();
+    if(s === 'activities') renderActivitiesList();
+    if(s === 'progress') renderProgress();
+    if(s === 'profile') renderProfile();
+    go(s);
     Sound.tap();
-    if(b.dataset.target){
-      const s = b.dataset.target.replace('s-','');
-      if(s==='home') renderHome();
-      if(s==='activities') renderActivitiesLibrary();
-      if(s==='progress') renderProgress();
-      if(s==='profile') renderProfile();
-      go(s);
-    } else if(b.id==='logCenterBtn'){
-      openLogModal();
-    }
   });
 });
-$('#backBtn').addEventListener('click', ()=>{
-  const map = { today:'home', questions:'child', child:'welcome', activities:'home' };
-  go(map[curScreen()] || 'home');
+$('#logCenterBtn').addEventListener('click', () => {
+  Sound.tap();
+  openLogModal();
 });
-$('#childAvatar').addEventListener('click', ()=>{ renderProfile(); go('profile'); });
-
-/* ============ PWA INSTALL ============ */
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', e=>{
-  e.preventDefault();
-  deferredPrompt = e;
-  $('#installBanner').classList.add('show');
-});
-$('#installBtn').addEventListener('click', async ()=>{
-  if(!deferredPrompt){ showToast('غير متاح حاليًا'); return; }
-  deferredPrompt.prompt();
-  const r = await deferredPrompt.userChoice;
-  if(r.outcome==='accepted') showToast('🎉 تم التثبيت');
-  deferredPrompt = null;
-  $('#installBanner').classList.remove('show');
-});
-if('serviceWorker' in navigator && location.protocol !== 'file:'){
-  window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-}
 
 /* ============ BOOT ============ */
 function boot(){
   load();
+  applyLang(State.lang);
   applyTheme();
-  if(State.onboarded && State.children.length){
+  if(State.onboarded && State.child && State.plan){
     renderHome();
     go('home');
-    setTimeout(()=>Mascot.greetDaily(), 1200);
   } else {
     go('welcome');
-    setTimeout(()=>Mascot.speak('أهلاً بك! اضغط "ابدأ الرحلة" لنبدأ 🌟'), 800);
   }
-  checkVersion();
-  setInterval(()=>checkVersion(), VERSION_CHECK_INTERVAL);
 }
 document.addEventListener('DOMContentLoaded', boot);
-document.addEventListener('click', ()=>Sound.unlock(), { once:true });
-window.applyLang = function(lang){
-  State.settings.language = lang;
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang==='ar' ? 'rtl' : 'ltr';
-  document.body.style.fontFamily = lang==='ar' ? 'var(--font-ar)' : 'var(--font-en)';
-  save();
-  showToast(lang==='ar' ? 'تم التبديل إلى العربية' : 'Switched to English');
-};
-window.computeStreak = computeStreak;
-window.activeChild = activeChild;
+document.addEventListener('click', () => Sound.unlock(), { once:true });
+
+// PWA SW
+if('serviceWorker' in navigator && location.protocol !== 'file:'){
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
 </script>
 </body>
 </html>
