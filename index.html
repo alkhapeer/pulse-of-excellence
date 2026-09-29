@@ -1588,4 +1588,219 @@ function openLogModalCustom(sub, act){
     save();
     $('#logModal').classList.remove('show');
     fireConfetti();
-    showToast('🎉
+    showToast('🎉 تم تسجيل النشاط');
+    renderActivitiesLibrary();
+    renderHome();
+    go('activities');
+  });
+}
+
+/* ============ Progress Screen ============ */
+function renderProgress(){
+  const child = activeChild(); if(!child) return;
+  const streak = computeStreak(child);
+  $('#progressStreak').textContent = streak.current;
+  $('#progressSub').textContent = streak.current===0 ? 'ابدأ اليوم لبناء سلسلتك 🔥'
+    : streak.current<3 ? 'بداية رائعة! استمر'
+    : streak.current<7 ? 'أنت في الطريق الصحيح 💪'
+    : streak.current<14 ? 'أسبوع رائع! 🌟'
+    : 'أنت بطل حقيقي 👑';
+
+  // Weekly chart
+  const today = new Date();
+  const days = [];
+  for(let i=6; i>=0; i--){
+    const d = new Date(today); d.setDate(d.getDate()-i);
+    const key = todayKey(d);
+    const count = (child.logs||[]).filter(l=>l.date===key).length;
+    days.push({ key, d, count, isToday: i===0 });
+  }
+  const max = Math.max(1, ...days.map(d=>d.count));
+  const dayNames = ['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
+  $('#weeklyChart').innerHTML = days.map(d=>{
+    const h = (d.count/max)*100;
+    const lbl = dayNames[d.d.getDay()];
+    return `<div class="bar-col ${d.isToday?'today':''}">
+      <div class="bar-wrap"><div class="bar-fill" style="height:${h}%"></div></div>
+      <div class="day-lbl">${lbl}</div>
+    </div>`;
+  }).join('');
+
+  // Achievements
+  const totalLogs = (child.logs||[]).length;
+  const stats = { currentStreak: streak.current, totalLogs, assessment: child.assessment };
+  $('#achievementsGrid').innerHTML = ACHIEVEMENTS.map(a=>{
+    const unlocked = a.check(stats);
+    return `<div class="ach-card ${unlocked?'unlocked':'locked'}">
+      <div class="badge">${a.icon}</div>
+      <div class="name">${a.name}</div>
+      <div class="desc">${a.desc}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ============ Profile ============ */
+function renderProfile(){
+  const child = activeChild(); if(!child) return;
+  $('#profileAvatar').textContent = child.gender==='female' ? '👧' : '👦';
+  $('#profileName').textContent = child.name;
+  $('#profileMeta').textContent = `${child.age} سنوات · ${(child.logs||[]).length} نشاط · ${computeStreak(child).current} يوم متتالي`;
+  $('#notifToggle').textContent = State.settings.notifications ? 'مفعّل ✓' : 'تشغيل';
+  $('#notifToggle').style.background = State.settings.notifications ? 'var(--grad-mint)' : 'var(--ink-100)';
+  $('#notifToggle').style.color = State.settings.notifications ? '#fff' : 'var(--ink-700)';
+  $('#reminderTime').value = State.settings.reminderTime || '19:00';
+
+  // Reports history
+  $('#reportsHistory').innerHTML = `
+    <div class="card">
+      <h3 style="font-size:15px;display:flex;align-items:center;gap:8px">📋 تقييم ${child.assessment?.date || '—'}</h3>
+      <p style="font-size:13px;color:var(--ink-500);margin-top:6px">النتيجة: <strong>${Math.round(child.assessment?.results?.overall || 0)}%</strong></p>
+    </div>
+  `;
+}
+$('#notifToggle').addEventListener('click', async ()=>{
+  if(State.settings.notifications){
+    State.settings.notifications = false;
+    save();
+    showToast('تم إيقاف التذكيرات');
+  } else {
+    if('Notification' in window){
+      const perm = await Notification.requestPermission();
+      if(perm==='granted'){
+        State.settings.notifications = true;
+        save();
+        showToast('✓ تم تفعيل التذكير اليومي');
+        scheduleReminder();
+      } else {
+        showToast('لم يتم منح الإذن');
+      }
+    } else {
+      showToast('جهازك لا يدعم التنبيهات');
+    }
+  }
+  renderProfile();
+});
+$('#reminderTime').addEventListener('change', e=>{
+  State.settings.reminderTime = e.target.value;
+  save();
+  scheduleReminder();
+});
+function scheduleReminder(){
+  if(!State.settings.notifications) return;
+  if(!('Notification' in window) || Notification.permission !== 'granted') return;
+  // Cancel existing
+  if(window._reminderTimeout) clearTimeout(window._reminderTimeout);
+  const [h,m] = (State.settings.reminderTime || '19:00').split(':').map(Number);
+  const now = new Date();
+  const next = new Date();
+  next.setHours(h, m, 0, 0);
+  if(next <= now) next.setDate(next.getDate()+1);
+  const delay = next - now;
+  window._reminderTimeout = setTimeout(()=>{
+    const child = activeChild();
+    const act = child ? getTodayActivity(child) : null;
+    if(act && !isActivityDone(child, todayKey(), act.sub, act.title)){
+      new Notification('نبض التميز 🔥', {
+        body: `حان وقت نشاط اليوم: ${act.title}`,
+        icon:'icon-192.png',
+        badge:'icon-192.png',
+        tag:'daily-activity'
+      });
+    }
+    scheduleReminder();
+  }, delay);
+}
+$('#addChildBtn').addEventListener('click', ()=>{
+  // Simple: reset flow
+  tmpChild = { name:'', age:null, gender:null };
+  $('#childName').value = ''; $('#childAge').value = '';
+  $$('#genderChips .chip').forEach(x=>x.classList.remove('active'));
+  $('#toQuestions').disabled = true;
+  go('child');
+});
+$('#reassessBtn').addEventListener('click', ()=>{
+  if(!confirm('بدء تقييم جديد؟ سيتم حفظ التقييم السابق.')) return;
+  const child = activeChild();
+  tmpChild = { name: child.name, age: child.age, gender: child.gender };
+  window._applicableQs = QUESTIONS.filter(q => tmpChild.age>=q.ageMin && tmpChild.age<=q.ageMax);
+  window._answers = {}; window._qIdx = 0;
+  window._isReassess = true;
+  go('questions'); renderQuestion();
+});
+/* Override finalize for reassess */
+const _origFinalize = finalizeAssessment;
+finalizeAssessment = function(){
+  if(window._isReassess){
+    const child = activeChild();
+    const results = computeResults(window._applicableQs, window._answers);
+    child.assessmentHistory = child.assessmentHistory || [];
+    child.assessmentHistory.push(child.assessment);
+    child.assessment = { results, date: todayKey(), applicableCount: window._applicableQs.length };
+    child.plan = generatePlan(child);
+    save();
+    window._isReassess = false;
+    renderResults(results);
+    go('results');
+    setTimeout(fireConfetti, 400);
+  } else {
+    _origFinalize();
+  }
+};
+
+/* ============ Confetti ============ */
+function fireConfetti(){
+  const colors = ['#7C3AED','#FF6B9D','#06D6A0','#FFD166','#4ECDC4','#C4B5FD'];
+  for(let i=0;i<80;i++){
+    const p = document.createElement('div');
+    p.className = 'confetti-piece';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDelay = (Math.random()*0.6) + 's';
+    p.style.animationDuration = (2.6 + Math.random()*1.2) + 's';
+    p.style.transform = `rotate(${Math.random()*360}deg)`;
+    if(Math.random()>0.6) p.style.borderRadius = '50%';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(), 4200);
+  }
+}
+
+/* ============ Toast ============ */
+function showToast(msg, ms=2600){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), ms);
+}
+
+/* ============ PWA Install ============ */
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault();
+  deferredPrompt = e;
+  $('#installBanner').classList.add('show');
+});
+$('#installBtn').addEventListener('click', async ()=>{
+  if(!deferredPrompt){ showToast('غير متاح حاليًا'); return; }
+  deferredPrompt.prompt();
+  const r = await deferredPrompt.userChoice;
+  if(r.outcome==='accepted') showToast('🎉 تم التثبيت');
+  deferredPrompt = null;
+  $('#installBanner').classList.remove('show');
+});
+if('serviceWorker' in navigator && location.protocol !== 'file:'){
+  window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+
+/* ============ Boot ============ */
+load();
+if(State.onboarded && State.children.length){
+  renderHome();
+  go('home');
+  scheduleReminder();
+} else {
+  go('welcome');
+}
+</script>
+</body>
+</html>
