@@ -1,15 +1,15 @@
 {
-  "version": "1.4.0",
-  "buildDate": "2026-09-29T12:00:00Z",
-  "changelog": "إضافة ماسكوت، أصوات، وضع مظلم، مشاركة اجتماعية",
+  "version": "1.5.0",
+  "buildDate": "2026-09-30T12:00:00Z",
+  "changelog": "إصلاحات شاملة: اتجاه LTR للنسخة الإنجليزية، مسارات الأيقونات، Service Worker، زر بدء الرفيق اليومي",
   "minSupportedVersion": "1.0.0",
   "forceUpdate": false,
   "updateUrl": "index.html",
   "features": {
-    "mascot": true,
+    "mascot": false,
     "sounds": true,
     "darkMode": true,
-    "socialShare": true,
+    "socialShare": false,
     "bilingual": true
   }
 }
