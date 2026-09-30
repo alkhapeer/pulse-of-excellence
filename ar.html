@@ -36,7 +36,7 @@
 
   <main class="main">
 
-  <!-- WELCOME -->
+ <!-- WELCOME -->
 <section class="screen active" id="screen-welcome">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px">
     <div style="width:120px;height:120px;margin:0 auto 24px;border-radius:34px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);box-shadow:0 24px 60px rgba(124,58,237,.4);display:flex;align-items:center;justify-content:center">
@@ -45,7 +45,6 @@
     <h1 id="welcomeTitle" style="font-size:32px;font-weight:900;line-height:1.15;margin-bottom:10px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">نبض التميّز</h1>
     <p style="font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:28px">رحلة يومية مع طفلك: تقييم، أنشطة، وتتبع تطور</p>
     <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:start">
-
       <button class="welcome-card" type="button" data-goto="child">
         <div class="wc-icon" style="background:#EDE9FE">🎯</div>
         <div class="wc-body">
@@ -53,7 +52,6 @@
           <div class="wc-sub">4 محاور نمائية رئيسية</div>
         </div>
       </button>
-
       <button class="welcome-card" type="button" data-goto="activities">
         <div class="wc-icon" style="background:#FFE4EE">📅</div>
         <div class="wc-body">
@@ -61,7 +59,6 @@
           <div class="wc-sub">تمرين منزلي بسيط كل يوم</div>
         </div>
       </button>
-
       <button class="welcome-card" type="button" data-goto="progress">
         <div class="wc-icon" style="background:#D9F9EE">🏆</div>
         <div class="wc-body">
@@ -69,7 +66,6 @@
           <div class="wc-sub">تتبع التطور واحتفل بكل خطوة</div>
         </div>
       </button>
-
     </div>
     <button class="btn primary" id="startBtn">ابدأ الرحلة ✨</button>
     <p class="mu mt">⏱️ مدة التقييم: 10-15 دقيقة</p>
@@ -101,18 +97,17 @@
     </section>
 
     <!-- QUESTIONS -->
-    <section class="screen" id="screen-questions">
-      <div class="pbar-wrap">
-        <div class="pbar-info"><span id="qProgressText">1 / 34</span><span class="pct" id="qPercent">3<small>%</small></span></div>
-        <div class="pbar"><div class="pbar-fill" id="qProgressFill"></div></div>
-      </div>
-      <div id="qContainer"></div>
-      <div class="sp"></div>
-      <div style="display:flex;gap:10px;margin-top:20px">
-        <button class="btn light" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding:14px 22px">←</button>
-        <button class="btn primary" id="qNextBtn" disabled style="flex:1">التالي</button>
-      </div>
-    </section>
+<section class="screen" id="screen-questions">
+  <div class="pbar-wrap">
+    <div class="pbar-info"><span id="qProgressText">1 / 34</span><span class="pct" id="qPercent">3<small>%</small></span></div>
+    <div class="pbar"><div class="pbar-fill" id="qProgressFill"></div></div>
+  </div>
+  <div id="qContainer"></div>
+  <div class="quiz-nav">
+    <button class="btn light" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding:14px 22px">←</button>
+    <button class="btn primary" id="qNextBtn" disabled style="flex:1">التالي</button>
+  </div>
+</section>
 
     <!-- RESULTS -->
     <section class="screen" id="screen-results">
