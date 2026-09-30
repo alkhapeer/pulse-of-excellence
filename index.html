@@ -3,592 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0F0B1F" id="tc">
-<title>نبض التميز</title>
+<meta name="theme-color" content="#0F0B1F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="نبض التميز">
+<title>نبض التميز · أكاديمية هيرو</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{--v:#7C3AED;--vd:#4C1D95;--c:#FF6B9D;--m:#06D6A0;--g:#FFD166;--bg:#F8F7FC;--bg2:#F0EFF6;--cd:#FFF;--t:#0E0B1F;--t2:#4A4266;--t3:#9591AB;--ln:#E2E0EB;--gr:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);--grh:linear-gradient(160deg,#0F0B1F 0%,#2D1B5E 45%,#4C1D95 100%);--grm:linear-gradient(135deg,#06D6A0,#4ECDC4);--grs:linear-gradient(135deg,#FF6B9D,#FFD166);--sh:0 4px 12px rgba(15,11,31,.08);--shv:0 12px 32px rgba(124,58,237,.3);--shm:0 12px 32px rgba(6,214,160,.3);--r:20px;--rf:9999px;--st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px)}
-[data-theme=dark]{--bg:#0A0817;--bg2:#14102A;--cd:#1A1633;--t:#F5F3FF;--t2:#C4B5FD;--t3:#8B7DB8;--ln:#2D2645}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
-#app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
-.tb{position:sticky;top:0;z-index:50;padding:calc(var(--st) + 12px) 16px 12px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid transparent}
-.tb.sc{border-bottom-color:var(--ln)}
-.tb.dk{background:rgba(15,11,31,.7);border-bottom-color:rgba(255,255,255,.08)}
-.tb.dk h1{color:#fff}
-.tb.dk .ib{background:rgba(255,255,255,.12);color:#fff}
-.ib{width:42px;height:42px;border-radius:50%;background:var(--cd);box-shadow:var(--sh);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:.15s}
-.ib:active{transform:scale(.9)}
-.ib.h{visibility:hidden}
-.tb h1{font-size:16px;font-weight:800;flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lb{padding:9px 13px;border-radius:var(--rf);background:var(--cd);box-shadow:var(--sh);font-size:13px;font-weight:800;color:var(--v);flex-shrink:0;display:flex;align-items:center;gap:5px;transition:.15s}
-.lb:active{transform:scale(.95)}
-.scr{display:none;flex:1;flex-direction:column;padding:8px 16px calc(var(--sb) + 96px);animation:fi .35s}
-.scr.on{display:flex}
-@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px 20px;border-radius:var(--r);font-size:16px;font-weight:800;transition:.2s;background:var(--bg2);color:var(--t);position:relative;overflow:hidden}
-.btn.pr{background:var(--gr);color:#fff;box-shadow:var(--shv)}
-.btn.pr::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:translateX(-100%);animation:sn 3s infinite}
-@keyframes sn{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
-.btn.pr:active{transform:translateY(2px) scale(.98)}
-.btn.lt{background:var(--cd);box-shadow:var(--sh)}
-.btn.gh{background:transparent;color:var(--v);font-weight:800}
-.btn:disabled{opacity:.4;pointer-events:none}
-.card{background:var(--cd);border-radius:var(--r);padding:20px;box-shadow:var(--sh);margin-bottom:14px}
-.card.gr{background:var(--grh);color:#fff;box-shadow:var(--shv)}
-.card h3{font-size:17px;font-weight:800;margin-bottom:10px}
-.card p{font-size:14px;line-height:1.7}
-.f{margin-bottom:16px}
-.f label{display:block;font-size:13px;font-weight:800;margin-bottom:8px;color:var(--t2)}
-.f input,.f select,.f textarea{width:100%;padding:16px 18px;border-radius:var(--r);border:2px solid var(--ln);background:var(--cd);font-size:16px;font-weight:600;-webkit-appearance:none;appearance:none;color:var(--t)}
-.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--v);box-shadow:0 0 0 4px rgba(124,58,237,.12)}
-.f textarea{min-height:90px;resize:vertical}
-.ch{display:flex;gap:8px;flex-wrap:wrap}
-.chp{padding:11px 18px;border-radius:var(--r);background:var(--cd);border:2px solid var(--ln);font-size:14px;font-weight:700;color:var(--t2);transition:.15s}
-.chp.on{background:var(--gr);color:#fff;border-color:transparent;box-shadow:var(--shv)}
-.pb{height:10px;background:var(--bg2);border-radius:var(--rf);overflow:hidden}
-.pbf{height:100%;background:var(--gr);border-radius:var(--rf);transition:width .5s}
-.pi{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-size:13px;font-weight:700;color:var(--t3)}
-.pi .pc{font-size:20px;color:var(--v);font-weight:900}
-.qc{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rf);font-size:12.5px;font-weight:800;margin-bottom:18px}
-.qt{font-size:22px;font-weight:800;line-height:1.5;margin-bottom:24px}
-.qo{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:var(--r);background:var(--cd);border:2px solid var(--ln);text-align:start;font-size:15px;font-weight:700;transition:.2s;width:100%;margin-bottom:10px}
-.qo .rd{width:24px;height:24px;border-radius:50%;border:2.5px solid var(--ln);flex-shrink:0;background:var(--cd);position:relative;transition:.2s}
-.qo.on{border-color:var(--v);background:linear-gradient(135deg,rgba(124,58,237,.08),transparent)}
-.qo.on .rd{border-color:var(--v);background:var(--gr)}
-.qo.on .rd::after{content:'';position:absolute;inset:6px;border-radius:50%;background:#fff}
-.qo .by{flex:1}
-.qo .hn{font-size:12px;color:var(--t3);font-weight:500;margin-top:2px;display:block}
-.hero{padding:28px 22px;border-radius:var(--r);background:var(--grh);color:#fff;box-shadow:var(--shv);margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 0%,rgba(255,107,157,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(6,214,160,.25),transparent 45%)}
-.hero>*{position:relative;z-index:1}
-.rg{width:170px;height:170px;margin:0 auto 16px;position:relative}
-.rg svg{transform:rotate(-90deg)}
-.rg .bg{stroke:rgba(255,255,255,.15);fill:none}
-.rg .fg{stroke:url(#rgd);stroke-linecap:round;fill:none;transition:stroke-dashoffset 1.2s}
-.rg .cn{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.rg .nm{font-size:42px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#C4B5FD);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.rg .lb2{font-size:11px;font-weight:700;color:rgba(255,255,255,.75);margin-top:4px}
-.hero .bg2{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--rf);background:rgba(255,255,255,.18);font-size:13px;font-weight:800;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(12px)}
-.hero .bg2 .dt{width:8px;height:8px;border-radius:50%;background:var(--g);box-shadow:0 0 12px var(--g)}
-.dr{display:flex;align-items:center;gap:12px;padding:16px;border-radius:var(--r);background:var(--cd);margin-bottom:10px;box-shadow:var(--sh)}
-.dr .ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
-.dr .bd{flex:1;min-width:0}
-.dr .bd h4{font-size:14px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.dr .bd h4 .v{margin-inline-start:auto;font-size:13px}
-.dr .tr{height:7px;background:var(--bg2);border-radius:var(--rf);overflow:hidden}
-.dr .fl{height:100%;border-radius:var(--rf);transition:width 1s}
-.nt{padding:14px 16px;border-radius:var(--r);background:linear-gradient(135deg,#FFF8E5,#FFFDF7);border:1.5px solid #F8E1A0;font-size:13px;color:#7A5C10;line-height:1.65;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
-.nt .ic{font-size:18px;flex-shrink:0;margin-top:2px}
-[data-theme=dark] .nt{background:linear-gradient(135deg,#3A2F1A,#2A2415);border-color:#5A4A20;color:#F0D9A0}
-.hh{padding:24px 20px;border-radius:var(--r);background:var(--grh);color:#fff;box-shadow:var(--shv);margin-bottom:16px;position:relative;overflow:hidden}
-.hh::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 90% 0%,rgba(255,107,157,.35),transparent 45%),radial-gradient(circle at 0% 100%,rgba(6,214,160,.25),transparent 45%)}
-.hh>*{position:relative;z-index:1}
-.ht{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
-.ht .gt{font-size:13px;opacity:.85;font-weight:600}
-.ht .nm{font-size:20px;font-weight:900;margin-top:2px}
-.sk{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--rf);background:var(--grs);color:#fff;font-weight:900;box-shadow:0 8px 20px rgba(255,107,157,.4)}
-.sk .fl2{font-size:18px}
-.sk .n{font-size:22px;line-height:1}
-.sk .l2{font-size:10px;opacity:.9;font-weight:700}
-.mw{padding:14px;border-radius:var(--r);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
-.mw .q{font-size:13px;font-weight:700;text-align:center;margin-bottom:10px;opacity:.9}
-.mc{display:flex;justify-content:center;gap:6px}
-.mch{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-size:22px;display:flex;align-items:center;justify-content:center;transition:.15s}
-.mch.on{background:rgba(255,255,255,.3);border-color:#fff;transform:scale(1.08);box-shadow:0 8px 20px rgba(255,255,255,.2)}
-.td{background:var(--cd);border-radius:var(--r);padding:20px;box-shadow:var(--sh);margin-bottom:16px;position:relative;overflow:hidden}
-.td::before{content:'';position:absolute;top:0;inset-inline:0;height:5px;background:var(--gr)}
-.td.dn::before{background:var(--grm)}
-.td .tg{display:inline-flex;padding:5px 12px;border-radius:var(--rf);background:#EDE9FE;color:var(--vd);font-size:11px;font-weight:900;margin-bottom:12px}
-.td.dn .tg{background:#D9F9EE;color:#059669}
-.td .ic{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:12px}
-.td h3{font-size:18px;font-weight:900;margin-bottom:6px}
-.td .ds{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:12px}
-.tgs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.tgi{display:inline-flex;align-items:center;gap:4px;padding:6px 11px;border-radius:var(--rf);font-size:11.5px;font-weight:800;background:var(--bg2);color:var(--t2)}
-.tgi.v{background:#EDE9FE;color:var(--vd)}
-.tgi.c{background:#FFE4EE;color:#E11D74}
-.tgi.m{background:#D9F9EE;color:#059669}
-.db{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--rf);background:var(--grm);color:#fff;font-size:13px;font-weight:900;box-shadow:var(--shm)}
-.wk{background:var(--cd);border-radius:var(--r);padding:16px;box-shadow:var(--sh);margin-bottom:14px}
-.wh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;font-weight:800;color:var(--t3)}
-.wh .pc{font-size:18px;color:var(--v);font-weight:900}
-.wd{display:flex;justify-content:space-between;gap:5px}
-.dd{flex:1;aspect-ratio:1;max-width:36px;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:var(--t3)}
-.dd.td2{box-shadow:0 0 0 3px #C4B5FD}
-.dd.dn{background:var(--grm);color:#fff}
-.dd.dn::after{content:'✓';font-size:13px;font-weight:900}
-.dd.fu{opacity:.4}
-.qs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.stc{background:var(--cd);border-radius:var(--r);padding:14px 10px;box-shadow:var(--sh);text-align:center}
-.stc .ic{font-size:20px;margin-bottom:4px}
-.stc .v{font-size:20px;font-weight:900;color:var(--t);line-height:1}
-.stc .l{font-size:10.5px;font-weight:800;color:var(--t3);margin-top:4px}
-.ar{background:var(--cd);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
-.ar .ic{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#EDE9FE,#FFE4EE);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.ar.dn .ic{background:#D9F9EE}
-.ar .bd{flex:1;min-width:0}
-.ar .dm{font-size:11px;font-weight:800;color:var(--v);margin-bottom:3px}
-.ar h5{font-size:14px;font-weight:800;margin-bottom:2px}
-.ar p{font-size:12px;color:var(--t3);line-height:1.45;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.ar .ch2{width:24px;height:24px;border-radius:50%;border:2.5px solid var(--ln);background:var(--cd);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
-.ar.dn .ch2{background:var(--grm);border-color:transparent}
-.ar.dn .ch2::after{content:'✓';font-size:14px}
-.ph{padding:24px 20px;border-radius:var(--r);background:var(--grh);color:#fff;box-shadow:var(--shv);margin-bottom:16px;text-align:center;position:relative;overflow:hidden}
-.ph::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 0%,rgba(255,209,102,.35),transparent 45%),radial-gradient(circle at 100% 100%,rgba(6,214,160,.25),transparent 45%)}
-.ph>*{position:relative;z-index:1}
-.ph .bg2{font-size:56px;font-weight:900;line-height:1;background:linear-gradient(135deg,#fff,#FFD166);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.ph .l2{font-size:14px;font-weight:700;opacity:.85;margin-top:6px}
-.ph .s2{font-size:12px;opacity:.7;margin-top:8px}
-.cc{background:var(--cd);border-radius:var(--r);padding:18px;box-shadow:var(--sh);margin-bottom:14px}
-.cc h4{font-size:15px;font-weight:900;margin-bottom:16px}
-.br{display:flex;justify-content:space-between;gap:5px;align-items:flex-end;height:120px}
-.bc{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%}
-.bc .bw{width:100%;flex:1;border-radius:10px;background:var(--bg2);position:relative;display:flex;align-items:flex-end;overflow:hidden}
-.bc .bf{width:100%;border-radius:10px;background:var(--gr);transition:height .8s}
-.bc .dy{font-size:10.5px;font-weight:800;color:var(--t3)}
-.bc.td2 .dy{color:var(--v)}
-.ag{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ach{background:var(--cd);border-radius:var(--r);padding:12px 6px;box-shadow:var(--sh);text-align:center;position:relative;overflow:hidden}
-.ach.lk{opacity:.4;filter:grayscale(1)}
-.ach.un::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:var(--grs)}
-.ach .em{font-size:28px;margin-bottom:4px}
-.ach .nm{font-size:10.5px;font-weight:800;color:var(--t)}
-.prh{background:var(--cd);border-radius:var(--r);padding:24px;box-shadow:var(--sh);text-align:center;margin-bottom:14px}
-.prh .av{width:80px;height:80px;border-radius:24px;background:var(--gr);color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:900;margin:0 auto 12px;box-shadow:var(--shv)}
-.prh h3{font-size:20px;font-weight:900;margin-bottom:4px}
-.prh p{font-size:13px;color:var(--t3)}
-.stt{background:var(--cd);border-radius:var(--r);padding:0;box-shadow:var(--sh);overflow:hidden;margin-bottom:14px}
-.sr{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--ln)}
-.sr:last-child{border-bottom:none}
-.sr .ll{font-size:14px;font-weight:800}
-.sr .ss{font-size:11.5px;color:var(--t3);margin-top:2px}
-.tg2{padding:7px 14px;border-radius:var(--rf);font-size:12.5px;font-weight:800;background:var(--bg2);color:var(--t)}
-.tg2.on{background:var(--grm);color:#fff;box-shadow:var(--shm)}
-.bn{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:rgba(255,255,255,.96);backdrop-filter:blur(24px);border-top:1px solid var(--ln);padding:6px 6px calc(var(--sb) + 6px);display:none;justify-content:space-around;z-index:40;box-shadow:0 -8px 24px rgba(15,11,31,.06)}
-.bn.on{display:flex}
-.bn button{flex:1;padding:8px 2px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:800;color:var(--t3);transition:.15s}
-.bn button .ic{font-size:20px;line-height:1}
-.bn button.on{color:var(--v)}
-.bn button.on .ic{transform:scale(1.15)}
-.md{position:fixed;inset:0;background:rgba(15,11,31,.55);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-end;justify-content:center}
-.md.on{display:flex}
-.ms{width:100%;max-width:520px;background:var(--cd);border-radius:var(--r) var(--r) 0 0;padding:22px 20px calc(var(--sb) + 20px);animation:su .3s;max-height:88vh;overflow-y:auto}
-@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.gp{width:40px;height:5px;background:var(--ln);border-radius:99px;margin:0 auto 16px}
-.ms h3{font-size:19px;font-weight:900;margin-bottom:6px}
-.ms .sb2{font-size:13px;color:var(--t3);margin-bottom:16px}
-.mr{display:flex;justify-content:space-between;gap:6px;margin-bottom:16px}
-.mm{flex:1;aspect-ratio:1;max-width:60px;border-radius:16px;background:var(--bg);border:2px solid var(--ln);font-size:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;transition:.15s}
-.mm span{font-size:9px;font-weight:800;color:var(--t3)}
-.mm.on{border-color:var(--v);background:rgba(124,58,237,.08);transform:scale(1.05)}
-.mm.on span{color:var(--v)}
-.ts{position:fixed;bottom:calc(var(--sb) + 110px);left:50%;transform:translateX(-50%) translateY(20px);background:var(--t);color:var(--bg);padding:13px 20px;border-radius:var(--r);font-size:14px;font-weight:700;opacity:0;pointer-events:none;transition:.3s;z-index:999;box-shadow:var(--sh);max-width:88%;text-align:center}
-.ts.on{opacity:1;transform:translateX(-50%) translateY(0)}
-.sct{font-size:12px;font-weight:900;color:var(--t3);margin:18px 4px 10px;letter-spacing:1.2px;display:flex;align-items:center;gap:6px}
-.sct::before{content:'';width:3px;height:14px;border-radius:99px;background:var(--gr)}
-.sp{flex:1}
-.mt{margin-top:16px}
-.mu{color:var(--t3);font-size:12.5px;line-height:1.5}
-.cn{position:fixed;width:10px;height:10px;pointer-events:none;z-index:998;animation:cf 3s cubic-bezier(.3,.6,.5,1) forwards}
-@keyframes cf{0%{transform:translateY(-20vh) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
-</style>
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/portal.css">
 </head>
 <body>
-<div id="app">
-  <header class="tb" id="tb">
-    <button class="ib h" id="bk">←</button>
-    <h1 id="tt">نبض التميز</h1>
-    <button class="lb" onclick="location.href='en.html'"><span>🇬🇧</span><span>EN</span></button>
-  </header>
 
-  <main id="mn">
-    <!-- WELCOME -->
-    <section class="scr on" id="s-welcome">
-      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px">
-        <div style="width:120px;height:120px;margin:0 auto 24px;border-radius:34px;background:var(--gr);box-shadow:0 24px 60px rgba(124,58,237,.4);display:flex;align-items:center;justify-content:center">
-          <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M8 32h10l4-12 8 24 6-18 4 6h16"/></svg>
-        </div>
-        <h1 style="font-size:32px;font-weight:900;line-height:1.15;margin-bottom:10px;background:var(--gr);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">نبض التميّز</h1>
-        <p style="font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:28px">رحلة يومية مع طفلك: تقييم شامل، نشاط كل يوم، وتتبع التطور</p>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:start">
-          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0"><div style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center;font-size:20px">🎯</div><div><div style="font-size:14px;font-weight:800">تقييم شامل</div><div style="font-size:12px;color:var(--t3)">4 محاور نمائية رئيسية</div></div></div>
-          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0"><div style="width:44px;height:44px;border-radius:14px;background:#FFE4EE;display:flex;align-items:center;justify-content:center;font-size:20px">📅</div><div><div style="font-size:14px;font-weight:800">نشاط يومي</div><div style="font-size:12px;color:var(--t3)">تمرين منزلي بسيط كل يوم</div></div></div>
-          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0"><div style="width:44px;height:44px;border-radius:14px;background:#D9F9EE;display:flex;align-items:center;justify-content:center;font-size:20px">🏆</div><div><div style="font-size:14px;font-weight:800">إنجازات وتقدم</div><div style="font-size:12px;color:var(--t3)">تتبع التطور واحتفل بكل خطوة</div></div></div>
-        </div>
-        <button class="btn pr" onclick="go('child')"><span>ابدأ الرحلة</span> <span>✨</span></button>
-        <p class="mu mt">⏱️ مدة التقييم: 10-15 دقيقة</p>
-      </div>
-    </section>
-
-    <!-- CHILD -->
-    <section class="scr" id="s-child">
-      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">بيانات الطفل</h2>
-      <p class="mu" style="margin:0 4px 20px">سنخصص التجربة حسب عمره</p>
-      <div class="f"><label>👶 اسم الطفل (اختياري)</label><input type="text" id="cn" maxlength="30" placeholder="مثال: يوسف"></div>
-      <div class="f"><label>🎂 العمر بالسنة *</label><select id="ca"><option value="">اختر العمر</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select></div>
-      <div class="f"><label>⚧ الجنس (اختياري)</label><div class="ch" id="gc"><button class="chp" data-v="male">👦 ولد</button><button class="chp" data-v="female">👧 بنت</button></div></div>
-      <div class="sp"></div>
-      <button class="btn pr mt" id="tq" disabled><span>متابعة للتقييم</span> <span>←</span></button>
-    </section>
-
-    <!-- QUESTIONS -->
-    <section class="scr" id="s-questions">
-      <div style="padding:4px 4px 16px">
-        <div class="pi"><span id="qp1">1 / 34</span><span class="pc" id="qp2">3<small>%</small></span></div>
-        <div class="pb"><div class="pbf" id="qp3" style="width:3%"></div></div>
-      </div>
-      <div id="qc"></div>
-      <div class="sp"></div>
-      <div style="display:flex;gap:10px;margin-top:20px">
-        <button class="btn lt" id="qpr" style="flex:0 0 auto;width:auto;padding:14px 22px">←</button>
-        <button class="btn pr" id="qnx" disabled style="flex:1">التالي</button>
-      </div>
-    </section>
-
-    <!-- RESULTS -->
-    <section class="scr" id="s-results">
-      <div class="hero">
-        <div class="rg">
-          <svg width="170" height="170" viewBox="0 0 170 170">
-            <defs><linearGradient id="rgd" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C4B5FD"/><stop offset="50%" stop-color="#FF6B9D"/><stop offset="100%" stop-color="#06D6A0"/></linearGradient></defs>
-            <circle class="bg" cx="85" cy="85" r="72" stroke-width="13"/><circle class="fg" id="rfg" cx="85" cy="85" r="72" stroke-width="13" stroke-dasharray="452" stroke-dashoffset="452"/>
-          </svg>
-          <div class="cn"><div class="nm" id="op">0%</div><div class="lb2">نبض التميّز</div></div>
-        </div>
-        <div class="bg2"><span class="dt"></span><span id="ob">—</span></div>
-      </div>
-      <div class="nt"><span class="ic">📌</span><div><strong>تنويه منهجي:</strong> هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية. ليست تشخيصًا طبيًا ولا مقارنة بأقران.</div></div>
-      <div class="sct">المحاور الأربعة</div><div id="dr"></div>
-      <div class="sct">المجالات الفرعية</div><div id="sr"></div>
-      <div class="sp"></div>
-      <button class="btn pr mt" onclick="startCompanion()"><span>🚀</span><span>ابدأ رحلة الرفيق اليومي</span></button>
-    </section>
-
-    <!-- HOME -->
-    <section class="scr" id="s-home">
-      <div class="hh">
-        <div class="ht">
-          <div><div class="gt" id="gt">—</div><div class="nm" id="hn">—</div></div>
-          <div class="sk"><span class="fl2">🔥</span><div style="display:flex;flex-direction:column;align-items:center"><span class="n" id="sn">0</span><span class="l2">يوم</span></div></div>
-        </div>
-        <div class="mw">
-          <div class="q">💭 كيف حال طفلك اليوم؟</div>
-          <div class="mc" id="mc">
-            <button class="mch" data-m="5">🤩</button><button class="mch" data-m="4">😊</button><button class="mch" data-m="3">😐</button><button class="mch" data-m="2">😔</button><button class="mch" data-m="1">😤</button>
-          </div>
-        </div>
-      </div>
-      <div class="sct">🎯 نشاط اليوم</div><div id="tc"></div>
-      <div class="sct">📊 تقدم الأسبوع</div>
-      <div class="wk"><div class="wh"><span id="wl">—</span><span class="pc" id="wp">0%</span></div><div class="wd" id="wd"></div></div>
-      <div class="sct">📈 ملخص سريع</div>
-      <div class="qs">
-        <div class="stc"><div class="ic">🎯</div><div class="v" id="st1">0</div><div class="l">نشاط</div></div>
-        <div class="stc"><div class="ic">🔥</div><div class="v" id="st2">0</div><div class="l">أطول سلسلة</div></div>
-        <div class="stc"><div class="ic">🏆</div><div class="v" id="st3">0</div><div class="l">إنجاز</div></div>
-      </div>
-    </section>
-
-    <!-- TODAY DETAIL -->
-    <section class="scr" id="s-today"><div id="tdc"></div></section>
-
-    <!-- ACTIVITIES -->
-    <section class="scr" id="s-activities">
-      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">مكتبة الأنشطة</h2>
-      <p class="mu" style="margin:0 4px 16px">الأنشطة المنزلية المتاحة</p>
-      <div class="ch" style="margin-bottom:14px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px" id="af">
-        <button class="chp on" data-f="all">الكل</button>
-        <button class="chp" data-f="emotional">💗 عاطفي</button>
-        <button class="chp" data-f="cognitive">🧠 عقلي</button>
-        <button class="chp" data-f="behavioral">🎯 سلوكي</button>
-        <button class="chp" data-f="skills">🤝 مهاري</button>
-      </div>
-      <div id="al"></div>
-    </section>
-
-    <!-- PROGRESS -->
-    <section class="scr" id="s-progress">
-      <div class="ph"><div class="bg2" id="ps">0</div><div class="l2">🔥 أيام متتالية</div><div class="s2" id="ps2">—</div></div>
-      <div class="cc"><h4>📅 آخر 7 أيام</h4><div class="br" id="wch"></div></div>
-      <div class="cc"><h4>🏆 الإنجازات</h4><div class="ag" id="ag"></div></div>
-    </section>
-
-    <!-- PROFILE -->
-    <section class="scr" id="s-profile">
-      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">الملف الشخصي</h2>
-      <p class="mu" style="margin:0 4px 16px">إعدادات وبيانات</p>
-      <div class="prh"><div class="av" id="pav">👶</div><h3 id="pn">—</h3><p id="pm">—</p></div>
-      <div class="sct">⚙️ الإعدادات</div>
-      <div class="stt">
-        <div class="sr"><div><div class="ll">🌙 الوضع المظلم</div><div class="ss">استخدام مريح ليلاً</div></div><button class="tg2" id="dkt">—</button></div>
-        <div class="sr"><div><div class="ll">🌐 اللغة</div><div class="ss">العربية / English</div></div><button class="tg2 on" onclick="location.href='en.html'">EN →</button></div>
-        <div class="sr"><div><div class="ll">🔊 الأصوات</div><div class="ss">نقرات وتنبيهات</div></div><button class="tg2" id="sot">—</button></div>
-      </div>
-      <div class="sct">🔄 إعادة</div>
-      <div class="stt">
-        <div class="sr" style="cursor:pointer" id="rsr"><div><div class="ll">إعادة التقييم</div><div class="ss">بدء تقييم جديد</div></div><span style="font-size:20px">→</span></div>
-        <div class="sr" style="cursor:pointer" id="rs2"><div><div class="ll" style="color:#E11D74">مسح كل البيانات</div><div class="ss">حذف نهائي</div></div><span style="font-size:20px">🗑️</span></div>
-      </div>
-      <p class="mu" style="text-align:center;margin-top:20px">الإصدار: 1.0.0</p>
-    </section>
-  </main>
-
-  <nav class="bn" id="bn">
-    <button data-s="home"><span class="ic">🏠</span>الرئيسية</button>
-    <button data-s="activities"><span class="ic">🎯</span>الأنشطة</button>
-    <button id="lcb"><span class="ic" style="background:var(--gr);color:#fff;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-top:-22px;border:3px solid var(--cd);box-shadow:var(--shv)">➕</span>تسجيل</button>
-    <button data-s="progress"><span class="ic">📊</span>التقدم</button>
-    <button data-s="profile"><span class="ic">👤</span>الملف</button>
-  </nav>
-
-  <div class="md" id="lm">
-    <div class="ms">
-      <div class="gp"></div>
-      <h3>سجّل نشاط اليوم</h3>
-      <p class="sb2" id="lan">—</p>
-      <div style="font-size:13px;font-weight:800;color:var(--t2);margin-bottom:10px">كيف كانت التجربة؟</div>
-      <div class="mr" id="lmr">
-        <button class="mm" data-m="5">🤩<span>ممتاز</span></button>
-        <button class="mm" data-m="4">😊<span>جيد</span></button>
-        <button class="mm" data-m="3">😐<span>عادي</span></button>
-        <button class="mm" data-m="2">😔<span>صعب</span></button>
-        <button class="mm" data-m="1">😤<span>لم ينجح</span></button>
-      </div>
-      <div class="f"><label>📝 ملاحظة (اختياري)</label><textarea id="lnt" maxlength="200" placeholder="ملاحظات..."></textarea></div>
-      <div style="display:flex;gap:10px;margin-top:10px">
-        <button class="btn lt" id="clc" style="flex:0 0 auto;padding:14px 20px">إلغاء</button>
-        <button class="btn pr" id="clg" style="flex:1">حفظ 🎉</button>
-      </div>
+<!-- ═════════ شاشة الحماية ═════════ -->
+<div id="protection" class="protection">
+  <div class="prot-box">
+    <div class="prot-logo">
+      <svg viewBox="0 0 64 64" width="48" height="48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round">
+        <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+      </svg>
     </div>
+    <h2>أكاديمية هيرو</h2>
+    <p>الرجاء تسجيل الدخول للمتابعة</p>
+    <form id="loginForm" class="prot-form">
+      <input type="text" id="loginUser" placeholder="اسم المستخدم" autocomplete="username" required>
+      <input type="password" id="loginPass" placeholder="كلمة المرور" autocomplete="current-password" required>
+      <button type="submit" id="loginBtn">دخول</button>
+    </form>
+    <p id="loginError" class="prot-error"></p>
+    <a href="https://t.me/Herocourses" target="_blank" rel="noopener" class="prot-help">
+      هل تحتاج مساعدة؟ تواصل معنا
+    </a>
   </div>
-  <div class="ts" id="ts"></div>
 </div>
 
-<script>
-/* ==================================================
-   نبض التميز — العربية
-   المحتوى مطابق لـ Master Version 2.0
-   ================================================== */
-const APP_VERSION='1.0.0';
+<!-- ═════════ محتوى البوابة ═════════ -->
+<div id="portal" class="portal hidden">
 
-/* ===== المحاور الأربعة ===== */
-const DOMAINS={
-  emotional:{icon:'💗',color:'#E74C3C',grad:'linear-gradient(135deg,#E74C3C,#FF6B9D)',ar:'العاطفي'},
-  cognitive:{icon:'🧠',color:'#7C3AED',grad:'linear-gradient(135deg,#7C3AED,#A78BFA)',ar:'العقلي'},
-  behavioral:{icon:'🎯',color:'#06D6A0',grad:'linear-gradient(135deg,#06D6A0,#4ECDC4)',ar:'السلوكي'},
-  skills:{icon:'🤝',color:'#FF6B9D',grad:'linear-gradient(135deg,#FF6B9D,#FFD166)',ar:'المهاري'}
-};
-/* ===== المجالات الفرعية العشرة ===== */
-const SUBDOMAINS={
-  'emo-awareness':{domain:'emotional',icon:'💭',ar:'الوعي الانفعالي الذاتي'},
-  'emo-regulation':{domain:'emotional',icon:'🧘',ar:'التنظيم والضبط العاطفي'},
-  'emo-empathy':{domain:'emotional',icon:'🤍',ar:'التعاطف والوعي الاجتماعي'},
-  'cog-memory':{domain:'cognitive',icon:'🧩',ar:'الذاكرة العاملة ومعالجة المعلومات'},
-  'cog-flex':{domain:'cognitive',icon:'🔄',ar:'المرونة المعرفية والتفكير التكيفي'},
-  'cog-reason':{domain:'cognitive',icon:'🔍',ar:'التفكير المنطقي وأخذ المنظور'},
-  'beh-inhibit':{domain:'behavioral',icon:'✋',ar:'الضبط التثبيطي وكبح الاندفاع'},
-  'beh-routine':{domain:'behavioral',icon:'📋',ar:'الالتزام بالروتين والتنظيم الذاتي'},
-  'skl-comm':{domain:'skills',icon:'💬',ar:'المهارات التواصلية التفاعلية'},
-  'skl-social':{domain:'skills',icon:'🤝',ar:'المهارات الاجتماعية والتفاوض'}
-};
-/* ===== البنود الـ34 — نصوص مطابقة للمحتوى ===== */
-const QS=[
-{id:'BND-EMO-01',t:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.',d:'emotional',s:'emo-awareness'},
-{id:'BND-EMO-02',t:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب والمواقف المفاجئة.',d:'emotional',s:'emo-awareness'},
-{id:'BND-EMO-03',t:'يوضح السبب المباشر لشعوره بالضيق عندما يسأله أحد الأبوين.',d:'emotional',s:'emo-awareness'},
-{id:'BND-EMO-05',t:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة محددة.',d:'emotional',s:'emo-awareness'},
-{id:'BND-EMO-07',t:'يلجأ لأحد الأبوين لطلب التهدئة عند تعثر لعبته دون استمرار النوبة.',d:'emotional',s:'emo-regulation'},
-{id:'BND-EMO-08',t:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه خلال دقائق معدودة.',d:'emotional',s:'emo-regulation'},
-{id:'BND-EMO-09',t:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.',d:'emotional',s:'emo-regulation'},
-{id:'BND-EMO-11',t:'يستعيد توازنه العاطفي ويتجاوز شعور الخسارة في الألعاب التنافسية.',d:'emotional',s:'emo-regulation'},
-{id:'BND-EMO-12',t:'يقدم لعبة أو لمسة حنونة لمواساة طفل آخر يبكي أمامه.',d:'emotional',s:'emo-empathy'},
-{id:'BND-EMO-13',t:'يسأل صديقه أو أخاه عما يضايقه فور رؤيته متألماً أو حزيناً.',d:'emotional',s:'emo-empathy'},
-{id:'BND-EMO-15',t:'يخفض صوته ويحد من حركته تلقائياً عند علمه بمرض أو تعب أحد أفراد الأسرة.',d:'emotional',s:'emo-empathy'},
-{id:'BND-COG-01',t:'ينفذ تعليمات شفاهية متتابعة من خطوتين بترتيبها الصحيح دون نسيان.',d:'cognitive',s:'cog-memory'},
-{id:'BND-COG-02',t:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات دون حاجة لتكرار التوجيه.',d:'cognitive',s:'cog-memory'},
-{id:'BND-COG-03',t:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها قبل أداء النشاط.',d:'cognitive',s:'cog-memory'},
-{id:'BND-COG-05',t:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات أو تركيب الألعاب المركبة.',d:'cognitive',s:'cog-memory'},
-{id:'BND-COG-07',t:'ينقل تصنيف الأشياء من معيار اللون إلى معيار الشكل فور توجيهه لتغيير القاعدة.',d:'cognitive',s:'cog-flex'},
-{id:'BND-COG-09',t:'يتقبل تعديل موعد أو جدول الخروج دون تذمر يستمر لأكثر من بضع دقائق.',d:'cognitive',s:'cog-flex'},
-{id:'BND-COG-11',t:'يجرب طريقة تفكير جديدة لبناء أو تركيب لعبة فور فشل المحاولة الأولى.',d:'cognitive',s:'cog-flex'},
-{id:'BND-COG-12',t:'يقدم تفسيراً واقعياً لسبب انسكاب الماء أو انكسار الغرض.',d:'cognitive',s:'cog-reason'},
-{id:'BND-COG-13',t:'يميز بوضوح بين الأحداث الحقيقية والأحداث الخيالية في القصص.',d:'cognitive',s:'cog-reason'},
-{id:'BND-COG-14',t:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم فور نقلها دون علمه.',d:'cognitive',s:'cog-reason'},
-{id:'BND-COG-16',t:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار بين خيارين يوميين.',d:'cognitive',s:'cog-reason'},
-{id:'BND-BEH-01',t:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع حركي.',d:'behavioral',s:'beh-inhibit'},
-{id:'BND-BEH-02',t:'ينتظر دوره في توزيع الوجبات بالبيت أو في الطابور دون تذمر.',d:'behavioral',s:'beh-inhibit'},
-{id:'BND-BEH-03',t:'يتوقف عن الحركة والجري تماماً فور سماع إشارة التنبيه أو النهي.',d:'behavioral',s:'beh-inhibit'},
-{id:'BND-BEH-06',t:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.',d:'behavioral',s:'beh-routine'},
-{id:'BND-BEH-07',t:'يبدأ بتنفيذ الخطوة الأولى من روتين العودة للبيت فور دخوله.',d:'behavioral',s:'beh-routine'},
-{id:'BND-BEH-08',t:'يعيد ألعابه وأدواته المدرسية إلى مواضعها المخصصة فور الانتهاء منها.',d:'behavioral',s:'beh-routine'},
-{id:'BND-SKL-01',t:'يستخدم جملة صريحة وواضحة لطلب طعامه أو ألعابه.',d:'skills',s:'skl-comm'},
-{id:'BND-SKL-02',t:'ينظر باتجاه المتحدث أثناء الحوار المباشر معه.',d:'skills',s:'skl-comm'},
-{id:'BND-SKL-03',t:'عندما يتلقى توجيهاً غير واضح، يستفسر بكلماته بدلاً من التنفيذ العشوائي أو التوقف.',d:'skills',s:'skl-comm'},
-{id:'BND-SKL-06',t:'يشارك أدواته وألعابه مع زملائه بالتناوب أثناء اللعب.',d:'skills',s:'skl-social'},
-{id:'BND-SKL-07',t:'يقترح حلاً وسطاً مرضياً عند الخلاف مع صديقه حول نوع اللعبة.',d:'skills',s:'skl-social'},
-{id:'BND-SKL-08',t:'يتعاون مع فريق من الأقران لإتمام مهمة أو مشروع مشترك بنجاح.',d:'skills',s:'skl-social'}
-];
+  <header class="portal-header">
+    <div class="portal-logo">
+      <svg viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round">
+        <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+      </svg>
+    </div>
+    <div class="portal-brand">
+      <div class="portal-brand-name">أكاديمية هيرو</div>
+      <div class="portal-brand-sub">Hero Academy</div>
+    </div>
+  </header>
 
-/* ===== الأنشطة الثلاثون ===== */
-const ACTS={
-'emo-awareness':[
-{ic:'📖',ti:'قاموس المشاعر اليومي',de:'بطاقات وجوه للمشاعر، يختار الطفل وجهه الحالي ويسميه.',du:'5 د',fr:'يوميًا',ag:[3,5],wa:'هل يستبدل الصراخ بالتسمية؟'},
-{ic:'📚',ti:'قصة بطلي والموقف المفاجئ',de:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.',du:'10 د',fr:'3×أسبوعيًا',ag:[5,7],wa:'هل يربط السبب بالنتيجة؟'},
-{ic:'🌤️',ti:'لوحة الطقس الداخلي',de:'تشبيه الحالة الداخلية بالطقس: مشمس/غائم/عاصف.',du:'5 د',fr:'عند الحاجة',ag:[7,12],wa:'هل يستخدم مفردات دقيقة؟'}],
-'emo-regulation':[
-{ic:'🧘',ti:'ركن التنفس والتهدئة',de:'مساحة هادئة بوسادة، يتنفس الطفل 3 أنفاس بطيئة.',du:'5-10 د',fr:'عند التوتر',ag:[5,7],wa:'هل يقبل الابتعاد للتهدئة؟'},
-{ic:'🤗',ti:'عناق التهدئة المشتركة',de:'احتضان هادئ مع صوت منخفض "أنا بجانبك".',du:'3-5 د',fr:'عند الضيق',ag:[3,5],wa:'هل تنخفض حدة البكاء؟'},
-{ic:'🌉',ti:'إعادة بناء الجسر',de:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم محاولة جديدة.',du:'15 د',fr:'2×أسبوعيًا',ag:[7,12],wa:'هل يعود للمهمة بعد الإحباط؟'}],
-'emo-empathy':[
-{ic:'🎁',ti:'صندوق المواساة',de:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.',du:'2 د',fr:'عند البكاء',ag:[3,5],wa:'هل يبادر بتقديم غرض التهدئة؟'},
-{ic:'🎭',ti:'محقق الاطمئنان اللفظي',de:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.',du:'10 د',fr:'2×أسبوعيًا',ag:[3,6],wa:'هل يسأل تلقائيًا عن حال الآخرين؟'},
-{ic:'🤫',ti:'ساعة الهدوء الأسرية',de:'الاتفاق على نشاط همس مراعاةً لمريض.',du:'30-60 د',fr:'عند المرض',ag:[7,12],wa:'هل يخفض صوته تلقائيًا؟'}],
-'cog-memory':[
-{ic:'🎒',ti:'حقيبة السفر الذهنية',de:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.',du:'10 د',fr:'3×أسبوعيًا',ag:[5,7],wa:'هل يتذكر التسلسل؟'},
-{ic:'👨‍🍳',ti:'الطاهي الصغير',de:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.',du:'15 د',fr:'2×أسبوعيًا',ag:[3,5],wa:'هل ينفذ الخطوة التالية تلقائيًا؟'},
-{ic:'🎴',ti:'البحث عن المطابقات',de:'لعبة الذاكرة ببطاقات مقلوبة لبناء خريطة ذهنية.',du:'10 د',fr:'3×أسبوعيًا',ag:[5,7],wa:'هل تقل الأخطاء العشوائية؟'},
-{ic:'🧩',ti:'لغز المراحل الثلاث',de:'حل مهمة متعددة الخطوات مع تتبع الخطة.',du:'15 د',fr:'2×أسبوعيًا',ag:[7,12],wa:'هل يحافظ على التسلسل؟'}],
-'cog-flex':[
-{ic:'🔀',ti:'التصنيف المقلوب',de:'تصنيف المكعبات حسب اللون، ثم يغير القاعدة فجأة للحجم.',du:'10 د',fr:'3×أسبوعيًا',ag:[3,5],wa:'هل ينتقل بسلاسة للقاعدة الجديدة؟'},
-{ic:'📋',ti:'خطة (ب) الممتعة',de:'رسم خطة أساسية وخطة بديلة للأنشطة.',du:'10 د',fr:'أسبوعيًا',ag:[5,8],wa:'هل يتقبل البديل دون مقاومة؟'},
-{ic:'🎯',ti:'لغز الطرق البديلة',de:'منع تكرار نفس المحاولة وإلزام الطفل بتجربة أفكار جديدة.',du:'15 د',fr:'2×أسبوعيًا',ag:[7,12],wa:'هل يجرب طرقًا جديدة؟'}],
-'cog-reason':[
-{ic:'🔬',ti:'المكتشف الصغير',de:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟".',du:'15 د',fr:'أسبوعيًا',ag:[3,6],wa:'هل يقدم تبريرات منطقية؟'},
-{ic:'🧠',ti:'ماذا يعلم صديقي؟',de:'نقل شيء دون علم الأخ، ثم السؤال: أين سيبحث؟',du:'10 د',fr:'2×أسبوعيًا',ag:[5,8],wa:'هل يدرك أن الآخر لا يعلم؟'},
-{ic:'⚖️',ti:'ميزان القرار اليومي',de:'طلب دليلين منطقيين لترجيح خيار.',du:'5 د',fr:'عند الاختيار',ag:[7,12],wa:'هل يقدم حججًا متماسكة؟'}],
-'beh-inhibit':[
-{ic:'🧊',ti:'التمثال المجمد',de:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.',du:'10 د',fr:'3×أسبوعيًا',ag:[3,6],wa:'هل يكبح جسده فورًا؟'},
-{ic:'🚦',ti:'إشارة المرور المنزلية',de:'بطاقات ملونة للجري والمشي والتوقف.',du:'10 د',fr:'3×أسبوعيًا',ag:[5,9],wa:'هل يتوقف عند الأحمر؟'},
-{ic:'✨',ti:'الكلمة السحرية',de:'لا ينفذ إلا إذا سبقت التعليمات بالكلمة السحرية.',du:'10 د',fr:'3×أسبوعيًا',ag:[5,9],wa:'هل يتريث قبل الحركة؟'}],
-'beh-routine':[
-{ic:'📅',ti:'لوحة محطات اليوم المصورة',de:'لوحة بصور متتابعة لروتين العودة مع علامة صح.',du:'مستمر',fr:'يوميًا',ag:[5,9],wa:'هل ينتقل بين المحطات باعتياد؟'},
-{ic:'⏱️',ti:'تحدي 5 دقائق',de:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.',du:'5 د',fr:'يوميًا',ag:[7,12],wa:'هل يستجيب بسرعة؟'},
-{ic:'🎒',ti:'محطة الاستعداد للغد',de:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.',du:'10 د',fr:'يوميًا',ag:[7,12],wa:'هل يخرج الصباح بسلاسة؟'}],
-'skl-comm':[
-{ic:'📖',ti:'القراءة الحوارية المتبادلة',de:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.',du:'10-15 د',fr:'يوميًا',ag:[3,6],wa:'هل تزداد طول جملته؟'},
-{ic:'🎤',ti:'مقابلة المذيع',de:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للمتحدث.',du:'10 د',fr:'3×أسبوعيًا',ag:[5,9],wa:'هل ينتظر دوره وينظر للمتحدث؟'},
-{ic:'❓',ti:'مراسل الاستفسار',de:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.',du:'10 د',fr:'2×أسبوعيًا',ag:[7,12],wa:'هل يطرح أسئلة استفسارية؟'}],
-'skl-social':[
-{ic:'⏳',ti:'عداد التناوب',de:'مؤقت رملي دقيقتان للتبادل بين الأطفال.',du:'15 د',fr:'عند اللعب',ag:[3,6],wa:'هل يسلّم اللعبة بهدوء؟'},
-{ic:'🌉',ti:'جسور الحلول الوسطى',de:'بطاقة حلول لسؤال الطرفين عن حل يرضيهما معًا.',du:'5 د',fr:'عند النزاع',ag:[5,9],wa:'هل يقترح حلولًا وسيطة؟'},
-{ic:'🏗️',ti:'مشروع البناء الجماعي',de:'بناء مدينة من الوسائد مع توزيع أدوار.',du:'30 د',fr:'أسبوعيًا',ag:[7,12],wa:'هل يلتزم بدوره ويتعاون؟'}]
-};
+  <section class="portal-hero">
+    <h1>نبض التميز</h1>
+    <p>رحلتك اليومية مع طفلك: تقييم، أنشطة، وتتبع تطور</p>
+  </section>
 
-const ACHS=[
-{id:'f1',ic:'🌟',n:'البداية',ch:s=>s.t>=1},{id:'s3',ic:'🔥',n:'3 أيام',ch:s=>s.st>=3},
-{id:'s7',ic:'⚡',n:'أسبوع',ch:s=>s.st>=7},{id:'s14',ic:'💫',n:'14 يومًا',ch:s=>s.st>=14},
-{id:'s30',ic:'👑',n:'شهر',ch:s=>s.st>=30},{id:'a10',ic:'🎯',n:'10 أنشطة',ch:s=>s.t>=10},
-{id:'a30',ic:'🏆',n:'30 نشاطًا',ch:s=>s.t>=30},{id:'a100',ic:'💎',n:'100 نشاط',ch:s=>s.t>=100},
-{id:'as',ic:'📋',n:'التقييم',ch:s=>!!s.a}];
+  <section class="portal-cards">
+    <a href="ar.html" class="lang-card lang-ar">
+      <div class="lang-flag">🇸🇦</div>
+      <div class="lang-info">
+        <h2>العربية</h2>
+        <p>ابدأ الرحلة باللغة العربية</p>
+      </div>
+      <div class="lang-arrow">←</div>
+    </a>
+    <a href="en.html" class="lang-card lang-en">
+      <div class="lang-flag">🇬🇧</div>
+      <div class="lang-info">
+        <h2>English</h2>
+        <p>Start your journey in English</p>
+      </div>
+      <div class="lang-arrow">→</div>
+    </a>
+  </section>
 
-/* ===== الحالة ===== */
-const DS={lang:'ar',dark:false,sound:true,onboarded:false,child:null,assessment:null,plan:null,logs:[],moods:{},ans:{},idx:0};
-let S=JSON.parse(JSON.stringify(DS));
-const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
-function save(){try{localStorage.setItem('nabd_v6',JSON.stringify(S))}catch(e){}}
-function load(){try{const x=localStorage.getItem('nabd_v6');if(x)S={...DS,...JSON.parse(x)}}catch(e){}}
-function today(){return new Date().toISOString().slice(0,10)}
-function ddiff(a,b){return Math.round((new Date(b)-new Date(a))/86400000)}
-function vib(p){if(navigator.vibrate)navigator.vibrate(p)}
+  <button id="installBtn" class="install-btn hidden" type="button">
+    <span class="install-ic">📲</span>
+    <span>ثبّت التطبيق على جهازك</span>
+  </button>
 
-const Snd=(()=>{let c=null;function i(){if(!c){try{c=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(c&&c.state==='suspended')c.resume();return c}
-function b({f=800,d=.07,ty='sine',v=.12,dl=0}={}){if(!S.sound)return;const x=i();if(!x)return;const t0=x.currentTime+dl;const o=x.createOscillator(),g=x.createGain();o.type=ty;o.frequency.setValueAtTime(f,t0);g.gain.setValueAtTime(v,t0);g.gain.exponentialRampToValueAtTime(.0001,t0+d);o.connect(g);g.connect(x.destination);o.start(t0);o.stop(t0+d+.02)}
-return{ck(){b({f:800,d:.05})},tp(){b({f:600,d:.04,ty:'triangle',v:.1})},sc(){b({f:523,d:.12,v:.15});b({f:659,d:.12,v:.15,dl:.1});b({f:784,d:.2,v:.15,dl:.2})},cl(){[523,659,784,1047].forEach((f,i)=>b({f,d:.14,ty:'triangle',v:.14,dl:i*.09}))},ul(){i()}}})();
+  <footer class="portal-footer">
+    <a href="https://app.hero1.vip" class="footer-main" target="_blank" rel="noopener">
+      <span>🏛️</span>
+      <span>app.hero1.vip</span>
+    </a>
+    <div class="footer-links">
+      <a href="https://t.me/Herocourses" target="_blank" rel="noopener">
+        <span>💬</span><span>تيليجرام</span>
+      </a>
+      <a href="https://wa.me/249915886600" target="_blank" rel="noopener">
+        <span>📱</span><span>واتساب</span>
+      </a>
+      <a href="https://app.hero1.vip/#about" target="_blank" rel="noopener">
+        <span>ℹ️</span><span>عن الأكاديمية</span>
+      </a>
+    </div>
+    <div class="footer-copy">© 2026 Hero Academy</div>
+  </footer>
 
-function ts(m,ms=2400){const e=$('#ts');e.textContent=m;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),ms)}
-function cf(){const cs=['#7C3AED','#FF6B9D','#06D6A0','#FFD166','#4ECDC4'];for(let i=0;i<70;i++){const p=document.createElement('div');p.className='cn';p.style.left=Math.random()*100+'vw';p.style.background=cs[Math.floor(Math.random()*cs.length)];p.style.animationDelay=(Math.random()*.5)+'s';if(Math.random()>.5)p.style.borderRadius='50%';document.body.appendChild(p);setTimeout(()=>p.remove(),3400)}}
+</div>
 
-/* ===== الثيم ===== */
-function theme(){document.documentElement.setAttribute('data-theme',S.dark?'dark':'light');$('#tc').content=S.dark?'#0A0817':'#F8F7FC';const d=$('#dkt');if(d){d.textContent=S.dark?'مفعّل ✓':'تشغيل';d.classList.toggle('on',S.dark)}}
-
-/* ===== التنقل ===== */
-const TT={welcome:'نبض التميز',child:'بيانات الطفل',questions:'التقييم',results:'نتائج طفلك',home:'الرئيسية',today:'نشاط اليوم',activities:'مكتبة الأنشطة',progress:'التقدم',profile:'الملف الشخصي'};
-const DK=['welcome','results','home','progress','today'];
-const NV=['home','activities','progress','profile'];
-function go(s){$$('.scr').forEach(x=>x.classList.remove('on'));const e=document.getElementById('s-'+s);if(e)e.classList.add('on');$('#tt').textContent=TT[s]||'';$('#tb').classList.toggle('dk',DK.includes(s));const sb=['child','questions','today'].includes(s);$('#bk').classList.toggle('h',!sb);const sn=NV.includes(s);$('#bn').classList.toggle('on',sn);if(sn)$$('#bn button[data-s]').forEach(b=>b.classList.toggle('on',b.dataset.s===s));window.scrollTo({top:0,behavior:'instant'});save()}
-function cs(){const a=document.querySelector('.scr.on');return a?a.id.replace('s-',''):'welcome'}
-$('#bk').addEventListener('click',()=>{const c=cs();const m={child:'welcome',questions:'child',today:'home'};go(m[c]||'home')});
-
-/* ===== الترحيب ===== */
-$('#tq').disabled=true;
-$('#ca').addEventListener('change',e=>{$('#tq').disabled=!e.target.value});
-let tmpg=null;$$('#gc .chp').forEach(c=>c.addEventListener('click',()=>{$$('#gc .chp').forEach(x=>x.classList.remove('on'));c.classList.add('on');tmpg=c.dataset.v;Snd.ck()}));
-$('#tq').addEventListener('click',()=>{const n=$('#cn').value.trim();const a=parseInt($('#ca').value,10);if(!a){ts('الرجاء اختيار العمر');return}S.child={name:n||'طفلي',age:a,gender:tmpg};S.ans={};S.idx=0;Snd.ck();go('questions');rq()});
-
-/* ===== الأسئلة ===== */
-function rq(){const q=QS[S.idx];if(!q)return;const total=QS.length,i=S.idx,pct=Math.round((i/total)*100);$('#qp1').textContent=`${i+1} / ${total}`;$('#qp2').innerHTML=pct+'<small>%</small>';$('#qp3').style.width=Math.max(pct,3)+'%';const dm=DOMAINS[q.d],opts=[{v:0,ic:'🌱',l:'لم يظهر بعد',h:'يحتاج دائمًا للمساعدة'},{v:1,ic:'🌿',l:'يظهر أحيانًا',h:'يحتاج تذكيرًا أو مساعدة جزئية'},{v:2,ic:'🌳',l:'يظهر غالبًا',h:'بمبادرة ذاتية غالبًا'},{v:3,ic:'⭐',l:'بثبات واستقلالية',h:'بانتظام ودون تذكير'}];const av=S.ans[q.id];$('#qc').innerHTML=`<div class="qc" style="background:${dm.color}1a;color:${dm.color}">${dm.icon} ${dm.ar}</div><div class="qt">${q.t}</div><div id="qo">${opts.map(o=>`<button class="qo ${av===o.v?'on':''}" data-v="${o.v}"><span class="rd"></span><span class="by"><span>${o.ic} ${o.l}</span><span class="hn">${o.h}</span></span></button>`).join('')}</div>`;$$('#qo .qo').forEach(b=>b.addEventListener('click',()=>{const v=parseInt(b.dataset.v,10);S.ans[q.id]=v;$$('#qo .qo').forEach(x=>x.classList.toggle('on',x===b));$('#qnx').disabled=false;Snd.tp();vib(8);save()}));$('#qpr').style.visibility=i===0?'hidden':'visible';$('#qnx').disabled=av===undefined;$('#qnx').innerHTML=i===total-1?'عرض النتائج ✨':'التالي'}
-$('#qpr').addEventListener('click',()=>{if(S.idx>0){S.idx--;rq();Snd.tp()}});
-$('#qnx').addEventListener('click',()=>{const q=QS[S.idx];if(S.ans[q.id]===undefined){ts('الرجاء اختيار إجابة');return}if(S.idx<QS.length-1){S.idx++;rq();Snd.tp()}else finalize()});
-
-/* ===== الحساب ===== */
-function compute(ans){const sa={},da={};QS.forEach(q=>{const s=ans[q.id];if(s===undefined)return;if(!sa[q.s])sa[q.s]={sum:0,c:0};sa[q.s].sum+=s;sa[q.s].c++;if(!da[q.d])da[q.d]={sum:0,c:0};da[q.d].sum+=s;da[q.d].c++});const ss={},ds={};Object.keys(sa).forEach(k=>ss[k]=(sa[k].sum/(sa[k].c*3))*100);Object.keys(da).forEach(k=>ds[k]=(da[k].sum/(da[k].c*3))*100);const t=Object.values(da).reduce((a,b)=>a+b.sum,0);const tm=Object.values(da).reduce((a,b)=>a+b.c*3,0);return{subs:ss,doms:ds,overall:tm>0?(t/tm)*100:0}}
-function cl(p){if(p>=75)return'أداء مرتفع نسبيًا';if(p>=50)return'مجال متوازن';return'فرصة واعدة للتعزيز'}
-
-function finalize(){const r=compute(S.ans);const zero=Object.values(S.ans).every(v=>v===0);if(zero)ts('يرجى التأكد من الإجابات',3200);S.assessment={results:r,date:today()};S.plan=genPlan(r);S.onboarded=true;save();rr(r);go('results');Snd.cl();setTimeout(cf,300)}
-
-function genPlan(r){const s=Object.keys(r.subs).sort((a,b)=>r.subs[a]-r.subs[b]);const f=s.slice(0,2);const w=[];const sd=today();for(let i=0;i<4;i++){const fs=f[i%2];const all=ACTS[fs]||[];const age=all.filter(a=>S.child.age>=a.ag[0]&&S.child.age<=a.ag[1]);const pool=age.length?age:all;const tk=[];for(let d=0;d<7;d++){tk.push({s:fs,...pool[(i*7+d)%pool.length]})}w.push({focus:fs,tasks:tk})}return{weeks:w,startDate:sd}}
-function getToday(){if(!S.plan)return null;const st=new Date(S.plan.startDate);const di=Math.floor((new Date()-st)/86400000);if(di<0)return null;const wi=Math.floor(di/7),dii=di%7;if(wi>=S.plan.weeks.length)return null;const t=S.plan.weeks[wi].tasks[dii];return t?{...t,wi,di:dii}:null}
-function isDone(d,s,ti){return S.logs.some(l=>l.date===d&&l.s===s&&l.ti===ti)}
-function todayDone(){const a=getToday();if(!a)return false;return isDone(today(),a.s,a.ti)}
-function streak(){if(!S.logs.length)return{c:0,l:0};const dts=[...new Set(S.logs.map(l=>l.date))].sort();let l=1,c=1;for(let i=1;i<dts.length;i++){const d=ddiff(dts[i-1],dts[i]);if(d===1)c++;else{if(c>l)l=c;c=1}}if(c>l)l=c;const last=dts[dts.length-1];if(ddiff(last,today())>1)c=0;return{c,l}}
-
-/* ===== النتائج ===== */
-function rr(r){const p=Math.round(r.overall);const ci=2*Math.PI*72;const of=ci-(p/100)*ci;const rf=$('#rfg');rf.setAttribute('stroke-dasharray',ci);rf.setAttribute('stroke-dashoffset',ci);setTimeout(()=>rf.setAttribute('stroke-dashoffset',of),200);let n=0;const sp=Math.max(1,Math.round(p/30));const iv=setInterval(()=>{n=Math.min(n+sp,p);$('#op').textContent=n+'%';if(n>=p)clearInterval(iv)},30);$('#ob').textContent=cl(p);$('#dr').innerHTML=Object.keys(DOMAINS).map(k=>{const d=DOMAINS[k],v=Math.round(r.doms[k]||0);return`<div class="dr"><div class="ic" style="background:${d.grad}">${d.icon}</div><div class="bd"><h4>${d.ar} <span class="v" style="color:${d.color}">${v}%</span></h4><div class="tr"><div class="fl" style="background:${d.grad};width:0" data-w="${v}"></div></div></div></div>`}).join('');const ss=Object.keys(r.subs).sort((a,b)=>r.subs[b]-r.subs[a]);$('#sr').innerHTML=ss.map(k=>{const s=SUBDOMAINS[k],d=DOMAINS[s.domain],v=Math.round(r.subs[k]);return`<div class="dr"><div class="ic" style="background:${d.grad};font-size:20px">${s.icon}</div><div class="bd"><h4 style="font-size:13px">${s.ar} <span class="v" style="color:${d.color}">${v}%</span></h4><div class="tr"><div class="fl" style="background:${d.grad};width:0" data-w="${v}"></div></div></div></div>`}).join('');setTimeout(()=>$$('.dr .fl').forEach(f=>f.style.width=f.dataset.w+'%'),300)}
-
-function startCompanion(){Snd.sc();rh();go('home')}
-
-/* ===== الرئيسية ===== */
-function rh(){if(!S.child||!S.plan){go('welcome');return}const h=new Date().getHours();$('#gt').textContent=h<12?'صباح الخير ☀️':h<18?'مساء الخير 🌤️':'مساء الخير 🌙';$('#hn').textContent=S.child.name;const st=streak();$('#sn').textContent=st.c;const tm=S.moods[today()];$$('#mc .mch').forEach(b=>b.classList.toggle('on',tm&&parseInt(b.dataset.m,10)===tm));rtc();rwp();$('#st1').textContent=S.logs.length;$('#st2').textContent=st.l;const sc={t:S.logs.length,st:st.c,a:true};$('#st3').textContent=ACHS.filter(a=>a.ch(sc)).length}
-
-function rtc(){const a=getToday();const c=$('#tc');if(!a){c.innerHTML='<div class="card" style="text-align:center;padding:30px"><div style="font-size:40px;margin-bottom:10px">🎉</div><h3>أكملت جميع الأنشطة!</h3></div>';return}const d=DOMAINS[SUBDOMAINS[a.s].domain];const s=SUBDOMAINS[a.s];const dn=todayDone();c.innerHTML=`<div class="td ${dn?'dn':''}"><div class="tg">${dn?'✓':'اليوم'}</div><div class="ic">${a.ic}</div><h3>${a.ti}</h3><p class="ds">${a.de}</p><div class="tgs"><span class="tgi v">${d.icon} ${s.ar}</span><span class="tgi c">⏱️ ${a.du}</span><span class="tgi m">🔁 ${a.fr}</span></div>${dn?`<div class="db">🎉 أُنجز اليوم — رائع!</div>`:`<div style="display:flex;gap:8px"><button class="btn lt" style="flex:0 0 auto;padding:12px 18px" onclick="openToday()">📖 التفاصيل</button><button class="btn pr" style="flex:1" onclick="openLog()">ابدأ النشاط 🎯</button></div>`}</div>`}
-
-function rwp(){const st=new Date(S.plan.startDate);const di=Math.floor((new Date()-st)/86400000);const wi=Math.floor(Math.max(di,0)/7);const w=S.plan.weeks[wi];if(!w){$('#wl').textContent='انتهت';$('#wp').textContent='100%';$('#wd').innerHTML='';return}$('#wl').textContent=['الأسبوع الأول','الأسبوع الثاني','الأسبوع الثالث','الأسبوع الرابع'][wi]||`الأسبوع ${wi+1}`;const sw=new Date(st);sw.setDate(sw.getDate()+wi*7);let dc=0;const dd=[];for(let i=0;i<7;i++){const dt=new Date(sw);dt.setDate(dt.getDate()+i);const key=dt.toISOString().slice(0,10);const t=w.tasks[i];const dOne=S.logs.some(l=>l.date===key&&l.s===t.s&&l.ti===t.ti);if(dOne)dc++;const isT=key===today();const isF=dt>new Date();dd.push(`<div class="dd ${dOne?'dn':''} ${isT?'td2':''} ${isF?'fu':''}">${isT&&!dOne?'•':''}</div>`)};$('#wp').textContent=Math.round((dc/7)*100)+'%';$('#wd').innerHTML=dd.join('')}
-
-/* ===== المزاج ===== */
-$$('#mc .mch').forEach(b=>b.addEventListener('click',()=>{const m=parseInt(b.dataset.m,10);S.moods[today()]=m;$$('#mc .mch').forEach(x=>x.classList.remove('on'));b.classList.add('on');save();Snd.tp();vib([8,30,8]);ts('💭 تم تسجيل المزاج')}));
-
-/* ===== تفاصيل اليوم ===== */
-window.openToday=function(){const a=getToday();if(!a)return;const d=DOMAINS[SUBDOMAINS[a.s].domain];const s=SUBDOMAINS[a.s];const dn=todayDone();$('#tdc').innerHTML=`<div class="hero" style="text-align:start"><div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">${d.icon} ${s.ar}</div><div style="font-size:52px;margin-bottom:10px">${a.ic}</div><h2 style="font-size:22px;font-weight:900;margin-bottom:8px">${a.ti}</h2><p style="font-size:14px;opacity:.9;line-height:1.6">${a.de}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${a.du}</span><span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${a.fr}</span></div></div><div class="card"><h3 style="font-size:15px">👀 ما الذي تراقبه؟</h3><p style="color:var(--t2)">${a.wa}</p></div><div class="card"><h3 style="font-size:15px">💡 نصائح للتنفيذ</h3><ul style="font-size:13.5px;color:var(--t2);line-height:1.8;padding-inline-start:20px"><li>اختر وقتًا هادئًا بدون مشتتات.</li><li>اجعلها لعبة لا واجبًا.</li><li>الثناء على الجهد لا النتيجة.</li></ul></div>${dn?`<div class="card gr" style="text-align:center"><h3>🎉 أحسنت! أنجزت نشاط اليوم</h3></div>`:`<button class="btn pr mt" onclick="openLog()">ابدأ النشاط 🎯</button>`}<button class="btn gh mt" onclick="go('home')">← العودة للرئيسية</button>`;go('today')};
-
-/* ===== مكتبة الأنشطة ===== */
-let af='all';$$('#af .chp').forEach(c=>c.addEventListener('click',()=>{$$('#af .chp').forEach(x=>x.classList.remove('on'));c.classList.add('on');af=c.dataset.f;ral();Snd.tp()}));
-function ral(){if(!S.child)return;const items=[];Object.keys(ACTS).forEach(sk=>{const s=SUBDOMAINS[sk];if(af!=='all'&&s.domain!==af)return;ACTS[sk].forEach(a=>{if(S.child.age<a.ag[0]||S.child.age>a.ag[1])return;const dn=S.logs.some(l=>l.s===sk&&l.ti===a.ti);items.push({sk,s,...a,dn})})});if(!items.length){$('#al').innerHTML='<div class="card" style="text-align:center;padding:30px;color:var(--t3)">لا توجد أنشطة</div>';return}$('#al').innerHTML=items.map(a=>`<div class="ar ${a.dn?'dn':''}" data-sk="${a.sk}" data-ti="${a.ti}"><div class="ic">${a.ic}</div><div class="bd"><div class="dm">${DOMAINS[a.s.domain].icon} ${a.s.ar}</div><h5>${a.ti}</h5><p>${a.de}</p></div><div class="ch2"></div></div>`).join('');$$('#al .ar').forEach(el=>el.addEventListener('click',()=>{const sk=el.dataset.sk,ti=el.dataset.ti;const a=ACTS[sk].find(x=>x.ti===ti);if(a)showAct(sk,a)}))}
-function showAct(sk,a){const d=DOMAINS[SUBDOMAINS[sk].domain];const s=SUBDOMAINS[sk];const dn=S.logs.some(l=>l.s===sk&&l.ti===a.ti);$('#tdc').innerHTML=`<div class="hero" style="text-align:start"><div style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.18);font-size:11.5px;font-weight:900;margin-bottom:14px;border:1px solid rgba(255,255,255,.28)">${d.icon} ${s.ar}</div><div style="font-size:52px;margin-bottom:10px">${a.ic}</div><h2 style="font-size:22px;font-weight:900;margin-bottom:8px">${a.ti}</h2><p style="font-size:14px;opacity:.9;line-height:1.6">${a.de}</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${a.du}</span><span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${a.fr}</span></div></div><div class="card"><h3 style="font-size:15px">👀 ما الذي تراقبه؟</h3><p style="color:var(--t2)">${a.wa}</p></div>${dn?'<div class="card gr" style="text-align:center"><h3>🎉 أُنجز</h3></div>':`<button class="btn pr mt" onclick="logCustom('${sk}','${a.ti}')">تسجيل هذا النشاط 🎯</button>`}<button class="btn gh mt" onclick="go('activities')">← العودة للمكتبة</button>`;go('today')}
-
-/* ===== تسجيل ===== */
-let ls={m:null,n:'',cu:null};
-window.openLog=function(){const a=getToday();if(!a){ts('أكملت جميع الأنشطة');return}ls={m:null,n:'',cu:null};$('#lan').textContent=a.ti;$$('#lmr .mm').forEach(b=>b.classList.remove('on'));$('#lnt').value='';$('#lm').classList.add('on')};
-window.logCustom=function(sk,ti){const a=ACTS[sk].find(x=>x.ti===ti);if(!a)return;ls={m:null,n:'',cu:{sk,a}};$('#lan').textContent=a.ti;$$('#lmr .mm').forEach(b=>b.classList.remove('on'));$('#lnt').value='';$('#lm').classList.add('on')};
-$$('#lmr .mm').forEach(b=>b.addEventListener('click',()=>{$$('#lmr .mm').forEach(x=>x.classList.remove('on'));b.classList.add('on');ls.m=parseInt(b.dataset.m,10);Snd.tp()}));
-$('#clc').addEventListener('click',()=>$('#lm').classList.remove('on'));
-$('#lnt').addEventListener('input',e=>ls.n=e.target.value);
-$('#clg').addEventListener('click',()=>{if(!ls.m){ts('اختر شعورك');return}let sk,a;if(ls.cu){sk=ls.cu.sk;a=ls.cu.a}else{a=getToday();if(!a)return;sk=a.s}const os=streak().c;const ex=S.logs.find(l=>l.date===today()&&l.s===sk&&l.ti===a.ti);if(ex){ex.mood=ls.m;ex.note=ls.n}else{S.logs.push({date:today(),s:sk,ti:a.ti,ic:a.ic,mood:ls.m,note:ls.n,ts:Date.now()})}save();$('#lm').classList.remove('on');Snd.cl();cf();const ns=streak().c;setTimeout(()=>{if(ns>os&&ns>=3)ts('🔥 سلسلتك الآن '+ns);else ts('🎉 تم الحفظ')},300);rh();const c=cs();if(c==='today')openToday();if(c==='activities')ral()});
-
-/* ===== التقدم ===== */
-function rpg(){const st=streak();$('#ps').textContent=st.c;$('#ps2').textContent=st.c===0?'ابدأ اليوم لبناء سلسلتك 🔥':st.c<3?'بداية رائعة':st.c<7?'أنت في الطريق الصحيح 💪':'أنت بطل حقيقي 👑';const td=new Date();const days=[];for(let i=6;i>=0;i--){const d=new Date(td);d.setDate(d.getDate()-i);const key=d.toISOString().slice(0,10);const cnt=S.logs.filter(l=>l.date===key).length;days.push({key,d,cnt,isT:i===0})}const mx=Math.max(1,...days.map(x=>x.cnt));const dn=['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];$('#wch').innerHTML=days.map(x=>`<div class="bc ${x.isT?'td2':''}"><div class="bw"><div class="bf" style="height:${(x.cnt/mx)*100}%"></div></div><div class="dy">${dn[x.d.getDay()]}</div></div>`).join('');const sc={t:S.logs.length,st:st.c,a:true};$('#ag').innerHTML=ACHS.map(a=>{const un=a.ch(sc);return`<div class="ach ${un?'un':'lk'}"><div class="em">${a.ic}</div><div class="nm">${a.n}</div></div>`}).join('')}
-
-/* ===== الملف ===== */
-function rpr(){if(!S.child)return;$('#pav').textContent=S.child.gender==='female'?'👧':'👦';$('#pn').textContent=S.child.name;const st=streak();$('#pm').textContent=`${S.child.age} سنوات · ${S.logs.length} نشاط · ${st.c} يوم`;$('#sot').textContent=S.sound?'مفعّل ✓':'مغلق';$('#sot').classList.toggle('on',S.sound);theme()}
-
-$('#dkt').addEventListener('click',()=>{S.dark=!S.dark;save();theme();Snd.ck()});
-$('#sot').addEventListener('click',()=>{S.sound=!S.sound;save();rpr();if(S.sound)Snd.ck()});
-$('#rsr').addEventListener('click',()=>{if(!confirm('بدء تقييم جديد؟'))return;S.ans={};S.idx=0;go('child');Snd.ck()});
-$('#rs2').addEventListener('click',()=>{if(!confirm('مسح كل البيانات؟'))return;S=JSON.parse(JSON.stringify(DS));save();theme();go('welcome')});
-
-/* ===== الشريط السفلي ===== */
-$$('#bn button[data-s]').forEach(b=>b.addEventListener('click',()=>{const s=b.dataset.s;if(s==='home')rh();if(s==='activities')ral();if(s==='progress')rpg();if(s==='profile')rpr();go(s);Snd.tp()}));
-$('#lcb').addEventListener('click',()=>{Snd.tp();openLog()});
-
-/* ===== التشغيل ===== */
-function boot(){load();theme();if(S.onboarded&&S.child&&S.plan){rh();go('home')}else go('welcome')}
-document.addEventListener('DOMContentLoaded',boot);
-document.addEventListener('click',()=>Snd.ul(),{once:true});
-if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
-</script>
+<script src="assets/portal.js" defer></script>
 </body>
 </html>
