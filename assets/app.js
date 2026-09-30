@@ -362,7 +362,7 @@ function tObj(o){ return o ? (o[LANG] || o.ar || o.en || '') : ''; }
 
 /* ═══════════ 6. STATE ═══════════ */
 const KEY='nabd_v7';
-const DEF={theme:'light',sound:true,onboarded:false,child:null,assessment:null,plan:null,logs:[],moods:{},answers:{},qIdx:0};
+const DEF={theme:'light',sound:true,onboarded:false,child:null,assessment:null,plan:null,logs:[],moods:{},answers:{},qIdx:0,pendingDestination:null};
 let S = JSON.parse(JSON.stringify(DEF));
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 function load(){ try{ const x=localStorage.getItem(KEY); if(x) S=Object.assign({},DEF,JSON.parse(x)); }catch(e){} }
@@ -464,21 +464,29 @@ function applyTheme(){
     d.classList.toggle('on', S.theme==='dark'); }
 }
 
+   function updateCompanionButtonText(){
+  const sc = $('#startCompanion');
+  if(!sc) return;
+  if(S.pendingDestination){
+    const map = {
+      child:      IS_AR ? '🎯 المتابعة لإعادة التقييم'      : '🎯 Continue to Re-assess',
+      activities: IS_AR ? '📅 المتابعة لمكتبة الأنشطة'      : '📅 Continue to Activities',
+      progress:   IS_AR ? '🏆 المتابعة لصفحة التقدم'        : '🏆 Continue to Progress'
+    };
+    sc.textContent = map[S.pendingDestination] || ('🚀 ' + t('resultsStartCompanion'));
+  } else {
+    sc.textContent = '🚀 ' + t('resultsStartCompanion');
+  }
+}
 /* ═══════════ 10.b APPLY STATIC I18N ═══════════ */
 function applyStaticI18n(){
-  // Welcome title (h1)
   const wt = document.querySelector('#screen-welcome h1');
   if(wt) wt.textContent = t('welcomeTitle');
-  // Streak label
   const sl = document.querySelector('.streak .lbl');
   if(sl) sl.textContent = t('homeDay');
-  // Start companion button
-  const sc = $('#startCompanion');
-  if(sc) sc.textContent = '🚀 ' + t('resultsStartCompanion');
-  // Results ring label
   const rl = document.querySelector('.ring .lbl');
   if(rl) rl.textContent = t('resultsScoreLbl');
-  // Next button initial
+  updateCompanionButtonText();
   const nb = $('#qNextBtn');
   if(nb && !nb.disabled) nb.textContent = t('qNext');
 }
@@ -578,6 +586,8 @@ function finalize(){
   go('results');
   Snd.celebrate();
   setTimeout(confetti, 300);
+   // ضمان التمرير لأعلى شاشة النتائج
+  setTimeout(()=>window.scrollTo({top:0, behavior:'instant'}), 50);
 }
 
 /* ═══════════ 15. PLAN ═══════════ */
@@ -673,6 +683,7 @@ function renderResults(r){
   }).join('');
 
   setTimeout(()=>$$('.domain-row .fill').forEach(f=>f.style.width=f.dataset.w+'%'), 300);
+  updateCompanionButtonText();
 
   // Refresh companion button label after language known
   const sc = $('#startCompanion');
@@ -680,7 +691,11 @@ function renderResults(r){
 }
 
 $('#startCompanion').addEventListener('click', ()=>{
-  Snd.success(); renderHome(); go('home');
+  Snd.success();
+  const dest = S.pendingDestination || 'home';
+  S.pendingDestination = null;
+  save();
+  routeTo(dest);
 });
 
 /* ═══════════ 18. HOME RENDER ═══════════ */
@@ -982,34 +997,43 @@ function wireWelcomeCards(){
     card.addEventListener('click', () => {
       const target = card.dataset.goto;
       if(!target) return;
-      Snd.click();
-      vib(8);
-      // إذا لم يُكمل المستخدم التقييم بعد، نُوجّهه أولاً لشاشة الطفل
-      const needsOnboarding = !S.onboarded || !S.child || !S.plan;
-      if(needsOnboarding && target !== 'child'){
-        go('child');
-        toast(IS_AR ? 'أكمل التقييم أولاً للوصول لهذه الشاشة' : 'Complete the assessment first');
+      Snd.click(); vib(8);
+
+      const assessmentDone = !!(S.onboarded && S.child && S.plan && S.assessment);
+      if(!assessmentDone){
+        // احفظ الوجهة المقصودة، ثم ابدأ الاختبار
+        S.pendingDestination = target;
+        save();
+        // إذا كان لديه معلومات الطفل محفوظة، اذهب مباشرة للأسئلة
+        if(S.child && S.child.age){
+          S.answers={}; S.qIdx=0; save();
+          go('questions'); renderQuestion();
+        } else {
+          go('child');
+        }
         return;
       }
-      if(target === 'activities') renderActivities();
-      if(target === 'progress')   renderProgress();
-      go(target);
+      routeTo(target);
     });
   });
+}
+
+function routeTo(target){
+  switch(target){
+    case 'child':      go('child'); break;
+    case 'activities': renderActivities(); go('activities'); break;
+    case 'progress':   renderProgress();   go('progress');   break;
+    case 'home':       renderHome();       go('home');       break;
+    case 'profile':    renderProfile();    go('profile');    break;
+    default:           renderHome();       go('home');
+  }
 }
 /* ═══════════ 25. BOOT ═══════════ */
 function boot(){
   load();
   applyTheme();
-  applyStaticI18n();          // ← FIX: fill static i18n placeholders
-  if(S.onboarded && S.child && S.plan){ renderHome(); go('home'); }
-  else go('welcome');
-}
-function boot(){
-  load();
-  applyTheme();
   applyStaticI18n();
-  wireWelcomeCards();   // ← أضف هذا السطر
+  wireWelcomeCards();
   if(S.onboarded && S.child && S.plan){ renderHome(); go('home'); }
   else go('welcome');
 }
