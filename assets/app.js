@@ -71,150 +71,832 @@ const QS = [
 
 /* ═══════════ 3. ACTIVITIES (30) ═══════════ */
 const ACTS = {
+
+/* ═══════════ 1. الوعي الانفعالي الذاتي ═══════════ */
 'emo-awareness':[
-  {ic:'📖',du:{ar:'5 د',en:'5 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[3,5],
+  {ic:'📖',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[3,5],
+   sk:{ar:'تسمية المشاعر الأساسية',en:'Naming basic emotions'},
+   nb:{ar:'صعوبة تعبير الطفل عن مشاعره بالكلمات واللجوء للصراخ',en:'Difficulty expressing feelings in words'},
    ta:'قاموس المشاعر اليومي',te:'Daily Emotions Dictionary',
-   da:'بطاقات وجوه للمشاعر، يختار الطفل وجهه الحالي ويسميه بكلمة.',de:'Emotion face cards; child picks and names their current feeling.',
-   wa:'هل يستبدل الصراخ بالتسمية اللفظية؟',we:'Does he replace screaming with naming?'},
+   da:'بطاقات وجوه للمشاعر، يختار الطفل وجهه الحالي ويسميه بكلمة.',
+   de:'Emotion face cards; child picks and names their current feeling.',
+   ma:{ar:'5 بطاقات ورقية + أقلام تلوين',en:'5 paper cards + coloring pens'},
+   st:{ar:[
+     'ارسم 5 وجوه على البطاقات: 😊 فرح، 😢 حزن، 😠 غضب، 😨 خوف، 😐 عادي.',
+     'ضع البطاقات أمام الطفل على الطاولة.',
+     'اسأله: "كيف تشعر الآن؟ اختر وجهك."',
+     'دعه يرفع البطاقة ويقول: "أنا ..."',
+     'اربط الشعور بموقفه اليوم: "لماذا تشعر هكذا؟"',
+     'اختم: "شعورك مهم، شكراً لمشاركتي."'
+   ],en:[
+     'Draw 5 faces: happy, sad, angry, afraid, neutral.',
+     'Place cards in front of the child.',
+     'Ask: "How do you feel now? Pick your face."',
+     'Let them pick and say: "I am ..."',
+     'Link to today: "Why do you feel this way?"',
+     'Close: "Your feeling matters."'
+   ]},
+   pd:{ar:'انمذج أنت أولاً: "اليوم أنا سعيد لأن...". لا تصحح شعوره أبداً.',
+       en:'Model first: "Today I am happy because...". Never correct the feeling.'},
+   wa:'هل يستبدل الصراخ بالتسمية اللفظية؟',we:'Does he replace screaming with naming?',
+   src:'CASEL Framework / NAP Parenting Matters'},
+
   {ic:'📚',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,7],
+   sk:{ar:'ربط الشعور بالسبب المباشر',en:'Linking feeling to cause'},
+   nb:{ar:'عجز الطفل عن شرح سبب انزعاجه',en:'Inability to explain why upset'},
    ta:'قصة بطلي والموقف المفاجئ',te:'My Upset Hero Story',
-   da:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.',de:'Read a story and pause at an upset character to link cause to feeling.',
-   wa:'هل يربط السبب بالنتيجة؟',we:'Does he link cause to feeling?'},
+   da:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.',
+   de:'Read a story and pause at an upset character to link cause to feeling.',
+   ma:{ar:'القصة المرفقة أدناه (اطبعها أو اقرأها من الشاشة)',en:'The story below (print or read from screen)'},
+   story:{ar:`**قصة سامي والبرج المنهار**
+
+كان سامي يبني برجاً عالياً من المكعبات. وضع مكعباً فوق مكعب، حتى صار البرج أطول من كرسيّه. وفجأة... انهار البرج! تناثرت المكعبات على الأرض.
+
+شعر سامي بالحزن الشديد وقال: "لن أبني أبداً مرة أخرى!"
+
+جلس على الأرض ووضع يديه على وجهه. جاءت أمه وقالت بهدوء: "سامي، أراك حزيناً. هل تشعر بالضيق لأن البرج انهار؟"
+
+قال سامي: "نعم يا أمي، تعبت كثيراً وبنيته ثم انهار!"
+
+قالت أمه: "أفهم شعورك. أنا أيضاً أحزن عندما يضيع تعبي. ما رأيك أن نستريح دقيقة، ثم نبني برجاً أقوى؟"
+
+ابتسم سامي وقال: "نعم! سأبني برجاً لا ينهار هذه المرة!"`,
+
+   en:`**Sami and the Falling Tower**
+
+Sami was building a tall tower with blocks. One block on top of another, until the tower was taller than his chair. Suddenly... the tower fell! Blocks scattered everywhere.
+
+Sami felt very sad and said: "I'll never build again!"
+
+He sat on the floor and covered his face with his hands. His mother came and said calmly: "Sami, I see you're sad. Are you upset because the tower fell?"
+
+Sami said: "Yes mom, I worked so hard and then it fell!"
+
+His mother said: "I understand. I also feel sad when my work is lost. How about we rest a minute, then build a stronger tower?"
+
+Sami smiled and said: "Yes! I'll build a tower that won't fall this time!"`},
+
+   st:{ar:[
+     'اقرأ القصة بصوت معبّر وحرّك يديك.',
+     'عند جملة "شعر سامي بالحزن" توقف واسأل: "بماذا يشعر سامي الآن؟"',
+     'استمر حتى نهاية القصة.',
+     'بعد الانتهاء اسأل: "لماذا شعر سامي بالحزن؟"',
+     'ثم: "كيف ساعدته أمه؟"',
+     'اربط بالواقع: "هل حدث لك شيء مثل هذا؟"'
+   ],en:[
+     'Read expressively with hand motions.',
+     'At "Sami felt sad" pause and ask: "How does Sami feel?"',
+     'Continue to the end.',
+     'After: "Why was Sami sad?"',
+     'Then: "How did his mom help?"',
+     'Connect: "Has this happened to you?"'
+   ]},
+   pd:{ar:'كن مستمعاً لا مُلقّناً. اسأل أسئلة مفتوحة ولا تصحح إجابة الطفل.',
+       en:'Be a listener, not a lecturer. Ask open questions.'},
+   wa:'هل يربط السبب بالنتيجة؟',we:'Does he link cause to feeling?',
+   src:'NAP Dialogic Reading / CASEL'},
+
   {ic:'🌤️',du:{ar:'5 د',en:'5 min'},fr:{ar:'عند الحاجة',en:'As needed'},ag:[7,12],
+   sk:{ar:'الوعي بالانفعالات المركبة',en:'Awareness of complex emotions'},
+   nb:{ar:'اختزال الطفل لمشاعره في "غاضب" فقط',en:'Reducing all feelings to "angry"'},
    ta:'لوحة الطقس الداخلي',te:'Inner Weather Board',
-   da:'تشبيه الحالة الداخلية بالطقس: مشمس/غائم/عاصف.',de:'Compare inner state to weather: sunny/cloudy/stormy.',
-   wa:'هل يستخدم مفردات دقيقة؟',we:'Does he use precise words?'}
+   da:'تشبيه الحالة الداخلية بالطقس: مشمس/غائم/عاصف.',
+   de:'Compare inner state to weather: sunny/cloudy/stormy.',
+   ma:{ar:'ورقة + أقلام + ملصقات (أو رسم بسيط)',en:'Paper + pens + stickers'},
+   st:{ar:[
+     'ارسم 4 حالات جو: ☀️ مشمس = مرتاح، 🌤️ غائم = محبط، 🌧️ ممطر = حزين، ⛈️ عاصف = غاضب.',
+     'بعد المدرسة أو نشاط تنافسي اسأل: "كيف حال طقسك الداخلي؟"',
+     'لا تكتفِ بالإشارة، بل اطلب وصفاً: "لماذا الطقس عاصف؟"',
+     'استخدم التعبير: "أنا محبط" بدلاً من "أنا غاضب".',
+     'علق اللوحة في غرفته للرجوع إليها.'
+   ],en:[
+     'Draw 4 weather states: sunny, cloudy, rainy, stormy.',
+     'After school or a challenge: "How is your inner weather?"',
+     'Ask for description: "Why is it stormy?"',
+     'Use: "I am frustrated" instead of "I am angry".',
+     'Hang on bedroom wall for reference.'
+   ]},
+   pd:{ar:'شارك طقسك الداخلي أيضاً ليشعر الطفل بالأمان.',en:'Share your inner weather too.'},
+   wa:'هل يستخدم مفردات دقيقة؟',we:'Does he use precise words?',
+   src:'CASEL (Self-Awareness) Advanced'}
 ],
+
+/* ═══════════ 2. التنظيم والضبط العاطفي ═══════════ */
 'emo-regulation':[
-  {ic:'🧘',du:{ar:'5-10 د',en:'5-10 min'},fr:{ar:'عند التوتر',en:'When stressed'},ag:[5,7],
+  {ic:'🧘',du:{ar:'5-10 د',en:'5-10 min'},fr:{ar:'عند التوتر',en:'When stressed'},ag:[3,5],
+   sk:{ar:'التهدئة الذاتية',en:'Self-calming'},
+   nb:{ar:'استمرار نوبات الغضب والانغمار العاطفي',en:'Prolonged emotional flooding'},
    ta:'ركن التنفس والتهدئة',te:'Breathing Calm Corner',
-   da:'مساحة هادئة بوسادة، يتنفس الطفل 3 أنفاس بطيئة.',de:'Calm space with a pillow; child takes 3 slow breaths.',
-   wa:'هل يقبل الابتعاد للتهدئة؟',we:'Does he accept stepping away?'},
+   da:'مساحة هادئة بوسادة، يتنفس الطفل 3 أنفاس بطيئة.',
+   de:'Calm space with a pillow; child takes 3 slow breaths.',
+   ma:{ar:'وسادة + بطانية + صورة شمعة',en:'Pillow + blanket + candle picture'},
+   st:{ar:[
+     'جهّز ركناً هادئاً في غرفة الطفل.',
+     'علّق صورة شمعة على الحائط.',
+     'عند الغضب: "تعال نجلس هنا معاً دقيقة."',
+     'قل: "خذ نفساً كأنك تنفخ الشمعة."',
+     'كرر 3 أنفاس ببطء.',
+     'بعدها: "الآن هادئان. لنكمل."'
+   ],en:[
+     'Set up a quiet corner.',
+     'Hang a candle picture.',
+     'When upset: "Let\'s sit here together."',
+     'Say: "Breathe like blowing out a candle."',
+     'Repeat 3 slow breaths.',
+     'Then: "Now we\'re calm. Let\'s continue."'
+   ]},
+   pd:{ar:'لا تستخدم الركن كعقاب، بل كملاذ آمن يذهب إليه الطفل بمحض إرادته.',
+       en:'Never use the corner as punishment — it\'s a safe haven.'},
+   wa:'هل يقبل الابتعاد للتهدئة؟',we:'Does he accept stepping away?',
+   src:'Harvard EF / WHO Guidelines'},
+
   {ic:'🤗',du:{ar:'3-5 د',en:'3-5 min'},fr:{ar:'عند الضيق',en:'When upset'},ag:[3,5],
+   sk:{ar:'التهدئة المشتركة مع المربي',en:'Co-regulation with caregiver'},
+   nb:{ar:'عدم قدرة الطفل على القبول بأي تدخل للتهدئة',en:'Rejecting all calming attempts'},
    ta:'عناق التهدئة المشتركة',te:'Co-regulation Hug',
-   da:'احتضان هادئ مع صوت منخفض: "أنا بجانبك".',de:'Gentle hug with a low voice: "I am here with you".',
-   wa:'هل تنخفض حدة البكاء؟',we:'Does crying intensity decrease?'},
+   da:'احتضان هادئ مع صوت منخفض: "أنا بجانبك".',
+   de:'Gentle hug with a low voice: "I am here with you".',
+   ma:{ar:'لا يحتاج مواد',en:'No materials needed'},
+   st:{ar:[
+     'عند انزعاج الطفل اقترب بهدوء.',
+     'اجلس على مستوى نظره.',
+     'افتح ذراعيك وقل: "تعال، أنا بجانبك."',
+     'احتضنه بثبات 30 ثانية دون كلام.',
+     'تنفس بعمق بصوت مسموع.',
+     'بعد الهدوء: "شكراً لأنك سمحت لي."'
+   ],en:[
+     'Approach calmly when upset.',
+     'Sit at eye level.',
+     'Open arms: "Come, I am here."',
+     'Hold firmly 30 sec without talking.',
+     'Breathe deeply and audibly.',
+     'After: "Thank you for letting me be with you."'
+   ]},
+   pd:{ar:'تحكم في انفعالك أولاً، فأنت المنظّم العاطفي الخارجي للطفل.',
+       en:'Control your own emotion first — you are the child\'s external regulator.'},
+   wa:'هل تنخفض حدة البكاء؟',we:'Does crying intensity decrease?',
+   src:'WHO Nurturing Care / NAP'},
+
   {ic:'🌉',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
+   sk:{ar:'استعادة التوازن بعد الإحباط',en:'Recovery after frustration'},
+   nb:{ar:'الاستسلام السريع وترك المهام عند الفشل الأول',en:'Quick surrender at first failure'},
    ta:'إعادة بناء الجسر',te:'Rebuild the Bridge',
-   da:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم محاولة جديدة.',de:'Build a model; when it falls, brief break then retry.',
-   wa:'هل يعود للمهمة بعد الإحباط؟',we:'Does he return to task after frustration?'}
+   da:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم محاولة جديدة.',
+   de:'Build a model; when it falls, brief break then retry.',
+   ma:{ar:'مكعبات خشبية أو كرتونية (20 قطعة)',en:'Wooden or cardboard blocks (20 pcs)'},
+   st:{ar:[
+     'اتفقا: "سنبني جسراً عالياً معاً."',
+     'ابدأ البناء وأشركه في وضع المكعبات.',
+     'اترك الجسر ينهار عمداً.',
+     'قل: "أوه! انهار. نستريح دقيقة."',
+     'بعد 60 ثانية: "الآن هادئون. لنجرب فكرة جديدة."',
+     'جربا طريقة مختلفة (قاعدة أوسع).',
+     'احتفل: "رأيت؟ المحاولة الثانية نجحت!"'
+   ],en:[
+     'Agree: "We will build a tall bridge."',
+     'Start building, involve them.',
+     'Let it collapse on purpose.',
+     'Say: "Oops! It fell. Let\'s rest a minute."',
+     'After 60 sec: "Now calm. Let\'s try a new idea."',
+     'Try wider base.',
+     'Celebrate: "See? Second try worked!"'
+   ]},
+   pd:{ar:'لا تنجز المهمة عن الطفل عند الفشل، بل اجعله يقود المحاولة الثانية.',
+       en:'Don\'t finish for the child — let them lead the retry.'},
+   wa:'هل يعود للمهمة بعد الإحباط؟',we:'Does he return to task after frustration?',
+   src:'Harvard EF Guide'}
 ],
+
+/* ═══════════ 3. التعاطف والوعي الاجتماعي ═══════════ */
 'emo-empathy':[
   {ic:'🎁',du:{ar:'2 د',en:'2 min'},fr:{ar:'عند البكاء',en:'When crying'},ag:[3,5],
+   sk:{ar:'الاستجابة لمشاعر الآخر',en:'Responding to others\' feelings'},
+   nb:{ar:'عدم اكتراث الطفل لبكاء من حوله',en:'Indifference to others\' crying'},
    ta:'صندوق المواساة',te:'Comfort Box',
-   da:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.',de:'Box with a stuffed toy and tissue; child offers it to one crying.',
-   wa:'هل يبادر بتقديم غرض التهدئة؟',we:'Does he initiate offering comfort?'},
+   da:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.',
+   de:'Box with a stuffed toy and tissue; child offers it to one crying.',
+   ma:{ar:'صندوق صغير + لعبة محشوة + منديل',en:'Small box + stuffed toy + tissue'},
+   st:{ar:[
+     'جهّز الصندوق وضع فيه اللعبة والمنديل.',
+     'عرّفه: "هذا صندوق المواساة."',
+     'عند بكاء أخ/صديق: "ما رأيك أن نحضر له الصندوق؟"',
+     'رافقه وهو يقدمه.',
+     'بعدها: "أحسنت! ساعدته على التحسن."',
+     'كرر في كل موقف.'
+   ],en:[
+     'Prepare box with toy and tissue.',
+     'Introduce: "This is the comfort box."',
+     'When someone cries: "Shall we bring the box?"',
+     'Accompany them.',
+     'After: "Well done! You helped."',
+     'Repeat every time.'
+   ]},
+   pd:{ar:'لا تجبره، بل اقترح وامدح أي مبادرة ولو صغيرة.',en:'Don\'t force — suggest and praise any attempt.'},
+   wa:'هل يبادر بتقديم غرض التهدئة؟',we:'Does he initiate offering comfort?',
+   src:'WHO Care for Child Development'},
+
   {ic:'🎭',du:{ar:'10 د',en:'10 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[3,6],
+   sk:{ar:'التعبير اللفظي عن التعاطف',en:'Verbal expression of empathy'},
+   nb:{ar:'الاكتفاء بالمشاهدة السلبية عند حزن الآخر',en:'Passive observation at others\' sadness'},
    ta:'محقق الاطمئنان اللفظي',te:'Empathy Detective',
-   da:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.',de:'Puppet role-play to practice supportive phrases.',
-   wa:'هل يسأل تلقائيًا عن حال الآخرين؟',we:'Does he ask about others automatically?'},
+   da:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.',
+   de:'Puppet role-play to practice supportive phrases.',
+   ma:{ar:'عرائس أو جوارب قديمة للتمثيل',en:'Puppets or old socks'},
+   st:{ar:[
+     'أمسك دمية: "أنا صديقك، أشعر بالحزن."',
+     'اسأل: "ماذا تقول لي؟"',
+     'شجعه على: "هل أنت بخير؟" أو "هل أساعدك؟"',
+     'بادل الأدوار: اجعله المطمئن.',
+     'عزز كل جملة دعم.',
+     'اختم: "اليوم تدربنا على جملة الصديق الجيد."'
+   ],en:[
+     'Hold puppet: "I am your friend, I feel sad."',
+     'Ask: "What do you say?"',
+     'Encourage: "Are you okay?" or "Can I help?"',
+     'Swap roles.',
+     'Reinforce every supportive phrase.',
+     'Close: "Today we practiced being a good friend."'
+   ]},
+   pd:{ar:'العب دور الشخص الحزين بإقناع، وامدح كل عبارة تعاطف.',en:'Play the sad role convincingly, praise every phrase.'},
+   wa:'هل يسأل تلقائيًا عن حال الآخرين؟',we:'Does he ask about others automatically?',
+   src:'CASEL Framework'},
+
   {ic:'🤫',du:{ar:'30-60 د',en:'30-60 min'},fr:{ar:'عند المرض',en:'When sick'},ag:[7,12],
+   sk:{ar:'مراعاة ظروف الآخرين',en:'Consideration of others\' circumstances'},
+   nb:{ar:'الصراخ وإحداث الضوضاء رغم وجود مريض',en:'Noise despite a sick person'},
    ta:'ساعة الهدوء الأسرية',te:'Family Quiet Hour',
-   da:'الاتفاق على نشاط همس مراعاةً لمريض.',de:'Agree on a whisper activity out of care for a sick member.',
-   wa:'هل يخفض صوته تلقائيًا؟',we:'Does he lower his voice automatically?'}
+   da:'الاتفاق على نشاط همس مراعاةً لمريض.',
+   de:'Agree on a whisper activity out of care for a sick member.',
+   ma:{ar:'ألوان + ورق + كتاب هادئ',en:'Colors + paper + quiet book'},
+   st:{ar:[
+     'أخبر الطفل: "اليوم أخوك مريض، نحتاج هدوءاً."',
+     'اشرح: "صوته المنخفض يساعده على الراحة."',
+     'اتفقا على نشاط صامت.',
+     'ذكّره بلطف عند رفع صوته.',
+     'بعد ساعة: "ساعدت أخاك، هذا لطف كبير."'
+   ],en:[
+     'Tell: "Today your sibling is sick, we need quiet."',
+     'Explain: "Quiet helps them rest."',
+     'Agree on silent activity.',
+     'Gently remind if voice rises.',
+     'After: "You helped them rest, very kind."'
+   ]},
+   pd:{ar:'اربط الهدوء بالحرص العاطفي، لا بالأوامر.',en:'Link quiet to care, not to orders.'},
+   wa:'هل يخفض صوته تلقائيًا؟',we:'Does he lower his voice automatically?',
+   src:'NAP Parenting Matters'}
 ],
+
+/* ═══════════ 4. الذاكرة العاملة ═══════════ */
 'cog-memory':[
   {ic:'🎒',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,7],
+   sk:{ar:'تتبع التعليمات المتتابعة',en:'Following sequential instructions'},
+   nb:{ar:'نسيان التوجيهات المركبة',en:'Forgetting multi-step instructions'},
    ta:'حقيبة السفر الذهنية',te:'Mental Suitcase',
-   da:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.',de:'"I packed in my suitcase..." game adding items sequentially.',
-   wa:'هل يتذكر التسلسل؟',we:'Does he recall the sequence?'},
+   da:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.',
+   de:'"I packed in my suitcase..." game adding items sequentially.',
+   ma:{ar:'لا يحتاج مواد',en:'No materials needed'},
+   st:{ar:[
+     'ابدأ: "حزمت في حقيبتي قميصاً."',
+     'اطلب: "أكمل واذكر ما قلت ثم أضف غرضاً."',
+     'مثال: "قميص، ثم كتاب."',
+     'استمرا 5-7 جولات مع زيادة الأغراض.',
+     'عند الخطأ: "لا بأس، نبدأ من جديد."',
+     'احتفل بالأطول تسلسلاً.'
+   ],en:[
+     'Start: "I packed a shirt."',
+     'Ask: "Repeat then add one item."',
+     'Example: "Shirt, then book."',
+     'Continue 5-7 rounds.',
+     'On mistake: "No worries, restart."',
+     'Celebrate longest sequence.'
+   ]},
+   pd:{ar:'ابدأ بقائمتين فقط، وزِد تدريجياً حسب قدرة طفلك.',en:'Start with 2 items, increase gradually.'},
+   wa:'هل يتذكر التسلسل؟',we:'Does he recall the sequence?',
+   src:'Harvard EF Guide'},
+
   {ic:'👨‍🍳',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[3,5],
+   sk:{ar:'المعالجة الذهنية للمراحل',en:'Mental processing of stages'},
+   nb:{ar:'التخبط الذهني عند المهام المتعددة',en:'Mental confusion in multi-step tasks'},
    ta:'الطاهي الصغير',te:'Little Chef',
-   da:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.',de:'Follow a 3-step recipe without repetitive instructions.',
-   wa:'هل ينفذ الخطوة التالية تلقائيًا؟',we:'Does he do the next step automatically?'},
+   da:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.',
+   de:'Follow a 3-step recipe without repetitive instructions.',
+   ma:{ar:'خيار + طماطم + صحن + سكين بلاستيكي',en:'Cucumber + tomato + plate + plastic knife'},
+   st:{ar:[
+     'قل الخطوات مرة: "1. اغسل، 2. قطّع، 3. ضع في الصحن."',
+     'اطلب البدء.',
+     'دعه ينفذ دون تكرار التعليمات.',
+     'إن نسي: "ما الخطوة التالية؟"',
+     'عند الانتهاء: "أحسنت! أتممت 3 خطوات."'
+   ],en:[
+     'State steps once: "1. Wash, 2. Cut, 3. Plate."',
+     'Ask to begin.',
+     'Let them execute without repeating.',
+     'If forgotten: "What\'s next?"',
+     'On finish: "Great! 3 steps completed."'
+   ]},
+   pd:{ar:'لا تكرر الخطوات، واسأل بدلاً من أن تُلقّن.',en:'Don\'t repeat steps — ask instead.'},
+   wa:'هل ينفذ الخطوة التالية تلقائيًا؟',we:'Does he do the next step automatically?',
+   src:'Harvard EF Guide (Cooking Activities)'},
+
   {ic:'🎴',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,7],
+   sk:{ar:'الاحتفاظ بالمواقع والتحديث الذهني',en:'Retaining positions & updating'},
+   nb:{ar:'ضعف التركيز واسترجاع الأماكن',en:'Weak focus and recall'},
    ta:'البحث عن المطابقات',te:'Memory Match',
-   da:'لعبة الذاكرة ببطاقات مقلوبة لبناء خريطة ذهنية.',de:'Memory cards to build a mental map of positions.',
-   wa:'هل تقل الأخطاء العشوائية؟',we:'Do errors decrease?'},
+   da:'لعبة الذاكرة ببطاقات مقلوبة لبناء خريطة ذهنية.',
+   de:'Memory cards to build a mental map of positions.',
+   ma:{ar:'12 بطاقة (6 أزواج) بأشكال متطابقة',en:'12 cards (6 pairs) with matching shapes'},
+   st:{ar:[
+     'اخلط البطاقات وضعها مقلوبة.',
+     'كل لاعب يقلب بطاقتين للبحث عن تطابق.',
+     'إن لم تتطابق، أعدهما كما كانتا.',
+     'شجع: "أين رأينا الأسد؟"',
+     'الفائز من يجمع أكثر أزواج.'
+   ],en:[
+     'Shuffle, lay face down.',
+     'Each flips 2 to find a match.',
+     'If no match, flip back.',
+     'Encourage: "Where did we see the lion?"',
+     'Winner collects most pairs.'
+   ]},
+   pd:{ar:'ابدأ بـ 4 بطاقات، وزد تدريجياً حتى 12.',en:'Start with 4 cards, build up to 12.'},
+   wa:'هل تقل الأخطاء العشوائية؟',we:'Do errors decrease?',
+   src:'Harvard EF Guide (Memory Games)'},
+
   {ic:'🧩',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
+   sk:{ar:'الاحتفاظ بالخطوات الذهنية المتتابعة',en:'Retaining sequential mental steps'},
+   nb:{ar:'التخبط في المهام الأكاديمية متعددة المراحل',en:'Confusion in multi-stage academic tasks'},
    ta:'لغز المراحل الثلاث',te:'Three-Step Puzzle',
-   da:'حل مهمة متعددة الخطوات مع تتبع الخطة.',de:'Solve a multi-step task while tracking the plan.',
-   wa:'هل يحافظ على التسلسل؟',we:'Does he keep the sequence?'}
+   da:'حل مهمة متعددة الخطوات مع تتبع الخطة.',
+   de:'Solve a multi-step task while tracking the plan.',
+   ma:{ar:'بازل من 24-48 قطعة',en:'24-48 piece puzzle'},
+   st:{ar:[
+     'اكتب الخطة: "1. الحواف، 2. الألوان، 3. الربط."',
+     'اطلب البدء بالحواف.',
+     'بعد الانتهاء اسأل: "الخطوة التالية؟"',
+     'لا تعطه الحل، ذكّره بالخطة.',
+     'عند الانتهاء: "أكملت خطة من 3 مراحل."'
+   ],en:[
+     'Write plan: "1. Edges, 2. Colors, 3. Connect."',
+     'Ask to start with edges.',
+     'After edges: "Next step?"',
+     'Don\'t solve — remind plan.',
+     'On finish: "You completed 3-stage plan."'
+   ]},
+   pd:{ar:'اكتب الخطة على ورقة أمامه ليتذكرها بصرياً.',en:'Write the plan on paper for visual memory.'},
+   wa:'هل يحافظ على التسلسل؟',we:'Does he keep the sequence?',
+   src:'Harvard EF / NAP'}
 ],
+
+/* ═══════════ 5. المرونة المعرفية ═══════════ */
 'cog-flex':[
   {ic:'🔀',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[3,5],
+   sk:{ar:'التبديل المعرفي للتصنيف',en:'Cognitive shifting'},
+   nb:{ar:'التصلب المعرفي والإصرار على قاعدة واحدة',en:'Cognitive rigidity'},
    ta:'التصنيف المقلوب',te:'Silly Sorting',
-   da:'تصنيف المكعبات حسب اللون، ثم تغيير القاعدة فجأة للحجم.',de:'Sort blocks by color, then switch to size.',
-   wa:'هل ينتقل بسلاسة للقاعدة الجديدة؟',we:'Does he transition smoothly?'},
+   da:'تصنيف المكعبات حسب اللون، ثم تغيير القاعدة فجأة للحجم.',
+   de:'Sort blocks by color, then switch to size.',
+   ma:{ar:'12 مكعباً بألوان وأحجام مختلفة',en:'12 blocks different colors and sizes'},
+   st:{ar:[
+     'قل: "رتب المكعبات حسب اللون."',
+     'بعد الانتهاء صفّق: "القاعدة تغيرت! حسب الحجم."',
+     'اضحك على التغيير المفاجئ.',
+     'كرر التبديل 3-4 مرات.',
+     'اختم: "اليوم تدربنا على تغيير الطريقة بسرعة."'
+   ],en:[
+     'Say: "Sort by color."',
+     'Then: "Rule changed! Sort by size."',
+     'Laugh at the change.',
+     'Repeat switch 3-4 times.',
+     'Close: "We practiced switching rules fast."'
+   ]},
+   pd:{ar:'اجعل التغيير ممتعاً ومضحكاً، وليس اختباراً.',en:'Make the change fun, not a test.'},
+   wa:'هل ينتقل بسلاسة للقاعدة الجديدة؟',we:'Does he transition smoothly?',
+   src:'Harvard EF Guide'},
+
   {ic:'📋',du:{ar:'10 د',en:'10 min'},fr:{ar:'أسبوعيًا',en:'Weekly'},ag:[5,8],
+   sk:{ar:'التكيف مع تغيير الخطة',en:'Adapting to plan changes'},
+   nb:{ar:'نوبات التذمر عند تغيير خطة الخروج',en:'Tantrums when plans change'},
    ta:'خطة (ب) الممتعة',te:'Plan B Game',
-   da:'رسم خطة أساسية وخطة بديلة للأنشطة.',de:'Draw main and alternative plans for activities.',
-   wa:'هل يتقبل البديل دون مقاومة؟',we:'Does he accept the alternative?'},
+   da:'رسم خطة أساسية وخطة بديلة للأنشطة.',
+   de:'Draw main and alternative plans for activities.',
+   ma:{ar:'ورقة + قلم + ملصقات ملونة',en:'Paper + pen + colored stickers'},
+   st:{ar:[
+     'ارسم جدول عمودين: "الخطة أ" و"الخطة ب".',
+     'مثال: "أ: نذهب للحديقة. ب: نلعب بالبيت لو أمطرت."',
+     'اسأل: "ما الخطة البديلة لو تغير الجو؟"',
+     'سجل اقتراحه وامدحه.',
+     'عند تغير فعلي: "تذكر خطة ب؟ لنطبقها!"'
+   ],en:[
+     'Draw two columns: "Plan A" and "Plan B".',
+     'Example: "A: park. B: home if rain."',
+     'Ask: "What is B if weather changes?"',
+     'Record suggestion and praise.',
+     'When change: "Remember Plan B? Let\'s use it!"'
+   ]},
+   pd:{ar:'أشرك الطفل في وضع البدائل مسبقاً، لا بعد حدوث التغيير.',en:'Involve the child in planning B beforehand.'},
+   wa:'هل يتقبل البديل دون مقاومة؟',we:'Does he accept the alternative?',
+   src:'Tools of the Mind / CASEL'},
+
   {ic:'🎯',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
+   sk:{ar:'ابتكار حلول بديلة',en:'Generating alternative solutions'},
+   nb:{ar:'تكرار المحاولة الخاطئة بنفس الطريقة',en:'Repeating the same failed attempt'},
    ta:'لغز الطرق البديلة',te:'Alternative Paths Puzzle',
-   da:'منع تكرار نفس المحاولة وإلزام الطفل بتجربة أفكار جديدة.',de:'Prevent retrying the same attempt; force new ideas.',
-   wa:'هل يجرب طرقًا جديدة؟',we:'Does he try new approaches?'}
+   da:'منع تكرار نفس المحاولة وإلزام الطفل بتجربة أفكار جديدة.',
+   de:'Prevent retrying the same attempt; force new ideas.',
+   ma:{ar:'بازل أو لعبة استراتيجية بسيطة',en:'Puzzle or simple strategy game'},
+   st:{ar:[
+     'اعرض المشكلة: "كيف نبني هذا البرج؟"',
+     'عند الفشل الأول: "لا تكرر نفس الطريقة."',
+     'اطلب: "جرب فكرة مختلفة تماماً."',
+     'اجعل كل محاولة جديدة إجبارية.',
+     'بعد 3 محاولات: "أحسنت، فكرت بطرق متعددة!"'
+   ],en:[
+     'Present: "How to build this tower?"',
+     'On first fail: "Don\'t repeat same way."',
+     'Ask: "Try a different idea."',
+     'Force new attempts.',
+     'After 3: "Great, multiple ways!"'
+   ]},
+   pd:{ar:'قاوم رغبتك في إعطاء الحل، واترك الطفل يكتشف.',en:'Resist giving solutions — let the child discover.'},
+   wa:'هل يجرب طرقًا جديدة؟',we:'Does he try new approaches?',
+   src:'Harvard EF Guide'}
 ],
+
+/* ═══════════ 6. التفكير المنطقي ═══════════ */
 'cog-reason':[
   {ic:'🔬',du:{ar:'15 د',en:'15 min'},fr:{ar:'أسبوعيًا',en:'Weekly'},ag:[3,6],
+   sk:{ar:'الاستدلال السببي البسيط',en:'Basic causal reasoning'},
+   nb:{ar:'إرجاع الأحداث لتفسيرات خيالية',en:'Magical explanations'},
    ta:'المكتشف الصغير',te:'Little Discoverer',
-   da:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟".',de:'Float/sink experiment asking "why?".',
-   wa:'هل يقدم تبريرات منطقية؟',we:'Does he give logical reasons?'},
+   da:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟".',
+   de:'Float/sink experiment asking "why?".',
+   ma:{ar:'وعاء ماء + ملعقة + فلين + حجر + ورقة',en:'Water bowl + spoon + cork + stone + paper'},
+   st:{ar:[
+     'املأ وعاءً بالماء.',
+     'اسأل قبل كل غرض: "سيطفو أم سيغرق؟"',
+     'اختبر: الفلين، الورقة، الملعقة، الحجر.',
+     'اسأل بعد كل غرض: "لماذا؟"',
+     'لا تصحح الخطأ، اطرح أسئلة موجِّهة.'
+   ],en:[
+     'Fill bowl with water.',
+     'Ask before each: "Float or sink?"',
+     'Test: cork, paper, spoon, stone.',
+     'Ask after: "Why?"',
+     'Don\'t correct — guide with questions.'
+   ]},
+   pd:{ar:'دع الفضول يقود، ولو تكررت الإجابات الخاطئة.',en:'Let curiosity lead, even with wrong answers.'},
+   wa:'هل يقدم تبريرات منطقية؟',we:'Does he give logical reasons?',
+   src:'MIT Child Dev (Piaget)'},
+
   {ic:'🧠',du:{ar:'10 د',en:'10 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[5,8],
+   sk:{ar:'نظرية العقل (فهم المعتقد الخاطئ)',en:'Theory of Mind'},
+   nb:{ar:'افتراض أن الآخرين يعلمون ما يعرفه الطفل',en:'Assuming others know what child knows'},
    ta:'ماذا يعلم صديقي؟',te:'What Does My Friend Know?',
-   da:'نقل شيء دون علم الأخ، ثم السؤال: أين سيبحث؟',de:'Move an object without the sibling knowing; where will they look?',
-   wa:'هل يدرك أن الآخر لا يعلم؟',we:"Does he realize others don't know?"},
+   da:'نقل شيء دون علم الأخ، ثم السؤال: أين سيبحث؟',
+   de:'Move an object without the sibling knowing; where will they look?',
+   ma:{ar:'لعبة صغيرة + وعاءان',en:'Small toy + two boxes'},
+   st:{ar:[
+     'أخفِ اللعبة في الوعاء (أ) أمام أخ الطفل.',
+     'اطلب من الأخ مغادرة الغرفة.',
+     'انقل اللعبة إلى الوعاء (ب).',
+     'اسأل الطفل: "أين سيبحث أخوك أولاً؟"',
+     'الهدف: يجيب "في أ" لأن الأخ لا يعلم بالنقل.'
+   ],en:[
+     'Hide toy in box (A) in front of sibling.',
+     'Ask sibling to leave.',
+     'Move toy to box (B).',
+     'Ask: "Where will he look first?"',
+     'Goal: answer "A" because he doesn\'t know.'
+   ]},
+   pd:{ar:'لا تكشف الإجابة، بل دع الطفل يفكر بنفسه.',en:'Don\'t reveal — let the child think.'},
+   wa:'هل يدرك أن الآخر لا يعلم؟',we:'Does he realize others don\'t know?',
+   src:'MIT Child Dev (Theory of Mind)'},
+
   {ic:'⚖️',du:{ar:'5 د',en:'5 min'},fr:{ar:'عند الاختيار',en:'When choosing'},ag:[7,12],
+   sk:{ar:'التقييم والموازنة المنطقية',en:'Logical evaluation'},
+   nb:{ar:'الاختيار العشوائي دون تبرير',en:'Random choice without reasoning'},
    ta:'ميزان القرار اليومي',te:'Decision Balance',
-   da:'طلب دليلين منطقيين لترجيح خيار.',de:'Ask for two logical reasons supporting a choice.',
-   wa:'هل يقدم حججًا متماسكة؟',we:'Does he provide coherent arguments?'}
+   da:'طلب دليلين منطقيين لترجيح خيار.',
+   de:'Ask for two logical reasons supporting a choice.',
+   ma:{ar:'موقف اختيار يومي (حلوى، ملابس، لعبة)',en:'Daily choice (snack, clothes, toy)'},
+   st:{ar:[
+     'اعرض خيارين: "تفاحة أم موز؟"',
+     'اسأل: "لماذا اخترت هذا؟"',
+     'اطلب سبباً ثانياً: "وما السبب الآخر؟"',
+     'ناقش بجدية دون فرض.',
+     'اختم: "قرارك مدروس، أحسنت."'
+   ],en:[
+     'Present: "Apple or banana?"',
+     'Ask: "Why this one?"',
+     'Ask for second reason: "And another?"',
+     'Discuss without imposing.',
+     'Close: "Your decision is reasoned."'
+   ]},
+   pd:{ar:'لا تفرض خيارك بعد سماع الأسباب، إلا إن كان خطراً.',en:'Don\'t impose unless dangerous.'},
+   wa:'هل يقدم حججًا متماسكة؟',we:'Does he provide coherent arguments?',
+   src:'CASEL (Responsible Decision-Making)'}
 ],
+
+/* ═══════════ 7. الضبط التثبيطي ═══════════ */
 'beh-inhibit':[
   {ic:'🧊',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[3,6],
+   sk:{ar:'التثبيط الحركي',en:'Motor inhibition'},
+   nb:{ar:'صعوبة كبح الحركة فور التنبيه',en:'Difficulty stopping movement'},
    ta:'التمثال المجمد',te:'Freeze Dance',
-   da:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.',de:'Dance with music; freeze instantly when it stops.',
-   wa:'هل يكبح جسده فورًا؟',we:'Does he freeze instantly?'},
+   da:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.',
+   de:'Dance with music; freeze instantly when it stops.',
+   ma:{ar:'هاتف + أغنية حماسية',en:'Phone + energetic song'},
+   st:{ar:[
+     'شغّل الأغنية وارقص مع الطفل.',
+     'أوقف فجأة: "تجمّد!"',
+     'يقف كالتمثال 5 ثوانٍ.',
+     'أعد التشغيل، وكرر 5-7 مرات.',
+     'من يتحرك يفقد نقطة.'
+   ],en:[
+     'Play song, dance together.',
+     'Stop suddenly: "Freeze!"',
+     'Stay still 5 sec.',
+     'Restart, repeat 5-7 times.',
+     'Mover loses a point.'
+   ]},
+   pd:{ar:'شاركه الرقص بحماس، فالتجربة ممتعة قبل أن تكون تدريباً.',en:'Dance enthusiastically — fun first.'},
+   wa:'هل يكبح جسده فورًا؟',we:'Does he freeze instantly?',
+   src:'Harvard EF Guide (Freeze Dance)'},
+
   {ic:'🚦',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,9],
+   sk:{ar:'كبح الاستجابة ومراقبة البيئة',en:'Response inhibition'},
+   nb:{ar:'صعوبة الانتظار والتسرع في الانطلاق',en:'Impulsive rushing'},
    ta:'إشارة المرور المنزلية',te:'Home Traffic Light',
-   da:'بطاقات ملونة للجري والمشي والتوقف.',de:'Colored cards for run, walk, and stop.',
-   wa:'هل يتوقف عند الأحمر؟',we:'Does he stop on red?'},
+   da:'بطاقات ملونة للجري والمشي والتوقف.',
+   de:'Colored cards for run, walk, and stop.',
+   ma:{ar:'3 بطاقات: حمراء، صفراء، خضراء',en:'3 cards: red, yellow, green'},
+   st:{ar:[
+     'اشرح: أخضر=اجرِ، أصفر=امشِ، أحمر=قف.',
+     'ارفع البطاقات بتبديل سريع.',
+     'يستجيب الطفل حسب اللون.',
+     'سرّع التبديل تدريجياً.',
+     'من يخطئ ينتظر جولة.'
+   ],en:[
+     'Explain: green=run, yellow=walk, red=stop.',
+     'Show cards with rapid switches.',
+     'Child responds per color.',
+     'Gradually speed up.',
+     'Mistake = skip a turn.'
+   ]},
+   pd:{ar:'ابدأ ببطيء، وزِد السرعة عند إتقان الأساس.',en:'Start slow, increase speed as mastery grows.'},
+   wa:'هل يتوقف عند الأحمر؟',we:'Does he stop on red?',
+   src:'Harvard EF Guide (Traffic Light)'},
+
   {ic:'✨',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,9],
+   sk:{ar:'ضبط الاندفاع اللفظي والحركي',en:'Inhibitory control'},
+   nb:{ar:'تنفيذ التوجيه دون إشارة البدء',en:'Acting without the start signal'},
    ta:'الكلمة السحرية',te:'Magic Word (Simon Says)',
-   da:'لا ينفذ إلا إذا سبقت التعليمات بالكلمة السحرية.',de:'Only act if the magic word precedes the instruction.',
-   wa:'هل يتريث قبل الحركة؟',we:'Does he pause before acting?'}
+   da:'لا ينفذ إلا إذا سبقت التعليمات بالكلمة السحرية.',
+   de:'Only act if the magic word precedes the instruction.',
+   ma:{ar:'لا يحتاج مواد',en:'No materials needed'},
+   st:{ar:[
+     'قل: "سيمون يقول: صفّق." → يُنفذ.',
+     'قل: "اقفز." → لا يُنفذ (لا كلمة سحرية).',
+     'بدّل بسرعة بين الحالتين.',
+     'من يخطئ يخرج جولة.',
+     'الهدف: التمييز بين الحالتين.'
+   ],en:[
+     'Say: "Simon says: clap." → do it.',
+     'Say: "Jump." → don\'t.',
+     'Alternate rapidly.',
+     'Mistake = sit out one round.',
+     'Goal: distinguish both.'
+   ]},
+   pd:{ar:'العبها بمرح، والخطأ جزء من التعلم.',en:'Play playfully — mistakes are part of learning.'},
+   wa:'هل يتريث قبل الحركة؟',we:'Does he pause before acting?',
+   src:'Harvard EF Guide (Simon Says)'}
 ],
+
+/* ═══════════ 8. الالتزام بالروتين ═══════════ */
 'beh-routine':[
   {ic:'📅',du:{ar:'مستمر',en:'Ongoing'},fr:{ar:'يوميًا',en:'Daily'},ag:[5,9],
+   sk:{ar:'التتابعية السلوكية الموجهة ذاتياً',en:'Self-directed sequential behavior'},
+   nb:{ar:'المماطلة والاعتماد الشديد على الأوامر',en:'Procrastination & dependence'},
    ta:'لوحة محطات اليوم المصورة',te:'Day Stations Board',
-   da:'لوحة بصور متتابعة لروتين العودة مع علامة صح.',de:'Board with sequential return-routine images with checkmarks.',
-   wa:'هل ينتقل بين المحطات باعتياد؟',we:'Does he transition habitually?'},
+   da:'لوحة بصور متتابعة لروتين العودة مع علامة صح.',
+   de:'Board with sequential return-routine images with checkmarks.',
+   ma:{ar:'ورق مقوى + صور مطبوعة أو مرسومة + ملصقات',en:'Cardboard + images + stickers'},
+   st:{ar:[
+     'ارسم 4 محطات: خلع الحذاء، غسل اليدين، الحقيبة، تغيير الملابس.',
+     'علّق اللوحة عند مدخل البيت.',
+     'عند الدخول أشر للوحة بصمت.',
+     'يضع الطفل ملصقاً بعد كل محطة.',
+     'بعد أسبوع: يستخدمها تلقائياً.'
+   ],en:[
+     'Draw 4 stations: shoes, hands, bag, clothes.',
+     'Hang board at entrance.',
+     'On entry point silently.',
+     'Child places sticker after each.',
+     'After a week: uses it automatically.'
+   ]},
+   pd:{ar:'الإشارة للصورة أقوى من التوجيه اللفظي المتكرر.',en:'Pointing to image beats repeated verbal cues.'},
+   wa:'هل ينتقل بين المحطات باعتياد؟',we:'Does he transition habitually?',
+   src:'NAP Parenting Matters (Routines)'},
+
   {ic:'⏱️',du:{ar:'5 د',en:'5 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[7,12],
+   sk:{ar:'المحافظة على البيئة وتنظيم الأدوات',en:'Environment organization'},
+   nb:{ar:'ترك الألعاب مبعثرة ورفض الترتيب',en:'Refusing to tidy up'},
    ta:'تحدي 5 دقائق',te:'5-Minute Challenge',
-   da:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.',de:'Timer with energetic tone to return toys before it rings.',
-   wa:'هل يستجيب بسرعة؟',we:'Does he respond quickly?'},
+   da:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.',
+   de:'Timer with energetic tone to return toys before it rings.',
+   ma:{ar:'هاتف بمؤقت + نغمة مرحة',en:'Phone with timer + fun ringtone'},
+   st:{ar:[
+     'قل: "لدينا 5 دقائق لترتيب كل شيء."',
+     'شغّل المؤقت والنغمة.',
+     'شاركه الترتيب بحماس.',
+     'عند الرنين: "انتهى! كم رتبنا؟"',
+     'احتفل بنجاح الفريق.'
+   ],en:[
+     'Say: "We have 5 minutes to tidy."',
+     'Start timer and fun ring.',
+     'Join tidying energetically.',
+     'At ring: "Done! How many?"',
+     'Celebrate team success.'
+   ]},
+   pd:{ar:'شارك في الترتيب، فالتحدي جماعي وليس اختباراً للطفل.',en:'Tidy together — team challenge, not a test.'},
+   wa:'هل يستجيب بسرعة؟',we:'Does he respond quickly?',
+   src:'Positive Parenting Toolkit'},
+
   {ic:'🎒',du:{ar:'10 د',en:'10 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[7,12],
+   sk:{ar:'التخطيط السلوكي والاستقلالية',en:'Behavioral planning & autonomy'},
+   nb:{ar:'الارتباك الصباحي ونسيان الأدوات',en:'Morning chaos and forgetting items'},
    ta:'محطة الاستعداد للغد',te:'Tomorrow Prep Station',
-   da:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.',de:'Prepare tools and bag in the evening at the exit.',
-   wa:'هل يخرج الصباح بسلاسة؟',we:'Does the morning flow smoothly?'}
+   da:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.',
+   de:'Prepare tools and bag in the evening at the exit.',
+   ma:{ar:'طاولة صغيرة عند المخرج + حقيبة + قائمة',en:'Small table at exit + bag + checklist'},
+   st:{ar:[
+     'جهّز طاولة صغيرة عند الباب.',
+     'اكتب قائمة: ماء، دفتر، قلم، حقيبة.',
+     'مساءً: يراجع الطفل القائمة ويضع الأشياء.',
+     'صباحاً: يأخذها بسلاسة دون فوضى.',
+     'كافئ الانسيابية الصباحية.'
+   ],en:[
+     'Set small table at door.',
+     'Write list: water, notebook, pen, bag.',
+     'Evening: child checks and packs.',
+     'Morning: smooth pickup.',
+     'Reward morning flow.'
+   ]},
+   pd:{ar:'راجع بصرياً فقط، ولا تفعلها بدلاً منه.',en:'Visual check only — don\'t do it for them.'},
+   wa:'هل يخرج الصباح بسلاسة؟',we:'Does the morning flow smoothly?',
+   src:'NAP Parenting Matters'}
 ],
+
+/* ═══════════ 9. المهارات التواصلية ═══════════ */
 'skl-comm':[
   {ic:'📖',du:{ar:'10-15 د',en:'10-15 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[3,6],
+   sk:{ar:'التعبير اللفظي وتوسيع الجمل',en:'Verbal expression & expansion'},
+   nb:{ar:'الصمت أو استخدام الإشارات فقط',en:'Silence or gestures only'},
    ta:'القراءة الحوارية المتبادلة',te:'Dialogic Reading',
-   da:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.',de:"Read a picture book with open questions; expand child's sentences.",
-   wa:'هل تزداد طول جملته؟',we:'Does his sentence length grow?'},
+   da:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.',
+   de:"Read a picture book with open questions; expand child's sentences.",
+   ma:{ar:'كتاب مصور يحبه الطفل',en:'Picture book the child loves'},
+   st:{ar:[
+     'اجلس معه وافتح الكتاب.',
+     'قبل القراءة: "ما هذا على الغلاف؟"',
+     'أثناء القراءة توقف واسأل: "ماذا سيحدث بعد؟"',
+     'وسّع جمله: "القطة تجري" → "القطة السوداء تجري بسرعة."',
+     'اطلب منه تكرار الجملة الموسعة.'
+   ],en:[
+     'Sit and open the book.',
+     'Before: "What\'s on the cover?"',
+     'While reading: "What happens next?"',
+     'Expand: "Cat runs" → "The black cat runs fast."',
+     'Ask them to repeat.'
+   ]},
+   pd:{ar:'لا تُصحح الأخطاء اللغوية بشكل مباشر، بل أعِد الصياغة الصحيحة تلقائياً.',en:'Don\'t correct directly — model the correct form.'},
+   wa:'هل تزداد طول جملته؟',we:'Does his sentence length grow?',
+   src:'NAP Dialogic Reading'},
+
   {ic:'🎤',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,9],
+   sk:{ar:'الاستماع التبادلي النشط',en:'Active listening'},
+   nb:{ar:'مقاطعة الحديث أو الانشغال',en:'Interrupting or distraction'},
    ta:'مقابلة المذيع',te:'Talk Show Interview',
-   da:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للمتحدث.',de:'Toy microphone; only the holder speaks, looking at the other.',
-   wa:'هل ينتظر دوره وينظر للمتحدث؟',we:'Does he wait his turn and look at the speaker?'},
+   da:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للمتحدث.',
+   de:'Toy microphone; only the holder speaks, looking at the other.',
+   ma:{ar:'ميكروفون لعبة أو زجاجة فارغة',en:'Toy microphone or empty bottle'},
+   st:{ar:[
+     'أمسك الميكروفون: "اليوم نستضيف نجمنا."',
+     'اطرح سؤالاً: "ما أفضل شيء في يومك؟"',
+     'سلّم الميكروفون للطفل.',
+     'يجب أن ينظر إليك أثناء الحديث.',
+     'بعد إجابته بدّل الأدوار.'
+   ],en:[
+     'Hold mic: "Today we host our star."',
+     'Ask: "Best thing in your day?"',
+     'Hand mic to child.',
+     'Must look at you while speaking.',
+     'Swap roles after answer.'
+   ]},
+   pd:{ar:'انظر في عيني الطفل وأنت تستمع، لتُعلّمه بالنموذج.',en:'Look in their eyes when listening — model it.'},
+   wa:'هل ينتظر دوره وينظر للمتحدث؟',we:'Does he wait and look at speaker?',
+   src:'CASEL (Relationship Skills)'},
+
   {ic:'❓',du:{ar:'10 د',en:'10 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
+   sk:{ar:'استيضاح عدم الفهم',en:'Clarifying confusion'},
+   nb:{ar:'الانسحاب وتظاهر الفهم',en:'Withdrawal or pretending to understand'},
    ta:'مراسل الاستفسار',te:'Curious Reporter',
-   da:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.',de:'Deliberately vague instructions; encourage child to ask.',
-   wa:'هل يطرح أسئلة استفسارية؟',we:'Does he ask clarifying questions?'}
+   da:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.',
+   de:'Deliberately vague instructions; encourage child to ask.',
+   ma:{ar:'ورقة + قلم رصاص',en:'Paper + pencil'},
+   st:{ar:[
+     'قل: "ارسم شيئاً جميلاً بقلمك."',
+     'الطفل سيسأل: "أي قلم؟ ماذا أرسم؟"',
+     'قل: "أحسنت! السؤال الذكي خطوة أولى."',
+     'أجب عن كل سؤال.',
+     'اختم: "اليوم تعلمنا أن السؤال لا يخجل."'
+   ],en:[
+     'Say: "Draw something nice with your pen."',
+     'Child will ask: "Which pen? What?"',
+     'Say: "Great! Smart question is first step."',
+     'Answer every question.',
+     'Close: "Asking is not shameful."'
+   ]},
+   pd:{ar:'اعتبر كل سؤال ذكاءً، وليس إزعاجاً.',en:'Treat every question as intelligence, not nuisance.'},
+   wa:'هل يطرح أسئلة استفسارية؟',we:'Does he ask clarifying questions?',
+   src:'CASEL / REDI-P'}
 ],
+
+/* ═══════════ 10. المهارات الاجتماعية ═══════════ */
 'skl-social':[
   {ic:'⏳',du:{ar:'15 د',en:'15 min'},fr:{ar:'عند اللعب',en:'During play'},ag:[3,6],
+   sk:{ar:'التشارك بالتناوب',en:'Turn-taking'},
+   nb:{ar:'احتكار الألعاب والصراخ عند المشاركة',en:'Toy hoarding and screaming'},
    ta:'عداد التناوب',te:'Turn Timer',
-   da:'مؤقت رملي دقيقتان للتبادل بين الأطفال.',de:'Two-minute sand timer to alternate between children.',
-   wa:'هل يسلّم اللعبة بهدوء؟',we:'Does he hand over calmly?'},
+   da:'مؤقت رملي دقيقتان للتبادل بين الأطفال.',
+   de:'Two-minute sand timer to alternate between children.',
+   ma:{ar:'مؤقت رملي أو مؤقت هاتف',en:'Sand timer or phone timer'},
+   st:{ar:[
+     'اشرح: "كل واحد يلعب دقيقتين ثم يسلّم."',
+     'شغّل المؤقت عند بدء الدور.',
+     'عند الانتهاء: "انتهى دورك، سلّم اللعبة."',
+     'امدح كل تسليم هادئ.',
+     'كرر التبادل 3-4 مرات.'
+   ],en:[
+     'Explain: "Each plays 2 minutes then passes."',
+     'Start timer at turn start.',
+     'When done: "Turn over, pass toy."',
+     'Praise each calm pass.',
+     'Repeat 3-4 rounds.'
+   ]},
+   pd:{ar:'لا تتدخل فوراً عند الخلاف، أعطِ فرصة للحل الذاتي.',en:'Don\'t intervene instantly — allow self-solving.'},
+   wa:'هل يسلّم اللعبة بهدوء؟',we:'Does he hand over calmly?',
+   src:'PCIT / Tools of the Mind'},
+
   {ic:'🌉',du:{ar:'5 د',en:'5 min'},fr:{ar:'عند النزاع',en:'During conflict'},ag:[5,9],
+   sk:{ar:'التفاوض واقتراح الحلول',en:'Negotiation & solutions'},
+   nb:{ar:'اللجوء للضرب أو البكاء عند الخلاف',en:'Hitting or crying during conflict'},
    ta:'جسور الحلول الوسطى',te:'Solutions Bridge',
-   da:'بطاقة حلول لسؤال الطرفين عن حل يرضيهما معًا.',de:'Solutions card to ask both parties for a mutually acceptable fix.',
-   wa:'هل يقترح حلولًا وسيطة؟',we:'Does he suggest solutions?'},
+   da:'بطاقة حلول لسؤال الطرفين عن حل يرضيهما معًا.',
+   de:'Solutions card to ask both parties for a mutually acceptable fix.',
+   ma:{ar:'بطاقة عليها رسم جسر + قلم',en:'Card with bridge drawing + pen'},
+   st:{ar:[
+     'عند الخلاف أمسك البطاقة.',
+     'قل: "سنبني جسراً للحل معاً."',
+     'اسأل كل طرف: "ماذا تريد؟"',
+     'اقترح: "دورك أولاً ثم دوره، اتفقنا؟"',
+     'اكتب الاتفاق وعلق البطاقة.'
+   ],en:[
+     'During conflict hold the card.',
+     'Say: "We will build a bridge together."',
+     'Ask each: "What do you want?"',
+     'Suggest: "Your turn then theirs, deal?"',
+     'Write deal and hang card.'
+   ]},
+   pd:{ar:'كن وسيطاً حيادياً، ولا تفرض الحل الجاهز.',en:'Be neutral — don\'t impose the solution.'},
+   wa:'هل يقترح حلولًا وسيطة؟',we:'Does he suggest solutions?',
+   src:'Incredible Years / CASEL'},
+
   {ic:'🏗️',du:{ar:'30 د',en:'30 min'},fr:{ar:'أسبوعيًا',en:'Weekly'},ag:[7,12],
+   sk:{ar:'العمل الجماعي والتعاون',en:'Teamwork & cooperation'},
+   nb:{ar:'السيطرة المطلقة أو الانسحاب',en:'Total control or withdrawal'},
    ta:'مشروع البناء الجماعي',te:'Team Build Project',
-   da:'بناء مدينة من الوسائد مع توزيع أدوار.',de:'Build a pillow city with assigned roles.',
-   wa:'هل يلتزم بدوره ويتعاون؟',we:'Does he stick to his role and cooperate?'}
+   da:'بناء مدينة من الوسائد مع توزيع أدوار.',
+   de:'Build a pillow city with assigned roles.',
+   ma:{ar:'وسائد + بطاطين + كراسي',en:'Pillows + blankets + chairs'},
+   st:{ar:[
+     'وزّع الأدوار: مهندس، جامع مواد، باني.',
+     'اكتب المهام على ورقة.',
+     'راقب من بعيد دون تدخل.',
+     'عند الخلاف: "تذكروا الأدوار."',
+     'عند الانتهاء: "فريق رائع!"'
+   ],en:[
+     'Assign roles: engineer, gatherer, builder.',
+     'Write tasks on paper.',
+     'Watch from afar.',
+     'On conflict: "Remember roles."',
+     'On finish: "Amazing team!"'
+   ]},
+   pd:{ar:'لا تتدخل إلا إذا انسد التواصل تماماً.',en:'Only intervene if communication breaks down.'},
+   wa:'هل يلتزم بدوره ويتعاون؟',we:'Does he stick to his role?',
+   src:'Harvard EF / ParentCorps'}
 ]
+
 };
 
 /* ═══════════ 4. ACHIEVEMENTS ═══════════ */
@@ -855,30 +1537,123 @@ function renderActivities(){
     if(a) showActivity(sk, a);
   }));
 }
-function showActivity(sk, a){
-  const dom=DOMAINS[SUBDOMAINS[sk].domain];
-  const sub=SUBDOMAINS[sk];
-  const done=S.logs.some(l=>l.sub===sk && (l.ta===a.ta || l.te===a.te));
-  $('#todayDetail').innerHTML=`
+/* ═══════════ دالة عرض تفاصيل النشاط (مشتركة) ═══════════ */
+function renderActivityDetail(act, subKey, options){
+  options = options || {};
+  const dom=DOMAINS[SUBDOMAINS[subKey].domain];
+  const sub=SUBDOMAINS[subKey];
+  const done = options.done;
+  const fromLibrary = options.fromLibrary;
+
+  const skill = act.sk ? tObj(act.sk) : null;
+  const need  = act.nb ? tObj(act.nb) : null;
+  const materials = act.ma ? tObj(act.ma) : null;
+  const steps = act.st ? (act.st[LANG] || act.st.ar || []) : [];
+  const story = act.story ? (act.story[LANG] || act.story.ar) : null;
+  const pRole = act.pd ? tObj(act.pd) : null;
+
+  const backLabel = fromLibrary ? ('← ' + t('actsTitle')) : t('backHome');
+
+  $('#todayDetail').innerHTML = `
     <div class="hero" style="text-align:start">
       <div class="badge" style="margin-bottom:14px">${dom.icon} ${IS_AR?sub.ar:sub.en}</div>
-      <div style="font-size:52px;margin-bottom:10px">${a.ic}</div>
-      <h2 style="font-size:22px;font-weight:900;margin-bottom:8px">${IS_AR?a.ta:a.te}</h2>
-      <p style="font-size:14px;opacity:.9;line-height:1.6">${IS_AR?a.da:a.de}</p>
+      <div style="font-size:52px;margin-bottom:10px">${act.ic}</div>
+      <h2 style="font-size:22px;font-weight:900;margin-bottom:8px">${IS_AR?act.ta:act.te}</h2>
+      <p style="font-size:14px;opacity:.9;line-height:1.6">${IS_AR?act.da:act.de}</p>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${tObj(a.du)}</span>
-        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${tObj(a.fr)}</span>
+        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">⏱️ ${tObj(act.du)}</span>
+        <span style="padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.15);font-size:12px;font-weight:800">🔁 ${tObj(act.fr)}</span>
       </div>
     </div>
-    <div class="card"><h3 style="font-size:15px">${t('watchFor')}</h3><p style="color:var(--t2)">${IS_AR?a.wa:a.we}</p></div>
-    ${done ? `<div class="card gradient" style="text-align:center"><h3>${t('activityDone')}</h3></div>` :
-      `<button class="btn primary mt" id="logCustomBtn">${t('logThis')}</button>`}
-    <button class="btn ghost mt" id="backLibBtn">← ${t('actsTitle')}</button>`;
-  const lb=$('#logCustomBtn'); if(lb) lb.addEventListener('click', ()=>openLog(sk, a));
-  $('#backLibBtn').addEventListener('click', ()=>go('activities'));
+
+    ${skill || need ? `
+    <div class="card" style="padding:16px">
+      ${skill ? `<div style="margin-bottom:${need?'10px':'0'}">
+        <div class="detail-label">${IS_AR?'المهارة المستهدفة':'Target Skill'}</div>
+        <div style="font-size:14px;font-weight:700;color:var(--t);margin-top:4px">${skill}</div>
+      </div>` : ''}
+      ${need ? `<div>
+        <div class="detail-label">${IS_AR?'الحاجة المستهدفة':'Target Need'}</div>
+        <div style="font-size:13.5px;color:var(--t2);margin-top:4px;line-height:1.6">${need}</div>
+      </div>` : ''}
+    </div>` : ''}
+
+    ${materials ? `
+    <div class="card">
+      <h3 style="font-size:15px">🧰 ${IS_AR?'المواد المطلوبة':'Materials'}</h3>
+      <p style="color:var(--t2);font-size:14px;line-height:1.7;margin-top:8px">${materials}</p>
+    </div>` : ''}
+
+    ${story ? `
+    <div class="card story-card">
+      <h3 style="font-size:15px;margin-bottom:10px">📖 ${IS_AR?'القصة':'Story'}</h3>
+      <div class="story-body">${story}</div>
+    </div>` : ''}
+
+    ${steps.length ? `
+    <div class="card">
+      <h3 style="font-size:15px">📋 ${IS_AR?'خطوات التنفيذ':'Steps'}</h3>
+      <ol class="steps-list">
+        ${steps.map(s=>`<li>${s}</li>`).join('')}
+      </ol>
+    </div>` : ''}
+
+    <div class="card">
+      <h3 style="font-size:15px">👀 ${IS_AR?'ما الذي تراقبه؟':'What to watch for'}</h3>
+      <p style="color:var(--t2);font-size:14px;margin-top:8px">${IS_AR?act.wa:act.we}</p>
+    </div>
+
+    ${pRole ? `
+    <div class="card parent-role-card">
+      <h3 style="font-size:15px">👨‍👩‍👧 ${IS_AR?'دور الوالد':'Parent\'s Role'}</h3>
+      <p style="font-size:13.5px;line-height:1.7;margin-top:8px">${pRole}</p>
+    </div>` : ''}
+
+    <div class="card">
+      <h3 style="font-size:15px">💡 ${IS_AR?'نصائح للتنفيذ':'Tips'}</h3>
+      <ul class="tips-list">
+        <li>${t('tips1')}</li>
+        <li>${t('tips2')}</li>
+        <li>${t('tips3')}</li>
+      </ul>
+    </div>
+
+    ${act.src ? `
+    <div class="card source-card">
+      <div class="detail-label">${IS_AR?'المصدر العلمي':'Scientific Source'}</div>
+      <div style="font-size:12.5px;color:var(--t2);margin-top:4px">${act.src}</div>
+    </div>` : ''}
+
+    ${done
+      ? `<div class="card gradient" style="text-align:center"><h3>${t('activityDone')}</h3></div>`
+      : `<button class="btn primary mt" id="logDetailBtn">${fromLibrary ? t('logThis') : t('startActivity')}</button>`}
+
+    <button class="btn ghost mt" id="backDetailBtn">${backLabel}</button>`;
+
+  const lb = $('#logDetailBtn');
+  if(lb) lb.addEventListener('click', ()=>{
+    if(fromLibrary) openLog(subKey, act);
+    else openLog();
+  });
+  $('#backDetailBtn').addEventListener('click', ()=>{
+    if(fromLibrary) go('activities');
+    else go('home');
+  });
   go('today');
 }
 
+/* ═══════════ openTodayDetail ═══════════ */
+function openTodayDetail(){
+  const act = getTodayActivity();
+  if(!act) return;
+  renderActivityDetail(act, act.sub, { done: isTodayDone(), fromLibrary: false });
+}
+
+/* ═══════════ showActivity (للمكتبة) ═══════════ */
+function showActivity(sk, a){
+  const done = S.logs.some(l => l.sub===sk && (l.ta===a.ta || l.te===a.te));
+  renderActivityDetail(a, sk, { done, fromLibrary: true });
+}
 /* ═══════════ 22. LOG MODAL ═══════════ */
 let logState={mood:null, note:'', custom:null};
 function openLog(sk, a){
