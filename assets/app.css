@@ -664,3 +664,27 @@ body.nav-visible .nabd-install{bottom:calc(var(--sb) + 90px) !important}
   padding: 14px !important;
   border: none;
 }
+/* ═══════════ قائمة سفلية ثابتة دائماً ═══════════ */
+.nav{
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 520px;
+  z-index: 100;
+}
+
+/* ═══════════ إخفاء الفوتر في كل شاشات التطبيق ═══════════ */
+body.app-active .nabd-footer,
+body.nav-visible .nabd-footer{
+  display: none !important;
+}
+
+/* ═══════════ إخفاء زر تبديل اللغة ═══════════ */
+.tb-lang{ display: none !important; }
+
+/* ═══════════ المساحة السفلية للمحتوى ═══════════ */
+.screen{
+  padding-bottom: calc(var(--sb) + 110px) !important;
+}
