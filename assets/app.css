@@ -588,3 +588,79 @@ body.nav-visible .nabd-install{bottom:calc(var(--sb) + 90px) !important}
   z-index:20;
   margin-top:auto;
 }
+
+/* ═══════════ تفاصيل النشاط ═══════════ */
+.detail-label{
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+/* بطاقة القصة */
+.story-card{
+  background: linear-gradient(135deg, #F5F3FF 0%, #FFF7E6 100%) !important;
+  border: 1.5px solid #E9D5FF;
+}
+[data-theme="dark"] .story-card{
+  background: linear-gradient(135deg, #1A1633 0%, #2A2415 100%) !important;
+  border-color: #4C1D95;
+}
+.story-body{
+  font-size: 15px;
+  line-height: 2;
+  color: var(--t2);
+  white-space: pre-line;
+  font-weight: 600;
+  text-align: justify;
+}
+[data-theme="dark"] .story-body{ color: #C4B5FD; }
+
+/* قائمة الخطوات */
+.steps-list{
+  font-size: 14px;
+  color: var(--t2);
+  line-height: 1.9;
+  padding-inline-start: 22px;
+  margin-top: 10px;
+}
+.steps-list li{
+  margin-bottom: 10px;
+  padding-inline-start: 4px;
+}
+.steps-list li::marker{
+  color: var(--v);
+  font-weight: 900;
+}
+
+/* بطاقة دور الوالد */
+.parent-role-card{
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%) !important;
+  border: 1.5px solid #BAE6FD;
+}
+.parent-role-card h3{ color: #075985; }
+.parent-role-card p{ color: #0C4A6E; }
+[data-theme="dark"] .parent-role-card{
+  background: linear-gradient(135deg, #14202E 0%, #172D3E 100%) !important;
+  border-color: #1E4D63;
+}
+[data-theme="dark"] .parent-role-card h3{ color: #7DD3FC; }
+[data-theme="dark"] .parent-role-card p{ color: #BAE6FD; }
+
+/* قائمة النصائح */
+.tips-list{
+  font-size: 13.5px;
+  color: var(--t2);
+  line-height: 1.9;
+  padding-inline-start: 20px;
+  margin-top: 8px;
+}
+.tips-list li{ margin-bottom: 6px; }
+
+/* بطاقة المصدر */
+.source-card{
+  background: var(--bg2) !important;
+  padding: 14px !important;
+  border: none;
+}
