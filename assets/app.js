@@ -1097,7 +1097,7 @@ const TITLES={
   activities:()=>t('actsTitle'), progress:()=>t('navProg'), profile:()=>t('profileTitle')
 };
 const DARK_SCREENS=['welcome','results','home','progress','today'];
-const NAV_SCREENS=['home','activities','progress','profile'];
+const NAV_SCREENS=['home','activities','progress','profile','today'];
 
 function go(screen){
   $$('.screen').forEach(s=>s.classList.remove('active'));
@@ -1115,6 +1115,7 @@ function go(screen){
   }
   window.scrollTo({top:0, behavior:'instant'});
   save();
+  document.body.classList.toggle('app-active', screen !== 'welcome' && screen !== 'child');
 }
 function currentScreen(){
   const a=document.querySelector('.screen.active');
@@ -1512,11 +1513,13 @@ function renderActivities(){
     const sub=SUBDOMAINS[sk];
     if(actFilter!=='all' && sub.domain!==actFilter) return;
     ACTS[sk].forEach(a=>{
-      if(S.child.age<a.ag[0] || S.child.age>a.ag[1]) return;
+      const ageFit = S.child.age>=a.ag[0] && S.child.age<=a.ag[1];
       const done=S.logs.some(l=>l.sub===sk && (l.ta===a.ta || l.te===a.te));
-      items.push({sk, sub, ...a, done});
+      items.push({sk, sub, ...a, done, ageFit});
     });
   });
+  // الأنشطة المناسبة للعمر أولاً
+  items.sort((a,b)=>(b.ageFit?1:0)-(a.ageFit?1:0));
   if(!items.length){
     $('#actsList').innerHTML=`<div class="card" style="text-align:center;padding:30px;color:var(--t3)">${t('actsEmpty')}</div>`;
     return;
@@ -1528,6 +1531,11 @@ function renderActivities(){
         <div class="dom">${DOMAINS[a.sub.domain].icon} ${IS_AR?a.sub.ar:a.sub.en}</div>
         <h5>${IS_AR?a.ta:a.te}</h5>
         <p>${IS_AR?a.da:a.de}</p>
+        <div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">
+          <span style="font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:99px;background:${a.ageFit?'#D9F9EE':'var(--bg2)'};color:${a.ageFit?'#059669':'var(--t3)'}">
+            ${a.ageFit?'✓ '+(IS_AR?'مناسب':'Fits'):(IS_AR?'مُتقدّم':'Advanced')} ${a.ag[0]}-${a.ag[1]}
+          </span>
+        </div>
       </div>
       <div class="chk"></div>
     </div>`).join('');
