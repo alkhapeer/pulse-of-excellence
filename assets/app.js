@@ -985,6 +985,14 @@ function boot(){
   if(S.onboarded && S.child && S.plan){ renderHome(); go('home'); }
   else go('welcome');
 }
+function boot(){
+  load();
+  applyTheme();
+  applyStaticI18n();
+  wireWelcomeCards();   // ← أضف هذا السطر
+  if(S.onboarded && S.child && S.plan){ renderHome(); go('home'); }
+  else go('welcome');
+}
 document.addEventListener('DOMContentLoaded', boot);
 document.addEventListener('click', ()=>Snd.unlock(), {once:true});
 
