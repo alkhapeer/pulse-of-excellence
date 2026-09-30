@@ -190,20 +190,25 @@
 
   /* ═════════ إدراج العناصر ═════════ */
   function injectComponents() {
-    if (!document.querySelector('.nabd-footer')) {
-      const footer = buildFooter();
-      const main = document.querySelector('main');
-      if (main && main.parentNode) {
-        main.parentNode.insertBefore(footer, main.nextSibling);
-      } else {
-        document.body.appendChild(footer);
-      }
-    }
-    if (!document.getElementById('nabdInstall')) {
-      const btn = buildInstallButton();
-      document.body.appendChild(btn);
+  const isApp = document.querySelector('#app') !== null;  // ar.html / en.html
+  const isPortal = document.querySelector('.portal') !== null;  // index.html
+
+  // الفوتر — فقط في البوابة
+  if (isPortal && !document.querySelector('.nabd-footer')) {
+    const footer = buildFooter();
+    const main = document.querySelector('main');
+    if (main && main.parentNode) {
+      main.parentNode.insertBefore(footer, main.nextSibling);
+    } else {
+      document.body.appendChild(footer);
     }
   }
+  // زر التثبيت يبقى كما هو
+  if (!document.getElementById('nabdInstall')) {
+    const btn = buildInstallButton();
+    document.body.appendChild(btn);
+  }
+}
 
   /* ═════════ PWA Install ═════════ */
   function setupInstall() {
