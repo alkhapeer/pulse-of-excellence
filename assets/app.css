@@ -557,3 +557,23 @@ html[dir="ltr"] .q-opt{text-align:left}
 
 /* Install button reposition when nav visible */
 body.nav-visible .nabd-install{bottom:calc(var(--sb) + 90px) !important}
+
+/* ═══════════ Welcome Cards (قابلة للنقر) ═══════════ */
+.welcome-card{
+  display:flex;gap:12px;align-items:center;
+  padding:14px;margin:0;width:100%;
+  background:var(--cd);border:2px solid transparent;
+  border-radius:var(--r);box-shadow:var(--sh-sm);
+  text-align:start;font-family:inherit;color:var(--t);
+  cursor:pointer;transition:all .15s;
+}
+.welcome-card:active{transform:scale(.98);border-color:var(--v)}
+.welcome-card:hover{border-color:var(--ln)}
+.wc-icon{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.wc-body{flex:1;min-width:0}
+.wc-title{font-size:14px;font-weight:800;margin-bottom:2px}
+.wc-sub{font-size:12px;color:var(--t3);line-height:1.4}
