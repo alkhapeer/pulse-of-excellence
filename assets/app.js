@@ -976,7 +976,27 @@ $('#resetRow').addEventListener('click', ()=>{
   if(!confirm(t('confirmReset'))) return;
   S=JSON.parse(JSON.stringify(DEF)); save(); applyTheme(); go('welcome');
 });
-
+/* ═══════════ ربط بطاقات الترحيب ═══════════ */
+function wireWelcomeCards(){
+  document.querySelectorAll('#screen-welcome .welcome-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const target = card.dataset.goto;
+      if(!target) return;
+      Snd.click();
+      vib(8);
+      // إذا لم يُكمل المستخدم التقييم بعد، نُوجّهه أولاً لشاشة الطفل
+      const needsOnboarding = !S.onboarded || !S.child || !S.plan;
+      if(needsOnboarding && target !== 'child'){
+        go('child');
+        toast(IS_AR ? 'أكمل التقييم أولاً للوصول لهذه الشاشة' : 'Complete the assessment first');
+        return;
+      }
+      if(target === 'activities') renderActivities();
+      if(target === 'progress')   renderProgress();
+      go(target);
+    });
+  });
+}
 /* ═══════════ 25. BOOT ═══════════ */
 function boot(){
   load();
