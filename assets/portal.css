@@ -48,212 +48,103 @@ body::before {
 }
 
 /* ───── Header ───── */
-.portal-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 0;
-}
+.portal-header { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
 
 .portal-logo {
-  width: 50px;
-  height: 50px;
-  border-radius: 16px;
+  width: 50px; height: 50px; border-radius: 16px;
   background: var(--gr);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   box-shadow: 0 12px 28px rgba(124,58,237,.4);
   flex-shrink: 0;
 }
 
-.portal-brand-name {
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: -.2px;
-}
-
-.portal-brand-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,.6);
-  font-weight: 700;
-  margin-top: 1px;
-}
+.portal-brand-name { font-size: 16px; font-weight: 900; letter-spacing: -.2px; }
+.portal-brand-sub  { font-size: 12px; color: rgba(255,255,255,.6); font-weight: 700; margin-top: 1px; }
 
 /* ───── Hero ───── */
-.portal-hero {
-  text-align: center;
-  padding: 20px 0 10px;
-}
+.portal-hero { text-align: center; padding: 20px 0 10px; }
 
 .portal-hero h1 {
-  font-size: 40px;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -1px;
+  font-size: 40px; font-weight: 900; line-height: 1.1; letter-spacing: -1px;
   background: linear-gradient(135deg, #fff 0%, #C4B5FD 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 14px;
 }
 
 .portal-hero p {
-  font-size: 14.5px;
-  color: rgba(255,255,255,.75);
-  line-height: 1.6;
-  max-width: 340px;
-  margin: 0 auto 6px;
+  font-size: 14.5px; color: rgba(255,255,255,.75);
+  line-height: 1.6; max-width: 340px; margin: 0 auto 6px;
 }
 
 .hero-en {
   font-family: 'Nunito', sans-serif;
-  font-size: 13px;
-  color: rgba(255,255,255,.55);
+  font-size: 13px; color: rgba(255,255,255,.55);
   direction: ltr;
 }
 
 /* ───── Language Cards ───── */
-.portal-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
+.portal-cards { display: flex; flex-direction: column; gap: 14px; }
 
 .lang-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px;
-  border-radius: var(--r);
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px; border-radius: var(--r);
   background: rgba(255,255,255,.07);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border: 1.5px solid rgba(255,255,255,.12);
-  text-decoration: none;
-  color: #fff;
+  text-decoration: none; color: #fff;
   transition: all .25s cubic-bezier(.22,1,.36,1);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 
 .lang-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity .3s;
-  pointer-events: none;
+  content: ''; position: absolute; inset: 0;
+  opacity: 0; transition: opacity .3s; pointer-events: none;
 }
-
-.lang-card.lang-ar::before {
-  background: linear-gradient(135deg, rgba(124,58,237,.3), transparent 60%);
-}
-
-.lang-card.lang-en::before {
-  background: linear-gradient(135deg, rgba(6,214,160,.3), transparent 60%);
-}
-
+.lang-card.lang-ar::before { background: linear-gradient(135deg, rgba(124,58,237,.3), transparent 60%); }
+.lang-card.lang-en::before { background: linear-gradient(135deg, rgba(6,214,160,.3), transparent 60%); }
 .lang-card:hover::before { opacity: 1; }
 .lang-card:active { transform: scale(.98); }
 
 .lang-flag {
-  width: 60px;
-  height: 60px;
-  border-radius: 18px;
+  width: 60px; height: 60px; border-radius: 18px;
   background: rgba(255,255,255,.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; flex-shrink: 0;
+  position: relative; z-index: 1;
 }
 
-.lang-info {
-  flex: 1;
-  min-width: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.lang-info h2 {
-  font-size: 20px;
-  font-weight: 900;
-  margin-bottom: 4px;
-  letter-spacing: -.3px;
-}
-
-.lang-card.lang-en .lang-info h2 {
-  font-family: 'Nunito', sans-serif;
-  direction: ltr;
-  text-align: left;
-}
-
-.lang-info p {
-  font-size: 13px;
-  color: rgba(255,255,255,.65);
-  line-height: 1.4;
-}
-
-.lang-card.lang-en .lang-info p {
-  font-family: 'Nunito', sans-serif;
-  direction: ltr;
-  text-align: left;
-}
+.lang-info { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.lang-info h2 { font-size: 20px; font-weight: 900; margin-bottom: 4px; letter-spacing: -.3px; }
+.lang-card.lang-en .lang-info h2 { font-family: 'Nunito', sans-serif; direction: ltr; text-align: left; }
+.lang-info p { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.4; }
+.lang-card.lang-en .lang-info p { font-family: 'Nunito', sans-serif; direction: ltr; text-align: left; }
 
 .lang-arrow {
-  font-size: 26px;
-  color: rgba(255,255,255,.5);
-  flex-shrink: 0;
-  transition: all .3s;
-  position: relative;
-  z-index: 1;
+  font-size: 26px; color: rgba(255,255,255,.5);
+  flex-shrink: 0; transition: all .3s;
+  position: relative; z-index: 1;
 }
-
-.lang-card:hover .lang-arrow {
-  color: #fff;
-  transform: translateX(-4px);
-}
-
-.lang-card.lang-en:hover .lang-arrow {
-  transform: translateX(4px);
-}
+.lang-card:hover .lang-arrow { color: #fff; transform: translateX(-4px); }
+.lang-card.lang-en:hover .lang-arrow { transform: translateX(4px); }
 
 /* ───── Features ───── */
 .portal-features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 4px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-top: 4px;
 }
 
 .feat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 6px;
-  padding: 16px 10px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 6px; padding: 16px 10px;
   border-radius: 16px;
   background: rgba(255,255,255,.05);
   border: 1px solid rgba(255,255,255,.08);
 }
 
 .feat-ic { font-size: 22px; }
-
-.feat strong {
-  font-size: 12px;
-  font-weight: 800;
-  color: rgba(255,255,255,.9);
-}
-
-.feat small {
-  font-size: 10.5px;
-  color: rgba(255,255,255,.5);
-  font-weight: 600;
-}
+.feat strong { font-size: 12px; font-weight: 800; color: rgba(255,255,255,.9); }
+.feat small { font-size: 10.5px; color: rgba(255,255,255,.5); font-weight: 600; }
 
 @media (max-width: 400px) {
   .portal-hero h1 { font-size: 34px; }
