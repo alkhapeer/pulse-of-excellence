@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -14,11 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/app.css">
-<script>
-  window.APP_LANG = (function(){
-    try { return localStorage.getItem('nabd_lang') || 'en'; } catch(e){ return 'en'; }
-  })();
-</script>
+<script>window.APP_LANG='en';</script>
 </head>
 <body>
 
@@ -26,47 +22,62 @@
 
   <header class="topbar" id="topbar">
     <button class="tb-btn hidden" id="backBtn" aria-label="Back">←</button>
-    <h1 class="tb-title" id="topTitle">pulse-of-excellence</h1>
-    <a class="tb-lang" href="ar.html" aria-label="Switch to Arabic">
-      <span class="tb-lang-flag">🇸🇦</span>
-      <span>AR</span>
+    <h1 class="tb-title" id="topTitle"> pulse-of-excellence</h1>
+    <a class="tb-lang" href="en.html" aria-label="Change language">
+      <span class="tb-lang-flag">🇬🇧</span>
+      <span>EN</span>
     </a>
   </header>
 
   <main class="main">
 
-    <!-- WELCOME -->
-    <section class="screen active" id="screen-welcome">
-      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px">
-        <div style="width:120px;height:120px;margin:0 auto 24px;border-radius:34px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);box-shadow:0 24px 60px rgba(124,58,237,.4);display:flex;align-items:center;justify-content:center">
-          <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M8 32h10l4-12 8 24 6-18 4 6h16"/></svg>
+   <!-- WELCOME -->
+<section class="screen active" id="screen-welcome">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 4px">
+    <div style="width:120px;height:120px;margin:0 auto 24px;border-radius:34px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);box-shadow:0 24px 60px rgba(124,58,237,.4);display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M8 32h10l4-12 8 24 6-18 4 6h16"/></svg>
+    </div>
+    <h1 id="welcomeTitle" style="font-size:30px;font-weight:900;line-height:1.15;margin-bottom:10px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">pulse-of-excellence</h1>
+    <p style="font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:28px">A daily journey with your child: assessment, activities &amp; progress</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:start">
+
+      <button class="welcome-card" type="button" data-goto="child">
+        <div class="wc-icon" style="background:#EDE9FE">🎯</div>
+        <div class="wc-body">
+          <div class="wc-title">Complete Assessment</div>
+          <div class="wc-sub">4 main developmental domains</div>
         </div>
-        <h1 id="welcomeTitle" style="font-size:30px;font-weight:900;line-height:1.15;margin-bottom:10px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">pulse-of-excellence</h1>
-        <p style="font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:28px">A daily journey with your child: assessment, activities &amp; progress</p>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:start">
-          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0">
-            <div style="width:44px;height:44px;border-radius:14px;background:#EDE9FE;display:flex;align-items:center;justify-content:center;font-size:20px">🎯</div>
-            <div><div style="font-size:14px;font-weight:800">Complete Assessment</div><div style="font-size:12px;color:var(--t3)">4 main developmental domains</div></div>
-          </div>
-          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0">
-            <div style="width:44px;height:44px;border-radius:14px;background:#FFE4EE;display:flex;align-items:center;justify-content:center;font-size:20px">📅</div>
-            <div><div style="font-size:14px;font-weight:800">Daily Activity</div><div style="font-size:12px;color:var(--t3)">Simple home exercise every day</div></div>
-          </div>
-          <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0">
-            <div style="width:44px;height:44px;border-radius:14px;background:#D9F9EE;display:flex;align-items:center;justify-content:center;font-size:20px">🏆</div>
-            <div><div style="font-size:14px;font-weight:800">Achievements &amp; Progress</div><div style="font-size:12px;color:var(--t3)">Track growth, celebrate each step</div></div>
-          </div>
+      </button>
+
+      <button class="welcome-card" type="button" data-goto="activities">
+        <div class="wc-icon" style="background:#FFE4EE">📅</div>
+        <div class="wc-body">
+          <div class="wc-title">Daily Activity</div>
+          <div class="wc-sub">Simple home exercise every day</div>
         </div>
-        <button class="btn primary" id="startBtn">Start the Journey ✨</button>
-        <p class="mu mt">⏱️ Duration: 10-15 minutes</p>
-      </div>
-    </section>
+      </button>
+
+      <button class="welcome-card" type="button" data-goto="progress">
+        <div class="wc-icon" style="background:#D9F9EE">🏆</div>
+        <div class="wc-body">
+          <div class="wc-title">Achievements &amp; Progress</div>
+          <div class="wc-sub">Track growth, celebrate each step</div>
+        </div>
+      </button>
+
+    </div>
+    <button class="btn primary" id="startBtn">Start the Journey ✨</button>
+    <p class="mu mt">⏱️ Duration: 10-15 minutes</p>
+  </div>
+</section>
 
     <!-- CHILD -->
     <section class="screen" id="screen-child">
-      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">Child Information</h2>
-      <p class="mu" style="margin:0 4px 20px">We'll tailor the experience to their age</p>
-      <div class="field"><label>👶 Child name (optional)</label><input type="text" id="childName" maxlength="30" placeholder="e.g., Youssef"></div>
+      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">Child's information</h2>
+      <p class="mu" style="margin:0 4px 20px">We will customize the experience according to his age.
+</p>
+      <div class="field"><label>👶 Child's name (optional)
+</label><input type="text" id="childName" maxlength="30" placeholder="Example: Joseph"></div>
       <div class="field"><label>🎂 Age in years *</label>
         <select id="childAge">
           <option value="">Choose age</option>
@@ -76,14 +87,14 @@
           <option value="12">12</option>
         </select>
       </div>
-      <div class="field"><label>⚧ Gender (optional)</label>
+      <div class="field"><label>⚧ Gender (Optional)</label>
         <div class="chips" id="genderChips">
-          <button class="chip" data-v="male">👦 Boy</button>
-          <button class="chip" data-v="female">👧 Girl</button>
+          <button class="chip" data-v="male">👦 child</button>
+          <button class="chip" data-v="female">👧 girl</button>
         </div>
       </div>
       <div class="sp"></div>
-      <button class="btn primary mt" id="toQuestions" disabled>Continue to assessment →</button>
+      <button class="btn primary mt" id="toQuestions" disabled>Follow-up to the evaluation ←</button>
     </section>
 
     <!-- QUESTIONS -->
@@ -96,7 +107,7 @@
       <div class="sp"></div>
       <div style="display:flex;gap:10px;margin-top:20px">
         <button class="btn light" id="qPrevBtn" style="flex:0 0 auto;width:auto;padding:14px 22px">←</button>
-        <button class="btn primary" id="qNextBtn" disabled style="flex:1">Next</button>
+        <button class="btn primary" id="qNextBtn" disabled style="flex:1">التالي</button>
       </div>
     </section>
 
@@ -109,20 +120,20 @@
             <circle class="bg" cx="85" cy="85" r="72" stroke-width="13"/>
             <circle class="fg" id="ringFg" cx="85" cy="85" r="72" stroke-width="13" stroke-dasharray="452" stroke-dashoffset="452"/>
           </svg>
-          <div class="center"><div class="num" id="overallPct">0%</div><div class="lbl">Pulse Score</div></div>
+          <div class="center"><div class="num" id="overallPct">0%</div><div class="lbl">نبض التميّز</div></div>
         </div>
         <div class="badge"><span class="dot"></span><span id="overallBadge">—</span></div>
       </div>
       <div class="notice">
         <span class="ic">📌</span>
-        <div><strong>Methodological note:</strong> This score reflects the level of skills in your child's current environment. It is not a medical diagnosis nor a comparison with peers.</div>
+        <div><strong>Methodological note:</strong> "This score reflects the level at which skills appear in your child's current environment. It is neither a medical diagnosis nor a comparison to peers."</div>
       </div>
-      <div class="sec-title">Four Domains</div>
+      <div class="sec-title">The four axes</div>
       <div id="domainResults"></div>
-      <div class="sec-title">Sub-domains</div>
+      <div class="sec-title">Subdomains</div>
       <div id="subdomainResults"></div>
       <div class="sp"></div>
-      <button class="btn primary mt" id="startCompanion">🚀 Start Daily Companion Journey</button>
+      <button class="btn primary mt" id="startCompanion">🚀 Subdomains</button>
     </section>
 
     <!-- HOME -->
@@ -130,7 +141,7 @@
       <div class="home-hero">
         <div class="home-top">
           <div><div class="greet" id="greetText">—</div><div class="name" id="childNameHome">—</div></div>
-          <div class="streak"><span class="flame">🔥</span><div style="display:flex;flex-direction:column;align-items:center"><span class="n" id="streakNum">0</span><span class="lbl" id="streakLbl">days</span></div></div>
+          <div class="streak"><span class="flame">🔥</span><div style="display:flex;flex-direction:column;align-items:center"><span class="n" id="streakNum">0</span><span class="lbl">يوم</span></div></div>
         </div>
         <div class="mood-widget">
           <div class="q">💭 How is your child today?</div>
@@ -143,18 +154,18 @@
           </div>
         </div>
       </div>
-      <div class="sec-title">🎯 Today's Activity</div>
+      <div class="sec-title">🎯 Daily activity</div>
       <div id="todayCard"></div>
-      <div class="sec-title">📊 Week Progress</div>
+      <div class="sec-title">📊 Progress of the week</div>
       <div class="week-card">
         <div class="week-head"><span id="weekLabel">—</span><span class="pct" id="weekPct">0%</span></div>
         <div class="week-dots" id="weekDots"></div>
       </div>
-      <div class="sec-title">📈 Quick Stats</div>
+      <div class="sec-title">📈 Quick summary</div>
       <div class="quick-stats">
-        <div class="stat"><div class="ic">🎯</div><div class="v" id="statActivities">0</div><div class="l">Activities</div></div>
-        <div class="stat"><div class="ic">🔥</div><div class="v" id="statLongest">0</div><div class="l">Longest streak</div></div>
-        <div class="stat"><div class="ic">🏆</div><div class="v" id="statAch">0</div><div class="l">Achievements</div></div>
+        <div class="stat"><div class="ic">🎯</div><div class="v" id="statActivities">0</div><div class="l">Quick summary</div></div>
+        <div class="stat"><div class="ic">🔥</div><div class="v" id="statLongest">0</div><div class="l">The longest chain</div></div>
+        <div class="stat"><div class="ic">🏆</div><div class="v" id="statAch">0</div><div class="l">completion</div></div>
       </div>
     </section>
 
@@ -163,14 +174,14 @@
 
     <!-- ACTIVITIES -->
     <section class="screen" id="screen-activities">
-      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">Activity Library</h2>
+      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">Activities library</h2>
       <p class="mu" style="margin:0 4px 16px">Available home activities</p>
       <div class="chips" style="margin-bottom:14px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px" id="actFilters">
-        <button class="chip active" data-f="all">All</button>
-        <button class="chip" data-f="emotional">💗 Emotional</button>
-        <button class="chip" data-f="cognitive">🧠 Cognitive</button>
-        <button class="chip" data-f="behavioral">🎯 Behavioral</button>
-        <button class="chip" data-f="skills">🤝 Skills</button>
+        <button class="chip active" data-f="all">الكل</button>
+        <button class="chip" data-f="emotional">💗 Emotional </button>
+        <button class="chip" data-f="cognitive">🧠 mental</button>
+        <button class="chip" data-f="behavioral">🎯 Behavioral </button>
+        <button class="chip" data-f="skills">🤝 Skilled </button>
       </div>
       <div id="actsList"></div>
     </section>
@@ -179,17 +190,17 @@
     <section class="screen" id="screen-progress">
       <div class="prog-hero">
         <div class="big" id="progressStreak">0</div>
-        <div class="lbl">🔥 Consecutive days</div>
+        <div class="lbl">🔥Consecutive days</div>
         <div class="sub" id="progressSub">—</div>
       </div>
-      <div class="chart-card"><h4>📅 Last 7 days</h4><div class="bars" id="weeklyChart"></div></div>
-      <div class="chart-card"><h4>🏆 Achievements</h4><div class="ach-grid" id="achGrid"></div></div>
+      <div class="chart-card"><h4>📅 Last 7 days </h4><div class="bars" id="weeklyChart"></div></div>
+      <div class="chart-card"><h4>🏆 Achievements </h4><div class="ach-grid" id="achGrid"></div></div>
     </section>
 
     <!-- PROFILE -->
     <section class="screen" id="screen-profile">
-      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">Profile</h2>
-      <p class="mu" style="margin:0 4px 16px">Settings and data</p>
+      <h2 style="font-size:24px;font-weight:900;margin:6px 4px 4px">User Profile</h2>
+      <p class="mu" style="margin:0 4px 16px">Settings and Data</p>
       <div class="profile-head">
         <div class="av" id="profileAvatar">👶</div>
         <h3 id="profileName">—</h3>
@@ -197,16 +208,16 @@
       </div>
       <div class="sec-title">⚙️ Settings</div>
       <div class="settings">
-        <div class="set-row"><div><div class="lbl">🌙 Dark Mode</div><div class="sub">Comfortable use at night</div></div><button class="toggle" id="darkToggle">—</button></div>
-        <div class="set-row"><div><div class="lbl">🌐 Language</div><div class="sub">العربية / English</div></div><a class="toggle on" href="ar.html">AR →</a></div>
-        <div class="set-row"><div><div class="lbl">🔊 Sound</div><div class="sub">Clicks and alerts</div></div><button class="toggle" id="soundToggle">—</button></div>
+        <div class="set-row"><div><div class="lbl">🌙 Dark Theme</div><div class="sub">Comfortable night use</div></div><button class="toggle" id="darkToggle">—</button></div>
+        <div class="set-row"><div><div class="lbl">🌐 language</div><div class="sub">Translation / English</div></div><a class="toggle on" href="en.html">EN →</a></div>
+        <div class="set-row"><div><div class="lbl">🔊 Sounds</div><div class="sub">Notifications and Alerts</div></div><button class="toggle" id="soundToggle">—</button></div>
       </div>
-      <div class="sec-title">🔄 Reset</div>
+      <div class="sec-title">🔄 repetition</div>
       <div class="settings">
-        <div class="set-row" style="cursor:pointer" id="reassessRow"><div><div class="lbl">Reassess</div><div class="sub">Start new assessment</div></div><span style="font-size:20px">→</span></div>
-        <div class="set-row" style="cursor:pointer" id="resetRow"><div><div class="lbl" style="color:#E11D74">Reset all data</div><div class="sub">Permanent deletion</div></div><span style="font-size:20px">🗑️</span></div>
+        <div class="set-row" style="cursor:pointer" id="reassessRow"><div><div class="lbl">revaluation</div><div class="sub">Start a new assessment</div></div><span style="font-size:20px">→</span></div>
+        <div class="set-row" style="cursor:pointer" id="resetRow"><div><div class="lbl" style="color:#E11D74">Erase all data</div><div class="sub">Permanent deletion</div></div><span style="font-size:20px">🗑️</span></div>
       </div>
-      <p class="mu" style="text-align:center;margin-top:20px">Version: <span id="versionText">1.0.0</span></p>
+      <p class="mu" style="text-align:center;margin-top:20px">Release: <span id="versionText">1.0.0</span></p>
     </section>
 
   </main>
@@ -214,9 +225,9 @@
   <nav class="nav" id="nav">
     <button data-go="home"><span class="nav-ic">🏠</span><span>Home</span></button>
     <button data-go="activities"><span class="nav-ic">🎯</span><span>Activities</span></button>
-    <button class="nav-center" id="navCenter"><span class="nav-ic">➕</span><span>Log</span></button>
+    <button class="nav-center" id="navCenter"><span class="nav-ic">➕</span><span>registration</span></button>
     <button data-go="progress"><span class="nav-ic">📊</span><span>Progress</span></button>
-    <button data-go="profile"><span class="nav-ic">👤</span><span>Profile</span></button>
+    <button data-go="profile"><span class="nav-ic">👤</span><span>File</span></button>
   </nav>
 
 </div>
@@ -227,18 +238,18 @@
     <div class="grip"></div>
     <h3>Log today's activity</h3>
     <p class="sub" id="logActivityName">—</p>
-    <div style="font-size:13px;font-weight:800;color:var(--t2);margin-bottom:10px">How was the experience?</div>
+    <div style="font-size:13px;font-weight:800;color:var(--t2);margin-bottom:10px">How was the experience?؟</div>
     <div class="mood-row" id="logMoodRow">
-      <button class="mood-opt" data-m="5">🤩<span>Excellent</span></button>
-      <button class="mood-opt" data-m="4">😊<span>Good</span></button>
-      <button class="mood-opt" data-m="3">😐<span>OK</span></button>
-      <button class="mood-opt" data-m="2">😔<span>Hard</span></button>
-      <button class="mood-opt" data-m="1">😤<span>Did not work</span></button>
+      <button class="mood-opt" data-m="5">🤩<span>excellent</span></button>
+      <button class="mood-opt" data-m="4">😊<span>good</span></button>
+      <button class="mood-opt" data-m="3">😐<span>normal</span></button>
+      <button class="mood-opt" data-m="2">😔<span>difficult</span></button>
+      <button class="mood-opt" data-m="1">😤<span>It did not succeed.</span></button>
     </div>
-    <div class="field"><label>📝 Note (optional)</label><textarea id="logNote" maxlength="200" placeholder="Notes..."></textarea></div>
+    <div class="field"><label>📝 Note (optional)</label><textarea id="logNote" maxlength="200" placeholder="comments..."></textarea></div>
     <div style="display:flex;gap:10px;margin-top:10px">
-      <button class="btn light" id="cancelLog" style="flex:0 0 auto;padding:14px 20px">Cancel</button>
-      <button class="btn primary" id="confirmLog" style="flex:1">Save 🎉</button>
+      <button class="btn light" id="cancelLog" style="flex:0 0 auto;padding:14px 20px">cancellation</button>
+      <button class="btn primary" id="confirmLog" style="flex:1">save 🎉</button>
     </div>
   </div>
 </div>
