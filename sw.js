@@ -1,38 +1,44 @@
-/* نبض التميز v5.0 — Service Worker with Auto-Update */
-const CACHE_VERSION = 'nabd-v5.0.0';
-const CACHE_STATIC = CACHE_VERSION + '-static';
+/* نبض التميز — Service Worker with Auto-Update */
+const CACHE_VERSION = 'nabd-v1.5.0';
+const CACHE_STATIC  = CACHE_VERSION + '-static';
 const CACHE_DYNAMIC = CACHE_VERSION + '-dynamic';
 
 const STATIC_ASSETS = [
   './',
   './index.html',
+  './ar.html',
+  './en.html',
   './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  './data/questions.json',
-  './data/activities.json',
-  './data/i18n-ar.json',
-  './data/i18n-en.json'
+  './assets/app.css',
+  './assets/app.js',
+  './assets/portal.css',
+  './assets/portal.js',
+  './assets/shared.js',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 /* ============ Install ============ */
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_STATIC)
-      .then(cache => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_STATIC).then(cache => {
+      // cache.add per-file with catch: prevents total install failure
+      return Promise.all(
+        STATIC_ASSETS.map(url =>
+          cache.add(url).catch(err => console.warn('[SW] skip:', url, err))
+        )
+      );
+    }).then(() => self.skipWaiting())
   );
 });
 
 /* ============ Activate ============ */
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
-        keys.filter(k => !k.startsWith(CACHE_VERSION))
-            .map(k => caches.delete(k))
-      ))
-      .then(() => self.clients.claim())
+    caches.keys().then(keys => Promise.all(
+      keys.filter(k => !k.startsWith(CACHE_VERSION))
+          .map(k => caches.delete(k))
+    )).then(() => self.clients.claim())
   );
 });
 
@@ -42,20 +48,16 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return; // let cross-origin pass
 
-  // API/version.json: network-first (always fresh)
   if (url.pathname.endsWith('/version.json') || url.pathname.includes('/api/')) {
     event.respondWith(networkFirst(request));
     return;
   }
-
-  // Data files: network-first with cache fallback
   if (url.pathname.includes('/data/')) {
     event.respondWith(networkFirst(request));
     return;
   }
-
-  // Static assets: cache-first
   event.respondWith(cacheFirst(request));
 });
 
@@ -70,7 +72,6 @@ async function networkFirst(request) {
   } catch (e) {
     const cached = await caches.match(request);
     if (cached) return cached;
-    // Fallback for HTML
     if (request.headers.get('accept')?.includes('text/html')) {
       return caches.match('./index.html');
     }
@@ -93,26 +94,7 @@ async function cacheFirst(request) {
   }
 }
 
-/* ============ Message handling ============ */
+/* ============ Messages ============ */
 self.addEventListener('message', (event) => {
-  if (event.data?.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
-  if (event.data?.type === 'CHECK_UPDATE') {
-    // Force re-check by fetching version.json
-    event.waitUntil(checkVersion());
-  }
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
-
-async function checkVersion() {
-  try {
-    const res = await fetch('/version.json?t=' + Date.now(), { cache: 'no-store' });
-    const data = await res.json();
-    const clients = await self.clients.matchAll();
-    clients.forEach(client => {
-      client.postMessage({ type: 'VERSION_CHECK', data });
-    });
-  } catch (e) {
-    console.warn('Version check failed:', e);
-  }
-}
