@@ -1534,7 +1534,7 @@ function renderActivities(){
     ACTS[sk].forEach(a=>{
       const ageFit = S.child.age>=a.ag[0] && S.child.age<=a.ag[1];
       const done=S.logs.some(l=>l.sub===sk && (l.ta===a.ta || l.te===a.te));
-      items.push({sk, sub, ...a, done, ageFit});
+      items.push({...a, sk, sub, done, ageFit});
     });
   });
   // الأنشطة المناسبة للعمر أولاً
