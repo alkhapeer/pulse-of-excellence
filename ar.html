@@ -14,7 +14,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/app.css">
-<script>window.APP_LANG='ar';</script>
+<script>
+  // Language pref (fallback 'ar')
+  window.APP_LANG = (function(){
+    try { return localStorage.getItem('nabd_lang') || 'ar'; } catch(e){ return 'ar'; }
+  })();
+</script>
 </head>
 <body>
 
@@ -23,7 +28,7 @@
   <header class="topbar" id="topbar">
     <button class="tb-btn hidden" id="backBtn" aria-label="رجوع">←</button>
     <h1 class="tb-title" id="topTitle">نبض التميز</h1>
-    <a class="tb-lang" href="en.html" aria-label="Change language">
+    <a class="tb-lang" href="en.html" aria-label="تغيير اللغة">
       <span class="tb-lang-flag">🇬🇧</span>
       <span>EN</span>
     </a>
@@ -37,7 +42,7 @@
         <div style="width:120px;height:120px;margin:0 auto 24px;border-radius:34px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);box-shadow:0 24px 60px rgba(124,58,237,.4);display:flex;align-items:center;justify-content:center">
           <svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"><path d="M8 32h10l4-12 8 24 6-18 4 6h16"/></svg>
         </div>
-        <h1 style="font-size:32px;font-weight:900;line-height:1.15;margin-bottom:10px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">نبض التميّز</h1>
+        <h1 id="welcomeTitle" style="font-size:32px;font-weight:900;line-height:1.15;margin-bottom:10px;background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">نبض التميّز</h1>
         <p style="font-size:15px;color:var(--t2);line-height:1.6;margin-bottom:28px">رحلة يومية مع طفلك: تقييم، أنشطة، وتتبع تطور</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;text-align:start">
           <div class="card" style="display:flex;gap:12px;align-items:center;padding:14px;margin:0">
@@ -126,7 +131,7 @@
       <div class="home-hero">
         <div class="home-top">
           <div><div class="greet" id="greetText">—</div><div class="name" id="childNameHome">—</div></div>
-          <div class="streak"><span class="flame">🔥</span><div style="display:flex;flex-direction:column;align-items:center"><span class="n" id="streakNum">0</span><span class="lbl">يوم</span></div></div>
+          <div class="streak"><span class="flame">🔥</span><div style="display:flex;flex-direction:column;align-items:center"><span class="n" id="streakNum">0</span><span class="lbl" id="streakLbl">يوم</span></div></div>
         </div>
         <div class="mood-widget">
           <div class="q">💭 كيف حال طفلك اليوم؟</div>
