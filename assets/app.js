@@ -1100,22 +1100,41 @@ const DARK_SCREENS=['welcome','results','home','progress','today'];
 const NAV_SCREENS=['home','activities','progress','profile','today'];
 
 function go(screen){
+  // 1) تبديل الشاشات النشطة
   $$('.screen').forEach(s=>s.classList.remove('active'));
   const el=document.getElementById('screen-'+screen);
   if(el) el.classList.add('active');
-  const titleFn=TITLES[screen]; if(titleFn) $('#topTitle').textContent=titleFn();
+
+  // 2) عنوان الشريط العلوي
+  const titleFn=TITLES[screen];
+  if(titleFn) $('#topTitle').textContent=titleFn();
+
+  // 3) الشريط العلوي داكن في هذه الشاشات
   $('#topbar').classList.toggle('dark', DARK_SCREENS.includes(screen));
+
+  // 4) زر الرجوع
   const showBack=['child','questions','today'].includes(screen);
   $('#backBtn').classList.toggle('hidden', !showBack);
-  const showNav=NAV_SCREENS.includes(screen);
+
+  // 5) القائمة السفلية — الآن تشمل شاشة "today" أيضاً
+  const showNav = ['home','activities','progress','profile','today'].includes(screen);
   $('#nav').classList.toggle('visible', showNav);
   document.body.classList.toggle('nav-visible', showNav);
+
+  // 6) تفعيل زر التبويب النشط
   if(showNav){
-    $$('#nav button[data-go]').forEach(b=>b.classList.toggle('active', b.dataset.go===screen));
+    $$('#nav button[data-go]').forEach(b=>{
+      b.classList.toggle('active', b.dataset.go===screen);
+    });
   }
+
+  // 7) إخفاء الفوتر في كل شاشات التطبيق (وليس الترحيب/بيانات الطفل)
+  const inApp = screen !== 'welcome' && screen !== 'child';
+  document.body.classList.toggle('app-active', inApp);
+
+  // 8) التمرير لأعلى + حفظ الحالة
   window.scrollTo({top:0, behavior:'instant'});
   save();
-  document.body.classList.toggle('app-active', screen !== 'welcome' && screen !== 'child');
 }
 function currentScreen(){
   const a=document.querySelector('.screen.active');
