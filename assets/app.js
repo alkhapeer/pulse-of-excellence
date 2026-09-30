@@ -31,287 +31,188 @@ const SUBDOMAINS = {
   'skl-social':{domain:'skills',icon:'🤝',ar:'المهارات الاجتماعية والتفاوض',en:'Social Skills & Negotiation'}
 };
 
-/* ═══════════ 2. QUESTIONS (34) — Master v2.0 ═══════════ */
+/* ═══════════ 2. QUESTIONS (34) ═══════════ */
 const QS = [
-  {id:'BND-EMO-01',d:'emotional',s:'emo-awareness',
-   ar:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.',
-   en:'Uses clear words to name their distress instead of screaming.'},
-  {id:'BND-EMO-02',d:'emotional',s:'emo-awareness',
-   ar:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب والمواقف المفاجئة.',
-   en:'Names their fear or confusion with clear words during play and sudden situations.'},
-  {id:'BND-EMO-03',d:'emotional',s:'emo-awareness',
-   ar:'يوضح السبب المباشر لشعوره بالضيق عندما يسأله أحد الأبوين.',
-   en:'Explains the direct reason for their distress when asked by a parent.'},
-  {id:'BND-EMO-05',d:'emotional',s:'emo-awareness',
-   ar:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة محددة.',
-   en:'Expresses frustration when struggling with a specific task.'},
-  {id:'BND-EMO-07',d:'emotional',s:'emo-regulation',
-   ar:'يلجأ لأحد الأبوين لطلب التهدئة عند تعثر لعبته دون استمرار النوبة.',
-   en:'Seeks a parent for calming when play gets hard without prolonged tantrum.'},
-  {id:'BND-EMO-08',d:'emotional',s:'emo-regulation',
-   ar:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه خلال دقائق معدودة.',
-   en:'Responds to verbal guidance or a hug to calm anger within minutes.'},
-  {id:'BND-EMO-09',d:'emotional',s:'emo-regulation',
-   ar:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.',
-   en:'Pauses briefly and steps away from the upsetting situation to self-calm.'},
-  {id:'BND-EMO-11',d:'emotional',s:'emo-regulation',
-   ar:'يستعيد توازنه العاطفي ويتجاوز شعور الخسارة في الألعاب التنافسية.',
-   en:'Regains emotional balance and moves past losing in competitive games.'},
-  {id:'BND-EMO-12',d:'emotional',s:'emo-empathy',
-   ar:'يقدم لعبة أو لمسة حنونة لمواساة طفل آخر يبكي أمامه.',
-   en:'Offers a toy or gentle touch to comfort a crying child.'},
-  {id:'BND-EMO-13',d:'emotional',s:'emo-empathy',
-   ar:'يسأل صديقه أو أخاه عما يضايقه فور رؤيته متألماً أو حزيناً.',
-   en:'Asks a friend or sibling what bothers them upon seeing them upset.'},
-  {id:'BND-EMO-15',d:'emotional',s:'emo-empathy',
-   ar:'يخفض صوته ويحد من حركته تلقائياً عند علمه بمرض أو تعب أحد أفراد الأسرة.',
-   en:'Lowers voice and movement automatically when a family member is sick or tired.'},
-  {id:'BND-COG-01',d:'cognitive',s:'cog-memory',
-   ar:'ينفذ تعليمات شفاهية متتابعة من خطوتين بترتيبها الصحيح دون نسيان.',
-   en:'Follows two-step verbal instructions in the correct order without forgetting.'},
-  {id:'BND-COG-02',d:'cognitive',s:'cog-memory',
-   ar:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات دون حاجة لتكرار التوجيه.',
-   en:'Executes three-step home instructions without needing repetition.'},
-  {id:'BND-COG-03',d:'cognitive',s:'cog-memory',
-   ar:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها قبل أداء النشاط.',
-   en:'Recalls and repeats verbal rules of group games before starting.'},
-  {id:'BND-COG-05',d:'cognitive',s:'cog-memory',
-   ar:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات أو تركيب الألعاب المركبة.',
-   en:'Retains sequential mental steps while doing homework or complex play.'},
-  {id:'BND-COG-07',d:'cognitive',s:'cog-flex',
-   ar:'ينقل تصنيف الأشياء من معيار اللون إلى معيار الشكل فور توجيهه لتغيير القاعدة.',
-   en:'Shifts sorting from color to shape as soon as the rule changes.'},
-  {id:'BND-COG-09',d:'cognitive',s:'cog-flex',
-   ar:'يتقبل تعديل موعد أو جدول الخروج دون تذمر يستمر لأكثر من بضع دقائق.',
-   en:'Accepts a change in outing schedule without prolonged complaint.'},
-  {id:'BND-COG-11',d:'cognitive',s:'cog-flex',
-   ar:'يجرب طريقة تفكير جديدة لبناء أو تركيب لعبة فور فشل المحاولة الأولى.',
-   en:'Tries a new approach when the first attempt to build or assemble fails.'},
-  {id:'BND-COG-12',d:'cognitive',s:'cog-reason',
-   ar:'يقدم تفسيراً واقعياً لسبب انسكاب الماء أو انكسار الغرض.',
-   en:'Gives a realistic explanation for why water spilled or an object broke.'},
-  {id:'BND-COG-13',d:'cognitive',s:'cog-reason',
-   ar:'يميز بوضوح بين الأحداث الحقيقية والأحداث الخيالية في القصص.',
-   en:'Clearly distinguishes real from imaginary events in stories.'},
-  {id:'BND-COG-14',d:'cognitive',s:'cog-reason',
-   ar:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم فور نقلها دون علمه.',
-   en:'Expects a friend to look for the toy in its old place after it was moved.'},
-  {id:'BND-COG-16',d:'cognitive',s:'cog-reason',
-   ar:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار بين خيارين يوميين.',
-   en:'Provides logical reasoning supported by evidence when choosing between options.'},
-  {id:'BND-BEH-01',d:'behavioral',s:'beh-inhibit',
-   ar:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع حركي.',
-   en:'Waits their turn calmly in group play without pushing.'},
-  {id:'BND-BEH-02',d:'behavioral',s:'beh-inhibit',
-   ar:'ينتظر دوره في توزيع الوجبات بالبيت أو في الطابور دون تذمر.',
-   en:'Waits their turn at meal distribution or queue without complaint.'},
-  {id:'BND-BEH-03',d:'behavioral',s:'beh-inhibit',
-   ar:'يتوقف عن الحركة والجري تماماً فور سماع إشارة التنبيه أو النهي.',
-   en:'Stops moving and running completely upon hearing a stop signal.'},
-  {id:'BND-BEH-06',d:'behavioral',s:'beh-routine',
-   ar:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.',
-   en:'Puts on shoes or clothes independently when preparing to go out.'},
-  {id:'BND-BEH-07',d:'behavioral',s:'beh-routine',
-   ar:'يبدأ بتنفيذ الخطوة الأولى من روتين العودة للبيت فور دخوله.',
-   en:'Starts the first step of the return routine upon entering the home.'},
-  {id:'BND-BEH-08',d:'behavioral',s:'beh-routine',
-   ar:'يعيد ألعابه وأدواته المدرسية إلى مواضعها المخصصة فور الانتهاء منها.',
-   en:'Returns toys and school tools to their places after use.'},
-  {id:'BND-SKL-01',d:'skills',s:'skl-comm',
-   ar:'يستخدم جملة صريحة وواضحة لطلب طعامه أو ألعابه.',
-   en:'Uses a clear sentence to request food or toys.'},
-  {id:'BND-SKL-02',d:'skills',s:'skl-comm',
-   ar:'ينظر باتجاه المتحدث أثناء الحوار المباشر معه.',
-   en:'Looks at the speaker during direct conversation.'},
-  {id:'BND-SKL-03',d:'skills',s:'skl-comm',
-   ar:'عندما يتلقى توجيهاً غير واضح، يستفسر بكلماته بدلاً من التنفيذ العشوائي أو التوقف.',
-   en:'When a direction is unclear, asks for clarification instead of acting randomly or stopping.'},
-  {id:'BND-SKL-06',d:'skills',s:'skl-social',
-   ar:'يشارك أدواته وألعابه مع زملائه بالتناوب أثناء اللعب.',
-   en:'Shares tools and toys with peers by taking turns.'},
-  {id:'BND-SKL-07',d:'skills',s:'skl-social',
-   ar:'يقترح حلاً وسطاً مرضياً عند الخلاف مع صديقه حول نوع اللعبة.',
-   en:'Suggests a middle-ground solution when disagreeing with a friend about play.'},
-  {id:'BND-SKL-08',d:'skills',s:'skl-social',
-   ar:'يتعاون مع فريق من الأقران لإتمام مهمة أو مشروع مشترك بنجاح.',
-   en:'Cooperates with a team to complete a shared task successfully.'}
+  {id:'BND-EMO-01',d:'emotional',s:'emo-awareness',ar:'يستخدم كلمات صريحة لتسمية انزعاجه بدلاً من الصراخ.',en:'Uses clear words to name their distress instead of screaming.'},
+  {id:'BND-EMO-02',d:'emotional',s:'emo-awareness',ar:'يسمي خوفه أو حيرته بكلمات صريحة أثناء الألعاب والمواقف المفاجئة.',en:'Names their fear or confusion with clear words during play and sudden situations.'},
+  {id:'BND-EMO-03',d:'emotional',s:'emo-awareness',ar:'يوضح السبب المباشر لشعوره بالضيق عندما يسأله أحد الأبوين.',en:'Explains the direct reason for their distress when asked by a parent.'},
+  {id:'BND-EMO-05',d:'emotional',s:'emo-awareness',ar:'يصرح بشعوره بالإحباط عند تعثر أدائه في مهمة محددة.',en:'Expresses frustration when struggling with a specific task.'},
+  {id:'BND-EMO-07',d:'emotional',s:'emo-regulation',ar:'يلجأ لأحد الأبوين لطلب التهدئة عند تعثر لعبته دون استمرار النوبة.',en:'Seeks a parent for calming when play gets hard without prolonged tantrum.'},
+  {id:'BND-EMO-08',d:'emotional',s:'emo-regulation',ar:'يستجيب للتوجيه اللفظي أو الحضن لتهدئة غضبه خلال دقائق معدودة.',en:'Responds to verbal guidance or a hug to calm anger within minutes.'},
+  {id:'BND-EMO-09',d:'emotional',s:'emo-regulation',ar:'يتوقف مؤقتاً ويبتعد عن موقف الانزعاج لتهدئة نفسه.',en:'Pauses briefly and steps away from the upsetting situation to self-calm.'},
+  {id:'BND-EMO-11',d:'emotional',s:'emo-regulation',ar:'يستعيد توازنه العاطفي ويتجاوز شعور الخسارة في الألعاب التنافسية.',en:'Regains emotional balance and moves past losing in competitive games.'},
+  {id:'BND-EMO-12',d:'emotional',s:'emo-empathy',ar:'يقدم لعبة أو لمسة حنونة لمواساة طفل آخر يبكي أمامه.',en:'Offers a toy or gentle touch to comfort a crying child.'},
+  {id:'BND-EMO-13',d:'emotional',s:'emo-empathy',ar:'يسأل صديقه أو أخاه عما يضايقه فور رؤيته متألماً أو حزيناً.',en:'Asks a friend or sibling what bothers them upon seeing them upset.'},
+  {id:'BND-EMO-15',d:'emotional',s:'emo-empathy',ar:'يخفض صوته ويحد من حركته تلقائياً عند علمه بمرض أو تعب أحد أفراد الأسرة.',en:'Lowers voice and movement automatically when a family member is sick or tired.'},
+  {id:'BND-COG-01',d:'cognitive',s:'cog-memory',ar:'ينفذ تعليمات شفاهية متتابعة من خطوتين بترتيبها الصحيح دون نسيان.',en:'Follows two-step verbal instructions in the correct order without forgetting.'},
+  {id:'BND-COG-02',d:'cognitive',s:'cog-memory',ar:'ينفذ توجيهات منزلية متتابعة من ثلاث خطوات دون حاجة لتكرار التوجيه.',en:'Executes three-step home instructions without needing repetition.'},
+  {id:'BND-COG-03',d:'cognitive',s:'cog-memory',ar:'يتذكر القواعد الشفاهية للعبة الجماعية ويرددها قبل أداء النشاط.',en:'Recalls and repeats verbal rules of group games before starting.'},
+  {id:'BND-COG-05',d:'cognitive',s:'cog-memory',ar:'يحتفظ بالخطوات الذهنية المتتابعة أثناء حل الواجبات أو تركيب الألعاب المركبة.',en:'Retains sequential mental steps while doing homework or complex play.'},
+  {id:'BND-COG-07',d:'cognitive',s:'cog-flex',ar:'ينقل تصنيف الأشياء من معيار اللون إلى معيار الشكل فور توجيهه لتغيير القاعدة.',en:'Shifts sorting from color to shape as soon as the rule changes.'},
+  {id:'BND-COG-09',d:'cognitive',s:'cog-flex',ar:'يتقبل تعديل موعد أو جدول الخروج دون تذمر يستمر لأكثر من بضع دقائق.',en:'Accepts a change in outing schedule without prolonged complaint.'},
+  {id:'BND-COG-11',d:'cognitive',s:'cog-flex',ar:'يجرب طريقة تفكير جديدة لبناء أو تركيب لعبة فور فشل المحاولة الأولى.',en:'Tries a new approach when the first attempt to build or assemble fails.'},
+  {id:'BND-COG-12',d:'cognitive',s:'cog-reason',ar:'يقدم تفسيراً واقعياً لسبب انسكاب الماء أو انكسار الغرض.',en:'Gives a realistic explanation for why water spilled or an object broke.'},
+  {id:'BND-COG-13',d:'cognitive',s:'cog-reason',ar:'يميز بوضوح بين الأحداث الحقيقية والأحداث الخيالية في القصص.',en:'Clearly distinguishes real from imaginary events in stories.'},
+  {id:'BND-COG-14',d:'cognitive',s:'cog-reason',ar:'يتوقع أن صديقه سيبحث عن اللعبة في مكانها القديم فور نقلها دون علمه.',en:'Expects a friend to look for the toy in its old place after it was moved.'},
+  {id:'BND-COG-16',d:'cognitive',s:'cog-reason',ar:'يقدم سبباً منطقياً مستنداً إلى دليل عند الاختيار بين خيارين يوميين.',en:'Provides logical reasoning supported by evidence when choosing between options.'},
+  {id:'BND-BEH-01',d:'behavioral',s:'beh-inhibit',ar:'ينتظر دوره الهادئ في اللعب الجماعي دون تدافع حركي.',en:'Waits their turn calmly in group play without pushing.'},
+  {id:'BND-BEH-02',d:'behavioral',s:'beh-inhibit',ar:'ينتظر دوره في توزيع الوجبات بالبيت أو في الطابور دون تذمر.',en:'Waits their turn at meal distribution or queue without complaint.'},
+  {id:'BND-BEH-03',d:'behavioral',s:'beh-inhibit',ar:'يتوقف عن الحركة والجري تماماً فور سماع إشارة التنبيه أو النهي.',en:'Stops moving and running completely upon hearing a stop signal.'},
+  {id:'BND-BEH-06',d:'behavioral',s:'beh-routine',ar:'يرتدي حذاءه أو ملابسه بمفرده عند الاستعداد للخروج.',en:'Puts on shoes or clothes independently when preparing to go out.'},
+  {id:'BND-BEH-07',d:'behavioral',s:'beh-routine',ar:'يبدأ بتنفيذ الخطوة الأولى من روتين العودة للبيت فور دخوله.',en:'Starts the first step of the return routine upon entering the home.'},
+  {id:'BND-BEH-08',d:'behavioral',s:'beh-routine',ar:'يعيد ألعابه وأدواته المدرسية إلى مواضعها المخصصة فور الانتهاء منها.',en:'Returns toys and school tools to their places after use.'},
+  {id:'BND-SKL-01',d:'skills',s:'skl-comm',ar:'يستخدم جملة صريحة وواضحة لطلب طعامه أو ألعابه.',en:'Uses a clear sentence to request food or toys.'},
+  {id:'BND-SKL-02',d:'skills',s:'skl-comm',ar:'ينظر باتجاه المتحدث أثناء الحوار المباشر معه.',en:'Looks at the speaker during direct conversation.'},
+  {id:'BND-SKL-03',d:'skills',s:'skl-comm',ar:'عندما يتلقى توجيهاً غير واضح، يستفسر بكلماته بدلاً من التنفيذ العشوائي أو التوقف.',en:'When a direction is unclear, asks for clarification instead of acting randomly or stopping.'},
+  {id:'BND-SKL-06',d:'skills',s:'skl-social',ar:'يشارك أدواته وألعابه مع زملائه بالتناوب أثناء اللعب.',en:'Shares tools and toys with peers by taking turns.'},
+  {id:'BND-SKL-07',d:'skills',s:'skl-social',ar:'يقترح حلاً وسطاً مرضياً عند الخلاف مع صديقه حول نوع اللعبة.',en:'Suggests a middle-ground solution when disagreeing with a friend about play.'},
+  {id:'BND-SKL-08',d:'skills',s:'skl-social',ar:'يتعاون مع فريق من الأقران لإتمام مهمة أو مشروع مشترك بنجاح.',en:'Cooperates with a team to complete a shared task successfully.'}
 ];
 
-/* ═══════════ 3. ACTIVITIES (30) — Master v2.0 ═══════════ */
+/* ═══════════ 3. ACTIVITIES (30) ═══════════ */
 const ACTS = {
 'emo-awareness':[
   {ic:'📖',du:{ar:'5 د',en:'5 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[3,5],
    ta:'قاموس المشاعر اليومي',te:'Daily Emotions Dictionary',
-   da:'بطاقات وجوه للمشاعر، يختار الطفل وجهه الحالي ويسميه بكلمة.',
-   de:'Emotion face cards; child picks and names their current feeling.',
+   da:'بطاقات وجوه للمشاعر، يختار الطفل وجهه الحالي ويسميه بكلمة.',de:'Emotion face cards; child picks and names their current feeling.',
    wa:'هل يستبدل الصراخ بالتسمية اللفظية؟',we:'Does he replace screaming with naming?'},
   {ic:'📚',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,7],
    ta:'قصة بطلي والموقف المفاجئ',te:'My Upset Hero Story',
-   da:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.',
-   de:'Read a story and pause at an upset character to link cause to feeling.',
+   da:'قراءة قصة والتوقف عند شخصية منزعجة لربط السبب بالشعور.',de:'Read a story and pause at an upset character to link cause to feeling.',
    wa:'هل يربط السبب بالنتيجة؟',we:'Does he link cause to feeling?'},
   {ic:'🌤️',du:{ar:'5 د',en:'5 min'},fr:{ar:'عند الحاجة',en:'As needed'},ag:[7,12],
    ta:'لوحة الطقس الداخلي',te:'Inner Weather Board',
-   da:'تشبيه الحالة الداخلية بالطقس: مشمس/غائم/عاصف.',
-   de:'Compare inner state to weather: sunny/cloudy/stormy.',
+   da:'تشبيه الحالة الداخلية بالطقس: مشمس/غائم/عاصف.',de:'Compare inner state to weather: sunny/cloudy/stormy.',
    wa:'هل يستخدم مفردات دقيقة؟',we:'Does he use precise words?'}
 ],
 'emo-regulation':[
   {ic:'🧘',du:{ar:'5-10 د',en:'5-10 min'},fr:{ar:'عند التوتر',en:'When stressed'},ag:[5,7],
    ta:'ركن التنفس والتهدئة',te:'Breathing Calm Corner',
-   da:'مساحة هادئة بوسادة، يتنفس الطفل 3 أنفاس بطيئة.',
-   de:'Calm space with a pillow; child takes 3 slow breaths.',
+   da:'مساحة هادئة بوسادة، يتنفس الطفل 3 أنفاس بطيئة.',de:'Calm space with a pillow; child takes 3 slow breaths.',
    wa:'هل يقبل الابتعاد للتهدئة؟',we:'Does he accept stepping away?'},
   {ic:'🤗',du:{ar:'3-5 د',en:'3-5 min'},fr:{ar:'عند الضيق',en:'When upset'},ag:[3,5],
    ta:'عناق التهدئة المشتركة',te:'Co-regulation Hug',
-   da:'احتضان هادئ مع صوت منخفض: "أنا بجانبك".',
-   de:'Gentle hug with a low voice: "I am here with you".',
+   da:'احتضان هادئ مع صوت منخفض: "أنا بجانبك".',de:'Gentle hug with a low voice: "I am here with you".',
    wa:'هل تنخفض حدة البكاء؟',we:'Does crying intensity decrease?'},
   {ic:'🌉',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
    ta:'إعادة بناء الجسر',te:'Rebuild the Bridge',
-   da:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم محاولة جديدة.',
-   de:'Build a model; when it falls, brief break then retry.',
+   da:'بناء مجسم؛ عند سقوطه، استراحة قصيرة ثم محاولة جديدة.',de:'Build a model; when it falls, brief break then retry.',
    wa:'هل يعود للمهمة بعد الإحباط؟',we:'Does he return to task after frustration?'}
 ],
 'emo-empathy':[
   {ic:'🎁',du:{ar:'2 د',en:'2 min'},fr:{ar:'عند البكاء',en:'When crying'},ag:[3,5],
    ta:'صندوق المواساة',te:'Comfort Box',
-   da:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.',
-   de:'Box with a stuffed toy and tissue; child offers it to one crying.',
+   da:'صندوق بلعبة محشوة ومنديل؛ يقدمه الطفل لمن يبكي.',de:'Box with a stuffed toy and tissue; child offers it to one crying.',
    wa:'هل يبادر بتقديم غرض التهدئة؟',we:'Does he initiate offering comfort?'},
   {ic:'🎭',du:{ar:'10 د',en:'10 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[3,6],
    ta:'محقق الاطمئنان اللفظي',te:'Empathy Detective',
-   da:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.',
-   de:'Puppet role-play to practice supportive phrases.',
+   da:'تمثيل أدوار بالعرائس لصياغة جمل الدعم.',de:'Puppet role-play to practice supportive phrases.',
    wa:'هل يسأل تلقائيًا عن حال الآخرين؟',we:'Does he ask about others automatically?'},
   {ic:'🤫',du:{ar:'30-60 د',en:'30-60 min'},fr:{ar:'عند المرض',en:'When sick'},ag:[7,12],
    ta:'ساعة الهدوء الأسرية',te:'Family Quiet Hour',
-   da:'الاتفاق على نشاط همس مراعاةً لمريض.',
-   de:'Agree on a whisper activity out of care for a sick member.',
+   da:'الاتفاق على نشاط همس مراعاةً لمريض.',de:'Agree on a whisper activity out of care for a sick member.',
    wa:'هل يخفض صوته تلقائيًا؟',we:'Does he lower his voice automatically?'}
 ],
 'cog-memory':[
   {ic:'🎒',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,7],
    ta:'حقيبة السفر الذهنية',te:'Mental Suitcase',
-   da:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.',
-   de:'"I packed in my suitcase..." game adding items sequentially.',
+   da:'لعبة "حزمت في حقيبتي..." مع إضافة أغراض متسلسلة.',de:'"I packed in my suitcase..." game adding items sequentially.',
    wa:'هل يتذكر التسلسل؟',we:'Does he recall the sequence?'},
   {ic:'👨‍🍳',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[3,5],
    ta:'الطاهي الصغير',te:'Little Chef',
-   da:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.',
-   de:'Follow a 3-step recipe without repetitive instructions.',
+   da:'تنفيذ وصفة من 3 خطوات دون تكرار مستمر.',de:'Follow a 3-step recipe without repetitive instructions.',
    wa:'هل ينفذ الخطوة التالية تلقائيًا؟',we:'Does he do the next step automatically?'},
   {ic:'🎴',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,7],
    ta:'البحث عن المطابقات',te:'Memory Match',
-   da:'لعبة الذاكرة ببطاقات مقلوبة لبناء خريطة ذهنية.',
-   de:'Memory cards to build a mental map of positions.',
+   da:'لعبة الذاكرة ببطاقات مقلوبة لبناء خريطة ذهنية.',de:'Memory cards to build a mental map of positions.',
    wa:'هل تقل الأخطاء العشوائية؟',we:'Do errors decrease?'},
   {ic:'🧩',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
    ta:'لغز المراحل الثلاث',te:'Three-Step Puzzle',
-   da:'حل مهمة متعددة الخطوات مع تتبع الخطة.',
-   de:'Solve a multi-step task while tracking the plan.',
+   da:'حل مهمة متعددة الخطوات مع تتبع الخطة.',de:'Solve a multi-step task while tracking the plan.',
    wa:'هل يحافظ على التسلسل؟',we:'Does he keep the sequence?'}
 ],
 'cog-flex':[
   {ic:'🔀',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[3,5],
    ta:'التصنيف المقلوب',te:'Silly Sorting',
-   da:'تصنيف المكعبات حسب اللون، ثم تغيير القاعدة فجأة للحجم.',
-   de:'Sort blocks by color, then switch to size.',
+   da:'تصنيف المكعبات حسب اللون، ثم تغيير القاعدة فجأة للحجم.',de:'Sort blocks by color, then switch to size.',
    wa:'هل ينتقل بسلاسة للقاعدة الجديدة؟',we:'Does he transition smoothly?'},
   {ic:'📋',du:{ar:'10 د',en:'10 min'},fr:{ar:'أسبوعيًا',en:'Weekly'},ag:[5,8],
    ta:'خطة (ب) الممتعة',te:'Plan B Game',
-   da:'رسم خطة أساسية وخطة بديلة للأنشطة.',
-   de:'Draw main and alternative plans for activities.',
+   da:'رسم خطة أساسية وخطة بديلة للأنشطة.',de:'Draw main and alternative plans for activities.',
    wa:'هل يتقبل البديل دون مقاومة؟',we:'Does he accept the alternative?'},
   {ic:'🎯',du:{ar:'15 د',en:'15 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
    ta:'لغز الطرق البديلة',te:'Alternative Paths Puzzle',
-   da:'منع تكرار نفس المحاولة وإلزام الطفل بتجربة أفكار جديدة.',
-   de:'Prevent retrying the same attempt; force new ideas.',
+   da:'منع تكرار نفس المحاولة وإلزام الطفل بتجربة أفكار جديدة.',de:'Prevent retrying the same attempt; force new ideas.',
    wa:'هل يجرب طرقًا جديدة؟',we:'Does he try new approaches?'}
 ],
 'cog-reason':[
   {ic:'🔬',du:{ar:'15 د',en:'15 min'},fr:{ar:'أسبوعيًا',en:'Weekly'},ag:[3,6],
    ta:'المكتشف الصغير',te:'Little Discoverer',
-   da:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟".',
-   de:'Float/sink experiment asking "why?".',
+   da:'تجربة طفو/غرق الأغراض وسؤال "لماذا؟".',de:'Float/sink experiment asking "why?".',
    wa:'هل يقدم تبريرات منطقية؟',we:'Does he give logical reasons?'},
   {ic:'🧠',du:{ar:'10 د',en:'10 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[5,8],
    ta:'ماذا يعلم صديقي؟',te:'What Does My Friend Know?',
-   da:'نقل شيء دون علم الأخ، ثم السؤال: أين سيبحث؟',
-   de:'Move an object without the sibling knowing; where will they look?',
+   da:'نقل شيء دون علم الأخ، ثم السؤال: أين سيبحث؟',de:'Move an object without the sibling knowing; where will they look?',
    wa:'هل يدرك أن الآخر لا يعلم؟',we:"Does he realize others don't know?"},
   {ic:'⚖️',du:{ar:'5 د',en:'5 min'},fr:{ar:'عند الاختيار',en:'When choosing'},ag:[7,12],
    ta:'ميزان القرار اليومي',te:'Decision Balance',
-   da:'طلب دليلين منطقيين لترجيح خيار.',
-   de:'Ask for two logical reasons supporting a choice.',
+   da:'طلب دليلين منطقيين لترجيح خيار.',de:'Ask for two logical reasons supporting a choice.',
    wa:'هل يقدم حججًا متماسكة؟',we:'Does he provide coherent arguments?'}
 ],
 'beh-inhibit':[
   {ic:'🧊',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[3,6],
    ta:'التمثال المجمد',te:'Freeze Dance',
-   da:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.',
-   de:'Dance with music; freeze instantly when it stops.',
+   da:'الرقص مع الموسيقى والتجمد فورًا عند توقفها.',de:'Dance with music; freeze instantly when it stops.',
    wa:'هل يكبح جسده فورًا؟',we:'Does he freeze instantly?'},
   {ic:'🚦',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,9],
    ta:'إشارة المرور المنزلية',te:'Home Traffic Light',
-   da:'بطاقات ملونة للجري والمشي والتوقف.',
-   de:'Colored cards for run, walk, and stop.',
+   da:'بطاقات ملونة للجري والمشي والتوقف.',de:'Colored cards for run, walk, and stop.',
    wa:'هل يتوقف عند الأحمر؟',we:'Does he stop on red?'},
   {ic:'✨',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,9],
    ta:'الكلمة السحرية',te:'Magic Word (Simon Says)',
-   da:'لا ينفذ إلا إذا سبقت التعليمات بالكلمة السحرية.',
-   de:'Only act if the magic word precedes the instruction.',
+   da:'لا ينفذ إلا إذا سبقت التعليمات بالكلمة السحرية.',de:'Only act if the magic word precedes the instruction.',
    wa:'هل يتريث قبل الحركة؟',we:'Does he pause before acting?'}
 ],
 'beh-routine':[
   {ic:'📅',du:{ar:'مستمر',en:'Ongoing'},fr:{ar:'يوميًا',en:'Daily'},ag:[5,9],
    ta:'لوحة محطات اليوم المصورة',te:'Day Stations Board',
-   da:'لوحة بصور متتابعة لروتين العودة مع علامة صح.',
-   de:'Board with sequential return-routine images with checkmarks.',
+   da:'لوحة بصور متتابعة لروتين العودة مع علامة صح.',de:'Board with sequential return-routine images with checkmarks.',
    wa:'هل ينتقل بين المحطات باعتياد؟',we:'Does he transition habitually?'},
   {ic:'⏱️',du:{ar:'5 د',en:'5 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[7,12],
    ta:'تحدي 5 دقائق',te:'5-Minute Challenge',
-   da:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.',
-   de:'Timer with energetic tone to return toys before it rings.',
+   da:'مؤقت ونغمة حماسية لإعادة الألعاب لمواضعها.',de:'Timer with energetic tone to return toys before it rings.',
    wa:'هل يستجيب بسرعة؟',we:'Does he respond quickly?'},
   {ic:'🎒',du:{ar:'10 د',en:'10 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[7,12],
    ta:'محطة الاستعداد للغد',te:'Tomorrow Prep Station',
-   da:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.',
-   de:'Prepare tools and bag in the evening at the exit.',
+   da:'تجهيز الأدوات والحقيبة مساءً عند مخرج البيت.',de:'Prepare tools and bag in the evening at the exit.',
    wa:'هل يخرج الصباح بسلاسة؟',we:'Does the morning flow smoothly?'}
 ],
 'skl-comm':[
   {ic:'📖',du:{ar:'10-15 د',en:'10-15 min'},fr:{ar:'يوميًا',en:'Daily'},ag:[3,6],
    ta:'القراءة الحوارية المتبادلة',te:'Dialogic Reading',
-   da:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.',
-   de:"Read a picture book with open questions; expand child's sentences.",
+   da:'قراءة كتاب مصور مع أسئلة مفتوحة وتوسيع جمل الطفل.',de:"Read a picture book with open questions; expand child's sentences.",
    wa:'هل تزداد طول جملته؟',we:'Does his sentence length grow?'},
   {ic:'🎤',du:{ar:'10 د',en:'10 min'},fr:{ar:'3×أسبوعيًا',en:'3×/week'},ag:[5,9],
    ta:'مقابلة المذيع',te:'Talk Show Interview',
-   da:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للمتحدث.',
-   de:'Toy microphone; only the holder speaks, looking at the other.',
+   da:'ميكروفون لعبة؛ لا يتكلم إلا حامله مع النظر للمتحدث.',de:'Toy microphone; only the holder speaks, looking at the other.',
    wa:'هل ينتظر دوره وينظر للمتحدث؟',we:'Does he wait his turn and look at the speaker?'},
   {ic:'❓',du:{ar:'10 د',en:'10 min'},fr:{ar:'2×أسبوعيًا',en:'2×/week'},ag:[7,12],
    ta:'مراسل الاستفسار',te:'Curious Reporter',
-   da:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.',
-   de:'Deliberately vague instructions; encourage child to ask.',
+   da:'تعليمات غامضة قصدًا وتشجيع الطفل على السؤال.',de:'Deliberately vague instructions; encourage child to ask.',
    wa:'هل يطرح أسئلة استفسارية؟',we:'Does he ask clarifying questions?'}
 ],
 'skl-social':[
   {ic:'⏳',du:{ar:'15 د',en:'15 min'},fr:{ar:'عند اللعب',en:'During play'},ag:[3,6],
    ta:'عداد التناوب',te:'Turn Timer',
-   da:'مؤقت رملي دقيقتان للتبادل بين الأطفال.',
-   de:'Two-minute sand timer to alternate between children.',
+   da:'مؤقت رملي دقيقتان للتبادل بين الأطفال.',de:'Two-minute sand timer to alternate between children.',
    wa:'هل يسلّم اللعبة بهدوء؟',we:'Does he hand over calmly?'},
   {ic:'🌉',du:{ar:'5 د',en:'5 min'},fr:{ar:'عند النزاع',en:'During conflict'},ag:[5,9],
    ta:'جسور الحلول الوسطى',te:'Solutions Bridge',
-   da:'بطاقة حلول لسؤال الطرفين عن حل يرضيهما معًا.',
-   de:'Solutions card to ask both parties for a mutually acceptable fix.',
+   da:'بطاقة حلول لسؤال الطرفين عن حل يرضيهما معًا.',de:'Solutions card to ask both parties for a mutually acceptable fix.',
    wa:'هل يقترح حلولًا وسيطة؟',we:'Does he suggest solutions?'},
   {ic:'🏗️',du:{ar:'30 د',en:'30 min'},fr:{ar:'أسبوعيًا',en:'Weekly'},ag:[7,12],
    ta:'مشروع البناء الجماعي',te:'Team Build Project',
-   da:'بناء مدينة من الوسائد مع توزيع أدوار.',
-   de:'Build a pillow city with assigned roles.',
+   da:'بناء مدينة من الوسائد مع توزيع أدوار.',de:'Build a pillow city with assigned roles.',
    wa:'هل يلتزم بدوره ويتعاون؟',we:'Does he stick to his role and cooperate?'}
 ]
 };
@@ -329,7 +230,7 @@ const ACHS = [
   {id:'done', icon:'📋',name:{ar:'التقييم',en:'Assessment'},   check:s=>!!s.assessed}
 ];
 
-/* ═══════════ 5. I18N (static UI text) ═══════════ */
+/* ═══════════ 5. I18N ═══════════ */
 const T = {
   ar:{
     appName:'نبض التميز', welcomeTitle:'نبض التميّز',
@@ -348,6 +249,7 @@ const T = {
     qOpt2:'يظهر أحيانًا',qOpt2h:'يحتاج تذكيرًا أو مساعدة جزئية',
     qOpt3:'يظهر غالبًا',qOpt3h:'بمبادرة ذاتية غالبًا',
     qOpt4:'بثبات واستقلالية',qOpt4h:'بانتظام ودون تذكير',
+    resultsTitle:'نتائج التقييم',
     resultsScoreLbl:'نبض التميّز',resultsNoticeT:'تنويه منهجي',
     resultsNoticeB:' هذه الدرجة تعبّر عن مستوى ظهور المهارات في بيئة طفلك الحالية. ليست تشخيصًا طبيًا ولا مقارنة بأقران.',
     resultsDomains:'المحاور الأربعة',resultsSubdomains:'المجالات الفرعية',
@@ -393,9 +295,9 @@ const T = {
     confirmReset:'مسح كل البيانات؟',confirmReassess:'بدء تقييم جديد؟'
   },
   en:{
-    appName:'Nabd Excellence',welcomeTitle:'Nabd Excellence',
+    appName:'pulse-of-excellence', welcomeTitle:'pulse-of-excellence',
     welcomeSub:'A daily journey with your child: assessment, activities & progress',
-    welcomeStart:'Start the Journey',welcomeTime:'⏱️ Duration: 10-15 minutes',
+    welcomeStart:'Start the Journey', welcomeTime:'⏱️ Duration: 10-15 minutes',
     welcomeF1:'Complete Assessment',welcomeF1d:'4 main developmental domains',
     welcomeF2:'Daily Activity',welcomeF2d:'Simple home exercise every day',
     welcomeF3:'Achievements & Progress',welcomeF3d:'Track growth, celebrate each step',
@@ -409,7 +311,8 @@ const T = {
     qOpt2:'Sometimes',qOpt2h:'Needs reminder or partial help',
     qOpt3:'Often',qOpt3h:'Often self-initiated',
     qOpt4:'Consistently',qOpt4h:'Regularly, no reminders',
-    resultsScoreLbl:'Nabd Score',resultsNoticeT:'Methodological note',
+    resultsTitle:'Assessment Results',
+    resultsScoreLbl:'Pulse Score',resultsNoticeT:'Methodological note',
     resultsNoticeB:" This score reflects the level of skills in your child's current environment. It is not a medical diagnosis nor a comparison with peers.",
     resultsDomains:'Four Domains',resultsSubdomains:'Sub-domains',
     resultsStartCompanion:'Start Daily Companion Journey',
@@ -465,7 +368,6 @@ function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} 
 function load(){ try{ const x=localStorage.getItem(KEY); if(x) S=Object.assign({},DEF,JSON.parse(x)); }catch(e){} }
 function today(){ return new Date().toISOString().slice(0,10); }
 function daysDiff(a,b){ return Math.round((new Date(b)-new Date(a))/86400000); }
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function vib(p){ if(navigator.vibrate) navigator.vibrate(p); }
 
 /* ═══════════ 7. SOUND ═══════════ */
@@ -508,7 +410,8 @@ function confetti(){
 /* ═══════════ 9. NAVIGATION ═══════════ */
 const TITLES={
   welcome:()=>t('welcomeTitle'), child:()=>t('childTitle'), questions:()=>t('childTitle'),
-  results:()=>t('resultsScoreLbl'), home:()=>t('navHome'), today:()=>t('homeToday'),
+  results:()=>t('resultsTitle'),
+  home:()=>t('navHome'), today:()=>t('homeToday'),
   activities:()=>t('actsTitle'), progress:()=>t('navProg'), profile:()=>t('profileTitle')
 };
 const DARK_SCREENS=['welcome','results','home','progress','today'];
@@ -550,7 +453,7 @@ $$('#nav button[data-go]').forEach(b=>b.addEventListener('click', ()=>{
   if(s==='profile') renderProfile();
   go(s); Snd.tap();
 }));
-$('#navCenter').addEventListener('click', ()=>{ Snd.tap(); openLog(); });
+/* NOTE: #navCenter is bound once, further below (section 22). */
 
 /* ═══════════ 10. THEME ═══════════ */
 function applyTheme(){
@@ -561,10 +464,29 @@ function applyTheme(){
     d.classList.toggle('on', S.theme==='dark'); }
 }
 
-/* ═══════════ 11. WELCOME SCREEN ═══════════ */
+/* ═══════════ 10.b APPLY STATIC I18N ═══════════ */
+function applyStaticI18n(){
+  // Welcome title (h1)
+  const wt = document.querySelector('#screen-welcome h1');
+  if(wt) wt.textContent = t('welcomeTitle');
+  // Streak label
+  const sl = document.querySelector('.streak .lbl');
+  if(sl) sl.textContent = t('homeDay');
+  // Start companion button
+  const sc = $('#startCompanion');
+  if(sc) sc.textContent = '🚀 ' + t('resultsStartCompanion');
+  // Results ring label
+  const rl = document.querySelector('.ring .lbl');
+  if(rl) rl.textContent = t('resultsScoreLbl');
+  // Next button initial
+  const nb = $('#qNextBtn');
+  if(nb && !nb.disabled) nb.textContent = t('qNext');
+}
+
+/* ═══════════ 11. WELCOME ═══════════ */
 $('#startBtn').addEventListener('click', ()=>{ Snd.click(); go('child'); });
 
-/* ═══════════ 12. CHILD SCREEN ═══════════ */
+/* ═══════════ 12. CHILD ═══════════ */
 let tmpGender=null;
 $$('#genderChips .chip').forEach(c=>c.addEventListener('click', ()=>{
   $$('#genderChips .chip').forEach(x=>x.classList.remove('active'));
@@ -658,7 +580,7 @@ function finalize(){
   setTimeout(confetti, 300);
 }
 
-/* ═══════════ 15. PLAN GENERATION ═══════════ */
+/* ═══════════ 15. PLAN ═══════════ */
 function genPlan(r){
   const sorted=Object.keys(r.subs).sort((a,b)=>r.subs[a]-r.subs[b]);
   const focus=sorted.slice(0,2);
@@ -751,6 +673,10 @@ function renderResults(r){
   }).join('');
 
   setTimeout(()=>$$('.domain-row .fill').forEach(f=>f.style.width=f.dataset.w+'%'), 300);
+
+  // Refresh companion button label after language known
+  const sc = $('#startCompanion');
+  if(sc) sc.textContent = '🚀 ' + t('resultsStartCompanion');
 }
 
 $('#startCompanion').addEventListener('click', ()=>{
@@ -950,7 +876,9 @@ function openLog(sk, a){
   $('#logNote').value='';
   $('#logModal').classList.add('visible');
 }
+/* Single binding for navCenter */
 $('#navCenter').addEventListener('click', ()=>{ Snd.tap(); openLog(); });
+
 $$('#logMoodRow .mood-opt').forEach(b=>b.addEventListener('click', ()=>{
   $$('#logMoodRow .mood-opt').forEach(x=>x.classList.remove('selected'));
   b.classList.add('selected'); logState.mood=parseInt(b.dataset.m,10); Snd.tap();
@@ -1028,7 +956,7 @@ function renderProfile(){
   $('#profileMeta').textContent = `${S.child.age} ${IS_AR?'سنوات':'yrs'} · ${S.logs.length} ${IS_AR?'نشاط':'acts'} · ${st.current} ${IS_AR?'يوم':'days'}`;
   $('#soundToggle').textContent = S.sound ? (IS_AR?'مفعّل ✓':'ON ✓') : (IS_AR?'مغلق':'OFF');
   $('#soundToggle').classList.toggle('on', S.sound);
-  $('#versionText').textContent = '1.0.0';
+  $('#versionText').textContent = '1.5.0';
   applyTheme();
 }
 $('#darkToggle').addEventListener('click', ()=>{
@@ -1039,7 +967,10 @@ $('#soundToggle').addEventListener('click', ()=>{
 });
 $('#reassessRow').addEventListener('click', ()=>{
   if(!confirm(t('confirmReassess'))) return;
-  S.answers={}; S.qIdx=0; go('child'); Snd.click();
+  S.answers={}; S.qIdx=0;
+  S.plan=null; S.onboarded=false;   // ← FIX: clear plan & onboarded
+  save();
+  go('child'); Snd.click();
 });
 $('#resetRow').addEventListener('click', ()=>{
   if(!confirm(t('confirmReset'))) return;
@@ -1050,6 +981,7 @@ $('#resetRow').addEventListener('click', ()=>{
 function boot(){
   load();
   applyTheme();
+  applyStaticI18n();          // ← FIX: fill static i18n placeholders
   if(S.onboarded && S.child && S.plan){ renderHome(); go('home'); }
   else go('welcome');
 }
