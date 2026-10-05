@@ -159,6 +159,40 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
   color:rgba(255,255,255,.5);margin-top:12px;
 }
 
+/* ═══════ CTA Pair ═══════ */
+.cta-pair{
+  display:flex;flex-direction:column;gap:10px;
+}
+
+/* الزر الإنجليزي — نمط ثانوي أنيق */
+.cta-en{
+  background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.18);
+  box-shadow:none;
+  font-weight:800;
+}
+.cta-en::before{display:none}
+.cta-en:hover{
+  background:rgba(255,255,255,.14);
+  border-color:rgba(255,255,255,.28);
+}
+
+/* في شريط التجربة — الزر الإنجليزي على خلفية ملونة */
+.trial .cta-en{
+  background:rgba(255,255,255,.15);
+  border:1.5px solid rgba(255,255,255,.35);
+  color:#fff;
+}
+.trial .cta-en:hover{
+  background:rgba(255,255,255,.25);
+}
+
+/* شاشات أعرض — الزرّان جنباً إلى جنب */
+@media (min-width:420px){
+  .cta-pair{flex-direction:row}
+  .cta-pair .cta{flex:1;padding:17px 14px;font-size:15.5px}
+}
+  
 /* ═══════ Trust Bar ═══════ */
 .trust-bar{
   display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
@@ -509,6 +543,8 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
 
   const T = {
     ar: {
+      ctaMainEn:'Start Free Trial (EN)',
+      trialCtaEn:'Start Free Now (EN)',
       brand:'أكاديمية هيرو',
       brandSub:'Hero Academy',
       badge:'معتمد من أكاديمية هيرو',
@@ -564,6 +600,8 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
       footerCopy:'© 2026 أكاديمية هيرو · جميع الحقوق محفوظة'
     },
     en: {
+      ctaMainEn:'Start Free Trial',
+      trialCtaEn:'Start Free Now',
       brand:'Hero Academy',
       brandSub:'أكاديمية هيرو',
       badge:'Powered by Hero Academy',
