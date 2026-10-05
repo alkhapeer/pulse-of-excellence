@@ -161,28 +161,42 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
 
 /* ═══════ Info Boxes (تحت الأزرار) ═══════ */
 .info-boxes{
-  margin-top:14px;
-  padding:14px;
-  border-radius:14px;
-  background:rgba(0,0,0,.35);
-  border:1px solid rgba(196,181,253,.35);
+  margin-top:16px;
   display:flex;
   flex-direction:column;
   gap:10px;
 }
 .info-row{
-  display:flex;align-items:center;gap:10px;
-  font-size:13px;font-weight:700;line-height:1.5;
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;
+  border-radius:12px;
+  font-size:13.5px;
+  font-weight:800;
+  line-height:1.6;
+  text-align:right;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);
 }
-.info-row .info-icon{font-size:20px;flex-shrink:0}
-.info-row.purple{color:#E9D5FF}
-.info-row.green{color:#A7F3D0}
-.trial .info-boxes{
-  background:rgba(255,255,255,.95);
-  border-color:rgba(124,58,237,.5);
+.info-row.purple{
+  background:#FFFFFF;
+  color:#4C1D95;
+  border:2px solid #7C3AED;
 }
-.trial .info-row.purple{color:#4C1D95}
-.trial .info-row.green{color:#166534}
+.info-row.green{
+  background:#FFFFFF;
+  color:#065F46;
+  border:2px solid #06D6A0;
+}
+.info-row .info-icon{font-size:22px;flex-shrink:0}
+.trial .info-row.purple{
+  background:#FFFFFF;
+  color:#4C1D95;
+  border-color:#4C1D95;
+}
+.trial .info-row.green{
+  background:#FFFFFF;
+  color:#065F46;
+  border-color:#065F46;
+}
 
 /* ═══════ CTA Pair ═══════ */
 .cta-pair{
