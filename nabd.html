@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0F0B1F">
+<title>نبض التميز · أكاديمية هيرو</title>
+<meta name="description" content="اكتشف نقاط قوة طفلك في 15 دقيقة. تقييم نمائي شامل، أنشطة يومية، ومتابعة تطور. تجربة مجانية 3 أيام.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════ Base ═══════ */
+:root{
+  --v:#7C3AED;--vd:#4C1D95;--c:#FF6B9D;--m:#06D6A0;--g:#FFD166;
+  --gr:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);
+  --gr-dark:linear-gradient(160deg,#0F0B1F 0%,#2D1B5E 45%,#4C1D95 100%);
+  --r:20px;--rf:9999px;
+  --st:env(safe-area-inset-top,0px);
+  --sb:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  font-family:'Tajawal',system-ui,sans-serif;
+  background:#0F0B1F;color:#fff;line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+html[dir="ltr"] body{font-family:'Nunito',system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ═══════ Ambient background ═══════ */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(255,107,157,.22),transparent 40%),
+    radial-gradient(circle at 85% 85%,rgba(6,214,160,.18),transparent 40%),
+    var(--gr-dark);
+}
+
+/* ═══════ Layout ═══════ */
+.wrap{
+  position:relative;z-index:1;max-width:520px;margin:0 auto;
+  padding:calc(var(--st) + 20px) 20px calc(var(--sb) + 60px);
+  display:flex;flex-direction:column;gap:36px;
+}
+
+/* ═══════ Header ═══════ */
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:44px;height:44px;border-radius:14px;
+  background:var(--gr);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 22px rgba(124,58,237,.4);flex-shrink:0;
+}
+.logo-mark svg{width:26px;height:26px}
+.logo-name{font-size:15px;font-weight:900;letter-spacing:-.2px}
+.logo-sub{font-size:11px;color:rgba(255,255,255,.55);font-weight:700;margin-top:1px}
+.lang-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:9px 14px;border-radius:var(--rf);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  font-size:13px;font-weight:800;transition:all .2s;
+}
+.lang-btn:active{transform:scale(.95)}
+.lang-btn:hover{background:rgba(255,255,255,.14)}
+
+/* ═══════ Hero ═══════ */
+.hero{text-align:center;padding:8px 0}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:var(--rf);
+  background:rgba(124,58,237,.18);border:1px solid rgba(124,58,237,.35);
+  font-size:12px;font-weight:800;color:#C4B5FD;margin-bottom:20px;
+}
+.hero-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--m);box-shadow:0 0 10px var(--m);
+  animation:pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{
+  font-size:34px;font-weight:900;line-height:1.15;
+  letter-spacing:-1px;margin-bottom:16px;
+  background:linear-gradient(135deg,#fff 0%,#C4B5FD 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero .sub{
+  font-size:15px;color:rgba(255,255,255,.7);line-height:1.65;
+  max-width:400px;margin:0 auto 24px;
+}
+html[dir="ltr"] .hero h1{font-size:32px}
+
+.trust-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:24px}
+.chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:7px 12px;border-radius:var(--rf);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  font-size:11.5px;font-weight:700;color:rgba(255,255,255,.85);
+}
+.chip .tick{color:var(--m);font-weight:900}
+
+/* ═══════ CTA ═══════ */
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:19px 24px;border-radius:var(--r);
+  background:var(--gr);color:#fff;
+  font-size:17px;font-weight:900;letter-spacing:-.2px;
+  box-shadow:0 14px 36px rgba(124,58,237,.45);
+  position:relative;overflow:hidden;transition:transform .2s;
+}
+.cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+  transform:translateX(-100%);animation:shine 3s infinite;
+}
+@keyframes shine{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.cta:active{transform:translateY(2px) scale(.98)}
+.cta-arrow{font-size:20px;transition:transform .3s}
+.cta:hover .cta-arrow{transform:translateX(-4px)}
+html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
+.cta-note{
+  text-align:center;font-size:12px;
+  color:rgba(255,255,255,.5);margin-top:12px;
+}
+
+/* ═══════ Trust Bar ═══════ */
+.trust-bar{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  padding:16px 12px;border-radius:var(--r);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+.trust-item{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.trust-icon{font-size:22px}
+.trust-title{font-size:12px;font-weight:800;color:#fff;line-height:1.3}
+.trust-sub{font-size:10.5px;color:rgba(255,255,255,.5);font-weight:600;line-height:1.3}
+
+/* ═══════ Section ═══════ */
+.section{display:flex;flex-direction:column;gap:16px}
+.section-head{text-align:center;display:flex;flex-direction:column;gap:8px}
+.section-title{
+  font-size:24px;font-weight:900;letter-spacing:-.4px;
+  background:linear-gradient(135deg,#fff 0%,#C4B5FD 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.section-sub{font-size:13.5px;color:rgba(255,255,255,.6)}
+
+/* ═══════ Benefits ═══════ */
+.benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.benefit{
+  padding:16px 14px;border-radius:var(--r);
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;flex-direction:column;gap:8px;
+  transition:all .25s cubic-bezier(.22,1,.36,1);
+}
+.benefit:hover{background:rgba(255,255,255,.09);transform:translateY(-2px)}
+.benefit-icon{
+  width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.benefit-icon.v{background:rgba(124,58,237,.2);color:#C4B5FD}
+.benefit-icon.c{background:rgba(255,107,157,.2);color:#FFA8C5}
+.benefit-icon.m{background:rgba(6,214,160,.2);color:#7EE8C8}
+.benefit-icon.g{background:rgba(255,209,102,.2);color:#FFE08A}
+.benefit-title{font-size:14px;font-weight:800;line-height:1.3}
+.benefit-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* ═══════ Steps ═══════ */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:16px;border-radius:var(--r);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+}
+.step-num{
+  width:36px;height:36px;border-radius:12px;flex-shrink:0;
+  background:var(--gr);display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:900;box-shadow:0 6px 16px rgba(124,58,237,.3);
+}
+.step-body{flex:1}
+.step-title{font-size:14.5px;font-weight:800;margin-bottom:3px}
+.step-desc{font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* ═══════ Trial Banner ═══════ */
+.trial{
+  padding:24px 22px;border-radius:var(--r);
+  background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);
+  text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 16px 40px rgba(124,58,237,.4);
+}
+.trial::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 0%,rgba(255,255,255,.25),transparent 50%);
+  pointer-events:none;
+}
+.trial>*{position:relative;z-index:1}
+.trial-icon{font-size:36px;margin-bottom:8px}
+.trial-title{font-size:20px;font-weight:900;letter-spacing:-.3px;margin-bottom:6px}
+.trial-sub{font-size:13px;opacity:.9;margin-bottom:18px;line-height:1.5}
+.trial .cta{background:#fff;color:var(--vd);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.trial .cta::before{display:none}
+
+/* ═══════ FAQ ═══════ */
+.faq{display:flex;flex-direction:column;gap:8px}
+.faq-item{
+  border-radius:14px;background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  overflow:hidden;transition:background .2s;
+}
+.faq-item[open]{background:rgba(255,255,255,.07)}
+.faq-item summary{
+  padding:14px 18px;font-size:14px;font-weight:700;
+  cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{
+  content:'+';font-size:20px;font-weight:300;
+  color:rgba(255,255,255,.5);transition:transform .2s;flex-shrink:0;
+}
+.faq-item[open] summary::after{transform:rotate(45deg);color:#C4B5FD}
+.faq-answer{
+  padding:0 18px 16px;font-size:13px;line-height:1.65;
+  color:rgba(255,255,255,.6);
+}
+
+/* ═══════ Footer ═══════ */
+.footer{
+  padding-top:20px;border-top:1px solid rgba(255,255,255,.08);
+  display:flex;flex-direction:column;gap:14px;text-align:center;
+}
+.footer-brand{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-size:13.5px;font-weight:800;color:rgba(255,255,255,.8);
+}
+.footer-brand svg{width:20px;height:20px}
+.footer-links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.footer-link{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 14px;border-radius:var(--rf);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  font-size:12.5px;font-weight:700;color:rgba(255,255,255,.85);
+  transition:all .2s;
+}
+.footer-link:hover{background:rgba(255,255,255,.12);color:#fff}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.35);font-weight:600}
+
+/* ═══════ Responsive ═══════ */
+@media (max-width:400px){
+  .hero h1{font-size:28px}
+  html[dir="ltr"] .hero h1{font-size:26px}
+  .section-title{font-size:20px}
+  .benefits{grid-template-columns:1fr}
+  .trust-bar{grid-template-columns:1fr;gap:14px}
+  .trust-item{flex-direction:row;gap:12px;text-align:start}
+  .trust-item .trust-icon{flex-shrink:0}
+  .trial-title{font-size:18px}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+
+<main class="wrap">
+
+  <!-- ═══════ Header ═══════ -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round">
+          <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name" data-i18n="brand">أكاديمية هيرو</div>
+        <div class="logo-sub" data-i18n="brandSub">Hero Academy</div>
+      </div>
+    </div>
+    <button class="lang-btn" id="langBtn" type="button">
+      <span id="langFlag">🇬🇧</span>
+      <span id="langLabel">English</span>
+    </button>
+  </header>
+
+  <!-- ═══════ Hero ═══════ -->
+  <section class="hero">
+    <div class="hero-badge" data-i18n="badge">معتمد من أكاديمية هيرو</div>
+    <h1 data-i18n="heroTitle">اكتشف نقاط قوة طفلك في 15 دقيقة</h1>
+    <p class="sub" data-i18n="heroSub">تقييم نمائي شامل • أنشطة يومية مخصصة • متابعة تطور طفلك يوماً بيوم</p>
+
+    <div class="trust-chips">
+      <span class="chip"><span class="tick">✓</span> <span data-i18n="chip1">3 أيام كاملة</span></span>
+      <span class="chip"><span class="tick">✓</span> <span data-i18n="chip2">بدون بطاقة بنكية</span></span>
+      <span class="chip"><span class="tick">✓</span> <span data-i18n="chip3">آمن عبر Google</span></span>
+    </div>
+
+    <a class="cta" href="https://nabdh.hero1.vip" id="mainCta">
+      <span data-i18n="ctaMain">ابدأ التجربة المجانية الآن</span>
+      <span class="cta-arrow">←</span>
+    </a>
+    <p class="cta-note" data-i18n="ctaNote">سيتم توجيهك لاختيار اللغة ثم الدخول الآمن</p>
+  </section>
+
+  <!-- ═══════ Trust Bar ═══════ -->
+  <section class="trust-bar">
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      <div class="trust-title" data-i18n="trust1t">دخول آمن</div>
+      <div class="trust-sub" data-i18n="trust1s">عبر حساب Google</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🎁</div>
+      <div class="trust-title" data-i18n="trust2t">مجاني 3 أيام</div>
+      <div class="trust-sub" data-i18n="trust2s">بدون التزام</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🎓</div>
+      <div class="trust-title" data-i18n="trust3t">أسس علمية</div>
+      <div class="trust-sub" data-i18n="trust3s">منهجيات معتمدة</div>
+    </div>
+  </section>
+
+  <!-- ═══════ Benefits ═══════ -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title" data-i18n="benefitsTitle">لماذا نبض التميز؟</h2>
+      <p class="section-sub" data-i18n="benefitsSub">أداة واحدة تغير نظرتك لطفلك</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon v">🎯</div>
+        <div class="benefit-title" data-i18n="b1t">تقييم شامل</div>
+        <div class="benefit-desc" data-i18n="b1d">4 محاور: عاطفي، عقلي، سلوكي، مهاري</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon c">📅</div>
+        <div class="benefit-title" data-i18n="b2t">نشاط يومي</div>
+        <div class="benefit-desc" data-i18n="b2d">5 دقائق منزلية مخصصة لعمر طفلك</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon m">📈</div>
+        <div class="benefit-title" data-i18n="b3t">متابعة التطور</div>
+        <div class="benefit-desc" data-i18n="b3d">سلاسل وإنجازات يومية محفزة</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon g">💡</div>
+        <div class="benefit-title" data-i18n="b4t">احتياجات خاصة</div>
+        <div class="benefit-desc" data-i18n="b4d">أنشطة مصممة للحالات المختلفة</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Steps ═══════ -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title" data-i18n="stepsTitle">كيف تبدأ؟ 4 خطوات</h2>
+      <p class="section-sub" data-i18n="stepsSub">أقل من دقيقتين للتسجيل</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title" data-i18n="s1t">اضغط الزر</div>
+          <div class="step-desc" data-i18n="s1d">ستنتقل إلى بوابة التطبيق الرسمية</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title" data-i18n="s2t">اختر اللغة</div>
+          <div class="step-desc" data-i18n="s2d">عربي أو English</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title" data-i18n="s3t">تحقق آمن</div>
+          <div class="step-desc" data-i18n="s3d">بحساب Google — ثوانٍ فقط</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title" data-i18n="s4t">ابدأ التجربة</div>
+          <div class="step-desc" data-i18n="s4d">3 أيام كاملة، كل الميزات مفتوحة</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ Trial Banner ═══════ -->
+  <section class="trial">
+    <div class="trial-icon">🎁</div>
+    <div class="trial-title" data-i18n="trialTitle">جرّب نبض التميز مجاناً</div>
+    <div class="trial-sub" data-i18n="trialSub">3 أيام كاملة • بدون بطاقة بنكية • بدون التزام</div>
+    <a class="cta" href="https://nabdh.hero1.vip">
+      <span data-i18n="trialCta">ابدأ الآن مجاناً</span>
+      <span class="cta-arrow">←</span>
+    </a>
+  </section>
+
+  <!-- ═══════ FAQ ═══════ -->
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title" data-i18n="faqTitle">أسئلة شائعة</h2>
+    </div>
+    <div class="faq">
+      <details class="faq-item">
+        <summary data-i18n="faq1q">هل التطبيق تشخيصي؟</summary>
+        <div class="faq-answer" data-i18n="faq1a">لا. هو أداة استكشافية تربوية تساعدك على فهم نقاط قوة طفلك — ليس تشخيصاً طبياً أو نفسياً.</div>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq2q">هل التجربة تتطلب بطاقة بنكية؟</summary>
+        <div class="faq-answer" data-i18n="faq2a">لا. 3 أيام كاملة بدون أي بيانات دفع. بعدها يمكنك التفعيل أو التوقف.</div>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq3q">ما الفئة العمرية المناسبة؟</summary>
+        <div class="faq-answer" data-i18n="faq3a">من 3 إلى 12 سنة. التقييم يتكيف تلقائياً مع عمر الطفل.</div>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="faq4q">هل بيانات طفلي آمنة؟</summary>
+        <div class="faq-answer" data-i18n="faq4a">نعم. الدخول عبر Google، والبيانات مشفرة، ولا نشاركها مع أي طرف ثالث.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ═══════ Footer ═══════ -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round">
+        <path d="M8 32h10l4-12 8 24 6-18 4 6h16"/>
+      </svg>
+      <a href="https://app.hero1.vip" target="_blank" rel="noopener" data-i18n="footerBrand">أكاديمية هيرو</a>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://t.me/Herocourses" target="_blank" rel="noopener">
+        <span>💬</span><span data-i18n="linkTelegram">تيليجرام</span>
+      </a>
+      <a class="footer-link" href="https://wa.me/249915886600" target="_blank" rel="noopener">
+        <span>📱</span><span data-i18n="linkWhatsapp">واتساب</span>
+      </a>
+      <a class="footer-link" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">
+        <span>ℹ️</span><span data-i18n="linkAbout">عن الأكاديمية</span>
+      </a>
+    </div>
+    <div class="footer-copy" data-i18n="footerCopy">© 2026 أكاديمية هيرو · جميع الحقوق محفوظة</div>
+  </footer>
+
+</main>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   Bilingual Landing · RTL/LTR toggle
+   ══════════════════════════════════════════════════════ */
+(function(){
+  'use strict';
+
+  const T = {
+    ar: {
+      brand:'أكاديمية هيرو',
+      brandSub:'Hero Academy',
+      badge:'معتمد من أكاديمية هيرو',
+      heroTitle:'اكتشف نقاط قوة طفلك في 15 دقيقة',
+      heroSub:'تقييم نمائي شامل • أنشطة يومية مخصصة • متابعة تطور طفلك يوماً بيوم',
+      chip1:'3 أيام كاملة',
+      chip2:'بدون بطاقة بنكية',
+      chip3:'آمن عبر Google',
+      ctaMain:'ابدأ التجربة المجانية الآن',
+      ctaNote:'سيتم توجيهك لاختيار اللغة ثم الدخول الآمن',
+      trust1t:'دخول آمن',
+      trust1s:'عبر حساب Google',
+      trust2t:'مجاني 3 أيام',
+      trust2s:'بدون التزام',
+      trust3t:'أسس علمية',
+      trust3s:'منهجيات معتمدة',
+      benefitsTitle:'لماذا نبض التميز؟',
+      benefitsSub:'أداة واحدة تغير نظرتك لطفلك',
+      b1t:'تقييم شامل',
+      b1d:'4 محاور: عاطفي، عقلي، سلوكي، مهاري',
+      b2t:'نشاط يومي',
+      b2d:'5 دقائق منزلية مخصصة لعمر طفلك',
+      b3t:'متابعة التطور',
+      b3d:'سلاسل وإنجازات يومية محفزة',
+      b4t:'احتياجات خاصة',
+      b4d:'أنشطة مصممة للحالات المختلفة',
+      stepsTitle:'كيف تبدأ؟ 4 خطوات',
+      stepsSub:'أقل من دقيقتين للتسجيل',
+      s1t:'اضغط الزر',
+      s1d:'ستنتقل إلى بوابة التطبيق الرسمية',
+      s2t:'اختر اللغة',
+      s2d:'عربي أو English',
+      s3t:'تحقق آمن',
+      s3d:'بحساب Google — ثوانٍ فقط',
+      s4t:'ابدأ التجربة',
+      s4d:'3 أيام كاملة، كل الميزات مفتوحة',
+      trialTitle:'جرّب نبض التميز مجاناً',
+      trialSub:'3 أيام كاملة • بدون بطاقة بنكية • بدون التزام',
+      trialCta:'ابدأ الآن مجاناً',
+      faqTitle:'أسئلة شائعة',
+      faq1q:'هل التطبيق تشخيصي؟',
+      faq1a:'لا. هو أداة استكشافية تربوية تساعدك على فهم نقاط قوة طفلك — ليس تشخيصاً طبياً أو نفسياً.',
+      faq2q:'هل التجربة تتطلب بطاقة بنكية؟',
+      faq2a:'لا. 3 أيام كاملة بدون أي بيانات دفع. بعدها يمكنك التفعيل أو التوقف.',
+      faq3q:'ما الفئة العمرية المناسبة؟',
+      faq3a:'من 3 إلى 12 سنة. التقييم يتكيف تلقائياً مع عمر الطفل.',
+      faq4q:'هل بيانات طفلي آمنة؟',
+      faq4a:'نعم. الدخول عبر Google، والبيانات مشفرة، ولا نشاركها مع أي طرف ثالث.',
+      footerBrand:'أكاديمية هيرو',
+      linkTelegram:'تيليجرام',
+      linkWhatsapp:'واتساب',
+      linkAbout:'عن الأكاديمية',
+      footerCopy:'© 2026 أكاديمية هيرو · جميع الحقوق محفوظة'
+    },
+    en: {
+      brand:'Hero Academy',
+      brandSub:'أكاديمية هيرو',
+      badge:'Powered by Hero Academy',
+      heroTitle:"Discover your child's strengths in 15 minutes",
+      heroSub:'Developmental assessment • Personalized daily activities • Track your child\'s progress day by day',
+      chip1:'3 full days',
+      chip2:'No credit card',
+      chip3:'Secure via Google',
+      ctaMain:'Start Free Trial Now',
+      ctaNote:"You'll be guided to choose language, then secure sign-in",
+      trust1t:'Secure Login',
+      trust1s:'via Google account',
+      trust2t:'3 Days Free',
+      trust2s:'no commitment',
+      trust3t:'Science-Based',
+      trust3s:'proven methods',
+      benefitsTitle:'Why Nabd Al-Tamayoz?',
+      benefitsSub:'One tool that changes how you see your child',
+      b1t:'Complete Assessment',
+      b1d:'4 domains: Emotional, Cognitive, Behavioral, Skills',
+      b2t:'Daily Activity',
+      b2d:'5-minute home exercise tailored to your child',
+      b3t:'Progress Tracking',
+      b3d:'Motivating daily streaks and achievements',
+      b4t:'Special Needs',
+      b4d:'Activities designed for various conditions',
+      stepsTitle:'How to Start? 4 Steps',
+      stepsSub:'Less than 2 minutes to sign up',
+      s1t:'Tap the button',
+      s1d:'You will be taken to the official app portal',
+      s2t:'Choose Language',
+      s2d:'Arabic or English',
+      s3t:'Secure Sign-in',
+      s3d:'with Google — takes seconds',
+      s4t:'Start the Trial',
+      s4d:'3 full days, all features unlocked',
+      trialTitle:'Try Nabd Al-Tamayoz Free',
+      trialSub:'3 full days • No credit card • No commitment',
+      trialCta:'Start Free Now',
+      faqTitle:'Frequently Asked Questions',
+      faq1q:'Is this app a diagnosis tool?',
+      faq1a:'No. It is an educational exploratory tool to help you understand your child\'s strengths — not a medical or psychological diagnosis.',
+      faq2q:'Does the trial require a credit card?',
+      faq2a:'No. 3 full days without any payment info. After that you can activate or stop.',
+      faq3q:'What is the suitable age range?',
+      faq3a:'From 3 to 12 years. The assessment adapts automatically to the child\'s age.',
+      faq4q:'Is my child\'s data safe?',
+      faq4a:'Yes. Sign-in via Google, data is encrypted, and we never share it with third parties.',
+      footerBrand:'Hero Academy',
+      linkTelegram:'Telegram',
+      linkWhatsapp:'WhatsApp',
+      linkAbout:'About',
+      footerCopy:'© 2026 Hero Academy · All rights reserved'
+    }
+  };
+
+  const $ = s => document.querySelector(s);
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const LS_KEY = 'nabd_landing_lang';
+
+  let currentLang = 'ar';
+
+  function applyLang(lang){
+    currentLang = lang;
+    const isAr = lang === 'ar';
+    const dict = T[lang];
+
+    // Direction & language
+    document.documentElement.lang = lang;
+    document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+
+    // Update all data-i18n
+    $$('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if(dict[key]) el.textContent = dict[key];
+    });
+
+    // Update language button
+    $('#langFlag').textContent = isAr ? '🇬🇧' : '🇸🇦';
+    $('#langLabel').textContent = isAr ? 'English' : 'العربية';
+
+    // Update arrow direction on CTAs
+    const arrow = isAr ? '←' : '→';
+    $$('.cta-arrow').forEach(a => a.textContent = arrow);
+
+    // Save preference
+    try { localStorage.setItem(LS_KEY, lang); } catch(e){}
+  }
+
+  function toggleLang(){
+    applyLang(currentLang === 'ar' ? 'en' : 'ar');
+  }
+
+  // Bind toggle
+  $('#langBtn').addEventListener('click', toggleLang);
+
+  // Initial language: check saved, then browser lang, else ar
+  (function init(){
+    let saved = null;
+    try { saved = localStorage.getItem(LS_KEY); } catch(e){}
+    if(saved === 'ar' || saved === 'en'){
+      applyLang(saved);
+      return;
+    }
+    const nav = (navigator.language || 'ar').toLowerCase();
+    applyLang(nav.startsWith('ar') ? 'ar' : 'en');
+  })();
+
+  // Update page title based on language
+  const titleObserver = new MutationObserver(()=>{});
+  const updateTitle = () => {
+    document.title = currentLang === 'ar'
+      ? 'نبض التميز · أكاديمية هيرو'
+      : 'Nabd Al-Tamayoz · Hero Academy';
+  };
+  updateTitle();
+
+  // Observe language change for title
+  const origToggle = toggleLang;
+  $('#langBtn').addEventListener('click', updateTitle);
+
+})();
+</script>
+</body>
+</html>
