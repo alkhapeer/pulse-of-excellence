@@ -733,5 +733,102 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
 
 })();
 </script>
+
+<!-- كود اكتشاف المتصفح المدمج وتوجيه المستخدم -->
+<script>
+(function() {
+  'use strict';
+
+  // 1. تحديد ما إذا كنا في متصفح مدمج
+  function isInAppBrowser() {
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    // أنماط شائعة للمتصفحات المدمجة
+    var patterns = [
+      'FBAN', 'FBAV', // Facebook
+      'Instagram', // Instagram
+      'Messenger', // Messenger
+      'TikTok', // TikTok
+      'Snapchat', // Snapchat
+      'Twitter', // Twitter
+      'Line', // LINE
+      'WhatsApp' // WhatsApp
+    ];
+    return patterns.some(function(pattern) { return ua.indexOf(pattern) > -1; });
+  }
+
+  // 2. محاولة فتح الرابط في المتصفح الخارجي
+  function attemptEscape() {
+    if (!isInAppBrowser()) return; // لسنا في متصفح مدمج، لا نفعل شيئًا
+
+    var currentUrl = window.location.href;
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+
+    // روابط خاصة معروفة لفتح المتصفح الخارجي
+    var escapeUrl = null;
+
+    if (isIOS) {
+      // على iOS، بعض التطبيقات تسمح بروابط خاصة
+      if (ua.indexOf('Instagram') > -1) {
+        escapeUrl = 'instagram://extbrowser/?url=' + encodeURIComponent(currentUrl);
+      } else if (ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1) {
+        escapeUrl = 'x-safari-https://' + currentUrl.replace(/^https?:\/\//, '');
+      }
+      // ملاحظة: روابط iOS غالبًا ما تتطلب نقرة من المستخدم
+    } else {
+      // على Android، يمكن استخدام intent:// (يعمل أحيانًا)
+      // لكن الطريقة الأكثر موثوقية هي إظهار التعليمات
+    }
+
+    if (escapeUrl) {
+      window.location.href = escapeUrl;
+    }
+    // إذا لم نتمكن من إعادة التوجيه التلقائي، سنعرض التعليمات
+    showEscapeDialog();
+  }
+
+  // 3. عرض نافذة منبثقة مع تعليمات للمستخدم
+  function showEscapeDialog() {
+    // تجنب عرض النافذة أكثر من مرة
+    if (document.getElementById('inapp-escape-dialog')) return;
+
+    var dialog = document.createElement('div');
+    dialog.id = 'inapp-escape-dialog';
+    dialog.innerHTML = `
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 20px; font-family: Tajawal, sans-serif; direction: rtl;">
+        <div style="background: #1e293b; color: #fff; border-radius: 16px; padding: 24px; max-width: 400px; text-align: center; border: 2px solid #7C3AED;">
+          <div style="font-size: 48px; margin-bottom: 12px;">🚀</div>
+          <h3 style="margin: 0 0 12px 0; font-size: 18px;">لتجربة أفضل، افتح الرابط في متصفحك</h3>
+          <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+            يبدو أنك تتصفح من داخل تطبيق (مثل فيسبوك أو إنستغرام). للحصول على التجربة الكاملة وتسجيل الدخول، يرجى فتح الصفحة في متصفح Chrome أو Safari.
+          </p>
+          <div style="text-align: right; background: #0f172a; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #cbd5e1;">
+            <strong>كيف؟</strong><br>
+            1. اضغط على أيقونة القائمة (⋮ أو ⋯) في الأعلى.<br>
+            2. اختر "فتح في المتصفح" (Open in browser).
+          </div>
+          <button id="inapp-close-btn" style="background: #7C3AED; color: #fff; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%;">
+            فهمت، شكرًا
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+
+    document.getElementById('inapp-close-btn').addEventListener('click', function() {
+      dialog.remove();
+    });
+  }
+
+  // 4. التشغيل عند تحميل الصفحة
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attemptEscape);
+  } else {
+    attemptEscape();
+  }
+
+})();
+</script>
+
 </body>
 </html>
