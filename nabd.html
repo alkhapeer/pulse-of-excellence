@@ -38,7 +38,7 @@ src="https://www.facebook.com/tr?id=2581358429048085&ev=PageView&noscript=1"
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0F0B1F">
 <title>نبض التميز · أكاديمية هيرو</title>
-<meta name="description" content="اكتشف نقاط قوة طفلك في 15 دقيقة. تقييم نمائي شامل، أنشطة يومية، ومتابعة تطور. تجربة مجانية 3 أيام.للحصول على تجربة أفضل افتح الرابط في المتصفح الخارجي">
+<meta name="description" content="اكتشف نقاط قوة طفلك في 15 دقيقة. تقييم نمائي شامل، أنشطة يومية، ومتابعة تطور. تجربة مجانية 3 أيام.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800;900&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -158,6 +158,31 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
   text-align:center;font-size:12px;
   color:rgba(255,255,255,.5);margin-top:12px;
 }
+
+/* ═══════ Info Boxes (تحت الأزرار) ═══════ */
+.info-boxes{
+  margin-top:14px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(196,181,253,.35);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.info-row{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:700;line-height:1.5;
+}
+.info-row .info-icon{font-size:20px;flex-shrink:0}
+.info-row.purple{color:#E9D5FF}
+.info-row.green{color:#A7F3D0}
+.trial .info-boxes{
+  background:rgba(255,255,255,.95);
+  border-color:rgba(124,58,237,.5);
+}
+.trial .info-row.purple{color:#4C1D95}
+.trial .info-row.green{color:#166534}
 
 /* ═══════ CTA Pair ═══════ */
 .cta-pair{
@@ -369,25 +394,27 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
     </div>
 
     <div class="cta-pair">
-  <a class="cta" href="https://nabdh.hero1.vip/ar.html" id="mainCta">
-    <span data-i18n="ctaMain">ابدأ التجربة المجانية الآن</span>
-    <span class="cta-arrow">←</span>
-  </a>
-  <a class="cta cta-en" href="https://nabdh.hero1.vip/en.html">
-    <span data-i18n="ctaMainEn">Start Free Trial (EN)</span>
-    <span class="cta-arrow">←</span>
-  </a>
-</div>
-<div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
-  <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(124,58,237,.15);border:1px solid rgba(196,181,253,.35);color:#E9D5FF;font-size:12.5px;font-weight:700;line-height:1.5;text-align:center">
-    <span style="font-size:16px;flex-shrink:0">🔐</span>
-    <span>يتطلب تسجيل دخول سريع بحساب Google لحفظ نتائجك</span>
-  </div>
-  <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(6,214,160,.15);border:1px solid rgba(6,214,160,.4);color:#A7F3D0;font-size:12.5px;font-weight:700;line-height:1.5;text-align:center">
-    <span style="font-size:16px;flex-shrink:0">🚀</span>
-    <span>افتح الرابط في المتصفح الخارجي (Chrome / Safari) لتجربة أفضل</span>
-  </div>
-</div>
+      <a class="cta" href="https://nabdh.hero1.vip/ar.html" id="mainCta">
+        <span data-i18n="ctaMain">ابدأ التجربة المجانية الآن</span>
+        <span class="cta-arrow">←</span>
+      </a>
+      <a class="cta cta-en" href="https://nabdh.hero1.vip/en.html">
+        <span data-i18n="ctaMainEn">Start Free Trial (EN)</span>
+        <span class="cta-arrow">←</span>
+      </a>
+    </div>
+
+    <!-- صندوق التنبيهات — واضح ومرئي -->
+    <div class="info-boxes">
+      <div class="info-row purple">
+        <span class="info-icon">🔐</span>
+        <span data-i18n="infoGoogle">يتطلب تسجيل دخول سريع بحساب Google</span>
+      </div>
+      <div class="info-row green">
+        <span class="info-icon">🚀</span>
+        <span data-i18n="infoBrowser">للحصول على أفضل تجربة، افتح الرابط في Chrome أو Safari</span>
+      </div>
+    </div>
   </section>
 
   <!-- ═══════ Trust Bar ═══════ -->
@@ -483,25 +510,27 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
     <div class="trial-title" data-i18n="trialTitle">جرّب نبض التميز مجاناً</div>
     <div class="trial-sub" data-i18n="trialSub">3 أيام كاملة • بدون بطاقة بنكية • بدون التزام</div>
     <div class="cta-pair">
-  <a class="cta" href="https://nabdh.hero1.vip/ar.html">
-    <span data-i18n="trialCta">ابدأ الآن مجاناً</span>
-    <span class="cta-arrow">←</span>
-  </a>
-  <a class="cta cta-en" href="https://nabdh.hero1.vip/en.html">
-    <span data-i18n="trialCtaEn">Start Free Now (EN)</span>
-    <span class="cta-arrow">←</span>
-  </a>
-</div>
-    <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
-  <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(124,58,237,.15);border:1px solid rgba(196,181,253,.35);color:#E9D5FF;font-size:12.5px;font-weight:700;line-height:1.5;text-align:center">
-    <span style="font-size:16px;flex-shrink:0">🔐</span>
-    <span>يتطلب تسجيل دخول سريع بحساب Google لحفظ نتائجك</span>
-  </div>
-  <div style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(6,214,160,.15);border:1px solid rgba(6,214,160,.4);color:#A7F3D0;font-size:12.5px;font-weight:700;line-height:1.5;text-align:center">
-    <span style="font-size:16px;flex-shrink:0">🚀</span>
-    <span>افتح الرابط في المتصفح الخارجي (Chrome / Safari) لتجربة أفضل</span>
-  </div>
-</div>
+      <a class="cta" href="https://nabdh.hero1.vip/ar.html">
+        <span data-i18n="trialCta">ابدأ الآن مجاناً</span>
+        <span class="cta-arrow">←</span>
+      </a>
+      <a class="cta cta-en" href="https://nabdh.hero1.vip/en.html">
+        <span data-i18n="trialCtaEn">Start Free Now (EN)</span>
+        <span class="cta-arrow">←</span>
+      </a>
+    </div>
+
+    <!-- صندوق التنبيهات — بخلفية بيضاء فوق البنفسجي -->
+    <div class="info-boxes">
+      <div class="info-row purple">
+        <span class="info-icon">🔐</span>
+        <span data-i18n="infoGoogle">يتطلب تسجيل دخول سريع بحساب Google</span>
+      </div>
+      <div class="info-row green">
+        <span class="info-icon">🚀</span>
+        <span data-i18n="infoBrowser">للحصول على أفضل تجربة، افتح الرابط في Chrome أو Safari</span>
+      </div>
+    </div>
   </section>
 
   <!-- ═══════ FAQ ═══════ -->
@@ -574,6 +603,8 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
       chip3:'آمن عبر Google',
       ctaMain:'ابدأ التجربة المجانية الآن',
       ctaNote:'سيتم توجيهك لاختيار اللغة ثم الدخول الآمن',
+      infoGoogle:'يتطلب تسجيل دخول سريع بحساب Google',
+      infoBrowser:'للحصول على أفضل تجربة، افتح الرابط في Chrome أو Safari',
       trust1t:'دخول آمن',
       trust1s:'عبر حساب Google',
       trust2t:'مجاني 3 أيام',
@@ -631,6 +662,8 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
       chip3:'Secure via Google',
       ctaMain:'Start Free Trial Now',
       ctaNote:"You'll be guided to choose language, then secure sign-in",
+      infoGoogle:'Requires quick sign-in with Google account',
+      infoBrowser:'For best experience, open link in Chrome or Safari',
       trust1t:'Secure Login',
       trust1s:'via Google account',
       trust2t:'3 Days Free',
@@ -688,25 +721,20 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
     const isAr = lang === 'ar';
     const dict = T[lang];
 
-    // Direction & language
     document.documentElement.lang = lang;
     document.documentElement.dir = isAr ? 'rtl' : 'ltr';
 
-    // Update all data-i18n
     $$('[data-i18n]').forEach(el => {
       const key = el.dataset.i18n;
       if(dict[key]) el.textContent = dict[key];
     });
 
-    // Update language button
     $('#langFlag').textContent = isAr ? '🇬🇧' : '🇸🇦';
     $('#langLabel').textContent = isAr ? 'English' : 'العربية';
 
-    // Update arrow direction on CTAs
     const arrow = isAr ? '←' : '→';
     $$('.cta-arrow').forEach(a => a.textContent = arrow);
 
-    // Save preference
     try { localStorage.setItem(LS_KEY, lang); } catch(e){}
   }
 
@@ -714,10 +742,8 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
     applyLang(currentLang === 'ar' ? 'en' : 'ar');
   }
 
-  // Bind toggle
   $('#langBtn').addEventListener('click', toggleLang);
 
-  // Initial language: check saved, then browser lang, else ar
   (function init(){
     let saved = null;
     try { saved = localStorage.getItem(LS_KEY); } catch(e){}
@@ -729,97 +755,82 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
     applyLang(nav.startsWith('ar') ? 'ar' : 'en');
   })();
 
-  // Update page title based on language
-  const titleObserver = new MutationObserver(()=>{});
   const updateTitle = () => {
     document.title = currentLang === 'ar'
       ? 'نبض التميز · أكاديمية هيرو'
       : 'Nabd Al-Tamayoz · Hero Academy';
   };
   updateTitle();
-
-  // Observe language change for title
-  const origToggle = toggleLang;
   $('#langBtn').addEventListener('click', updateTitle);
 
 })();
 </script>
 
-<!-- كود اكتشاف المتصفح المدمج وتوجيه المستخدم -->
+<!-- ══════════════════════════════════════════════════════
+     كود اكتشاف المتصفح المدمج وإظهار التنبيه
+     ══════════════════════════════════════════════════════ -->
 <script>
 (function() {
   'use strict';
 
-  // 1. تحديد ما إذا كنا في متصفح مدمج
   function isInAppBrowser() {
     var ua = navigator.userAgent || navigator.vendor || window.opera;
-    // أنماط شائعة للمتصفحات المدمجة
-    var patterns = [
-      'FBAN', 'FBAV', // Facebook
-      'Instagram', // Instagram
-      'Messenger', // Messenger
-      'TikTok', // TikTok
-      'Snapchat', // Snapchat
-      'Twitter', // Twitter
-      'Line', // LINE
-      'WhatsApp' // WhatsApp
-    ];
-    return patterns.some(function(pattern) { return ua.indexOf(pattern) > -1; });
+    var patterns = ['FBAN','FBAV','Instagram','Messenger','TikTok','Snapchat','Twitter','Line','WhatsApp'];
+    for (var i = 0; i < patterns.length; i++) {
+      if (ua.indexOf(patterns[i]) > -1) return true;
+    }
+    return false;
   }
 
-  // 2. محاولة فتح الرابط في المتصفح الخارجي
-  function attemptEscape() {
-    if (!isInAppBrowser()) return; // لسنا في متصفح مدمج، لا نفعل شيئًا
-
-    var currentUrl = window.location.href;
+  function getPlatform() {
     var ua = navigator.userAgent || navigator.vendor || window.opera;
-    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-
-    // روابط خاصة معروفة لفتح المتصفح الخارجي
-    var escapeUrl = null;
-
-    if (isIOS) {
-      // على iOS، بعض التطبيقات تسمح بروابط خاصة
-      if (ua.indexOf('Instagram') > -1) {
-        escapeUrl = 'instagram://extbrowser/?url=' + encodeURIComponent(currentUrl);
-      } else if (ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1) {
-        escapeUrl = 'x-safari-https://' + currentUrl.replace(/^https?:\/\//, '');
-      }
-      // ملاحظة: روابط iOS غالبًا ما تتطلب نقرة من المستخدم
-    } else {
-      // على Android، يمكن استخدام intent:// (يعمل أحيانًا)
-      // لكن الطريقة الأكثر موثوقية هي إظهار التعليمات
-    }
-
-    if (escapeUrl) {
-      window.location.href = escapeUrl;
-    }
-    // إذا لم نتمكن من إعادة التوجيه التلقائي، سنعرض التعليمات
-    showEscapeDialog();
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+    if (/Android/i.test(ua)) return 'android';
+    return 'other';
   }
 
-  // 3. عرض نافذة منبثقة مع تعليمات للمستخدم
+  function getAppName() {
+    var ua = navigator.userAgent || '';
+    if (ua.indexOf('Instagram') > -1) return 'Instagram';
+    if (ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1) return 'Facebook';
+    if (ua.indexOf('Messenger') > -1) return 'Messenger';
+    if (ua.indexOf('TikTok') > -1) return 'TikTok';
+    if (ua.indexOf('Snapchat') > -1) return 'Snapchat';
+    if (ua.indexOf('WhatsApp') > -1) return 'WhatsApp';
+    return 'هذا التطبيق';
+  }
+
   function showEscapeDialog() {
-    // تجنب عرض النافذة أكثر من مرة
     if (document.getElementById('inapp-escape-dialog')) return;
+
+    var appName = getAppName();
+    var platform = getPlatform();
+
+    // أيقونة الأسهم مختلفة حسب المنصة
+    var arrowIcon = (platform === 'ios')
+      ? '<span style="display:inline-block;font-size:22px">⋯</span>'
+      : '<span style="display:inline-block;font-size:22px">⋮</span>';
+
+    var stepText = (platform === 'ios')
+      ? '1. اضغط على أيقونة (⋯) في أعلى يسار الشاشة.<br>2. اختر "فتح في Safari".'
+      : '1. اضغط على أيقونة (⋮) في أعلى يسار الشاشة.<br>2. اختر "فتح في المتصفح".';
 
     var dialog = document.createElement('div');
     dialog.id = 'inapp-escape-dialog';
     dialog.innerHTML = `
-      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 999999; display: flex; align-items: center; justify-content: center; padding: 20px; font-family: Tajawal, sans-serif; direction: rtl;">
-        <div style="background: #1e293b; color: #fff; border-radius: 16px; padding: 24px; max-width: 400px; text-align: center; border: 2px solid #7C3AED;">
-          <div style="font-size: 48px; margin-bottom: 12px;">🚀</div>
-          <h3 style="margin: 0 0 12px 0; font-size: 18px;">لتجربة أفضل، افتح الرابط في متصفحك</h3>
-          <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
-            يبدو أنك تتصفح من داخل تطبيق (مثل فيسبوك أو إنستغرام). للحصول على التجربة الكاملة وتسجيل الدخول، يرجى فتح الصفحة في متصفح Chrome أو Safari.
+      <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,11,31,0.96);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;font-family:Tajawal,sans-serif;direction:rtl;box-sizing:border-box">
+        <div style="background:linear-gradient(160deg,#1a1140 0%,#2d1b5e 100%);color:#fff;border-radius:20px;padding:28px 22px;max-width:420px;width:100%;text-align:center;border:2px solid #7C3AED;box-shadow:0 20px 60px rgba(124,58,237,.5);box-sizing:border-box">
+          <div style="font-size:52px;margin-bottom:14px;line-height:1">🚀</div>
+          <h3 style="margin:0 0 14px 0;font-size:19px;font-weight:900;color:#fff;line-height:1.4">افتح الرابط في متصفحك لإكمال التجربة</h3>
+          <p style="color:#C4B5FD;font-size:14px;line-height:1.7;margin:0 0 18px 0">
+            أنت تتصفح الآن من داخل تطبيق <strong style="color:#fff">${appName}</strong>. للحصول على التجربة الكاملة وتسجيل الدخول بحساب Google، يرجى فتح الصفحة في متصفحك الأساسي.
           </p>
-          <div style="text-align: right; background: #0f172a; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; color: #cbd5e1;">
-            <strong>كيف؟</strong><br>
-            1. اضغط على أيقونة القائمة (⋮ أو ⋯) في الأعلى.<br>
-            2. اختر "فتح في المتصفح" (Open in browser).
+          <div style="text-align:right;background:rgba(15,11,31,0.7);border:1px solid rgba(196,181,253,0.3);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:13.5px;color:#E9D5FF;line-height:1.9">
+            <div style="font-weight:900;margin-bottom:6px;color:#fff;font-size:14px">📱 كيف؟</div>
+            ${stepText}
           </div>
-          <button id="inapp-close-btn" style="background: #7C3AED; color: #fff; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 14px; cursor: pointer; width: 100%;">
-            فهمت، شكرًا
+          <button id="inapp-close-btn" style="background:linear-gradient(135deg,#7C3AED 0%,#FF6B9D 100%);color:#fff;border:none;padding:14px 24px;border-radius:30px;font-weight:900;font-size:15px;cursor:pointer;width:100%;font-family:inherit;box-shadow:0 8px 24px rgba(124,58,237,.4)">
+            فهمت، شكراً
           </button>
         </div>
       </div>
@@ -831,11 +842,17 @@ html[dir="ltr"] .cta:hover .cta-arrow{transform:translateX(4px)}
     });
   }
 
-  // 4. التشغيل عند تحميل الصفحة
+  function check() {
+    if (isInAppBrowser()) {
+      // تأخير بسيط للتأكد من تحميل الصفحة
+      setTimeout(showEscapeDialog, 800);
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', attemptEscape);
+    document.addEventListener('DOMContentLoaded', check);
   } else {
-    attemptEscape();
+    check();
   }
 
 })();
