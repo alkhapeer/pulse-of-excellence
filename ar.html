@@ -726,9 +726,12 @@ function applyStatus(data) {
   if (data.status === 'needs_purchase') {
   window.CURRENT_GOOGLE_EMAIL = data.email || '';
   _releaseDOM();
-  showClaimScreen();
+  showOfferScreen({
+    title: '🔓 فعّل الدورة الآن',
+    msg: 'هذه الدورة تحتاج إلى ترخيص. اختر طريقة التفعيل المناسبة.'
+  });
   return;
-  }
+}
   if (data.status === 'trial_expired') {
     try { localStorage.removeItem(K_TRIAL_CACHE); } catch(e){}
     _releaseDOM();
